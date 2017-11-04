@@ -1,0 +1,16 @@
+C:\ooh4ria\workspaceMars\DSM1Gen\DSM1GenNHibernate\bin\Debug\hibernate.cfg.xml
+C:\ooh4ria\workspaceMars\DSM1Gen\DSM1GenNHibernate\bin\Debug\DSM1GenNHibernate.dll.config
+C:\ooh4ria\workspaceMars\DSM1Gen\DSM1GenNHibernate\bin\Debug\DSM1GenNHibernate.dll
+C:\ooh4ria\workspaceMars\DSM1Gen\DSM1GenNHibernate\bin\Debug\DSM1GenNHibernate.pdb
+C:\ooh4ria\workspaceMars\DSM1Gen\DSM1GenNHibernate\bin\Debug\Castle.DynamicProxy2.dll
+C:\ooh4ria\workspaceMars\DSM1Gen\DSM1GenNHibernate\bin\Debug\LinFu.DynamicProxy.dll
+C:\ooh4ria\workspaceMars\DSM1Gen\DSM1GenNHibernate\bin\Debug\NHibernate.ByteCode.Castle.dll
+C:\ooh4ria\workspaceMars\DSM1Gen\DSM1GenNHibernate\bin\Debug\NHibernate.ByteCode.LinFu.dll
+C:\ooh4ria\workspaceMars\DSM1Gen\DSM1GenNHibernate\bin\Debug\NHibernate.dll
+C:\ooh4ria\workspaceMars\DSM1Gen\DSM1GenNHibernate\bin\Debug\Iesi.Collections.dll
+C:\ooh4ria\workspaceMars\DSM1Gen\DSM1GenNHibernate\bin\Debug\Antlr3.Runtime.dll
+C:\ooh4ria\workspaceMars\DSM1Gen\DSM1GenNHibernate\bin\Debug\log4net.dll
+C:\ooh4ria\workspaceMars\DSM1Gen\DSM1GenNHibernate\obj\Debug\DSM1GenNHibernate.csproj.CoreCompileInputs.cache
+C:\ooh4ria\workspaceMars\DSM1Gen\DSM1GenNHibernate\obj\Debug\DSM1GenNHibernate.dll
+C:\ooh4ria\workspaceMars\DSM1Gen\DSM1GenNHibernate\obj\Debug\DSM1GenNHibernate.pdb
+C:\ooh4ria\workspaceMars\DSM1Gen\DSM1GenNHibernate\obj\Debug\DSM1GenNHibernate.csprojResolveAssemblyReference.cache
