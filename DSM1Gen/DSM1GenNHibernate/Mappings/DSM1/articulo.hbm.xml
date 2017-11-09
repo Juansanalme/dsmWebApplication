@@ -15,7 +15,7 @@
 					<property name="Nombre" type="string"> 
 						<column name="nombre"  not-null="true"/>
 					</property>
-					<property name="Precio" type="float"> 
+					<property name="Precio" type="double"> 
 						<column name="precio"  not-null="true"/>
 					</property>
 					<property name="Descripcion" type="string"> 
@@ -58,17 +58,6 @@
 					
 			
 		  			
-						<bag name="Carrito" table="[carrito_articulo]" inverse="true" >
-							<key>
-								
-									<column name="FK_idArticulo_idArticulo"/> 
-							</key>
-      						<many-to-many class="DSM1GenNHibernate.EN.DSM1.CarritoEN">
-									<column name="FK_idCarrito_idCarrito"/> 
-      						</many-to-many>
-    					</bag>
-			
-		  			
 					
 							   <one-to-one name="Puja" class="DSM1GenNHibernate.EN.DSM1.PujaEN" property-ref="Articulo" cascade="delete"/>							
 					 
@@ -96,12 +85,9 @@
 					
 					
 					
-					
 		
 		 </class>	
 		  
 		  <query name="ArticuloENReadAllHQL">from ArticuloEN</query>
-		  <query name="ArticuloENbusqueda_por_categoriaHQL"><![CDATA[FROM ArticuloEN WHERE  :p_categoria = ArticuloEN.Categoria.Nombre]]></query>
-		  <query name="ArticuloENbusqueda_por_nombreHQL"><![CDATA[FROM ArticuloEN WHERE :p_nombre = ArticuloEN.Nombre]]></query>
 		</hibernate-mapping>
 	

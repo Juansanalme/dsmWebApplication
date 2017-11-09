@@ -21,13 +21,28 @@ public partial class CarritoCEN
 {
 public void Vaciar_carrito (int p_oid)
 {
-        /*PROTECTED REGION ID(DSM1GenNHibernate.CEN.DSM1_Carrito_vaciar_carrito) ENABLED START*/
+            /*PROTECTED REGION ID(DSM1GenNHibernate.CEN.DSM1_Carrito_vaciar_carrito) ENABLED START*/
 
-        // Write here your custom code...
+            // Write here your custom code...
 
-        throw new NotImplementedException ("Method Vaciar_carrito() not yet implemented.");
+            CarritoEN carritoEN = null;
+            CarritoCEN carritoCEN = null;
+            
+            //ICarritoCAD
+            carritoEN = _ICarritoCAD.ReadOIDDefault(p_oid);
+            /*
+            carritoCEN = new ArticuloCEN()
 
-        /*PROTECTED REGION END*/
-}
+            foreach (LineaPedidoEN linea in carritoEN.LineaPedido)
+            {
+                CarritoCEN.
+            }
+            */
+            
+
+            //throw new NotImplementedException ("Method Vaciar_carrito() not yet implemented.");
+
+            /*PROTECTED REGION END*/
+        }
 }
 }

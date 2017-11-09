@@ -197,5 +197,36 @@ public void Destroy (int id
                 SessionClose ();
         }
 }
+
+public void Anyadir_supercat (int p_Categoria_OID, int p_supercategoria_OID)
+{
+        DSM1GenNHibernate.EN.DSM1.CategoriaEN categoriaEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                categoriaEN = (CategoriaEN)session.Load (typeof(CategoriaEN), p_Categoria_OID);
+                categoriaEN.Supercategoria = (DSM1GenNHibernate.EN.DSM1.CategoriaEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.CategoriaEN), p_supercategoria_OID);
+
+                categoriaEN.Supercategoria.Subcategoria.Add (categoriaEN);
+
+
+
+                session.Update (categoriaEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in CategoriaCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

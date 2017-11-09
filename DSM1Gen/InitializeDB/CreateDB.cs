@@ -8,6 +8,7 @@ using System.Data;
 using DSM1GenNHibernate.EN.DSM1;
 using DSM1GenNHibernate.CEN.DSM1;
 using DSM1GenNHibernate.CAD.DSM1;
+using DSM1GenNHibernate.Utils;
 
 /*PROTECTED REGION END*/
 namespace InitializeDB
@@ -78,15 +79,60 @@ public static void InitializeData ()
         try
         {
                 // Insert the initilizations of entities using the CEN classes
+                
+
+                RegistradoCEN registradoCEN = new RegistradoCEN ();
+                int registradoCEN_id = registradoCEN.New_ ("Pablo", "Máñez Fernández", 20, new DateTime (1997, 8, 6), "6984984X", "apruebame", "pablomanez", false);
+
+                System.Console.WriteLine(registradoCEN.get_IRegistradoCAD().ReadOIDDefault(registradoCEN_id).Nombre);
+                System.Console.WriteLine(registradoCEN.get_IRegistradoCAD().ReadOIDDefault(registradoCEN_id).Apellidos);
+                System.Console.WriteLine(registradoCEN.get_IRegistradoCAD().ReadOIDDefault(registradoCEN_id).Edad);
+                System.Console.WriteLine(registradoCEN.get_IRegistradoCAD().ReadOIDDefault(registradoCEN_id).Fecha_nac);
+                System.Console.WriteLine(registradoCEN.get_IRegistradoCAD().ReadOIDDefault(registradoCEN_id).Dni);
+                System.Console.WriteLine("Contraseña encriptada: " + registradoCEN.get_IRegistradoCAD().ReadOIDDefault(registradoCEN_id).Contraseña);
+                System.Console.WriteLine("Encripto la contraseña 'apruebame': " + Util.GetEncondeMD5("apruebame"));
+                System.Console.WriteLine(registradoCEN.get_IRegistradoCAD().ReadOIDDefault(registradoCEN_id).N_usuario);
+                System.Console.WriteLine("Es admin?" + registradoCEN.Es_admin(registradoCEN_id));
+                registradoCEN.Convertir_usuario(registradoCEN_id, true);
+                System.Console.WriteLine("He convertido a Pablo en admin?" + registradoCEN.Es_admin(registradoCEN_id));
+
+                CategoriaCEN categoriaCEN = new CategoriaCEN ();
+                int cat1 = categoriaCEN.New_("espada", 0);
+                int cat2 = categoriaCEN.New_ ("pistola", 0);
+                int cat3 = categoriaCEN.New_ ("arma", 0);
+
+                categoriaCEN.Anyadir_supercat(cat1, cat3);
+                categoriaCEN.Anyadir_supercat(cat2, cat3);
+
+                CarritoCEN carritoCEN = new CarritoCEN ();
+                carritoCEN.New_ (new DateTime (2017, 7, 7), registradoCEN_id, 0);
+
+                ArticuloCEN articuloCEN = new ArticuloCEN ();
+                int articulo1 = articuloCEN.New_ ("FrostMourne", 10.01, cat1, "Un arma muy especial", 5);
+
+                ValoracionCEN valoracionCEN = new ValoracionCEN();
+                int valoracionCEN_id1 = valoracionCEN.New_(10, "La verdad es que es la hostia, pero quiero que Luján me apruebe", registradoCEN_id, articulo1);
+
+                //PRUEBA DE MODIFY DE VALORACION
+                System.Console.WriteLine(valoracionCEN.get_IValoracionCAD().ReadOIDDefault(valoracionCEN_id1).Texto);
+                int pMod = valoracionCEN.get_IValoracionCAD().ReadOIDDefault(valoracionCEN_id1).Puntuacion;
+                valoracionCEN.Modify(valoracionCEN_id1, pMod, "He cambiado el texto y sí, quiero que Luján me apruebe");
+                System.Console.WriteLine(valoracionCEN.get_IValoracionCAD().ReadOIDDefault(valoracionCEN_id1).Texto);
+
+
+
+
+
+
+
+
 
 
                 // p.e. CustomerCEN customer = new CustomerCEN();
                 // customer.New_ (p_user:"user", p_password:"1234");
 
-
-
                 /*PROTECTED REGION END*/
-        }
+            }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);

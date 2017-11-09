@@ -91,7 +91,7 @@ public void ModifyDefault (PujaEN puja)
                 SessionInitializeTransaction ();
                 PujaEN pujaEN = (PujaEN)session.Load (typeof(PujaEN), puja.Id);
 
-                pujaEN.Tiempo = puja.Tiempo;
+                pujaEN.Fecha = puja.Fecha;
 
 
                 pujaEN.Puja_inicial = puja.Puja_inicial;
@@ -104,6 +104,9 @@ public void ModifyDefault (PujaEN puja)
 
 
                 pujaEN.Id_usuario = puja.Id_usuario;
+
+
+                pujaEN.Cerrada = puja.Cerrada;
 
                 session.Update (pujaEN);
                 SessionCommit ();
@@ -164,7 +167,7 @@ public void Modify (PujaEN puja)
                 SessionInitializeTransaction ();
                 PujaEN pujaEN = (PujaEN)session.Load (typeof(PujaEN), puja.Id);
 
-                pujaEN.Tiempo = puja.Tiempo;
+                pujaEN.Fecha = puja.Fecha;
 
 
                 pujaEN.Puja_inicial = puja.Puja_inicial;
@@ -174,6 +177,9 @@ public void Modify (PujaEN puja)
 
 
                 pujaEN.Id_usuario = puja.Id_usuario;
+
+
+                pujaEN.Cerrada = puja.Cerrada;
 
                 session.Update (pujaEN);
                 SessionCommit ();
@@ -224,7 +230,7 @@ public void Actualizar (PujaEN puja)
                 SessionInitializeTransaction ();
                 PujaEN pujaEN = (PujaEN)session.Load (typeof(PujaEN), puja.Id);
 
-                pujaEN.Tiempo = puja.Tiempo;
+                pujaEN.Fecha = puja.Fecha;
 
 
                 pujaEN.Puja_inicial = puja.Puja_inicial;
@@ -234,6 +240,9 @@ public void Actualizar (PujaEN puja)
 
 
                 pujaEN.Id_usuario = puja.Id_usuario;
+
+
+                pujaEN.Cerrada = puja.Cerrada;
 
                 session.Update (pujaEN);
                 SessionCommit ();

@@ -25,7 +25,14 @@ public bool Anyadir_stock (int p_oid, int p_cantidad)
 
         // Write here your custom code...
 
-        throw new NotImplementedException ("Method Anyadir_stock() not yet implemented.");
+        ArticuloEN articuloEN = _IArticuloCAD.ReadOIDDefault (p_oid);
+
+        articuloEN.Stock = articuloEN.Stock + p_cantidad;
+        _IArticuloCAD.Modify (articuloEN);
+
+        return true;
+
+        //throw new NotImplementedException ("Method Anyadir_stock() not yet implemented.");
 
         /*PROTECTED REGION END*/
 }

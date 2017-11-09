@@ -38,7 +38,7 @@ public IArticuloCAD get_IArticuloCAD ()
         return this._IArticuloCAD;
 }
 
-public int New_ (string p_nombre, float p_precio, int p_categoria, string p_descripcion, int p_stock)
+public int New_ (string p_nombre, double p_precio, int p_categoria, string p_descripcion, int p_stock)
 {
         ArticuloEN articuloEN = null;
         int oid;
@@ -67,7 +67,7 @@ public int New_ (string p_nombre, float p_precio, int p_categoria, string p_desc
         return oid;
 }
 
-public void Modify (int p_Articulo_OID, string p_nombre, float p_precio, string p_descripcion, int p_stock)
+public void Modify (int p_Articulo_OID, string p_nombre, double p_precio, string p_descripcion, int p_stock)
 {
         ArticuloEN articuloEN = null;
 
@@ -89,14 +89,6 @@ public void Destroy (int id
         _IArticuloCAD.Destroy (id);
 }
 
-public System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> Busqueda_por_categoria (string p_categoria)
-{
-        return _IArticuloCAD.Busqueda_por_categoria (p_categoria);
-}
-public System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> Busqueda_por_nombre (string p_nombre)
-{
-        return _IArticuloCAD.Busqueda_por_nombre (p_nombre);
-}
 public ArticuloEN Ver_detalles (int id
                                 )
 {

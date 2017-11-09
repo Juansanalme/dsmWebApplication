@@ -22,7 +22,7 @@ private string nombre;
 /**
  *	Atributo precio
  */
-private float precio;
+private double precio;
 
 
 
@@ -44,13 +44,6 @@ private System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN>
  *	Atributo lineaPedido
  */
 private System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido;
-
-
-
-/**
- *	Atributo carrito
- */
-private System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.CarritoEN> carrito;
 
 
 
@@ -97,7 +90,7 @@ public virtual string Nombre {
 
 
 
-public virtual float Precio {
+public virtual double Precio {
         get { return precio; } set { precio = value;  }
 }
 
@@ -117,12 +110,6 @@ public virtual System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.Valora
 
 public virtual System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> LineaPedido {
         get { return lineaPedido; } set { lineaPedido = value;  }
-}
-
-
-
-public virtual System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.CarritoEN> Carrito {
-        get { return carrito; } set { carrito = value;  }
 }
 
 
@@ -157,26 +144,25 @@ public ArticuloEN()
 {
         valoracion = new System.Collections.Generic.List<DSM1GenNHibernate.EN.DSM1.ValoracionEN>();
         lineaPedido = new System.Collections.Generic.List<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN>();
-        carrito = new System.Collections.Generic.List<DSM1GenNHibernate.EN.DSM1.CarritoEN>();
         registrado = new System.Collections.Generic.List<DSM1GenNHibernate.EN.DSM1.RegistradoEN>();
 }
 
 
 
-public ArticuloEN(int id, string nombre, float precio, DSM1GenNHibernate.EN.DSM1.CategoriaEN categoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.CarritoEN> carrito, DSM1GenNHibernate.EN.DSM1.PujaEN puja, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> registrado, string descripcion, int stock
+public ArticuloEN(int id, string nombre, double precio, DSM1GenNHibernate.EN.DSM1.CategoriaEN categoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.PujaEN puja, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> registrado, string descripcion, int stock
                   )
 {
-        this.init (Id, nombre, precio, categoria, valoracion, lineaPedido, carrito, puja, registrado, descripcion, stock);
+        this.init (Id, nombre, precio, categoria, valoracion, lineaPedido, puja, registrado, descripcion, stock);
 }
 
 
 public ArticuloEN(ArticuloEN articulo)
 {
-        this.init (Id, articulo.Nombre, articulo.Precio, articulo.Categoria, articulo.Valoracion, articulo.LineaPedido, articulo.Carrito, articulo.Puja, articulo.Registrado, articulo.Descripcion, articulo.Stock);
+        this.init (Id, articulo.Nombre, articulo.Precio, articulo.Categoria, articulo.Valoracion, articulo.LineaPedido, articulo.Puja, articulo.Registrado, articulo.Descripcion, articulo.Stock);
 }
 
 private void init (int id
-                   , string nombre, float precio, DSM1GenNHibernate.EN.DSM1.CategoriaEN categoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.CarritoEN> carrito, DSM1GenNHibernate.EN.DSM1.PujaEN puja, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> registrado, string descripcion, int stock)
+                   , string nombre, double precio, DSM1GenNHibernate.EN.DSM1.CategoriaEN categoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.PujaEN puja, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> registrado, string descripcion, int stock)
 {
         this.Id = id;
 
@@ -190,8 +176,6 @@ private void init (int id
         this.Valoracion = valoracion;
 
         this.LineaPedido = lineaPedido;
-
-        this.Carrito = carrito;
 
         this.Puja = puja;
 

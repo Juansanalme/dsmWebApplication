@@ -12,16 +12,12 @@
 						</id>
 			
 					
-					<property name="Cantidad" type="integer"> 
-						<column name="cantidad"  not-null="true"/>
-					</property>
 					<property name="Fecha_anyadido" type="date"> 
 						<column name="fecha_anyadido"  not-null="true"/>
 					</property>
 					<property name="Precio" type="float"> 
 						<column name="precio"  not-null="true"/>
 					</property>
-			
 			
 			
 			
@@ -38,17 +34,6 @@
 					
 			
 		  			
-						<bag name="Articulo" table="[carrito_articulo]"  >
-							<key>
-								
-									<column name="FK_idCarrito_idCarrito"/> 
-							</key>
-      						<many-to-many class="DSM1GenNHibernate.EN.DSM1.ArticuloEN">
-									<column name="FK_idArticulo_idArticulo"/> 
-      						</many-to-many>
-    					</bag>
-			
-		  			
 					
 							   <one-to-one name="Registrado" class="DSM1GenNHibernate.EN.DSM1.RegistradoEN" property-ref="Carrito" />							
 					 
@@ -60,8 +45,6 @@
 					 
 						
 			
-					
-					
 					
 					
 					

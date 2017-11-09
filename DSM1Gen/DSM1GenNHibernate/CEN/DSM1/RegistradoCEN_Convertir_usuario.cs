@@ -11,7 +11,7 @@ using DSM1GenNHibernate.EN.DSM1;
 using DSM1GenNHibernate.CAD.DSM1;
 
 
-/*PROTECTED REGION ID(usingDSM1GenNHibernate.CEN.DSM1_Registrado_es_admin) ENABLED START*/
+/*PROTECTED REGION ID(usingDSM1GenNHibernate.CEN.DSM1_Registrado_convertir_usuario) ENABLED START*/
 //  references to other libraries
 /*PROTECTED REGION END*/
 
@@ -19,17 +19,18 @@ namespace DSM1GenNHibernate.CEN.DSM1
 {
 public partial class RegistradoCEN
 {
-public bool Es_admin (int p_oid)
+public void Convertir_usuario (int p_oid, bool p_bool)
 {
-        /*PROTECTED REGION ID(DSM1GenNHibernate.CEN.DSM1_Registrado_es_admin) ENABLED START*/
+        /*PROTECTED REGION ID(DSM1GenNHibernate.CEN.DSM1_Registrado_convertir_usuario) ENABLED START*/
 
         // Write here your custom code...
 
         RegistradoEN registradoEN = _IRegistradoCAD.ReadOIDDefault (p_oid);
 
-        return registradoEN.Admin;
+        registradoEN.Admin = p_bool;
+        _IRegistradoCAD.Modify (registradoEN);
 
-        //throw new NotImplementedException ("Method Es_admin() not yet implemented.");
+        //throw new NotImplementedException ("Method Convertir_usuario() not yet implemented.");
 
         /*PROTECTED REGION END*/
 }

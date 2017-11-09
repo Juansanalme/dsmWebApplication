@@ -20,5 +20,10 @@ void Modify (LineaPedidoEN lineaPedido);
 
 void Destroy (int id
               );
+
+
+void Eliminar_producto (int p_LineaPedido_OID, int p_carrito_OID);
+
+void Anyadir_producto (int p_LineaPedido_OID, int p_carrito_OID);
 }
 }

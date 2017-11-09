@@ -28,11 +28,7 @@ void Destroy (int id
               );
 
 
-
 RegistradoEN Ver_detalles_oid (int id
                                );
-
-
-System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> Ver_detalles_nombre (string p_nombre);
 }
 }

@@ -91,11 +91,7 @@ public void ModifyDefault (CarritoEN carrito)
                 SessionInitializeTransaction ();
                 CarritoEN carritoEN = (CarritoEN)session.Load (typeof(CarritoEN), carrito.Id);
 
-                carritoEN.Cantidad = carrito.Cantidad;
-
-
                 carritoEN.Fecha_anyadido = carrito.Fecha_anyadido;
-
 
 
 
@@ -162,9 +158,6 @@ public void Modify (CarritoEN carrito)
                 SessionInitializeTransaction ();
                 CarritoEN carritoEN = (CarritoEN)session.Load (typeof(CarritoEN), carrito.Id);
 
-                carritoEN.Cantidad = carrito.Cantidad;
-
-
                 carritoEN.Fecha_anyadido = carrito.Fecha_anyadido;
 
 
@@ -212,7 +205,7 @@ public void Destroy (int id
         }
 }
 
-public void Eliminar_producto (int p_Carrito_OID, System.Collections.Generic.IList<int> p_articulo_OIDs)
+public void Vaciar_carrito (int p_Carrito_OID, System.Collections.Generic.IList<int> p_lineaPedido_OIDs)
 {
         try
         {
@@ -220,16 +213,16 @@ public void Eliminar_producto (int p_Carrito_OID, System.Collections.Generic.ILi
                 DSM1GenNHibernate.EN.DSM1.CarritoEN carritoEN = null;
                 carritoEN = (CarritoEN)session.Load (typeof(CarritoEN), p_Carrito_OID);
 
-                DSM1GenNHibernate.EN.DSM1.ArticuloEN articuloENAux = null;
-                if (carritoEN.Articulo != null) {
-                        foreach (int item in p_articulo_OIDs) {
-                                articuloENAux = (DSM1GenNHibernate.EN.DSM1.ArticuloEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.ArticuloEN), item);
-                                if (carritoEN.Articulo.Contains (articuloENAux) == true) {
-                                        carritoEN.Articulo.Remove (articuloENAux);
-                                        articuloENAux.Carrito.Remove (carritoEN);
+                DSM1GenNHibernate.EN.DSM1.LineaPedidoEN lineaPedidoENAux = null;
+                if (carritoEN.LineaPedido != null) {
+                        foreach (int item in p_lineaPedido_OIDs) {
+                                lineaPedidoENAux = (DSM1GenNHibernate.EN.DSM1.LineaPedidoEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.LineaPedidoEN), item);
+                                if (carritoEN.LineaPedido.Contains (lineaPedidoENAux) == true) {
+                                        carritoEN.LineaPedido.Remove (lineaPedidoENAux);
+                                        lineaPedidoENAux.Carrito = null;
                                 }
                                 else
-                                        throw new ModelException ("The identifier " + item + " in p_articulo_OIDs you are trying to unrelationer, doesn't exist in CarritoEN");
+                                        throw new ModelException ("The identifier " + item + " in p_lineaPedido_OIDs you are trying to unrelationer, doesn't exist in CarritoEN");
                         }
                 }
 
@@ -280,28 +273,20 @@ public CarritoEN Ver_detalles (int id
         return carritoEN;
 }
 
-public void Anyadir_producto (int p_Carrito_OID, System.Collections.Generic.IList<int> p_articulo_OIDs)
+public int Terminar_compra (CarritoEN carrito)
 {
-        DSM1GenNHibernate.EN.DSM1.CarritoEN carritoEN = null;
         try
         {
                 SessionInitializeTransaction ();
-                carritoEN = (CarritoEN)session.Load (typeof(CarritoEN), p_Carrito_OID);
-                DSM1GenNHibernate.EN.DSM1.ArticuloEN articuloENAux = null;
-                if (carritoEN.Articulo == null) {
-                        carritoEN.Articulo = new System.Collections.Generic.List<DSM1GenNHibernate.EN.DSM1.ArticuloEN>();
+                if (carrito.Registrado != null) {
+                        // Argumento OID y no colección.
+                        carrito.Registrado = (DSM1GenNHibernate.EN.DSM1.RegistradoEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.RegistradoEN), carrito.Registrado.Id);
+
+                        carrito.Registrado.Carrito
+                                = carrito;
                 }
 
-                foreach (int item in p_articulo_OIDs) {
-                        articuloENAux = new DSM1GenNHibernate.EN.DSM1.ArticuloEN ();
-                        articuloENAux = (DSM1GenNHibernate.EN.DSM1.ArticuloEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.ArticuloEN), item);
-                        articuloENAux.Carrito.Add (carritoEN);
-
-                        carritoEN.Articulo.Add (articuloENAux);
-                }
-
-
-                session.Update (carritoEN);
+                session.Save (carrito);
                 SessionCommit ();
         }
 
@@ -317,6 +302,8 @@ public void Anyadir_producto (int p_Carrito_OID, System.Collections.Generic.ILis
         {
                 SessionClose ();
         }
+
+        return carrito.Id;
 }
 }
 }

@@ -103,6 +103,13 @@ private System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.OfertaPujaEN>
 
 
 
+/**
+ *	Atributo admin
+ */
+private bool admin;
+
+
+
 
 
 
@@ -190,6 +197,12 @@ public virtual System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.Oferta
 
 
 
+public virtual bool Admin {
+        get { return admin; } set { admin = value;  }
+}
+
+
+
 
 
 public RegistradoEN()
@@ -203,20 +216,20 @@ public RegistradoEN()
 
 
 
-public RegistradoEN(int id, string nombre, string apellidos, int edad, Nullable<DateTime> fecha_nac, string dni, String contraseña, string n_usuario, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.PedidoEN> pedido, DSM1GenNHibernate.EN.DSM1.CarritoEN carrito, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.PujaEN> pujaGanadora, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> a_favorito, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.OfertaPujaEN> ofertaPuja
+public RegistradoEN(int id, string nombre, string apellidos, int edad, Nullable<DateTime> fecha_nac, string dni, String contraseña, string n_usuario, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.PedidoEN> pedido, DSM1GenNHibernate.EN.DSM1.CarritoEN carrito, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.PujaEN> pujaGanadora, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> a_favorito, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.OfertaPujaEN> ofertaPuja, bool admin
                     )
 {
-        this.init (Id, nombre, apellidos, edad, fecha_nac, dni, contraseña, n_usuario, valoracion, pedido, carrito, pujaGanadora, a_favorito, ofertaPuja);
+        this.init (Id, nombre, apellidos, edad, fecha_nac, dni, contraseña, n_usuario, valoracion, pedido, carrito, pujaGanadora, a_favorito, ofertaPuja, admin);
 }
 
 
 public RegistradoEN(RegistradoEN registrado)
 {
-        this.init (Id, registrado.Nombre, registrado.Apellidos, registrado.Edad, registrado.Fecha_nac, registrado.Dni, registrado.Contraseña, registrado.N_usuario, registrado.Valoracion, registrado.Pedido, registrado.Carrito, registrado.PujaGanadora, registrado.A_favorito, registrado.OfertaPuja);
+        this.init (Id, registrado.Nombre, registrado.Apellidos, registrado.Edad, registrado.Fecha_nac, registrado.Dni, registrado.Contraseña, registrado.N_usuario, registrado.Valoracion, registrado.Pedido, registrado.Carrito, registrado.PujaGanadora, registrado.A_favorito, registrado.OfertaPuja, registrado.Admin);
 }
 
 private void init (int id
-                   , string nombre, string apellidos, int edad, Nullable<DateTime> fecha_nac, string dni, String contraseña, string n_usuario, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.PedidoEN> pedido, DSM1GenNHibernate.EN.DSM1.CarritoEN carrito, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.PujaEN> pujaGanadora, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> a_favorito, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.OfertaPujaEN> ofertaPuja)
+                   , string nombre, string apellidos, int edad, Nullable<DateTime> fecha_nac, string dni, String contraseña, string n_usuario, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.PedidoEN> pedido, DSM1GenNHibernate.EN.DSM1.CarritoEN carrito, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.PujaEN> pujaGanadora, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> a_favorito, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.OfertaPujaEN> ofertaPuja, bool admin)
 {
         this.Id = id;
 
@@ -246,6 +259,8 @@ private void init (int id
         this.A_favorito = a_favorito;
 
         this.OfertaPuja = ofertaPuja;
+
+        this.Admin = admin;
 }
 
 public override bool Equals (object obj)

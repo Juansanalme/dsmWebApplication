@@ -274,45 +274,5 @@ public void Anyadir_linea (int p_Pedido_OID, System.Collections.Generic.IList<in
                 SessionClose ();
         }
 }
-
-public int Terminar_compra (PedidoEN pedido)
-{
-        try
-        {
-                SessionInitializeTransaction ();
-                if (pedido.Registrado != null) {
-                        // Argumento OID y no colección.
-                        pedido.Registrado = (DSM1GenNHibernate.EN.DSM1.RegistradoEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.RegistradoEN), pedido.Registrado.Id);
-
-                        pedido.Registrado.Pedido
-                        .Add (pedido);
-                }
-                if (pedido.Carrito != null) {
-                        // Argumento OID y no colección.
-                        pedido.Carrito = (DSM1GenNHibernate.EN.DSM1.CarritoEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.CarritoEN), pedido.Carrito.Id);
-
-                        pedido.Carrito.Pedido
-                                = pedido;
-                }
-
-                session.Save (pedido);
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
-                        throw ex;
-                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in PedidoCAD.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-
-        return pedido.Id;
-}
 }
 }

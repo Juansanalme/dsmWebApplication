@@ -38,7 +38,7 @@ public ILineaPedidoCAD get_ILineaPedidoCAD ()
         return this._ILineaPedidoCAD;
 }
 
-public int New_ (int p_cantidad, int p_articulo, int p_carrito, int p_pedido)
+public int New_ (int p_cantidad, int p_articulo)
 {
         LineaPedidoEN lineaPedidoEN = null;
         int oid;
@@ -53,22 +53,6 @@ public int New_ (int p_cantidad, int p_articulo, int p_carrito, int p_pedido)
                 // Lista de oids id
                 lineaPedidoEN.Articulo = new DSM1GenNHibernate.EN.DSM1.ArticuloEN ();
                 lineaPedidoEN.Articulo.Id = p_articulo;
-        }
-
-
-        if (p_carrito != -1) {
-                // El argumento p_carrito -> Property carrito es oid = false
-                // Lista de oids id
-                lineaPedidoEN.Carrito = new DSM1GenNHibernate.EN.DSM1.CarritoEN ();
-                lineaPedidoEN.Carrito.Id = p_carrito;
-        }
-
-
-        if (p_pedido != -1) {
-                // El argumento p_pedido -> Property pedido es oid = false
-                // Lista de oids id
-                lineaPedidoEN.Pedido = new DSM1GenNHibernate.EN.DSM1.PedidoEN ();
-                lineaPedidoEN.Pedido.Id = p_pedido;
         }
 
         //Call to LineaPedidoCAD
@@ -94,6 +78,19 @@ public void Destroy (int id
                      )
 {
         _ILineaPedidoCAD.Destroy (id);
+}
+
+public void Eliminar_producto (int p_LineaPedido_OID, int p_carrito_OID)
+{
+        //Call to LineaPedidoCAD
+
+        _ILineaPedidoCAD.Eliminar_producto (p_LineaPedido_OID, p_carrito_OID);
+}
+public void Anyadir_producto (int p_LineaPedido_OID, int p_carrito_OID)
+{
+        //Call to LineaPedidoCAD
+
+        _ILineaPedidoCAD.Anyadir_producto (p_LineaPedido_OID, p_carrito_OID);
 }
 }
 }

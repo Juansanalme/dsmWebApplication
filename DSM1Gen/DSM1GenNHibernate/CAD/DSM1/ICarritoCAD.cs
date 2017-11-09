@@ -22,12 +22,12 @@ void Destroy (int id
               );
 
 
-void Eliminar_producto (int p_Carrito_OID, System.Collections.Generic.IList<int> p_articulo_OIDs);
+void Vaciar_carrito (int p_Carrito_OID, System.Collections.Generic.IList<int> p_lineaPedido_OIDs);
 
 CarritoEN Ver_detalles (int id
                         );
 
 
-void Anyadir_producto (int p_Carrito_OID, System.Collections.Generic.IList<int> p_articulo_OIDs);
+int Terminar_compra (CarritoEN carrito);
 }
 }

@@ -38,14 +38,14 @@ public IPujaCAD get_IPujaCAD ()
         return this._IPujaCAD;
 }
 
-public int New_ (Nullable<DateTime> p_tiempo, float p_puja_inicial, int p_articulo, float p_puja_max, int p_id_usuario)
+public int New_ (Nullable<DateTime> p_fecha, float p_puja_inicial, int p_articulo, float p_puja_max, int p_id_usuario, bool p_cerrada)
 {
         PujaEN pujaEN = null;
         int oid;
 
         //Initialized PujaEN
         pujaEN = new PujaEN ();
-        pujaEN.Tiempo = p_tiempo;
+        pujaEN.Fecha = p_fecha;
 
         pujaEN.Puja_inicial = p_puja_inicial;
 
@@ -61,23 +61,26 @@ public int New_ (Nullable<DateTime> p_tiempo, float p_puja_inicial, int p_articu
 
         pujaEN.Id_usuario = p_id_usuario;
 
+        pujaEN.Cerrada = p_cerrada;
+
         //Call to PujaCAD
 
         oid = _IPujaCAD.New_ (pujaEN);
         return oid;
 }
 
-public void Modify (int p_Puja_OID, Nullable<DateTime> p_tiempo, float p_puja_inicial, float p_puja_max, int p_id_usuario)
+public void Modify (int p_Puja_OID, Nullable<DateTime> p_fecha, float p_puja_inicial, float p_puja_max, int p_id_usuario, bool p_cerrada)
 {
         PujaEN pujaEN = null;
 
         //Initialized PujaEN
         pujaEN = new PujaEN ();
         pujaEN.Id = p_Puja_OID;
-        pujaEN.Tiempo = p_tiempo;
+        pujaEN.Fecha = p_fecha;
         pujaEN.Puja_inicial = p_puja_inicial;
         pujaEN.Puja_max = p_puja_max;
         pujaEN.Id_usuario = p_id_usuario;
+        pujaEN.Cerrada = p_cerrada;
         //Call to PujaCAD
 
         _IPujaCAD.Modify (pujaEN);
@@ -89,17 +92,18 @@ public void Destroy (int id
         _IPujaCAD.Destroy (id);
 }
 
-public void Actualizar (int p_Puja_OID, Nullable<DateTime> p_tiempo, float p_puja_inicial, float p_puja_max, int p_id_usuario)
+public void Actualizar (int p_Puja_OID, Nullable<DateTime> p_fecha, float p_puja_inicial, float p_puja_max, int p_id_usuario, bool p_cerrada)
 {
         PujaEN pujaEN = null;
 
         //Initialized PujaEN
         pujaEN = new PujaEN ();
         pujaEN.Id = p_Puja_OID;
-        pujaEN.Tiempo = p_tiempo;
+        pujaEN.Fecha = p_fecha;
         pujaEN.Puja_inicial = p_puja_inicial;
         pujaEN.Puja_max = p_puja_max;
         pujaEN.Id_usuario = p_id_usuario;
+        pujaEN.Cerrada = p_cerrada;
         //Call to PujaCAD
 
         _IPujaCAD.Actualizar (pujaEN);

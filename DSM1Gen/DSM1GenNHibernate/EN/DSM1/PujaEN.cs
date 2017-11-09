@@ -13,9 +13,9 @@ private int id;
 
 
 /**
- *	Atributo tiempo
+ *	Atributo fecha
  */
-private Nullable<DateTime> tiempo;
+private Nullable<DateTime> fecha;
 
 
 
@@ -61,6 +61,13 @@ private int id_usuario;
 
 
 
+/**
+ *	Atributo cerrada
+ */
+private bool cerrada;
+
+
+
 
 
 
@@ -70,8 +77,8 @@ public virtual int Id {
 
 
 
-public virtual Nullable<DateTime> Tiempo {
-        get { return tiempo; } set { tiempo = value;  }
+public virtual Nullable<DateTime> Fecha {
+        get { return fecha; } set { fecha = value;  }
 }
 
 
@@ -112,6 +119,12 @@ public virtual int Id_usuario {
 
 
 
+public virtual bool Cerrada {
+        get { return cerrada; } set { cerrada = value;  }
+}
+
+
+
 
 
 public PujaEN()
@@ -121,25 +134,25 @@ public PujaEN()
 
 
 
-public PujaEN(int id, Nullable<DateTime> tiempo, float puja_inicial, DSM1GenNHibernate.EN.DSM1.RegistradoEN usuarioGanador, DSM1GenNHibernate.EN.DSM1.ArticuloEN articulo, float puja_max, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.OfertaPujaEN> ofertaPuja, int id_usuario
+public PujaEN(int id, Nullable<DateTime> fecha, float puja_inicial, DSM1GenNHibernate.EN.DSM1.RegistradoEN usuarioGanador, DSM1GenNHibernate.EN.DSM1.ArticuloEN articulo, float puja_max, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.OfertaPujaEN> ofertaPuja, int id_usuario, bool cerrada
               )
 {
-        this.init (Id, tiempo, puja_inicial, usuarioGanador, articulo, puja_max, ofertaPuja, id_usuario);
+        this.init (Id, fecha, puja_inicial, usuarioGanador, articulo, puja_max, ofertaPuja, id_usuario, cerrada);
 }
 
 
 public PujaEN(PujaEN puja)
 {
-        this.init (Id, puja.Tiempo, puja.Puja_inicial, puja.UsuarioGanador, puja.Articulo, puja.Puja_max, puja.OfertaPuja, puja.Id_usuario);
+        this.init (Id, puja.Fecha, puja.Puja_inicial, puja.UsuarioGanador, puja.Articulo, puja.Puja_max, puja.OfertaPuja, puja.Id_usuario, puja.Cerrada);
 }
 
 private void init (int id
-                   , Nullable<DateTime> tiempo, float puja_inicial, DSM1GenNHibernate.EN.DSM1.RegistradoEN usuarioGanador, DSM1GenNHibernate.EN.DSM1.ArticuloEN articulo, float puja_max, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.OfertaPujaEN> ofertaPuja, int id_usuario)
+                   , Nullable<DateTime> fecha, float puja_inicial, DSM1GenNHibernate.EN.DSM1.RegistradoEN usuarioGanador, DSM1GenNHibernate.EN.DSM1.ArticuloEN articulo, float puja_max, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.OfertaPujaEN> ofertaPuja, int id_usuario, bool cerrada)
 {
         this.Id = id;
 
 
-        this.Tiempo = tiempo;
+        this.Fecha = fecha;
 
         this.Puja_inicial = puja_inicial;
 
@@ -152,6 +165,8 @@ private void init (int id
         this.OfertaPuja = ofertaPuja;
 
         this.Id_usuario = id_usuario;
+
+        this.Cerrada = cerrada;
 }
 
 public override bool Equals (object obj)

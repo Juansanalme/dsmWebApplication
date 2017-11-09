@@ -33,6 +33,9 @@
 					<property name="N_usuario" type="string"> 
 						<column name="n_usuario"  unique="true" not-null="true"/>
 					</property>
+					<property name="Admin" type="boolean"> 
+						<column name="admin"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -105,6 +108,8 @@
 							<one-to-many class="DSM1GenNHibernate.EN.DSM1.OfertaPujaEN"/>
 					    </bag>
 					
+			
+					
 					
 					
 					
@@ -123,6 +128,5 @@
 		 </class>	
 		  
 		  <query name="RegistradoENReadAllHQL">from RegistradoEN</query>
-		  <query name="RegistradoENver_detalles_nombreHQL"><![CDATA[FROM RegistradoEN WHERE :nombre = RegistradoEN.N_usuario]]></query>
 		</hibernate-mapping>
 	

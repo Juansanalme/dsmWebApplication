@@ -12,8 +12,8 @@
 						</id>
 			
 					
-					<property name="Tiempo" type="timestamp"> 
-						<column name="tiempo"  not-null="true"/>
+					<property name="Fecha" type="date"> 
+						<column name="fecha"  not-null="true"/>
 					</property>
 					<property name="Puja_inicial" type="float"> 
 						<column name="puja_inicial"  not-null="true"/>
@@ -23,6 +23,9 @@
 					</property>
 					<property name="Id_usuario" type="integer"> 
 						<column name="id_usuario"  not-null="true"/>
+					</property>
+					<property name="Cerrada" type="boolean"> 
+						<column name="cerrada"  not-null="true"/>
 					</property>
 			
 			
@@ -55,6 +58,8 @@
 					    </bag>
 					
 			
+			
+					
 					
 					
 					

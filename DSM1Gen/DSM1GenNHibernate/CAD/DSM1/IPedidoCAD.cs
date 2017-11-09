@@ -23,7 +23,5 @@ void Destroy (int id
 
 
 void Anyadir_linea (int p_Pedido_OID, System.Collections.Generic.IList<int> p_lineaPedido_OIDs);
-
-int Terminar_compra (PedidoEN pedido);
 }
 }

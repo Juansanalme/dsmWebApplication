@@ -127,20 +127,6 @@ public int New_ (LineaPedidoEN lineaPedido)
                         lineaPedido.Articulo.LineaPedido
                         .Add (lineaPedido);
                 }
-                if (lineaPedido.Carrito != null) {
-                        // Argumento OID y no colección.
-                        lineaPedido.Carrito = (DSM1GenNHibernate.EN.DSM1.CarritoEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.CarritoEN), lineaPedido.Carrito.Id);
-
-                        lineaPedido.Carrito.LineaPedido
-                        .Add (lineaPedido);
-                }
-                if (lineaPedido.Pedido != null) {
-                        // Argumento OID y no colección.
-                        lineaPedido.Pedido = (DSM1GenNHibernate.EN.DSM1.PedidoEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.PedidoEN), lineaPedido.Pedido.Id);
-
-                        lineaPedido.Pedido.LineaPedido
-                        .Add (lineaPedido);
-                }
 
                 session.Save (lineaPedido);
                 SessionCommit ();
@@ -196,6 +182,68 @@ public void Destroy (int id
                 SessionInitializeTransaction ();
                 LineaPedidoEN lineaPedidoEN = (LineaPedidoEN)session.Load (typeof(LineaPedidoEN), id);
                 session.Delete (lineaPedidoEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in LineaPedidoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
+public void Eliminar_producto (int p_LineaPedido_OID, int p_carrito_OID)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                DSM1GenNHibernate.EN.DSM1.LineaPedidoEN lineaPedidoEN = null;
+                lineaPedidoEN = (LineaPedidoEN)session.Load (typeof(LineaPedidoEN), p_LineaPedido_OID);
+
+                if (lineaPedidoEN.Carrito.Id == p_carrito_OID) {
+                        lineaPedidoEN.Carrito = null;
+                }
+                else
+                        throw new ModelException ("The identifier " + p_carrito_OID + " in p_carrito_OID you are trying to unrelationer, doesn't exist in LineaPedidoEN");
+
+                session.Update (lineaPedidoEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in LineaPedidoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+public void Anyadir_producto (int p_LineaPedido_OID, int p_carrito_OID)
+{
+        DSM1GenNHibernate.EN.DSM1.LineaPedidoEN lineaPedidoEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                lineaPedidoEN = (LineaPedidoEN)session.Load (typeof(LineaPedidoEN), p_LineaPedido_OID);
+                lineaPedidoEN.Carrito = (DSM1GenNHibernate.EN.DSM1.CarritoEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.CarritoEN), p_carrito_OID);
+
+                lineaPedidoEN.Carrito.LineaPedido.Add (lineaPedidoEN);
+
+
+
+                session.Update (lineaPedidoEN);
                 SessionCommit ();
         }
 

@@ -38,15 +38,13 @@ public ICarritoCAD get_ICarritoCAD ()
         return this._ICarritoCAD;
 }
 
-public int New_ (int p_cantidad, Nullable<DateTime> p_fecha_anyadido, int p_registrado, float p_precio)
+public int New_ (Nullable<DateTime> p_fecha_anyadido, int p_registrado, float p_precio)
 {
         CarritoEN carritoEN = null;
         int oid;
 
         //Initialized CarritoEN
         carritoEN = new CarritoEN ();
-        carritoEN.Cantidad = p_cantidad;
-
         carritoEN.Fecha_anyadido = p_fecha_anyadido;
 
 
@@ -65,14 +63,13 @@ public int New_ (int p_cantidad, Nullable<DateTime> p_fecha_anyadido, int p_regi
         return oid;
 }
 
-public void Modify (int p_Carrito_OID, int p_cantidad, Nullable<DateTime> p_fecha_anyadido, float p_precio)
+public void Modify (int p_Carrito_OID, Nullable<DateTime> p_fecha_anyadido, float p_precio)
 {
         CarritoEN carritoEN = null;
 
         //Initialized CarritoEN
         carritoEN = new CarritoEN ();
         carritoEN.Id = p_Carrito_OID;
-        carritoEN.Cantidad = p_cantidad;
         carritoEN.Fecha_anyadido = p_fecha_anyadido;
         carritoEN.Precio = p_precio;
         //Call to CarritoCAD
@@ -86,11 +83,11 @@ public void Destroy (int id
         _ICarritoCAD.Destroy (id);
 }
 
-public void Eliminar_producto (int p_Carrito_OID, System.Collections.Generic.IList<int> p_articulo_OIDs)
+public void Vaciar_carrito (int p_Carrito_OID, System.Collections.Generic.IList<int> p_lineaPedido_OIDs)
 {
         //Call to CarritoCAD
 
-        _ICarritoCAD.Eliminar_producto (p_Carrito_OID, p_articulo_OIDs);
+        _ICarritoCAD.Vaciar_carrito (p_Carrito_OID, p_lineaPedido_OIDs);
 }
 public CarritoEN Ver_detalles (int id
                                )
@@ -99,13 +96,6 @@ public CarritoEN Ver_detalles (int id
 
         carritoEN = _ICarritoCAD.Ver_detalles (id);
         return carritoEN;
-}
-
-public void Anyadir_producto (int p_Carrito_OID, System.Collections.Generic.IList<int> p_articulo_OIDs)
-{
-        //Call to CarritoCAD
-
-        _ICarritoCAD.Anyadir_producto (p_Carrito_OID, p_articulo_OIDs);
 }
 }
 }

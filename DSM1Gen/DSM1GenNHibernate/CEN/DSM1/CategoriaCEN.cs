@@ -74,5 +74,12 @@ public void Destroy (int id
 {
         _ICategoriaCAD.Destroy (id);
 }
+
+public void Anyadir_supercat (int p_Categoria_OID, int p_supercategoria_OID)
+{
+        //Call to CategoriaCAD
+
+        _ICategoriaCAD.Anyadir_supercat (p_Categoria_OID, p_supercategoria_OID);
+}
 }
 }
