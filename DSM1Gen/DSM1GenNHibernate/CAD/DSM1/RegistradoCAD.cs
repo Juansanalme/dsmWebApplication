@@ -106,7 +106,7 @@ public void ModifyDefault (RegistradoEN registrado)
                 registradoEN.Dni = registrado.Dni;
 
 
-                registradoEN.Contraseña = registrado.Contraseña;
+                registradoEN.Contrasenya = registrado.Contrasenya;
 
 
                 registradoEN.N_usuario = registrado.N_usuario;
@@ -264,7 +264,7 @@ public void Modify (RegistradoEN registrado)
                 registradoEN.Dni = registrado.Dni;
 
 
-                registradoEN.Contraseña = registrado.Contraseña;
+                registradoEN.Contrasenya = registrado.Contrasenya;
 
 
                 registradoEN.N_usuario = registrado.N_usuario;

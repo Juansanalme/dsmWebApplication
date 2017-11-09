@@ -27,8 +27,8 @@
 					<property name="Dni" type="string"> 
 						<column name="dniRegistrado"  unique="true" not-null="true"/>
 					</property>
-					<property name="Contraseña" type="string"> 
-						<column name="contraseña"  not-null="true"/>
+					<property name="Contrasenya" type="string"> 
+						<column name="contrasenya"  not-null="true"/>
 					</property>
 					<property name="N_usuario" type="string"> 
 						<column name="n_usuario"  unique="true" not-null="true"/>

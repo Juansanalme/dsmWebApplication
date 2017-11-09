@@ -50,7 +50,7 @@ public void Eliminar_fav (int p_Registrado_OID, System.Collections.Generic.IList
 
         _IRegistradoCAD.Eliminar_fav (p_Registrado_OID, p_a_favorito_OIDs);
 }
-public int New_ (string p_nombre, string p_apellidos, int p_edad, Nullable<DateTime> p_fecha_nac, string p_dni, String p_contraseña, string p_n_usuario, bool p_admin)
+public int New_ (string p_nombre, string p_apellidos, int p_edad, Nullable<DateTime> p_fecha_nac, string p_dni, String p_contrasenya, string p_n_usuario, bool p_admin)
 {
         RegistradoEN registradoEN = null;
         int oid;
@@ -67,7 +67,7 @@ public int New_ (string p_nombre, string p_apellidos, int p_edad, Nullable<DateT
 
         registradoEN.Dni = p_dni;
 
-        registradoEN.Contraseña = Utils.Util.GetEncondeMD5 (p_contraseña);
+        registradoEN.Contrasenya = Utils.Util.GetEncondeMD5 (p_contrasenya);
 
         registradoEN.N_usuario = p_n_usuario;
 
@@ -79,7 +79,7 @@ public int New_ (string p_nombre, string p_apellidos, int p_edad, Nullable<DateT
         return oid;
 }
 
-public void Modify (int p_Registrado_OID, string p_nombre, string p_apellidos, int p_edad, Nullable<DateTime> p_fecha_nac, string p_dni, String p_contraseña, string p_n_usuario, bool p_admin)
+public void Modify (int p_Registrado_OID, string p_nombre, string p_apellidos, int p_edad, Nullable<DateTime> p_fecha_nac, string p_dni, String p_contrasenya, string p_n_usuario, bool p_admin)
 {
         RegistradoEN registradoEN = null;
 
@@ -91,7 +91,7 @@ public void Modify (int p_Registrado_OID, string p_nombre, string p_apellidos, i
         registradoEN.Edad = p_edad;
         registradoEN.Fecha_nac = p_fecha_nac;
         registradoEN.Dni = p_dni;
-        registradoEN.Contraseña = Utils.Util.GetEncondeMD5 (p_contraseña);
+        registradoEN.Contrasenya = Utils.Util.GetEncondeMD5 (p_contrasenya);
         registradoEN.N_usuario = p_n_usuario;
         registradoEN.Admin = p_admin;
         //Call to RegistradoCAD
