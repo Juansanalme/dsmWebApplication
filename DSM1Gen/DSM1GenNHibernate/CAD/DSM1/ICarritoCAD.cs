@@ -28,6 +28,7 @@ CarritoEN Ver_detalles (int id
                         );
 
 
-int Terminar_compra (CarritoEN carrito);
+
+void Finalizar_compra (CarritoEN carrito);
 }
 }

@@ -20,14 +20,17 @@ namespace DSM1GenNHibernate.CP.DSM1
 {
 public partial class CarritoCP : BasicCP
 {
-public DSM1GenNHibernate.EN.DSM1.CarritoEN Terminar_compra (Nullable<DateTime> p_fecha_anyadido, int p_registrado, float p_precio)
+public void Terminar_compra (int p_Carrito_OID, float p_precio)
 {
         /*PROTECTED REGION ID(DSM1GenNHibernate.CP.DSM1_Carrito_terminar_compra) ENABLED START*/
 
         ICarritoCAD carritoCAD = null;
         CarritoCEN carritoCEN = null;
 
-        DSM1GenNHibernate.EN.DSM1.CarritoEN result = null;
+        IPedidoCAD pedidoCAD = null;
+        PedidoCEN pedidoCEN = null;
+
+        //DSM1GenNHibernate.EN.DSM1.CarritoEN result = null;
 
 
         try
@@ -36,14 +39,16 @@ public DSM1GenNHibernate.EN.DSM1.CarritoEN Terminar_compra (Nullable<DateTime> p
                 carritoCAD = new CarritoCAD (session);
                 carritoCEN = new  CarritoCEN (carritoCAD);
 
+                pedidoCAD = new PedidoCAD(session);
+                pedidoCEN = new PedidoCEN(pedidoCAD);
 
-
+                
 
                 int oid;
                 //Initialized CarritoEN
                 CarritoEN carritoEN;
                 carritoEN = new CarritoEN ();
-                carritoEN.Fecha_anyadido = p_fecha_anyadido;
+                
 
 
                 if (p_registrado != -1) {
@@ -71,7 +76,7 @@ public DSM1GenNHibernate.EN.DSM1.CarritoEN Terminar_compra (Nullable<DateTime> p
         {
                 SessionClose ();
         }
-        return result;
+        
 
 
         /*PROTECTED REGION END*/

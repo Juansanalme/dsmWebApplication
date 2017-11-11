@@ -91,9 +91,6 @@ public void ModifyDefault (CarritoEN carrito)
                 SessionInitializeTransaction ();
                 CarritoEN carritoEN = (CarritoEN)session.Load (typeof(CarritoEN), carrito.Id);
 
-                carritoEN.Fecha_anyadido = carrito.Fecha_anyadido;
-
-
 
 
 
@@ -157,9 +154,6 @@ public void Modify (CarritoEN carrito)
         {
                 SessionInitializeTransaction ();
                 CarritoEN carritoEN = (CarritoEN)session.Load (typeof(CarritoEN), carrito.Id);
-
-                carritoEN.Fecha_anyadido = carrito.Fecha_anyadido;
-
 
                 carritoEN.Precio = carrito.Precio;
 
@@ -273,20 +267,16 @@ public CarritoEN Ver_detalles (int id
         return carritoEN;
 }
 
-public int Terminar_compra (CarritoEN carrito)
+public void Finalizar_compra (CarritoEN carrito)
 {
         try
         {
                 SessionInitializeTransaction ();
-                if (carrito.Registrado != null) {
-                        // Argumento OID y no colección.
-                        carrito.Registrado = (DSM1GenNHibernate.EN.DSM1.RegistradoEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.RegistradoEN), carrito.Registrado.Id);
+                CarritoEN carritoEN = (CarritoEN)session.Load (typeof(CarritoEN), carrito.Id);
 
-                        carrito.Registrado.Carrito
-                                = carrito;
-                }
+                carritoEN.Precio = carrito.Precio;
 
-                session.Save (carrito);
+                session.Update (carritoEN);
                 SessionCommit ();
         }
 
@@ -302,8 +292,6 @@ public int Terminar_compra (CarritoEN carrito)
         {
                 SessionClose ();
         }
-
-        return carrito.Id;
 }
 }
 }

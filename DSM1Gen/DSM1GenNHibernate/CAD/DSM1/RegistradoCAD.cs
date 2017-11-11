@@ -343,5 +343,36 @@ public RegistradoEN Ver_detalles_oid (int id
 
         return registradoEN;
 }
+
+public System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> Ver_detalles_nombre (string p_nombre)
+{
+        System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM RegistradoEN self where from RegistradoEN reg where reg.Nombre = :p_nombre";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("RegistradoENver_detalles_nombreHQL");
+                query.SetParameter ("p_nombre", p_nombre);
+
+                result = query.List<DSM1GenNHibernate.EN.DSM1.RegistradoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in RegistradoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

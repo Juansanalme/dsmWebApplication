@@ -261,7 +261,7 @@ public void Actualizar (PujaEN puja)
                 SessionClose ();
         }
 }
-public void Terminar_puja (int p_Puja_OID, int p_usuarioGanador_OID)
+public void Declarar_ganador (int p_Puja_OID, int p_usuarioGanador_OID)
 {
         DSM1GenNHibernate.EN.DSM1.PujaEN pujaEN = null;
         try
@@ -273,6 +273,45 @@ public void Terminar_puja (int p_Puja_OID, int p_usuarioGanador_OID)
                 pujaEN.UsuarioGanador.PujaGanadora.Add (pujaEN);
 
 
+
+                session.Update (pujaEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in PujaCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
+public void Terminar_puja (PujaEN puja)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                PujaEN pujaEN = (PujaEN)session.Load (typeof(PujaEN), puja.Id);
+
+                pujaEN.Fecha = puja.Fecha;
+
+
+                pujaEN.Puja_inicial = puja.Puja_inicial;
+
+
+                pujaEN.Puja_max = puja.Puja_max;
+
+
+                pujaEN.Id_usuario = puja.Id_usuario;
+
+
+                pujaEN.Cerrada = puja.Cerrada;
 
                 session.Update (pujaEN);
                 SessionCommit ();

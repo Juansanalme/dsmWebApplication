@@ -38,7 +38,7 @@ public IPedidoCAD get_IPedidoCAD ()
         return this._IPedidoCAD;
 }
 
-public int New_ (string p_descripcion, Nullable<DateTime> p_fecha, string p_direccion, string p_localidad, string p_provincia, int p_cp, int p_registrado, int p_carrito)
+public int New_ (string p_descripcion, Nullable<DateTime> p_fecha, int p_registrado, int p_carrito)
 {
         PedidoEN pedidoEN = null;
         int oid;
@@ -48,14 +48,6 @@ public int New_ (string p_descripcion, Nullable<DateTime> p_fecha, string p_dire
         pedidoEN.Descripcion = p_descripcion;
 
         pedidoEN.Fecha = p_fecha;
-
-        pedidoEN.Direccion = p_direccion;
-
-        pedidoEN.Localidad = p_localidad;
-
-        pedidoEN.Provincia = p_provincia;
-
-        pedidoEN.Cp = p_cp;
 
 
         if (p_registrado != -1) {
@@ -79,7 +71,7 @@ public int New_ (string p_descripcion, Nullable<DateTime> p_fecha, string p_dire
         return oid;
 }
 
-public void Modify (int p_Pedido_OID, string p_descripcion, Nullable<DateTime> p_fecha, string p_direccion, string p_localidad, string p_provincia, int p_cp)
+public void Modify (int p_Pedido_OID, string p_descripcion, Nullable<DateTime> p_fecha)
 {
         PedidoEN pedidoEN = null;
 
@@ -88,10 +80,6 @@ public void Modify (int p_Pedido_OID, string p_descripcion, Nullable<DateTime> p
         pedidoEN.Id = p_Pedido_OID;
         pedidoEN.Descripcion = p_descripcion;
         pedidoEN.Fecha = p_fecha;
-        pedidoEN.Direccion = p_direccion;
-        pedidoEN.Localidad = p_localidad;
-        pedidoEN.Provincia = p_provincia;
-        pedidoEN.Cp = p_cp;
         //Call to PedidoCAD
 
         _IPedidoCAD.Modify (pedidoEN);

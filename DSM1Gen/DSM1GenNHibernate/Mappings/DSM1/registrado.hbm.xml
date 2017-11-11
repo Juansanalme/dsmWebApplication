@@ -128,5 +128,6 @@
 		 </class>	
 		  
 		  <query name="RegistradoENReadAllHQL">from RegistradoEN</query>
+		  <query name="RegistradoENver_detalles_nombreHQL"><![CDATA[from RegistradoEN reg where reg.Nombre = :p_nombre]]></query>
 		</hibernate-mapping>
 	

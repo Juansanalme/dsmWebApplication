@@ -97,18 +97,6 @@ public void ModifyDefault (PedidoEN pedido)
                 pedidoEN.Fecha = pedido.Fecha;
 
 
-                pedidoEN.Direccion = pedido.Direccion;
-
-
-                pedidoEN.Localidad = pedido.Localidad;
-
-
-                pedidoEN.Provincia = pedido.Provincia;
-
-
-                pedidoEN.Cp = pedido.Cp;
-
-
 
 
                 session.Update (pedidoEN);
@@ -181,18 +169,6 @@ public void Modify (PedidoEN pedido)
 
 
                 pedidoEN.Fecha = pedido.Fecha;
-
-
-                pedidoEN.Direccion = pedido.Direccion;
-
-
-                pedidoEN.Localidad = pedido.Localidad;
-
-
-                pedidoEN.Provincia = pedido.Provincia;
-
-
-                pedidoEN.Cp = pedido.Cp;
 
                 session.Update (pedidoEN);
                 SessionCommit ();

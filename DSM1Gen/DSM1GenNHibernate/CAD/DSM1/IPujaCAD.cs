@@ -25,6 +25,8 @@ void Destroy (int id
 void Actualizar (PujaEN puja);
 
 
-void Terminar_puja (int p_Puja_OID, int p_usuarioGanador_OID);
+void Declarar_ganador (int p_Puja_OID, int p_usuarioGanador_OID);
+
+void Terminar_puja (PujaEN puja);
 }
 }

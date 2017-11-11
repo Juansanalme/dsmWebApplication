@@ -13,13 +13,6 @@ private int id;
 
 
 /**
- *	Atributo fecha_anyadido
- */
-private Nullable<DateTime> fecha_anyadido;
-
-
-
-/**
  *	Atributo lineaPedido
  */
 private System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido;
@@ -52,12 +45,6 @@ private float precio;
 
 public virtual int Id {
         get { return id; } set { id = value;  }
-}
-
-
-
-public virtual Nullable<DateTime> Fecha_anyadido {
-        get { return fecha_anyadido; } set { fecha_anyadido = value;  }
 }
 
 
@@ -95,25 +82,23 @@ public CarritoEN()
 
 
 
-public CarritoEN(int id, Nullable<DateTime> fecha_anyadido, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado, DSM1GenNHibernate.EN.DSM1.PedidoEN pedido, float precio
+public CarritoEN(int id, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado, DSM1GenNHibernate.EN.DSM1.PedidoEN pedido, float precio
                  )
 {
-        this.init (Id, fecha_anyadido, lineaPedido, registrado, pedido, precio);
+        this.init (Id, lineaPedido, registrado, pedido, precio);
 }
 
 
 public CarritoEN(CarritoEN carrito)
 {
-        this.init (Id, carrito.Fecha_anyadido, carrito.LineaPedido, carrito.Registrado, carrito.Pedido, carrito.Precio);
+        this.init (Id, carrito.LineaPedido, carrito.Registrado, carrito.Pedido, carrito.Precio);
 }
 
 private void init (int id
-                   , Nullable<DateTime> fecha_anyadido, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado, DSM1GenNHibernate.EN.DSM1.PedidoEN pedido, float precio)
+                   , System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado, DSM1GenNHibernate.EN.DSM1.PedidoEN pedido, float precio)
 {
         this.Id = id;
 
-
-        this.Fecha_anyadido = fecha_anyadido;
 
         this.LineaPedido = lineaPedido;
 

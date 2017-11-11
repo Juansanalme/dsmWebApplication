@@ -18,22 +18,6 @@
 					<property name="Fecha" type="date"> 
 						<column name="fecha"  not-null="true"/>
 					</property>
-					<property name="Direccion" type="string"> 
-						<column name="direccion"  not-null="true"/>
-					</property>
-					<property name="Localidad" type="string"> 
-						<column name="localidad"  not-null="true"/>
-					</property>
-					<property name="Provincia" type="string"> 
-						<column name="provincia"  not-null="true"/>
-					</property>
-					<property name="Cp" type="integer"> 
-						<column name="cp"  not-null="true"/>
-					</property>
-			
-			
-			
-			
 			
 			
 			
@@ -63,10 +47,6 @@
         					</many-to-one>
 					 
 						
-					
-					
-					
-					
 					
 					
 					

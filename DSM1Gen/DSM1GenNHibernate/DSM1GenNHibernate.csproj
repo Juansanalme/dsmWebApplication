@@ -126,6 +126,7 @@
 			
 			
 			
+			
 			<Compile Include="CEN\DSM1\RegistradoCEN_Convertir_usuario.cs" />
 			
 			<Compile Include="CEN\DSM1\RegistradoCEN_Es_admin.cs" />
@@ -140,13 +141,15 @@
 			
 			
 			
-			<Compile Include="CEN\DSM1\PujaCEN_Cerrar_puja.cs" />
+			<Compile Include="CP\DSM1\PujaCP_Terminar_puja.cs" />
 			
 	<Compile Include="EN\DSM1\ArticuloEN.cs" />
 	<Compile Include="CEN\DSM1\ArticuloCEN.cs" />
 	<Compile Include="CAD\DSM1\IArticuloCAD.cs" />
 	<Compile Include="CAD\DSM1\ArticuloCAD.cs" />
 	<Compile Include="CP\DSM1\ArticuloCP.cs" />
+			
+			
 			
 			
 			
@@ -183,6 +186,10 @@
 			
 			
 			
+			<Compile Include="CP\DSM1\LineaPedidoCP_Crear_linea.cs" />
+			
+			<Compile Include="CEN\DSM1\LineaPedidoCEN_Destroy_linea.cs" />
+			
 	<Compile Include="EN\DSM1\CarritoEN.cs" />
 	<Compile Include="CEN\DSM1\CarritoCEN.cs" />
 	<Compile Include="CAD\DSM1\ICarritoCAD.cs" />
@@ -193,7 +200,9 @@
 			
 			
 			
-			<Compile Include="CP\DSM1\CarritoCP_Terminar_compra.cs" />
+			<Compile Include="CEN\DSM1\CarritoCEN_Calcular_precio.cs" />
+			
+			<Compile Include="CP\DSM1\CarritoCP_Finalizar_compra.cs" />
 			
 	<Compile Include="EN\DSM1\OfertaPujaEN.cs" />
 	<Compile Include="CEN\DSM1\OfertaPujaCEN.cs" />
@@ -202,6 +211,8 @@
 	<Compile Include="CP\DSM1\OfertaPujaCP.cs" />
 			
 			
+			
+			<Compile Include="CP\DSM1\OfertaPujaCP_Nueva_oferta.cs" />
 			
 	
 	

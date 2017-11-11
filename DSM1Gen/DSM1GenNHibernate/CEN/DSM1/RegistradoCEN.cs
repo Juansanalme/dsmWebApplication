@@ -113,5 +113,10 @@ public RegistradoEN Ver_detalles_oid (int id
         registradoEN = _IRegistradoCAD.Ver_detalles_oid (id);
         return registradoEN;
 }
+
+public System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> Ver_detalles_nombre (string p_nombre)
+{
+        return _IRegistradoCAD.Ver_detalles_nombre (p_nombre);
+}
 }
 }

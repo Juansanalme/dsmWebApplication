@@ -27,34 +27,6 @@ private Nullable<DateTime> fecha;
 
 
 /**
- *	Atributo direccion
- */
-private string direccion;
-
-
-
-/**
- *	Atributo localidad
- */
-private string localidad;
-
-
-
-/**
- *	Atributo provincia
- */
-private string provincia;
-
-
-
-/**
- *	Atributo cp
- */
-private int cp;
-
-
-
-/**
  *	Atributo lineaPedido
  */
 private System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido;
@@ -96,30 +68,6 @@ public virtual Nullable<DateTime> Fecha {
 
 
 
-public virtual string Direccion {
-        get { return direccion; } set { direccion = value;  }
-}
-
-
-
-public virtual string Localidad {
-        get { return localidad; } set { localidad = value;  }
-}
-
-
-
-public virtual string Provincia {
-        get { return provincia; } set { provincia = value;  }
-}
-
-
-
-public virtual int Cp {
-        get { return cp; } set { cp = value;  }
-}
-
-
-
 public virtual System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> LineaPedido {
         get { return lineaPedido; } set { lineaPedido = value;  }
 }
@@ -147,20 +95,20 @@ public PedidoEN()
 
 
 
-public PedidoEN(int id, string descripcion, Nullable<DateTime> fecha, string direccion, string localidad, string provincia, int cp, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado, DSM1GenNHibernate.EN.DSM1.CarritoEN carrito
+public PedidoEN(int id, string descripcion, Nullable<DateTime> fecha, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado, DSM1GenNHibernate.EN.DSM1.CarritoEN carrito
                 )
 {
-        this.init (Id, descripcion, fecha, direccion, localidad, provincia, cp, lineaPedido, registrado, carrito);
+        this.init (Id, descripcion, fecha, lineaPedido, registrado, carrito);
 }
 
 
 public PedidoEN(PedidoEN pedido)
 {
-        this.init (Id, pedido.Descripcion, pedido.Fecha, pedido.Direccion, pedido.Localidad, pedido.Provincia, pedido.Cp, pedido.LineaPedido, pedido.Registrado, pedido.Carrito);
+        this.init (Id, pedido.Descripcion, pedido.Fecha, pedido.LineaPedido, pedido.Registrado, pedido.Carrito);
 }
 
 private void init (int id
-                   , string descripcion, Nullable<DateTime> fecha, string direccion, string localidad, string provincia, int cp, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado, DSM1GenNHibernate.EN.DSM1.CarritoEN carrito)
+                   , string descripcion, Nullable<DateTime> fecha, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado, DSM1GenNHibernate.EN.DSM1.CarritoEN carrito)
 {
         this.Id = id;
 
@@ -168,14 +116,6 @@ private void init (int id
         this.Descripcion = descripcion;
 
         this.Fecha = fecha;
-
-        this.Direccion = direccion;
-
-        this.Localidad = localidad;
-
-        this.Provincia = provincia;
-
-        this.Cp = cp;
 
         this.LineaPedido = lineaPedido;
 

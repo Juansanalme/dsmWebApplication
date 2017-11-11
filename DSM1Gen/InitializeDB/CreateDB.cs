@@ -84,17 +84,17 @@ public static void InitializeData ()
                 RegistradoCEN registradoCEN = new RegistradoCEN ();
                 int registradoCEN_id = registradoCEN.New_ ("Pablo", "Manez Fernandez", 20, new DateTime (1997, 8, 6), "6984984X", "apruebame", "pablomanez", false);
 
-                System.Console.WriteLine (registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (registradoCEN_id).Nombre);
-                System.Console.WriteLine (registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (registradoCEN_id).Apellidos);
-                System.Console.WriteLine (registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (registradoCEN_id).Edad);
-                System.Console.WriteLine (registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (registradoCEN_id).Fecha_nac);
-                System.Console.WriteLine (registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (registradoCEN_id).Dni);
-                System.Console.WriteLine ("Contrasenya encriptada: " + registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (registradoCEN_id).Contrasenya);
-                System.Console.WriteLine ("Encripto la contrasenya 'apruebame': " + Util.GetEncondeMD5 ("apruebame"));
-                System.Console.WriteLine (registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (registradoCEN_id).N_usuario);
-                System.Console.WriteLine ("Es admin?" + registradoCEN.Es_admin (registradoCEN_id));
-                registradoCEN.Convertir_usuario (registradoCEN_id, true);
-                System.Console.WriteLine ("He convertido a Pablo en admin?" + registradoCEN.Es_admin (registradoCEN_id));
+                //System.Console.WriteLine (registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (registradoCEN_id).Nombre);
+                //System.Console.WriteLine (registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (registradoCEN_id).Apellidos);
+                //System.Console.WriteLine (registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (registradoCEN_id).Edad);
+                //System.Console.WriteLine (registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (registradoCEN_id).Fecha_nac);
+                //System.Console.WriteLine (registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (registradoCEN_id).Dni);
+                //System.Console.WriteLine ("Contrasenya encriptada: " + registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (registradoCEN_id).Contrasenya);
+                //System.Console.WriteLine ("Encripto la contrasenya 'apruebame': " + Util.GetEncondeMD5 ("apruebame"));
+                //System.Console.WriteLine (registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (registradoCEN_id).N_usuario);
+                //System.Console.WriteLine ("Es admin?" + registradoCEN.Es_admin (registradoCEN_id));
+                //registradoCEN.Convertir_usuario (registradoCEN_id, true);
+                //System.Console.WriteLine ("He convertido a Pablo en admin?" + registradoCEN.Es_admin (registradoCEN_id));
 
                 //CREO TRES CATEGORIAS
                 CategoriaCEN categoriaCEN = new CategoriaCEN ();
@@ -104,25 +104,57 @@ public static void InitializeData ()
 
                 categoriaCEN.Anyadir_supercat (cat1, cat3);
                 categoriaCEN.Anyadir_supercat (cat2, cat3);
-
+                
                 //CREO UN CARRITO
                 CarritoCEN carritoCEN = new CarritoCEN ();
-                carritoCEN.New_ (new DateTime (2017, 7, 7), registradoCEN_id, 0);
-
+                int carritoid = carritoCEN.New_ (registradoCEN_id, 0);
+                
                 //CREO UN ARTICULO
                 ArticuloCEN articuloCEN = new ArticuloCEN ();
                 int articulo1 = articuloCEN.New_ ("FrostMourne", 10.01, cat1, "Un arma muy especial", 5);
+                int articulo2 = articuloCEN.New_ ("Escopeta Frost L4D", 1, cat2, "Piun, piun", 5);
 
+                //ANYADIR LINEAS DE PEDIDO A UN CARRITO
+                LineaPedidoCEN lineaPedidoCEN = new LineaPedidoCEN();
+                int linped1 = lineaPedidoCEN.New_(2, articulo1);
+                int linped2 = lineaPedidoCEN.New_(2, articulo2);
+
+                lineaPedidoCEN.Anyadir_producto(linped1, carritoid);
+                lineaPedidoCEN.Anyadir_producto(linped2, carritoid);
+                
+                
+                IList<LineaPedidoEN> lineas2 = carritoCEN.get_ICarritoCAD().ReadOIDDefault(carritoid).LineaPedido;
+                /*
+                foreach (LineaPedidoEN linea in lineas2)
+                {
+                    System.Console.WriteLine("praise lujan");
+                }
+                */
+                CarritoEN carritoEN = carritoCEN.get_ICarritoCAD().ReadOIDDefault(carritoid);
+                //carritoCEN.get_ICarritoCAD().Finalizar_compra(carritoEN);
+                
+                /*
+                //BUSCO ARTICULOS POR NOMBRE
+                System.Console.WriteLine ("USO: Busqueda_por_nombre()");
+                String ans = Console.ReadLine ();
+                IList<ArticuloEN> busq_nombre = articuloCEN.Busqueda_por_nombre (ans);
+                foreach (ArticuloEN art in busq_nombre) {
+                        System.Console.WriteLine ("NOMBRE: " + art.Nombre);
+                        System.Console.WriteLine ("PRECIO: " + art.Precio);
+                }
+                */
+
+                /*
                 //CREO UNA VALORACION Y MODIFICO SU TEXTO
                 ValoracionCEN valoracionCEN = new ValoracionCEN ();
-                System.Console.WriteLine("CREO UNA VALORACION Y LE CAMBIO EL TEXTO");
+                System.Console.WriteLine ("CREO UNA VALORACION Y LE CAMBIO EL TEXTO");
                 int valoracionCEN_id1 = valoracionCEN.New_ (10, "La verdad es que es la hostia, pero quiero que Lujan me apruebe", registradoCEN_id, articulo1);
-                
+
                 System.Console.WriteLine (valoracionCEN.get_IValoracionCAD ().ReadOIDDefault (valoracionCEN_id1).Texto);
                 int pMod = valoracionCEN.get_IValoracionCAD ().ReadOIDDefault (valoracionCEN_id1).Puntuacion;
                 valoracionCEN.Modify (valoracionCEN_id1, pMod, "He cambiado el texto y si, quiero que Lujan me apruebe");
                 System.Console.WriteLine (valoracionCEN.get_IValoracionCAD ().ReadOIDDefault (valoracionCEN_id1).Texto);
-
+                */
 
 
 
@@ -136,7 +168,7 @@ public static void InitializeData ()
                 // customer.New_ (p_user:"user", p_password:"1234");
 
                 /*PROTECTED REGION END*/
-        }
+            }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);

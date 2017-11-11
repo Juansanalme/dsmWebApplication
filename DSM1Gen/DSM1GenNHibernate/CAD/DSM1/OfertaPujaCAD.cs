@@ -216,5 +216,45 @@ public void Destroy (int id
                 SessionClose ();
         }
 }
+
+public int Nueva_oferta (OfertaPujaEN ofertaPuja)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                if (ofertaPuja.Registrado != null) {
+                        // Argumento OID y no colección.
+                        ofertaPuja.Registrado = (DSM1GenNHibernate.EN.DSM1.RegistradoEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.RegistradoEN), ofertaPuja.Registrado.Id);
+
+                        ofertaPuja.Registrado.OfertaPuja
+                        .Add (ofertaPuja);
+                }
+                if (ofertaPuja.Puja != null) {
+                        // Argumento OID y no colección.
+                        ofertaPuja.Puja = (DSM1GenNHibernate.EN.DSM1.PujaEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.PujaEN), ofertaPuja.Puja.Id);
+
+                        ofertaPuja.Puja.OfertaPuja
+                        .Add (ofertaPuja);
+                }
+
+                session.Save (ofertaPuja);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in OfertaPujaCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return ofertaPuja.Id;
+}
 }
 }

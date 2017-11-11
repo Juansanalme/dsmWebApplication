@@ -260,5 +260,38 @@ public void Anyadir_producto (int p_LineaPedido_OID, int p_carrito_OID)
                 SessionClose ();
         }
 }
+
+public int Crear_linea (LineaPedidoEN lineaPedido)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                if (lineaPedido.Articulo != null) {
+                        // Argumento OID y no colección.
+                        lineaPedido.Articulo = (DSM1GenNHibernate.EN.DSM1.ArticuloEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.ArticuloEN), lineaPedido.Articulo.Id);
+
+                        lineaPedido.Articulo.LineaPedido
+                        .Add (lineaPedido);
+                }
+
+                session.Save (lineaPedido);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in LineaPedidoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return lineaPedido.Id;
+}
 }
 }

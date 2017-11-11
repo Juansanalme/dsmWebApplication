@@ -12,13 +12,9 @@
 						</id>
 			
 					
-					<property name="Fecha_anyadido" type="date"> 
-						<column name="fecha_anyadido"  not-null="true"/>
-					</property>
 					<property name="Precio" type="float"> 
 						<column name="precio"  not-null="true"/>
 					</property>
-			
 			
 			
 			
@@ -45,7 +41,6 @@
 					 
 						
 			
-					
 					
 					
 					

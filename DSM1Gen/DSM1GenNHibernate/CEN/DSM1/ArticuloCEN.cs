@@ -89,6 +89,14 @@ public void Destroy (int id
         _IArticuloCAD.Destroy (id);
 }
 
+public System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> Busqueda_por_categoria (string p_categoria)
+{
+        return _IArticuloCAD.Busqueda_por_categoria (p_categoria);
+}
+public System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> Busqueda_por_nombre (string p_nombre)
+{
+        return _IArticuloCAD.Busqueda_por_nombre (p_nombre);
+}
 public ArticuloEN Ver_detalles (int id
                                 )
 {

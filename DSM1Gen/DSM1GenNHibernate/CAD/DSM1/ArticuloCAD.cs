@@ -219,6 +219,66 @@ public void Destroy (int id
         }
 }
 
+public System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> Busqueda_por_categoria (string p_categoria)
+{
+        System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ArticuloEN self where from ArticuloEN art where art.Categoria.Nombre = :p_categoria";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ArticuloENbusqueda_por_categoriaHQL");
+                query.SetParameter ("p_categoria", p_categoria);
+
+                result = query.List<DSM1GenNHibernate.EN.DSM1.ArticuloEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in ArticuloCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> Busqueda_por_nombre (string p_nombre)
+{
+        System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ArticuloEN self where from ArticuloEN art where art.Nombre = :p_nombre";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ArticuloENbusqueda_por_nombreHQL");
+                query.SetParameter ("p_nombre", p_nombre);
+
+                result = query.List<DSM1GenNHibernate.EN.DSM1.ArticuloEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in ArticuloCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 //Sin e: Ver_detalles
 //Con e: ArticuloEN
 public ArticuloEN Ver_detalles (int id

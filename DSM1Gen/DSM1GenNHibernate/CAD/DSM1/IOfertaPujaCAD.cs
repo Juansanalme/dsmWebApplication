@@ -20,5 +20,8 @@ void Modify (OfertaPujaEN ofertaPuja);
 
 void Destroy (int id
               );
+
+
+int Nueva_oferta (OfertaPujaEN ofertaPuja);
 }
 }

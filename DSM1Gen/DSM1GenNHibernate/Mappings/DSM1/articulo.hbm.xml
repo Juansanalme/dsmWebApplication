@@ -89,5 +89,7 @@
 		 </class>	
 		  
 		  <query name="ArticuloENReadAllHQL">from ArticuloEN</query>
+		  <query name="ArticuloENbusqueda_por_categoriaHQL"><![CDATA[from ArticuloEN art where art.Categoria.Nombre = :p_categoria]]></query>
+		  <query name="ArticuloENbusqueda_por_nombreHQL"><![CDATA[from ArticuloEN art where art.Nombre = :p_nombre]]></query>
 		</hibernate-mapping>
 	

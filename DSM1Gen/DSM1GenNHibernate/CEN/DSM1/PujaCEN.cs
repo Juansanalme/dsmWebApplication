@@ -109,11 +109,11 @@ public void Actualizar (int p_Puja_OID, Nullable<DateTime> p_fecha, float p_puja
         _IPujaCAD.Actualizar (pujaEN);
 }
 
-public void Terminar_puja (int p_Puja_OID, int p_usuarioGanador_OID)
+public void Declarar_ganador (int p_Puja_OID, int p_usuarioGanador_OID)
 {
         //Call to PujaCAD
 
-        _IPujaCAD.Terminar_puja (p_Puja_OID, p_usuarioGanador_OID);
+        _IPujaCAD.Declarar_ganador (p_Puja_OID, p_usuarioGanador_OID);
 }
 }
 }
