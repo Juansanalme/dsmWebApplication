@@ -9,36 +9,36 @@ using NHibernate.Exceptions;
 using DSM1GenNHibernate.Exceptions;
 using DSM1GenNHibernate.EN.DSM1;
 using DSM1GenNHibernate.CAD.DSM1;
-using DSM1GenNHibernate.Utils;
 
 
 /*PROTECTED REGION ID(usingDSM1GenNHibernate.CEN.DSM1_Registrado_login) ENABLED START*/
 //  references to other libraries
+using DSM1GenNHibernate.Utils;
 /*PROTECTED REGION END*/
 
 namespace DSM1GenNHibernate.CEN.DSM1
 {
 public partial class RegistradoCEN
 {
-        public bool Login (int p_oid, String p_contrasenya, string p_n_usuario)
-        {
-                /*PROTECTED REGION ID(DSM1GenNHibernate.CEN.DSM1_Registrado_login) ENABLED START*/
+public bool Login (int p_oid, String p_contrasenya, string p_n_usuario)
+{
+        /*PROTECTED REGION ID(DSM1GenNHibernate.CEN.DSM1_Registrado_login) ENABLED START*/
 
-                // Write here your custom code...
+        // Write here your custom code...
 
-                bool login = false;
-                RegistradoEN registradoEN = _IRegistradoCAD.ReadOIDDefault (p_oid);
+        bool login = false;
+        RegistradoEN registradoEN = _IRegistradoCAD.ReadOIDDefault (p_oid);
 
-                if (registradoEN.Contrasenya.Equals (Util.GetEncondeMD5 (p_contrasenya))){
-                            login = true;
-                    }
+        if (registradoEN.Contrasenya.Equals (Util.GetEncondeMD5 (p_contrasenya))) {
+                login = true;
+        }
 
-                    return login;
+        return login;
 
 
-                    //throw new NotImplementedException ("Method Login() not yet implemented.");
+        //throw new NotImplementedException ("Method Login() not yet implemented.");
 
-                    /*PROTECTED REGION END*/
-                    }
-                    }
-                    }
+        /*PROTECTED REGION END*/
+}
+}
+}

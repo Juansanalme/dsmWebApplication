@@ -350,7 +350,7 @@ public System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> 
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM RegistradoEN self where from RegistradoEN reg where reg.Nombre = :p_nombre";
+                //String sql = @"FROM RegistradoEN self where from RegistradoEN reg where reg.Nombre like '%'+:p_nombre+'%'";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("RegistradoENver_detalles_nombreHQL");
                 query.SetParameter ("p_nombre", p_nombre);

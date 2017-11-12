@@ -225,7 +225,7 @@ public System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> Bu
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ArticuloEN self where from ArticuloEN art where art.Categoria.Nombre = :p_categoria";
+                //String sql = @"FROM ArticuloEN self where from ArticuloEN art where art.Categoria.Nombre like '%'+:p_categoria+'%'";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ArticuloENbusqueda_por_categoriaHQL");
                 query.SetParameter ("p_categoria", p_categoria);
@@ -255,7 +255,7 @@ public System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> Bu
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ArticuloEN self where from ArticuloEN art where art.Nombre = :p_nombre";
+                //String sql = @"FROM ArticuloEN self where from ArticuloEN art where art.Nombre like '%'+:p_nombre+'%'";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ArticuloENbusqueda_por_nombreHQL");
                 query.SetParameter ("p_nombre", p_nombre);

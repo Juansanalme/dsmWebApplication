@@ -92,5 +92,12 @@ public void Anyadir_producto (int p_LineaPedido_OID, int p_carrito_OID)
 
         _ILineaPedidoCAD.Anyadir_producto (p_LineaPedido_OID, p_carrito_OID);
 }
+public System.Collections.Generic.IList<LineaPedidoEN> Obtener_lineas (int first, int size)
+{
+        System.Collections.Generic.IList<LineaPedidoEN> list = null;
+
+        list = _ILineaPedidoCAD.Obtener_lineas (first, size);
+        return list;
+}
 }
 }

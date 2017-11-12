@@ -97,5 +97,12 @@ public void Anyadir_linea (int p_Pedido_OID, System.Collections.Generic.IList<in
 
         _IPedidoCAD.Anyadir_linea (p_Pedido_OID, p_lineaPedido_OIDs);
 }
+public System.Collections.Generic.IList<PedidoEN> Obtener_pedidos (int first, int size)
+{
+        System.Collections.Generic.IList<PedidoEN> list = null;
+
+        list = _IPedidoCAD.Obtener_pedidos (first, size);
+        return list;
+}
 }
 }

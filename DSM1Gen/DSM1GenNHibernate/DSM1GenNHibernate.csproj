@@ -176,6 +176,7 @@
 			
 			
 			
+			
 	<Compile Include="EN\DSM1\LineaPedidoEN.cs" />
 	<Compile Include="CEN\DSM1\LineaPedidoCEN.cs" />
 	<Compile Include="CAD\DSM1\ILineaPedidoCAD.cs" />
@@ -189,6 +190,7 @@
 			<Compile Include="CP\DSM1\LineaPedidoCP_Crear_linea.cs" />
 			
 			<Compile Include="CEN\DSM1\LineaPedidoCEN_Destroy_linea.cs" />
+			
 			
 	<Compile Include="EN\DSM1\CarritoEN.cs" />
 	<Compile Include="CEN\DSM1\CarritoCEN.cs" />

@@ -9,12 +9,12 @@ using NHibernate.Exceptions;
 using DSM1GenNHibernate.EN.DSM1;
 using DSM1GenNHibernate.CAD.DSM1;
 using DSM1GenNHibernate.CEN.DSM1;
-using System.Collections.Generic;
 
 
 
 /*PROTECTED REGION ID(usingDSM1GenNHibernate.CP.DSM1_Carrito_finalizar_compra) ENABLED START*/
 //  references to other libraries
+using System.Collections.Generic;
 /*PROTECTED REGION END*/
 
 namespace DSM1GenNHibernate.CP.DSM1
@@ -35,54 +35,53 @@ public void Finalizar_compra (int p_Carrito_OID, float p_precio)
         ArticuloCEN articuloCEN = null;
 
 
-            try
-            {
-                SessionInitializeTransaction();
-                carritoCAD = new CarritoCAD(session);
-                carritoCEN = new CarritoCEN(carritoCAD);
+        try
+        {
+                SessionInitializeTransaction ();
+                carritoCAD = new CarritoCAD (session);
+                carritoCEN = new CarritoCEN (carritoCAD);
 
-                pedidoCAD = new PedidoCAD(session);
-                pedidoCEN = new PedidoCEN(pedidoCAD);
+                pedidoCAD = new PedidoCAD (session);
+                pedidoCEN = new PedidoCEN (pedidoCAD);
 
-                articuloCAD = new ArticuloCAD(session); //SU CEN ESTA MAS ABAJO
+                articuloCAD = new ArticuloCAD (session); //SU CEN ESTA MAS ABAJO
 
 
-                int usuario = carritoCEN.get_ICarritoCAD().ReadOIDDefault(p_Carrito_OID).Registrado.Id;
-                IList<LineaPedidoEN> listaLineas = carritoCEN.get_ICarritoCAD().ReadOIDDefault(p_Carrito_OID).LineaPedido;
+                int usuario = carritoCEN.get_ICarritoCAD ().ReadOIDDefault (p_Carrito_OID).Registrado.Id;
+                IList<LineaPedidoEN> listaLineas = carritoCEN.get_ICarritoCAD ().ReadOIDDefault (p_Carrito_OID).LineaPedido;
 
                 //NEW PEDIDO
-                int pedidoid = pedidoCEN.New_("", DateTime.Now, usuario, p_Carrito_OID);
+                int pedidoid = pedidoCEN.New_ ("", DateTime.Now, usuario, p_Carrito_OID);
 
                 //ANYADIR LINEAS
-                IList<int> lineas = null;
-                foreach (LineaPedidoEN linea in listaLineas)
-                {
-                    lineas.Add(linea.Id);
+                IList<int> lineasId = new List<int>();
+                foreach (LineaPedidoEN linea in listaLineas) {
+                        lineasId.Add (linea.Id);
                 }
 
-                pedidoCEN.Anyadir_linea(pedidoid, lineas);
+                pedidoCEN.Anyadir_linea (pedidoid, lineasId);
 
                 //DECREMENTAR STOCK
-                foreach (LineaPedidoEN linea in listaLineas)
-                { 
-                    
-                    articuloCEN = new ArticuloCEN(articuloCAD);
+                foreach (LineaPedidoEN linea in listaLineas) {
+                        articuloCEN = new ArticuloCEN (articuloCAD);
 
-                    if (!articuloCEN.Quitar_stock(linea.Articulo.Id, linea.Cantidad))
-                    {
-                        Exception ex = new Exception("TE HAS PASADO DE CANTIDAD CHACHO");
-                        throw ex;
-                    }
-
+                        if (!articuloCEN.Quitar_stock (linea.Articulo.Id, linea.Cantidad)) {
+                                Exception ex = new Exception ("TE HAS PASADO DE CANTIDAD CHACHO");
+                                throw ex;
+                        }
                 }
 
+                CarritoEN carritoEN = carritoCEN.get_ICarritoCAD ().ReadOIDDefault (p_Carrito_OID);
+
                 //VACIAR CARRITO
-                carritoCEN.Vaciar_carrito(p_Carrito_OID, lineas);
+                carritoCEN.Vaciar_carrito (p_Carrito_OID, lineasId);
 
-                
+                carritoEN = carritoCEN.get_ICarritoCAD ().ReadOIDDefault (p_Carrito_OID);
 
 
-                CarritoEN carritoEN = null;
+                //CarritoEN carritoEN = null;
+                carritoEN = null;
+
                 //Initialized CarritoEN
                 carritoEN = new CarritoEN ();
                 carritoEN.Id = p_Carrito_OID;
