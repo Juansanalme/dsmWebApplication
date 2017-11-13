@@ -36,9 +36,42 @@ public DSM1GenNHibernate.EN.DSM1.OfertaPujaEN Nueva_oferta (Nullable<DateTime> p
                 ofertaPujaCAD = new OfertaPujaCAD (session);
                 ofertaPujaCEN = new  OfertaPujaCEN (ofertaPujaCAD);
 
+                PujaCEN pujaCEN = new PujaCEN();
+                PujaEN pujaEN = pujaCEN.get_IPujaCAD().ReadOIDDefault(p_puja);  //Consigo la puja a la cual va dirigida esta oferta
 
+                if (pujaEN.Cerrada == true)
+                {
+                    Exception cerrada = new Exception("ESTA CERRADA! LARGO DE AQUI");
+                    throw cerrada;
+                }
 
+                if(pujaEN.Id_usuario == p_registrado)
+                {
+                    Exception PP = new Exception("YA HAS PUJADO, VUELVE MAS TARDE");
+                    throw PP;
+                }
 
+                if (pujaEN.Puja_max < p_cantidad_puja && pujaEN.Puja_inicial<p_cantidad_puja)
+                {
+                    //System.Console.WriteLine("NUEVA PUJA! "+p_registrado + " "+p_puja+ " "+p_cantidad_puja+"€");
+                    PujaEN nueva = new PujaEN();
+                    nueva.Id = pujaEN.Id;
+                    nueva.Fecha = pujaEN.Fecha;
+                    nueva.Puja_inicial = pujaEN.Puja_inicial;
+
+                    nueva.Puja_max = p_cantidad_puja;   //Cambiamos la puja max
+                    nueva.Id_usuario = p_registrado;    //Y el usuario
+
+                    nueva.Cerrada = pujaEN.Cerrada;
+
+                    pujaCEN.get_IPujaCAD().Actualizar(nueva); //Actualizamos
+                    
+                }
+                else
+                {
+                    Exception pasta = new Exception("FALTA PASTA!");
+                    throw pasta;
+                }
                 int oid;
                 //Initialized OfertaPujaEN
                 OfertaPujaEN ofertaPujaEN;

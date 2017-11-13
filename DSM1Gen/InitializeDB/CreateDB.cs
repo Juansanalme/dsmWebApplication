@@ -84,6 +84,8 @@ public static void InitializeData ()
                 //CREO UN USUARIO REGISTRADO
                 RegistradoCEN registradoCEN = new RegistradoCEN ();
                 int registradoCEN_id = registradoCEN.New_ ("Pablo", "Manez Fernandez", 20, new DateTime (1997, 8, 6), "6984984X", "apruebame", "pablomanez", false);
+                int registrado1 = registradoCEN.New_("Kirito", "Kun", 21, new DateTime(1997, 5, 4), "25698568X", "asuna", "Kirito-kun", false);
+                int registrado2 = registradoCEN.New_("Dan", "Senpai", 20, new DateTime(1997, 8, 21), "23906238S", "easy", "DatrixZ", false);
 
                 //CREO TRES CATEGORIAS
                 CategoriaCEN categoriaCEN = new CategoriaCEN ();
@@ -143,9 +145,7 @@ public static void InitializeData ()
                         }
                 }
 
-
-
-
+            /*
                 //BUSCO ARTICULOS POR NOMBRE
                 System.Console.WriteLine ("USO: Busqueda_por_nombre()");
                 String ans = Console.ReadLine ();
@@ -154,6 +154,84 @@ public static void InitializeData ()
                         System.Console.WriteLine ("NOMBRE: " + art.Nombre);
                         System.Console.WriteLine ("PRECIO: " + art.Precio);
                 }
+                */
+
+                //CREO DOS PUJAS
+                PujaCEN pujaCEN = new PujaCEN();
+                int pujaid = pujaCEN.New_(DateTime.Now, 10, articulo1, 10, -1, false);
+                int pujaid2 = pujaCEN.New_(DateTime.Now, 10, articulo2, 20, -1, false);
+
+                RegistradoEN max = null;
+                PujaEN puja = pujaCEN.get_IPujaCAD().ReadOIDDefault(pujaid);
+                OfertaPujaCP ofertaPujaCP = null;
+                //INICIAMOS LAS PUJAS
+                try
+                {
+                    System.Console.WriteLine("Puja#" + puja.Id + " | MAX: " + puja.Id_usuario + " " + puja.Puja_max + "$\n");
+                    ofertaPujaCP = new OfertaPujaCP();
+
+                    System.Console.WriteLine("Kirito-kun puja " + 15 + "$");
+                    ofertaPujaCP.Nueva_oferta(DateTime.Now, DateTime.Now, registrado1, pujaid, 15);     //Nueva oferta de Kirito-kun
+                    puja = pujaCEN.get_IPujaCAD().ReadOIDDefault(pujaid);                               //Actualizo puja
+                    max=registradoCEN.get_IRegistradoCAD().ReadOIDDefault(puja.Id_usuario);             //Actualizo nombre del usuario con la puja mas alta
+                    System.Console.WriteLine("Puja#"+puja.Id + " | MAX: " + max.N_usuario + " " + puja.Puja_max+"$\n");
+
+                    System.Console.WriteLine("DatrixZ puja " + 20 + "$");
+                    ofertaPujaCP.Nueva_oferta(DateTime.Now, DateTime.Now, registrado2, pujaid, 20);     //Nueva oferta de DatrixZ mayor que la anterior
+                    puja = pujaCEN.get_IPujaCAD().ReadOIDDefault(pujaid);
+                    max = registradoCEN.get_IRegistradoCAD().ReadOIDDefault(puja.Id_usuario);
+                    System.Console.WriteLine("Puja#" + puja.Id + " | MAX: " + max.N_usuario + " " + puja.Puja_max + "$\n");
+
+                    System.Console.WriteLine("Pablo-sensei puja " + 10 + "$");
+                    ofertaPujaCP.Nueva_oferta(DateTime.Now, DateTime.Now, registradoCEN_id, pujaid, 10);     //Nueva oferta de Pablo-sensei menor que la anterior
+                    puja = pujaCEN.get_IPujaCAD().ReadOIDDefault(pujaid);
+                    max = registradoCEN.get_IRegistradoCAD().ReadOIDDefault(puja.Id_usuario);
+                    System.Console.WriteLine("Puja#" + puja.Id + " | MAX: " + max.N_usuario + " " + puja.Puja_max + "$\n");
+                                    
+                }
+                catch(Exception e){ System.Console.WriteLine(e.Message+"\n"); }
+
+                try
+                {
+                    System.Console.WriteLine("DatrixZ puja " + 50 + "$");
+                    ofertaPujaCP.Nueva_oferta(DateTime.Now, DateTime.Now, registrado2, pujaid, 50);     //Nueva oferta de DatrixZ contra sí mismo
+                    puja = pujaCEN.get_IPujaCAD().ReadOIDDefault(pujaid);
+                    max = registradoCEN.get_IRegistradoCAD().ReadOIDDefault(puja.Id_usuario);
+                    System.Console.WriteLine("Puja#" + puja.Id + " | MAX: " + max.N_usuario + " " + puja.Puja_max + "$\n");
+                }
+                catch (Exception e) { System.Console.WriteLine(e.Message + "\n"); }
+
+
+                System.Console.WriteLine("Puja#" + puja.Id + " | MAX: " + max.N_usuario + " " + puja.Puja_max + " "+puja.Cerrada+"$\n");
+
+
+                //CERRAMOS LA PUJA
+                PujaCP pujaCP = new PujaCP();
+                System.Console.WriteLine("Cierro puja 1");
+                pujaCP.Terminar_puja(pujaid, puja.Fecha, puja.Puja_inicial, puja.Puja_max, puja.Id_usuario, true);
+                try
+                {
+                    System.Console.WriteLine("Cierro puja 1 otra vez");
+                    pujaCP.Terminar_puja(pujaid, puja.Fecha, puja.Puja_inicial, puja.Puja_max, puja.Id_usuario, true);
+                }
+                catch(Exception e) { System.Console.WriteLine(e.Message + "\n"); }
+                try
+                {
+                    System.Console.WriteLine("Cierro puja 2");
+                    pujaCP.Terminar_puja(pujaid2, puja.Fecha, puja.Puja_inicial, puja.Puja_max, puja.Id_usuario, true);
+                }
+                catch(Exception e) { System.Console.WriteLine(e.Message + "\n"); }
+
+
+                try
+                {
+                    System.Console.WriteLine("Pablo-sensei puja " + 100 + "$");
+                    ofertaPujaCP.Nueva_oferta(DateTime.Now, DateTime.Now, registrado1, pujaid, 100);     //Nueva oferta de Pablo-sensei en una puja cerrada
+                    puja = pujaCEN.get_IPujaCAD().ReadOIDDefault(pujaid);
+                    max = registradoCEN.get_IRegistradoCAD().ReadOIDDefault(puja.Id_usuario);
+                    System.Console.WriteLine("Puja#" + puja.Id + " | MAX: " + max.N_usuario + " " + puja.Puja_max + "$\n");
+                }
+                catch (Exception e) { System.Console.WriteLine(e.Message + "\n"); }
 
 
                 /*
@@ -180,7 +258,7 @@ public static void InitializeData ()
                 // customer.New_ (p_user:"user", p_password:"1234");
 
                 /*PROTECTED REGION END*/
-        }
+            }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);

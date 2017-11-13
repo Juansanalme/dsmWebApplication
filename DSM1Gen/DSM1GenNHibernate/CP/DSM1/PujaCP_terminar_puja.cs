@@ -13,7 +13,7 @@ using DSM1GenNHibernate.CEN.DSM1;
 
 
 /*PROTECTED REGION ID(usingDSM1GenNHibernate.CP.DSM1_Puja_terminar_puja) ENABLED START*/
-//  references to other libraries
+using System.Collections.Generic;
 /*PROTECTED REGION END*/
 
 namespace DSM1GenNHibernate.CP.DSM1
@@ -29,14 +29,39 @@ public void Terminar_puja (int p_Puja_OID, Nullable<DateTime> p_fecha, float p_p
 
 
 
-        try
-        {
-                SessionInitializeTransaction ();
-                pujaCAD = new PujaCAD (session);
-                pujaCEN = new  PujaCEN (pujaCAD);
+            try
+            {
+                SessionInitializeTransaction();
+                pujaCAD = new PujaCAD(session);
+                pujaCEN = new PujaCEN(pujaCAD);
 
+                IList<OfertaPujaEN> pujas = pujaCEN.get_IPujaCAD().ReadOIDDefault(p_Puja_OID).OfertaPuja; //Lista de pujas hechas en esta subasta
+                OfertaPujaEN puja_ganadora = null;
 
+                if (pujaCEN.get_IPujaCAD().ReadOIDDefault(p_Puja_OID).Cerrada)
+                {
+                    Exception ex = new Exception("YA ESTABA CERRADA");
+                    throw ex;
+                }
 
+                foreach (OfertaPujaEN p in pujas)
+                {
+                    if (p.Cantidad_puja == p_puja_max)
+                    {
+                        puja_ganadora = p;
+                        break;
+                    }
+                }
+                if (puja_ganadora == null)
+                {
+                    Exception ex = new Exception("NO HAN HABIDO PUJAS :D");
+                    throw ex;
+                }
+                else {
+                    pujaCEN.Declarar_ganador(p_Puja_OID, puja_ganadora.Registrado.Id);
+                    RegistradoCEN registradoCEN = new RegistradoCEN();
+                    System.Console.WriteLine("PUJA FINALIZADA -- GANADOR: "+registradoCEN.get_IRegistradoCAD().ReadOIDDefault(puja_ganadora.Registrado.Id).N_usuario+"\n");
+                }
 
                 PujaEN pujaEN = null;
                 //Initialized PujaEN
