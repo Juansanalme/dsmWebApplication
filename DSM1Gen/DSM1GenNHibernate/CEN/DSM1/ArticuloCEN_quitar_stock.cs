@@ -25,19 +25,15 @@ public bool Quitar_stock (int p_oid, int p_cantidad)
 
         // Write here your custom code...
 
-        bool aux;
         ArticuloEN articuloEN = _IArticuloCAD.ReadOIDDefault (p_oid);
 
         if (articuloEN.Stock >= p_cantidad) {
                 articuloEN.Stock -= p_cantidad;
-                aux = true;
+                _IArticuloCAD.Modify (articuloEN);
+                return true;
         }
-        else{
-                aux = false;
-        }
+        return false;
 
-        _IArticuloCAD.Modify (articuloEN);
-        return aux;
 
 
         //throw new NotImplementedException ("Method Quitar_stock() not yet implemented.");

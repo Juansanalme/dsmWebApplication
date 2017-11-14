@@ -28,7 +28,9 @@ CarritoEN Ver_detalles (int id
                         );
 
 
-
 void Finalizar_compra (CarritoEN carrito);
+
+
+void Calcular_precio (CarritoEN carrito);
 }
 }

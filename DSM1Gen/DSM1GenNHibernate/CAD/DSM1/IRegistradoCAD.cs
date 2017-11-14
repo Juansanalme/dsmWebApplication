@@ -18,7 +18,6 @@ void Añadir_fav (int p_Registrado_OID, System.Collections.Generic.IList<int> p_
 void Eliminar_fav (int p_Registrado_OID, System.Collections.Generic.IList<int> p_a_favorito_OIDs);
 
 
-
 int New_ (RegistradoEN registrado);
 
 void Modify (RegistradoEN registrado);
@@ -33,5 +32,10 @@ RegistradoEN Ver_detalles_oid (int id
 
 
 System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> Ver_detalles_nombre (string p_nombre);
+
+
+
+
+int Nuevo_usuarioYcarrito (RegistradoEN registrado);
 }
 }

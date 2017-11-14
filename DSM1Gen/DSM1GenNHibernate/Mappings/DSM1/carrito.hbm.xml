@@ -6,10 +6,7 @@
 		    
 			
 				<class name="CarritoEN" table="Carrito"> 
-				  	
-						<id name="Id" column="idCarrito" type="integer"> 
-							<generator class="hilo"/>
-						</id>
+						<id name="Id" column="idCarrito"/> 
 			
 					
 					<property name="Precio" type="float"> 

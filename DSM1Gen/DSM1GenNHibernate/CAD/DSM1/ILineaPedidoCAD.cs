@@ -26,9 +26,13 @@ void Eliminar_producto (int p_LineaPedido_OID, int p_carrito_OID);
 
 void Anyadir_producto (int p_LineaPedido_OID, int p_carrito_OID);
 
-int Crear_linea (LineaPedidoEN lineaPedido);
-
-
 System.Collections.Generic.IList<LineaPedidoEN> Obtener_lineas (int first, int size);
+
+
+void Quito_linea_a_carroYprecio (int id
+                                 );
+
+
+int Anyado_lineaYprecio (LineaPedidoEN lineaPedido);
 }
 }

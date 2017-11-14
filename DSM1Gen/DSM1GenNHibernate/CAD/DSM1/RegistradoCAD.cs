@@ -374,5 +374,30 @@ public System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> 
 
         return result;
 }
+public int Nuevo_usuarioYcarrito (RegistradoEN registrado)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+
+                session.Save (registrado);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in RegistradoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return registrado.Id;
+}
 }
 }

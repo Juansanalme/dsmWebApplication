@@ -293,5 +293,28 @@ public void Finalizar_compra (CarritoEN carrito)
                 SessionClose ();
         }
 }
+public void Calcular_precio (CarritoEN carrito)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                CarritoEN carritoEN = (CarritoEN)session.Load (typeof(CarritoEN), carrito.Id);
+                session.Update (carritoEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in CarritoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

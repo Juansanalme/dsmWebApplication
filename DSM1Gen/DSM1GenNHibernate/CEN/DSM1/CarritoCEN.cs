@@ -38,13 +38,15 @@ public ICarritoCAD get_ICarritoCAD ()
         return this._ICarritoCAD;
 }
 
-public int New_ (int p_registrado, float p_precio)
+public int New_ (int p_id, int p_registrado, float p_precio)
 {
         CarritoEN carritoEN = null;
         int oid;
 
         //Initialized CarritoEN
         carritoEN = new CarritoEN ();
+        carritoEN.Id = p_id;
+
 
         if (p_registrado != -1) {
                 // El argumento p_registrado -> Property registrado es oid = false

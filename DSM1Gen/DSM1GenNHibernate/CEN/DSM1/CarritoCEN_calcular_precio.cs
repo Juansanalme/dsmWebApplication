@@ -25,7 +25,7 @@ public void Calcular_precio (int p_Carrito_OID, float p_precio)
 
         // Write here your custom code...
 
-        throw new NotImplementedException ("Method Calcular_precio() not yet implemented.");
+        //throw new NotImplementedException ("Method Calcular_precio() not yet implemented.");
 
         /*PROTECTED REGION END*/
 }
