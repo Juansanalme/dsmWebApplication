@@ -87,18 +87,21 @@ public static void InitializeData ()
                 CarritoCEN carritoCEN = new CarritoCEN();
                 CarritoCP carritoCP = new CarritoCP();
 
+                Console.WriteLine("Creo tres usuarios: pablomanez, Kirito-kun, DatrixZ \n");
                 int registrado0 = registradoCP.Nuevo_usuarioYcarrito("Pablo", "Manez Fernandez", 20, new DateTime(1997, 8, 6), "6984984X", "apruebame", "pablomanez", false).Id;
                 int registrado1 = registradoCP.Nuevo_usuarioYcarrito("Kirito", "Kun", 21, new DateTime(1997, 5, 4), "25698568X", "asuna", "Kirito-kun", false).Id;
                 int registrado2 = registradoCP.Nuevo_usuarioYcarrito("Dan", "Senpai", 20, new DateTime(1997, 8, 21), "23906238S", "easy", "DatrixZ", false).Id;
                 
                 //CREO TRES CATEGORIAS
                 CategoriaCEN categoriaCEN = new CategoriaCEN ();
+
+                Console.WriteLine("Creo tres categorías: espada, pistola, arma \n");
                 int cat1 = categoriaCEN.New_ ("espada", 0);
                 int cat2 = categoriaCEN.New_ ("pistola", 0);
                 int cat3 = categoriaCEN.New_ ("arma", 0);
 
-                Console.WriteLine (categoriaCEN.get_ICategoriaCAD ().ReadOIDDefault (cat1).Nombre);
-
+                Console.WriteLine("Utilizo la categoria 'arma' como supercategoria y las demas como subcategorias");
+                Console.WriteLine("Uso el relationer: Anyadir_supercat(espada, arma) y Anyadir_supercat(pistola, arma) \n");
                 categoriaCEN.Anyadir_supercat (cat1, cat3);
                 categoriaCEN.Anyadir_supercat (cat2, cat3);
 
@@ -108,8 +111,25 @@ public static void InitializeData ()
 
                 //CREO UN ARTICULO
                 ArticuloCEN articuloCEN = new ArticuloCEN ();
+
                 int articulo1 = articuloCEN.New_ ("FrostMourne", 10.01, cat1, "Un arma muy especial", 5);
                 int articulo2 = articuloCEN.New_ ("Escopeta Frost L4D", 1, cat2, "Piun, piun", 5);
+
+                Console.WriteLine("Creo dos articulos:");
+                Console.WriteLine("Nombre: " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo1).Nombre);
+                Console.WriteLine("Precio: " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo1).Precio);
+                int art1CatId = articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo1).Categoria.Id;
+                Console.WriteLine("Nombre de categoria: " + categoriaCEN.get_ICategoriaCAD().ReadOIDDefault(art1CatId).Nombre);
+                Console.WriteLine("Descripcion: " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo1).Descripcion);
+                Console.WriteLine("Stock anyadido: " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo1).Stock + " \n");
+
+                Console.WriteLine("Nombre: " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo2).Nombre);
+                Console.WriteLine("Precio: " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo2).Precio);
+                int art2CatId = articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo2).Categoria.Id;
+                Console.WriteLine("Nombre de categoria: " + categoriaCEN.get_ICategoriaCAD().ReadOIDDefault(art2CatId).Nombre);
+                Console.WriteLine("Descripcion: " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo2).Descripcion);
+                Console.WriteLine("Stock anyadido: " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo2).Stock + "\n");
+
 
 
                 //LLAMO AL CP NEW DE LINEA DE PEDIDO
@@ -120,19 +140,21 @@ public static void InitializeData ()
 
                 System.Console.WriteLine("Anyado 2 "+articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo1).Nombre+" al carrito de "+registradoCEN.get_IRegistradoCAD().ReadOIDDefault(registrado0).N_usuario);
                 lineaPedidoCP.Anyado_lineaYprecio(2, articulo1, registrado0);
-                System.Console.WriteLine("El precio del carrito es: "+carritoCEN.get_ICarritoCAD().ReadOIDDefault(registrado0).Precio);
+                System.Console.WriteLine("El precio del carrito es: "+carritoCEN.get_ICarritoCAD().ReadOIDDefault(registrado0).Precio + "\n");
 
                 System.Console.WriteLine("Anyado 2 " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo2).Nombre + " al carrito de " + registradoCEN.get_IRegistradoCAD().ReadOIDDefault(registrado0).N_usuario);
                 lineaPedidoCP.Anyado_lineaYprecio(2, articulo2, registrado0);
-                System.Console.WriteLine("El precio del carrito es: " +carritoCEN.get_ICarritoCAD().ReadOIDDefault(registrado0).Precio);
+                System.Console.WriteLine("El precio del carrito es: " +carritoCEN.get_ICarritoCAD().ReadOIDDefault(registrado0).Precio + "\n");
 
+                /*
                 //CALCULO EL PRECIO DE UN CARRITO
                 carritoCP = new CarritoCP ();
                 Console.WriteLine ("Precio del carrito: " + carritoCEN.get_ICarritoCAD ().ReadOIDDefault (registrado0).Precio);
                 carritoCP.Calcular_precio (registrado0);
                 Console.WriteLine ("Precio del carrito al calcularlo: " + carritoCEN.get_ICarritoCAD ().ReadOIDDefault (registrado0).Precio);
+                */
 
-                //CONSEGUIR TODAS LAS LINEAS DE UN CARRITO (HACER COMO CUSTOM)
+                //CONSEGUIR TODAS LAS LINEAS DE UN CARRITO
                 IList<LineaPedidoEN> lineas = lineaPedidoCEN.Obtener_lineas (0, 50);
                 IList<int> lineasid = new List<int>();
 
@@ -144,10 +166,14 @@ public static void InitializeData ()
 
                 //FINALIZO LA COMPRA
                 carritoCP = new CarritoCP ();
+
+                Console.WriteLine("Finalizo la compra de pablomanez:");
                 carritoCP.Finalizar_compra (registrado0, carritoCEN.get_ICarritoCAD ().ReadOIDDefault (registrado0).Precio); //FUNCIONA DE PUTA MADRE
+                System.Console.WriteLine("El precio del carrito es: " + carritoCEN.get_ICarritoCAD().ReadOIDDefault(registrado0).Precio + "\n");
 
+                Console.WriteLine("Ahora " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo1).Nombre + " tiene " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo1).Stock + " unidades en stock \n");
 
-                //CONSIGO TODOS LOS PEDIDOS DE UN USUARIO (CUSTOM TAMBIEN)
+                //CONSIGO TODOS LOS PEDIDOS DE UN USUARIO
                 PedidoCEN pedidoCEN = new PedidoCEN ();
                 IList<PedidoEN> pedidos = pedidoCEN.Obtener_pedidos (0, 50);
                 IList<int> histPedidos = new List<int>();
@@ -157,6 +183,33 @@ public static void InitializeData ()
                                 histPedidos.Add (pedido.Id);
                         }
                 }
+
+                //PEDIDOS DE UN USUARIO
+                Console.WriteLine("Accedo al historial del usuario pablomanez:");
+                foreach(int pedId in histPedidos)
+                {
+                    int i = 1;
+                    PedidoEN ped = pedidoCEN.get_IPedidoCAD().ReadOIDDefault(pedId);
+
+                    Console.WriteLine("///////////////////////// Pedido numero: " + i + " /////////////////////////");
+                    Console.WriteLine("Fecha: " + ped.Fecha);
+                    Console.WriteLine("Contenido: ");
+
+                    IList<LineaPedidoEN> lineas2 = lineaPedidoCEN.Obtener_lineas(0, 50);
+                    foreach (LineaPedidoEN linea2 in lineas2)
+                    {
+                        if (linea2.Pedido.Id == pedId)
+                        {
+                            Console.WriteLine("ID LINEA DE PEDIDO: " + linea2.Id);
+                            Console.WriteLine("ARTICULO: " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(linea2.Articulo.Id).Nombre);
+                            Console.WriteLine("CANTIDAD: " + linea2.Cantidad + "\n");
+                        }
+                    }
+
+
+                }
+
+
 
                 /*
                  *  //BUSCO ARTICULOS POR NOMBRE
