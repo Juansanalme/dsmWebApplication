@@ -56,7 +56,8 @@ public void Terminar_puja (int p_Puja_OID, Nullable<DateTime> p_fecha, float p_p
                 else {
                         pujaCEN.Declarar_ganador (p_Puja_OID, puja_ganadora.Registrado.Id);
                         RegistradoCEN registradoCEN = new RegistradoCEN ();
-                        System.Console.WriteLine ("PUJA FINALIZADA -- GANADOR: " + registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (puja_ganadora.Registrado.Id).N_usuario + "\n");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        System.Console.WriteLine ("    PUJA FINALIZADA -- GANADOR: " + registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (puja_ganadora.Registrado.Id).N_usuario + "\n");
                 }
 
                 PujaEN pujaEN = null;

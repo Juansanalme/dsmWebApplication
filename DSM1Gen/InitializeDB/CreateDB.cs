@@ -88,6 +88,7 @@ public static void InitializeData ()
                 RegistradoCP registradoCP = new RegistradoCP();
                 CarritoCEN carritoCEN = new CarritoCEN();
                 CarritoCP carritoCP = new CarritoCP();
+                PedidoCEN pedidoCEN = new PedidoCEN();
 
                 int tester = registradoCP.Nuevo_usuarioYcarrito("Beta", "Tester", 20, new DateTime(1997, 8, 6), "28595475X", "Test", "Beater", false).Id;
                 
@@ -208,6 +209,20 @@ public static void InitializeData ()
                 int art4CatId = articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo2).Categoria.Id;
                 Console.WriteLine("  Nombre de categoria: " + categoriaCEN.get_ICategoriaCAD().ReadOIDDefault(art2CatId).Nombre + "\n");
 
+                //CREO DOS PUJAS
+                PujaCEN pujaCEN = new PujaCEN();
+                List<int> pujas = new List<int>();
+
+                int pujaid = pujaCEN.New_(DateTime.Now, 10, articulo1, 10, -1, false);
+                int pujaid2 = pujaCEN.New_(DateTime.Now, 100, articulo2, 100, -1, false);
+                pujas.Add(pujaid);
+                pujas.Add(pujaid2);
+
+                RegistradoEN max = null;
+                PujaEN puja = pujaCEN.get_IPujaCAD().ReadOIDDefault(pujaid);
+                OfertaPujaCP ofertaPujaCP = null;
+
+
                 List<int> carrito = new List<int>();
                 LineaPedidoCEN lineaPedidoCEN = new LineaPedidoCEN();
                 LineaPedidoCP lineaPedidoCP = new LineaPedidoCP();
@@ -230,8 +245,8 @@ public static void InitializeData ()
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write("-   A| "); Console.ForegroundColor = ConsoleColor.White; Console.WriteLine(" Agregar categoria");  Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write("-   B| "); Console.ForegroundColor = ConsoleColor.White; Console.WriteLine(" Agregar articulo");   Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write("-   C| "); Console.ForegroundColor = ConsoleColor.White; Console.WriteLine(" Terminar puja");      Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write("-   D| "); Console.ForegroundColor = ConsoleColor.White; Console.WriteLine(" Convertir usuario en admin"); Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("-   C| "); Console.ForegroundColor = ConsoleColor.White; Console.WriteLine(" Terminar puja");      
+                         Console.ForegroundColor = ConsoleColor.Yellow;
                     }
 
                     Console.Write("- E| "); Console.ForegroundColor = ConsoleColor.Gray; Console.WriteLine(" Salir");          Console.ForegroundColor = ConsoleColor.Yellow;
@@ -311,7 +326,7 @@ public static void InitializeData ()
                                                 Console.ForegroundColor = ConsoleColor.DarkGray;
                                                 Console.WriteLine("//Testeo CP Anyado_lineaYprecio y CP Calcular_precio");
                                                 Console.WriteLine("//Cada vez que se llama al CP Anyado_lineaYprecio se llama tambien al de Calcular_precio que recalcula el precio del carrito");
-                                                lineaPedidoCP.Anyado_lineaYprecio(cantidad, x, registrado0);
+                                                lineaPedidoCP.Anyado_lineaYprecio(cantidad, x, tester);
                                                 carrito.Add(x);
                                                 Console.ForegroundColor = ConsoleColor.Cyan;
                                                 Console.Write("Articulo " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(x).Nombre + " anyadido al carrito\n");
@@ -327,7 +342,7 @@ public static void InitializeData ()
                             {
                                 int cont = 1;
                                 Console.ForegroundColor = ConsoleColor.Cyan;
-                                Console.Write("---Buscar articulo-------------------------------------------");                 Console.ForegroundColor = ConsoleColor.DarkGray;
+                                Console.WriteLine("---Buscar articulo-------------------------------------------");                 Console.ForegroundColor = ConsoleColor.DarkGray;
                                 Console.WriteLine("         //Testeo del ReadFilter - Busqueda por nombre");
                                 Console.Write("       Introduce el termino de busqueda: ");                                     Console.ForegroundColor = ConsoleColor.Cyan;
                                 reader = Console.ReadLine();
@@ -376,6 +391,64 @@ public static void InitializeData ()
                             }
                         case "4":
                             {
+                                                                                                                        Console.ForegroundColor = ConsoleColor.Cyan;
+                                Console.WriteLine("---Pujas-------------------------------------------");               Console.ForegroundColor = ConsoleColor.DarkGray;
+                                Console.WriteLine("   //En este metodo testeamos el CP Nueva_oferta");                  Console.ForegroundColor = ConsoleColor.Cyan;
+                                PujaEN puja_molona = null;
+                                foreach (int i in pujas)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Cyan;
+                                    puja_molona = pujaCEN.get_IPujaCAD().ReadOIDDefault(i);
+                                    if (puja_molona.Cerrada != true)
+                                    {
+                                        System.Console.Write("    Puja#"); Console.ForegroundColor = ConsoleColor.Gray;
+                                        System.Console.Write(puja_molona.Id); Console.ForegroundColor = ConsoleColor.Cyan;
+                                        if (puja_molona.Id_usuario != -1)
+                                        {
+                                            
+                                            System.Console.Write(" | Maximo pujador: "); Console.ForegroundColor = ConsoleColor.Gray;
+                                            System.Console.Write(registradoCEN.get_IRegistradoCAD().ReadOIDDefault(puja_molona.Id_usuario).N_usuario); Console.ForegroundColor = ConsoleColor.Red;
+                                        }
+                                        else
+                                            System.Console.Write(" | Sin pujadores  | Puja minima: "); Console.ForegroundColor = ConsoleColor.Red;
+
+                                        System.Console.Write(" " + puja_molona.Puja_max + "$\n");
+
+                                        Console.ForegroundColor = ConsoleColor.Gray;
+                                    }
+                                }
+                                Console.WriteLine("   Escribe el id de la puja en la que deseas participar. Si quieres volver atras escribe cualquier cosa: "); Console.ForegroundColor = ConsoleColor.Cyan;
+                                Console.Write("   > "); reader = Console.ReadLine();
+                                                                                                                        Console.ForegroundColor = ConsoleColor.Gray;
+                                int x = 0;
+                                if (Int32.TryParse(reader, out x))
+                                {
+                                    puja_molona = pujaCEN.get_IPujaCAD().ReadOIDDefault(x);
+                                    if (puja_molona != null)    
+                                    {
+                                        try
+                                        {
+                                            ofertaPujaCP = new OfertaPujaCP();
+                                            Console.ForegroundColor = ConsoleColor.Cyan;
+                                            Console.Write("   Importe> "); reader = Console.ReadLine();
+
+                                            ofertaPujaCP.Nueva_oferta(DateTime.Now, DateTime.Now, tester, puja_molona.Id, Convert.ToInt32(reader));
+                                            puja_molona = pujaCEN.get_IPujaCAD().ReadOIDDefault(x);
+
+                                            System.Console.Write("    Puja#"); Console.ForegroundColor = ConsoleColor.Gray;
+                                            System.Console.Write(puja_molona.Id); Console.ForegroundColor = ConsoleColor.Cyan;
+                                            System.Console.Write(" | Maximo pujador: "); Console.ForegroundColor = ConsoleColor.Gray;
+                                            System.Console.Write(registradoCEN.get_IRegistradoCAD().ReadOIDDefault(puja_molona.Id_usuario).N_usuario); Console.ForegroundColor = ConsoleColor.Red;
+                                            System.Console.Write(" " + puja_molona.Puja_max + "$\n");
+                                        }
+                                        catch(Exception e)
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.Red;
+                                            Console.WriteLine("   " + e.Message+"\n");
+                                        }
+
+                                    }
+                                }
                                 break;
                             }
                         case "5":
@@ -392,7 +465,7 @@ public static void InitializeData ()
                                     System.Console.WriteLine(art.Nombre + "  " + art.Precio + "$");
                                 }
                                 Console.Write("El precio total del carrito es: "); Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine(carritoCEN.get_ICarritoCAD().ReadOIDDefault(registrado0).Precio + "\n");
+                                Console.WriteLine(carritoCEN.get_ICarritoCAD().ReadOIDDefault(tester).Precio + "\n");
                                 Console.ForegroundColor = ConsoleColor.Gray;
                                 Console.Write("   Finalizar compra?"); Console.ForegroundColor = ConsoleColor.Cyan;
                                 Console.Write("(s/n)> ");
@@ -402,7 +475,7 @@ public static void InitializeData ()
                                 {
                                     try
                                     {
-                                        carritoCP.Finalizar_compra(registrado0, carritoCEN.get_ICarritoCAD().ReadOIDDefault(registrado0).Precio); //FUNCIONA DE PUTA MADRE
+                                        carritoCP.Finalizar_compra(tester, carritoCEN.get_ICarritoCAD().ReadOIDDefault(tester).Precio); //FUNCIONA DE PUTA MADRE
                                     }
                                     catch(Exception e)
                                     {
@@ -414,6 +487,45 @@ public static void InitializeData ()
                             }
                         case "6":
                             {
+                                                                                                        Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine("\n---Ver pedidos realizados-------------------------------------------"); Console.ForegroundColor = ConsoleColor.DarkGray;
+                                Console.WriteLine("    //Aqui testeamos el ReadAll de pedidos"); Console.ForegroundColor = ConsoleColor.Gray;
+                                pedidoCEN = new PedidoCEN();
+                                IList<PedidoEN> pedidos2 = pedidoCEN.Obtener_pedidos(0, 50);
+                                IList<int> histPedidos2 = new List<int>();
+
+                                foreach (PedidoEN pedido in pedidos2)
+                                {
+                                    if (pedido.Registrado.Id == tester)
+                                    {
+                                        histPedidos2.Add(pedido.Id);
+                                    }
+                                }
+
+                                //PEDIDOS DE UN USUARIO
+                                Console.WriteLine("Accedo al historial del usuario Beater:");
+                                foreach (int pedId in histPedidos2)
+                                {
+                                    int i = 1;
+                                    PedidoEN ped = pedidoCEN.get_IPedidoCAD().ReadOIDDefault(pedId);
+
+                                    Console.WriteLine("///////////////////////// Pedido numero: " + i + " /////////////////////////");
+                                    Console.WriteLine("Fecha: " + ped.Fecha);
+                                    Console.WriteLine("Contenido: ");
+
+                                    IList<LineaPedidoEN> lineas2 = lineaPedidoCEN.Obtener_lineas(0, 50);
+                                    foreach (LineaPedidoEN linea2 in lineas2)
+                                    {
+                                        if (linea2.Pedido.Id == pedId)
+                                        {
+                                            Console.WriteLine("ID LINEA DE PEDIDO: " + linea2.Id);
+                                            Console.WriteLine("ARTICULO: " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(linea2.Articulo.Id).Nombre);
+                                            Console.WriteLine("CANTIDAD: " + linea2.Cantidad + "\n");
+                                        }
+                                    }
+
+
+                                }
                                 break;
                             }
                         case "7":
@@ -455,7 +567,7 @@ public static void InitializeData ()
                                 else
                                 {
                                                                                                                                         Console.ForegroundColor = ConsoleColor.Cyan;
-                                    Console.WriteLine("\n---Agregar categoria-------------------------------------------");             Console.ForegroundColor = ConsoleColor.DarkGray;
+                                    Console.WriteLine("\n---Agregar articulo--------------------------------------------");             Console.ForegroundColor = ConsoleColor.DarkGray;
                                     Console.WriteLine("//EN ESTE METODO NO SE COMPRUEBA QUE LOS DATOS ESTEN CORRECTAMENTE INTRODUCIDOS");              Console.ForegroundColor = ConsoleColor.Cyan;
                                     Console.Write("     Nombre >");                                                                     Console.ForegroundColor = ConsoleColor.White;
                                     reader = Console.ReadLine();
@@ -489,24 +601,63 @@ public static void InitializeData ()
                                     Console.WriteLine(" ---------------ESE ES UN COMANDO DE ADMINISTRADOR--------------\n");
                                 else
                                 {
+                                                                                                                                            Console.ForegroundColor = ConsoleColor.Cyan;
+                                    Console.WriteLine("\n---Finalizar puja-------------------------------------------");                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                                    Console.WriteLine("//En este metodo testeamos el CP Terminar puja");                                    Console.ForegroundColor = ConsoleColor.Cyan;
+                                    //CERRAMOS LA PUJA
+                                    PujaCP pujaCP2 = new PujaCP();
+                                    PujaEN puja_molona = null;
+                                    foreach (int i in pujas)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Cyan;
+                                        puja_molona = pujaCEN.get_IPujaCAD().ReadOIDDefault(i);
+                                        if (puja_molona.Cerrada != true)
+                                        {
+                                            System.Console.Write("    Puja#"); Console.ForegroundColor = ConsoleColor.Gray;
+                                            System.Console.Write(puja_molona.Id); Console.ForegroundColor = ConsoleColor.Cyan;
+                                            if (puja_molona.Id_usuario != -1)
+                                            {
+                                                System.Console.Write(" | Maximo pujador: "); Console.ForegroundColor = ConsoleColor.Gray;
+                                                System.Console.Write(registradoCEN.get_IRegistradoCAD().ReadOIDDefault(puja_molona.Id_usuario).N_usuario); Console.ForegroundColor = ConsoleColor.Red;
+                                            }
+                                            else
+                                                System.Console.Write(" | Sin pujadores  | Puja minima: "); Console.ForegroundColor = ConsoleColor.Red;
 
+                                            System.Console.Write(" " + puja_molona.Puja_max + "$\n");
+
+                                            Console.ForegroundColor = ConsoleColor.Gray;
+                                        }
+                                    }
+                                    Console.WriteLine("   Escribe el id de la puja que deseas cerrar. Si quieres volver atras escribe cualquier cosa: "); Console.ForegroundColor = ConsoleColor.Cyan;
+                                    Console.Write("   > "); reader = Console.ReadLine();
+                                    Console.ForegroundColor = ConsoleColor.Gray;
+                                    int x = 0;
+                                    if (Int32.TryParse(reader, out x))
+                                    {
+                                        puja_molona = pujaCEN.get_IPujaCAD().ReadOIDDefault(x);
+                                        if (puja_molona != null)
+                                        {
+                                            try
+                                            {
+                                                pujaCP2.Terminar_puja(puja_molona.Id, puja_molona.Fecha, puja_molona.Puja_inicial, puja_molona.Puja_max, puja_molona.Id_usuario, true);
+                                            }
+                                            catch (Exception e)
+                                            {
+                                                Console.ForegroundColor = ConsoleColor.Red;
+                                                Console.WriteLine("   " + e.Message + "\n");
+                                            }
+
+                                        }
+                                    }
                                 }
                                 break;
                             }
-                        case "d":
-                        case "D":
-                            {
-                                if (!registradoCEN.get_IRegistradoCAD().ReadOIDDefault(tester).Admin)
-                                    Console.WriteLine(" ---------------ESE ES UN COMANDO DE ADMINISTRADOR--------------\n");
-                                else
-                                {
-
-                                }
-                                break;
-                            }
+                         
                         case "e":
                         case "E":
                             {
+                                Console.ForegroundColor = ConsoleColor.Cyan;
+                                Console.WriteLine(" ----------------------HASTA LA PROXIMA---------------------\n");
                                 break;
                             }
                         default:
@@ -521,16 +672,16 @@ public static void InitializeData ()
                 } while (reader != "e" && reader != "E");
 
 
-
-
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("LOS USUARIOS CREADOS PREVIAMENTE REALIZAN DIVERSAS ACCIONES");
                 //LLAMO AL CP NEW DE LINEA DE PEDIDO
-                /*
-                CarritoEN carritoEN = carritoCEN.get_ICarritoCAD().ReadOIDDefault(registrado0);
 
+                CarritoEN carritoEN = carritoCEN.get_ICarritoCAD().ReadOIDDefault(registrado0);
+                /*
                 System.Console.WriteLine("Anyado 2 "+articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo1).Nombre+" al carrito de "+registradoCEN.get_IRegistradoCAD().ReadOIDDefault(registrado0).N_usuario);
                 lineaPedidoCP.Anyado_lineaYprecio(20, articulo1, registrado0);
                 System.Console.WriteLine("El precio del carrito es: "+carritoCEN.get_ICarritoCAD().ReadOIDDefault(registrado0).Precio + "\n");
-
+                */
                 System.Console.WriteLine("Anyado 2 " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo2).Nombre + " al carrito de " + registradoCEN.get_IRegistradoCAD().ReadOIDDefault(registrado0).N_usuario);
                 lineaPedidoCP.Anyado_lineaYprecio(2, articulo2, registrado0);
                 System.Console.WriteLine("El precio del carrito es: " +carritoCEN.get_ICarritoCAD().ReadOIDDefault(registrado0).Precio + "\n");
@@ -541,10 +692,11 @@ public static void InitializeData ()
                 Console.WriteLine ("Precio del carrito: " + carritoCEN.get_ICarritoCAD ().ReadOIDDefault (registrado0).Precio);
                 carritoCP.Calcular_precio (registrado0);
                 Console.WriteLine ("Precio del carrito al calcularlo: " + carritoCEN.get_ICarritoCAD ().ReadOIDDefault (registrado0).Precio);
-                */
+                
 
                 //CONSEGUIR TODAS LAS LINEAS DE UN CARRITO
                 IList<LineaPedidoEN> lineas = lineaPedidoCEN.Obtener_lineas (0, 50);
+               
                 IList<int> lineasid = new List<int>();
 
                 foreach (LineaPedidoEN linea in lineas) {
@@ -557,13 +709,13 @@ public static void InitializeData ()
                 carritoCP = new CarritoCP ();
 
                 Console.WriteLine("Finalizo la compra de pablomanez:");
-                carritoCP.Finalizar_compra (registrado0, carritoCEN.get_ICarritoCAD ().ReadOIDDefault (registrado0).Precio); //FUNCIONA DE PUTA MADRE
+                carritoCP.Finalizar_compra (registrado0, carritoCEN.get_ICarritoCAD ().ReadOIDDefault (registrado0).Precio); 
                 System.Console.WriteLine("El precio del carrito es: " + carritoCEN.get_ICarritoCAD().ReadOIDDefault(registrado0).Precio + "\n");
 
                 Console.WriteLine("Ahora " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo1).Nombre + " tiene " + articuloCEN.get_IArticuloCAD().ReadOIDDefault(articulo1).Stock + " unidades en stock \n");
 
                 //CONSIGO TODOS LOS PEDIDOS DE UN USUARIO
-                PedidoCEN pedidoCEN = new PedidoCEN ();
+                pedidoCEN = new PedidoCEN ();
                 IList<PedidoEN> pedidos = pedidoCEN.Obtener_pedidos (0, 50);
                 IList<int> histPedidos = new List<int>();
 
@@ -611,14 +763,9 @@ public static void InitializeData ()
                  *  }
                  */
 
-                //CREO DOS PUJAS
-                PujaCEN pujaCEN = new PujaCEN ();
-                int pujaid = pujaCEN.New_ (DateTime.Now, 10, articulo1, 10, -1, false);
-                int pujaid2 = pujaCEN.New_ (DateTime.Now, 10, articulo2, 20, -1, false);
+                
 
-                RegistradoEN max = null;
-                PujaEN puja = pujaCEN.get_IPujaCAD ().ReadOIDDefault (pujaid);
-                OfertaPujaCP ofertaPujaCP = null;
+                
                 //INICIAMOS LAS PUJAS
                 try
                 {
@@ -658,34 +805,32 @@ public static void InitializeData ()
 
                 System.Console.WriteLine ("Puja#" + puja.Id + " | MAX: " + max.N_usuario + " " + puja.Puja_max + " " + puja.Cerrada + "$\n");
 
-
-                //CERRAMOS LA PUJA
-                PujaCP pujaCP = new PujaCP ();
-                System.Console.WriteLine ("Cierro puja 1");
-                pujaCP.Terminar_puja (pujaid, puja.Fecha, puja.Puja_inicial, puja.Puja_max, puja.Id_usuario, true);
+                PujaCP pujaCP = new PujaCP();
+                System.Console.WriteLine("Cierro puja 1");
+                pujaCP.Terminar_puja(pujaid, puja.Fecha, puja.Puja_inicial, puja.Puja_max, puja.Id_usuario, true);
                 try
                 {
-                        System.Console.WriteLine ("Cierro puja 1 otra vez");
-                        pujaCP.Terminar_puja (pujaid, puja.Fecha, puja.Puja_inicial, puja.Puja_max, puja.Id_usuario, true);
+                    System.Console.WriteLine("Cierro puja 1 otra vez");
+                    pujaCP.Terminar_puja(pujaid, puja.Fecha, puja.Puja_inicial, puja.Puja_max, puja.Id_usuario, true);
                 }
-                catch (Exception e) { System.Console.WriteLine (e.Message + "\n"); }
+                catch (Exception e) { System.Console.WriteLine(e.Message + "\n"); }
                 try
                 {
-                        System.Console.WriteLine ("Cierro puja 2");
-                        pujaCP.Terminar_puja (pujaid2, puja.Fecha, puja.Puja_inicial, puja.Puja_max, puja.Id_usuario, true);
+                    System.Console.WriteLine("Cierro puja 2");
+                    pujaCP.Terminar_puja(pujaid2, puja.Fecha, puja.Puja_inicial, puja.Puja_max, puja.Id_usuario, true);
                 }
-                catch (Exception e) { System.Console.WriteLine (e.Message + "\n"); }
+                catch (Exception e) { System.Console.WriteLine(e.Message + "\n"); }
 
 
                 try
                 {
-                        System.Console.WriteLine ("Pablo-sensei puja " + 100 + "$");
-                        ofertaPujaCP.Nueva_oferta (DateTime.Now, DateTime.Now, registrado1, pujaid, 100); //Nueva oferta de Pablo-sensei en una puja cerrada
-                        puja = pujaCEN.get_IPujaCAD ().ReadOIDDefault (pujaid);
-                        max = registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (puja.Id_usuario);
-                        System.Console.WriteLine ("Puja#" + puja.Id + " | MAX: " + max.N_usuario + " " + puja.Puja_max + "$\n");
+                    System.Console.WriteLine("Pablo-sensei puja " + 100 + "$");
+                    ofertaPujaCP.Nueva_oferta(DateTime.Now, DateTime.Now, registrado1, pujaid, 100); //Nueva oferta de Pablo-sensei en una puja cerrada
+                    puja = pujaCEN.get_IPujaCAD().ReadOIDDefault(pujaid);
+                    max = registradoCEN.get_IRegistradoCAD().ReadOIDDefault(puja.Id_usuario);
+                    System.Console.WriteLine("Puja#" + puja.Id + " | MAX: " + max.N_usuario + " " + puja.Puja_max + "$\n");
                 }
-                catch (Exception e) { System.Console.WriteLine (e.Message + "\n"); }
+                catch (Exception e) { System.Console.WriteLine(e.Message + "\n"); }
 
 
                 /*
@@ -712,7 +857,7 @@ public static void InitializeData ()
                 // customer.New_ (p_user:"user", p_password:"1234");
 
                 /*PROTECTED REGION END*/
-        }
+            }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
