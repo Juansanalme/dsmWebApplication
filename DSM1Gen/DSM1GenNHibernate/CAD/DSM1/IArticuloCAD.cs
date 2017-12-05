@@ -32,5 +32,8 @@ System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> Busqueda_
 
 ArticuloEN Ver_detalles (int id
                          );
+
+
+System.Collections.Generic.IList<ArticuloEN> ReadAll (int first, int size);
 }
 }

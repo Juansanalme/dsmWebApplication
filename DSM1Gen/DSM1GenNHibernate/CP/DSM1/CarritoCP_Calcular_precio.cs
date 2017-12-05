@@ -57,9 +57,9 @@ public void Calcular_precio (int p_Carrito_OID)
                 carritoEN.Id = p_Carrito_OID;
                 carritoEN.Precio = (float)nuevoPrecio;
                 //Call to CarritoCAD
-                
+
                 carritoCAD.Calcular_precio (carritoEN);
-                carritoCAD.ModifyDefault(carritoEN);
+                carritoCAD.ModifyDefault (carritoEN);
 
                 SessionCommit ();
         }

@@ -20,5 +20,8 @@ void Modify (ValoracionEN valoracion);
 
 void Destroy (int id
               );
+
+
+System.Collections.Generic.IList<ValoracionEN> ReadAll (int first, int size);
 }
 }

@@ -23,5 +23,7 @@ void Destroy (int id
 
 
 void Anyadir_supercat (int p_Categoria_OID, int p_supercategoria_OID);
+
+System.Collections.Generic.IList<CategoriaEN> ReadAll (int first, int size);
 }
 }

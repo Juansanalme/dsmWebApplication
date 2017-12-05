@@ -118,5 +118,12 @@ public System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> 
 {
         return _IRegistradoCAD.Ver_detalles_nombre (p_nombre);
 }
+public System.Collections.Generic.IList<RegistradoEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<RegistradoEN> list = null;
+
+        list = _IRegistradoCAD.ReadAll (first, size);
+        return list;
+}
 }
 }

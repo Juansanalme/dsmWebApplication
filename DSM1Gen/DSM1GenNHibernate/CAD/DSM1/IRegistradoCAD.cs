@@ -37,5 +37,7 @@ System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> Ver_det
 
 
 int Nuevo_usuarioYcarrito (RegistradoEN registrado);
+
+System.Collections.Generic.IList<RegistradoEN> ReadAll (int first, int size);
 }
 }

@@ -23,5 +23,7 @@ void Destroy (int id
 
 
 int Nueva_oferta (OfertaPujaEN ofertaPuja);
+
+System.Collections.Generic.IList<OfertaPujaEN> ReadAll (int first, int size);
 }
 }

@@ -90,5 +90,13 @@ public void Destroy (int id
 {
         _IValoracionCAD.Destroy (id);
 }
+
+public System.Collections.Generic.IList<ValoracionEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<ValoracionEN> list = null;
+
+        list = _IValoracionCAD.ReadAll (first, size);
+        return list;
+}
 }
 }

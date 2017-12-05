@@ -28,5 +28,8 @@ void Actualizar (PujaEN puja);
 void Declarar_ganador (int p_Puja_OID, int p_usuarioGanador_OID);
 
 void Terminar_puja (PujaEN puja);
+
+
+System.Collections.Generic.IList<PujaEN> ReadAll (int first, int size);
 }
 }

@@ -256,5 +256,35 @@ public int Nueva_oferta (OfertaPujaEN ofertaPuja)
 
         return ofertaPuja.Id;
 }
+
+public System.Collections.Generic.IList<OfertaPujaEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<OfertaPujaEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(OfertaPujaEN)).
+                                 SetFirstResult (first).SetMaxResults (size).List<OfertaPujaEN>();
+                else
+                        result = session.CreateCriteria (typeof(OfertaPujaEN)).List<OfertaPujaEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in OfertaPujaCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

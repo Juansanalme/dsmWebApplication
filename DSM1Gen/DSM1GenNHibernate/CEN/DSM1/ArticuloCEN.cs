@@ -105,5 +105,13 @@ public ArticuloEN Ver_detalles (int id
         articuloEN = _IArticuloCAD.Ver_detalles (id);
         return articuloEN;
 }
+
+public System.Collections.Generic.IList<ArticuloEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<ArticuloEN> list = null;
+
+        list = _IArticuloCAD.ReadAll (first, size);
+        return list;
+}
 }
 }

@@ -39,8 +39,8 @@ public DSM1GenNHibernate.EN.DSM1.RegistradoEN Nuevo_usuarioYcarrito (string p_no
                 registradoCAD = new RegistradoCAD (session);
                 registradoCEN = new  RegistradoCEN (registradoCAD);
 
-                carritoCAD = new CarritoCAD(session);
-                carritoCEN = new CarritoCEN(carritoCAD);
+                carritoCAD = new CarritoCAD (session);
+                carritoCEN = new CarritoCEN (carritoCAD);
 
 
                 int oid;
@@ -70,7 +70,7 @@ public DSM1GenNHibernate.EN.DSM1.RegistradoEN Nuevo_usuarioYcarrito (string p_no
 
 
                 //ASOCIO USUARIO CON EL CARRITO
-                carritoCEN.New_ (oid,oid, 0);
+                carritoCEN.New_ (oid, oid, 0);
 
 
                 SessionCommit ();

@@ -34,5 +34,7 @@ void Quito_linea_a_carroYprecio (int id
 
 
 int Anyado_lineaYprecio (LineaPedidoEN lineaPedido);
+
+System.Collections.Generic.IList<LineaPedidoEN> ReadAll (int first, int size);
 }
 }

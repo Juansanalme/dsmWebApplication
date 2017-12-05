@@ -104,5 +104,12 @@ public System.Collections.Generic.IList<PedidoEN> Obtener_pedidos (int first, in
         list = _IPedidoCAD.Obtener_pedidos (first, size);
         return list;
 }
+public System.Collections.Generic.IList<PedidoEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<PedidoEN> list = null;
+
+        list = _IPedidoCAD.ReadAll (first, size);
+        return list;
+}
 }
 }

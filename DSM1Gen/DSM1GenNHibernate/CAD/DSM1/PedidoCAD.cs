@@ -280,5 +280,35 @@ public System.Collections.Generic.IList<PedidoEN> Obtener_pedidos (int first, in
 
         return result;
 }
+
+public System.Collections.Generic.IList<PedidoEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<PedidoEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(PedidoEN)).
+                                 SetFirstResult (first).SetMaxResults (size).List<PedidoEN>();
+                else
+                        result = session.CreateCriteria (typeof(PedidoEN)).List<PedidoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in PedidoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

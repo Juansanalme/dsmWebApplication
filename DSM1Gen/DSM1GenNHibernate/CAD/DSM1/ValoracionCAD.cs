@@ -210,5 +210,35 @@ public void Destroy (int id
                 SessionClose ();
         }
 }
+
+public System.Collections.Generic.IList<ValoracionEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<ValoracionEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(ValoracionEN)).
+                                 SetFirstResult (first).SetMaxResults (size).List<ValoracionEN>();
+                else
+                        result = session.CreateCriteria (typeof(ValoracionEN)).List<ValoracionEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in ValoracionCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

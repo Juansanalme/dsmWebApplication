@@ -399,5 +399,35 @@ public int Nuevo_usuarioYcarrito (RegistradoEN registrado)
 
         return registrado.Id;
 }
+
+public System.Collections.Generic.IList<RegistradoEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<RegistradoEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(RegistradoEN)).
+                                 SetFirstResult (first).SetMaxResults (size).List<RegistradoEN>();
+                else
+                        result = session.CreateCriteria (typeof(RegistradoEN)).List<RegistradoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in RegistradoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

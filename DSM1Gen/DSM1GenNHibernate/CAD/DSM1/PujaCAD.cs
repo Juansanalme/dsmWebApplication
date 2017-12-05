@@ -330,5 +330,34 @@ public void Terminar_puja (PujaEN puja)
                 SessionClose ();
         }
 }
+public System.Collections.Generic.IList<PujaEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<PujaEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(PujaEN)).
+                                 SetFirstResult (first).SetMaxResults (size).List<PujaEN>();
+                else
+                        result = session.CreateCriteria (typeof(PujaEN)).List<PujaEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in PujaCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

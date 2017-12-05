@@ -81,5 +81,12 @@ public void Anyadir_supercat (int p_Categoria_OID, int p_supercategoria_OID)
 
         _ICategoriaCAD.Anyadir_supercat (p_Categoria_OID, p_supercategoria_OID);
 }
+public System.Collections.Generic.IList<CategoriaEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<CategoriaEN> list = null;
+
+        list = _ICategoriaCAD.ReadAll (first, size);
+        return list;
+}
 }
 }

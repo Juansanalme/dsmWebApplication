@@ -32,5 +32,8 @@ void Finalizar_compra (CarritoEN carrito);
 
 
 void Calcular_precio (CarritoEN carrito);
+
+
+System.Collections.Generic.IList<CarritoEN> ReadAll (int first, int size);
 }
 }

@@ -348,5 +348,35 @@ public int Anyado_lineaYprecio (LineaPedidoEN lineaPedido)
 
         return lineaPedido.Id;
 }
+
+public System.Collections.Generic.IList<LineaPedidoEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<LineaPedidoEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(LineaPedidoEN)).
+                                 SetFirstResult (first).SetMaxResults (size).List<LineaPedidoEN>();
+                else
+                        result = session.CreateCriteria (typeof(LineaPedidoEN)).List<LineaPedidoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in LineaPedidoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

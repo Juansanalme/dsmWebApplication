@@ -115,5 +115,12 @@ public void Declarar_ganador (int p_Puja_OID, int p_usuarioGanador_OID)
 
         _IPujaCAD.Declarar_ganador (p_Puja_OID, p_usuarioGanador_OID);
 }
+public System.Collections.Generic.IList<PujaEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<PujaEN> list = null;
+
+        list = _IPujaCAD.ReadAll (first, size);
+        return list;
+}
 }
 }

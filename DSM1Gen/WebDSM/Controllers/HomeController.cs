@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace WebDSM.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BasicController
     {
         public ActionResult Index()
         {

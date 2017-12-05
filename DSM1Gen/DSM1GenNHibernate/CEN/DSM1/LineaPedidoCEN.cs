@@ -99,5 +99,12 @@ public System.Collections.Generic.IList<LineaPedidoEN> Obtener_lineas (int first
         list = _ILineaPedidoCAD.Obtener_lineas (first, size);
         return list;
 }
+public System.Collections.Generic.IList<LineaPedidoEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<LineaPedidoEN> list = null;
+
+        list = _ILineaPedidoCAD.ReadAll (first, size);
+        return list;
+}
 }
 }

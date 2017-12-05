@@ -308,5 +308,35 @@ public ArticuloEN Ver_detalles (int id
 
         return articuloEN;
 }
+
+public System.Collections.Generic.IList<ArticuloEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<ArticuloEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(ArticuloEN)).
+                                 SetFirstResult (first).SetMaxResults (size).List<ArticuloEN>();
+                else
+                        result = session.CreateCriteria (typeof(ArticuloEN)).List<ArticuloEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in ArticuloCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

@@ -316,5 +316,34 @@ public void Calcular_precio (CarritoEN carrito)
                 SessionClose ();
         }
 }
+public System.Collections.Generic.IList<CarritoEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<CarritoEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(CarritoEN)).
+                                 SetFirstResult (first).SetMaxResults (size).List<CarritoEN>();
+                else
+                        result = session.CreateCriteria (typeof(CarritoEN)).List<CarritoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in CarritoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

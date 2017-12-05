@@ -42,7 +42,7 @@ public DSM1GenNHibernate.EN.DSM1.LineaPedidoEN Anyado_lineaYprecio (int p_cantid
 
                 carritoCAD = new CarritoCAD (session);
                 carritoCEN = new CarritoCEN (carritoCAD);
-                carritoCP = new CarritoCP(session);
+                carritoCP = new CarritoCP (session);
 
                 int oid;
                 //Initialized LineaPedidoEN
@@ -64,14 +64,13 @@ public DSM1GenNHibernate.EN.DSM1.LineaPedidoEN Anyado_lineaYprecio (int p_cantid
 
                 //RELACIONO LINEA CON CARRITO
                 lineaPedidoCEN.Anyadir_producto (oid, p_carrito_oid);
-                
+
                 //CALCULO PRECIO CARRITO
                 carritoCP.Calcular_precio (p_carrito_oid);
-                
-                
+
+
 
                 SessionCommit ();
-
         }
         catch (Exception ex)
         {

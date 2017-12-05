@@ -25,5 +25,8 @@ void Destroy (int id
 void Anyadir_linea (int p_Pedido_OID, System.Collections.Generic.IList<int> p_lineaPedido_OIDs);
 
 System.Collections.Generic.IList<PedidoEN> Obtener_pedidos (int first, int size);
+
+
+System.Collections.Generic.IList<PedidoEN> ReadAll (int first, int size);
 }
 }

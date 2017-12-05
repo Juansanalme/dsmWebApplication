@@ -96,5 +96,13 @@ public CarritoEN Ver_detalles (int id
         carritoEN = _ICarritoCAD.Ver_detalles (id);
         return carritoEN;
 }
+
+public System.Collections.Generic.IList<CarritoEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<CarritoEN> list = null;
+
+        list = _ICarritoCAD.ReadAll (first, size);
+        return list;
+}
 }
 }

@@ -93,5 +93,13 @@ public void Destroy (int id
 {
         _IOfertaPujaCAD.Destroy (id);
 }
+
+public System.Collections.Generic.IList<OfertaPujaEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<OfertaPujaEN> list = null;
+
+        list = _IOfertaPujaCAD.ReadAll (first, size);
+        return list;
+}
 }
 }
