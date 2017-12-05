@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DSM1GenNHibernate.EN.DSM1;
+using DSM1GenNHibernate.CEN.DSM1;
+using DSM1GenNHibernate.CAD.DSM1;
+using DSM1GenNHibernate.CP.DSM1;
+using WebDSM.Models;
 
 namespace WebDSM.Controllers
 {
     public class RegistradoController : Controller
     {
+
         // GET: Registrado
         public ActionResult Index()
         {
@@ -28,11 +34,16 @@ namespace WebDSM.Controllers
 
         // POST: Registrado/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Registrado reg)
         {
             try
             {
                 // TODO: Add insert logic here
+
+                RegistradoCP cp = new RegistradoCP();
+                cp.Nuevo_usuarioYcarrito(reg.nombre, reg.apellidos, reg.edad, reg.fNacimiento, "65465A", reg.contrasenya, reg.nUsuario, false);
+
+                
 
                 return RedirectToAction("Index");
             }
@@ -85,5 +96,6 @@ namespace WebDSM.Controllers
                 return View();
             }
         }
+
     }
 }

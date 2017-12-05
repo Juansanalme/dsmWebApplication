@@ -54,3 +54,9 @@ C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\obj\Debug\WebDSM.cspr
 C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\obj\Debug\WebDSM.csproj.CoreCompileInputs.cache
 C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\obj\Debug\WebDSM.dll
 C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\obj\Debug\WebDSM.pdb
+C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\Castle.DynamicProxy2.dll
+C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\LinFu.DynamicProxy.dll
+C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\NHibernate.ByteCode.Castle.dll
+C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\NHibernate.ByteCode.LinFu.dll
+C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\nunit.core.dll
+C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\nunit.framework.dll
