@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebDSM.Models.Registrado>
+
+@{
+    ViewBag.Title = "ListaEjemplo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ListaEjemplo</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.edad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fNacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contrasenya)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nUsuario)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.edad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fNacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contrasenya)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nUsuario)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

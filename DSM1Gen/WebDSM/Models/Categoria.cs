@@ -12,7 +12,7 @@ namespace WebDSM.Models
         [ScaffoldColumn(false)]
         public int id { get; set; }
 
-        //???
+        /*
         [ScaffoldColumn(false)]
         public IList<Articulo> articulos { get; set; }
 
@@ -21,6 +21,7 @@ namespace WebDSM.Models
 
         [ScaffoldColumn(false)]
         public int nArticulos { get; set; }
+        */
 
 
         [Display(Prompt = "Nombre de la categoría", Description = "Nombre de la categoría", Name = "Nombre")]
@@ -33,8 +34,8 @@ namespace WebDSM.Models
         //???????
         [Display(Prompt = "Supercategoría de la categoría", Description = "Supercategoría de la categoría", Name = "Supercategoría")]
         [Required(ErrorMessage = "Debe de indicar una supercategoría para la categoría")]
-        //DataType ??
-        public Categoria superCategoria { get; set; }
+        //DataType 
+        public int superCategoria { get; set; }
 
 
 

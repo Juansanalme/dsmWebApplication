@@ -143,10 +143,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RegistradoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Articulo.cs" />
+    <Compile Include="Models\AssemblerRegistrado.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Registrado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -188,6 +190,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Registrado\ListaEjemplo.cshtml" />
+    <Content Include="Views\Registrado\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
