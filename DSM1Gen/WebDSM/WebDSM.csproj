@@ -194,6 +194,8 @@
     <Compile Include="Models\Articulo.cs" />
     <Compile Include="Models\AssemblerRegistrado.cs" />
     <Compile Include="Models\Categoria.cs" />
+    <Compile Include="Models\Carrito.cs" />
+    <Compile Include="Models\LineaPedido.cs" />
     <Compile Include="Models\OfertaPuja.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Puja.cs" />
@@ -240,10 +242,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Registrado\ListaEjemplo.cshtml" />
     <Content Include="Views\Registrado\Create.cshtml" />
+    <Content Include="Views\Articulo\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Articulo\" />
     <Folder Include="Views\Categoria\" />
     <Folder Include="Views\Valoracion\" />
   </ItemGroup>

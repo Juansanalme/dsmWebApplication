@@ -60,6 +60,10 @@ C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\NHibernate.ByteCo
 C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\NHibernate.ByteCode.LinFu.dll
 C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\nunit.core.dll
 C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\nunit.framework.dll
+C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\WebMatrix.Data.dll
+C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\WebMatrix.WebData.dll
+C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\WebMatrix.Data.xml
+C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\WebMatrix.WebData.xml
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\ApplicationInsights.config
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\hibernate.cfg.xml
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebDSM\bin\WebDSM.dll.config

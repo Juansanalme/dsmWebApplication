@@ -55,11 +55,12 @@ namespace WebDSM.Models
         [Range(minimum: 0, maximum: 9999999, ErrorMessage = "El stock inicial debe de ser mayor que 0 y menor que 9999999")]
         public int stock { get; set; }
 
+        
         [Display(Prompt = "Categoría del artículo", Description = "Categoría del artículo", Name = "Categoría")]
         [Required(ErrorMessage = "Debe de indicar una categoría para el artículo")]
         [StringLength(maximumLength: 50, MinimumLength = 0, ErrorMessage = "La categoría tiene que tener entre 0 y 200 caracteres")]
         public string nomCategoria { get; set; } //PREGUNTAR
-
+        
 
 
 
