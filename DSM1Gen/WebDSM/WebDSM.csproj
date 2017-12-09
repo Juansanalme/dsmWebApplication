@@ -194,6 +194,9 @@
     <Compile Include="Models\Articulo.cs" />
     <Compile Include="Models\AssemblerRegistrado.cs" />
     <Compile Include="Models\Categoria.cs" />
+    <Compile Include="Models\OfertaPuja.cs" />
+    <Compile Include="Models\Pedido.cs" />
+    <Compile Include="Models\Puja.cs" />
     <Compile Include="Models\Registrado.cs" />
     <Compile Include="Models\Valoracion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
