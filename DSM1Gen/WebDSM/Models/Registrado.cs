@@ -48,13 +48,12 @@ namespace WebDSM.Models
 
         [Display(Prompt = "Edad del usuario", Description = "Edad del usuario", Name = "Edad")]
         [Required(ErrorMessage = "Debe de introducir la edad del usuario")]
-        [DataType(DataType.Currency, ErrorMessage = "La edad debe de ser un valor numérico")]
         [Range(minimum: 0, maximum: 100, ErrorMessage = "La edad debe de ser mayor que 0 y menor que 100")]
         public int edad { get; set; }
 
         [Display(Prompt = "Fecha de nacimiento del usuario", Description = "Fecha de nacimiento del usuario", Name = "Fecha de nacimiento")]
         [Required(ErrorMessage = "Debe de introducir la fecha de nacimiento del usuario")]
-        [DataType(DataType.Currency, ErrorMessage = "La fecha de nacimiento debe de ser un valor de fecha")]
+        [DataType(DataType.Date , ErrorMessage = "La fecha de nacimiento debe de ser un valor de fecha")]
         //[Range(minimum: (int)new DateTime(1900,1,1), maximum: new DateTime(2000, 1, 1), ErrorMessage = "Debes de ser mayor de edad")]
         public DateTime? fNacimiento { get; set; }
 

@@ -21,6 +21,7 @@ namespace WebDSM.Controllers
         // GET: Registrado
         public ActionResult Index()
         {
+            //ESTO ES MU IMPORTANTE
             SessionInitialize();
 
             RegistradoCAD cad = new RegistradoCAD(session);
