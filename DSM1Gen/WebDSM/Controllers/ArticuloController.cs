@@ -18,6 +18,12 @@ namespace WebDSM.Controllers
         // GET: Articulo
         public ActionResult Index()
         {
+            SessionInitialize();
+            ArticuloCAD articuloCAD = new ArticuloCAD(session);
+            ArticuloCEN articuloCEN = new ArticuloCEN(articuloCAD);
+            IList<ArticuloEN> articulos = articuloCEN.ReadAll(0, 1);
+            IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulos).ToList();
+            SessionClose();
             return View();
         }
 
