@@ -53,19 +53,8 @@
             <div class="col-md-10">
 
                 @Html.EditorFor(model => model.Item1.NomCategoria, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.DropDownList("prueba",, new { htmlAttributes = new { @value = 2} })
+                @Html.DropDownList("prueba",Model.Item2.ToList, new { htmlAttributes = new { @value = 2} })
 
-                <select>
-                    @foreach (var item in Model.Item2) {
-                        <option>
-                            @Html.DisplayFor(modelItem => item.Nombre, new { htmlAttributes =  new { @value = item.Id} })
-                        </option>
-
-
-                    }
-
-
-                </select>
 
                 @*
     @Html.EditorFor(model => model.Item1.NomCategoria, new { htmlAttributes = new { @class = "form-control" } })

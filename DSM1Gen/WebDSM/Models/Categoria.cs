@@ -8,6 +8,10 @@ namespace WebDSM.Models
 {
     public class Categoria
     {
+        /*
+        [ScaffoldColumn(false)]
+        public IEnumerable<SelectListItem>
+        */
 
         [ScaffoldColumn(false)]
         public int Id { get; set; }
