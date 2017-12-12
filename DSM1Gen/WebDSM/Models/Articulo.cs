@@ -51,18 +51,20 @@ namespace WebDSM.Models
 
         [Display(Prompt = "Stock del artículo", Description = "Stock del artículo", Name = "Stock")]
         [Required(ErrorMessage = "Debe de indicar el stock inicial del artículo")]
-        [DataType(DataType.Currency, ErrorMessage = "El stock debe de ser un valor numérico")]
+        //[DataType(DataType.Currency, ErrorMessage = "El stock debe de ser un valor numérico")]
         [Range(minimum: 0, maximum: 9999999, ErrorMessage = "El stock inicial debe de ser mayor que 0 y menor que 9999999")]
         public int Stock { get; set; }
 
-        /*
+        
         [Display(Prompt = "Categoría del artículo", Description = "Categoría del artículo", Name = "Categoría")]
         [Required(ErrorMessage = "Debe de indicar una categoría para el artículo")]
-        [StringLength(maximumLength: 50, MinimumLength = 0, ErrorMessage = "La categoría tiene que tener entre 0 y 200 caracteres")]
-        public string NomCategoria { get; set; } //PREGUNTAR
+        public int NomCategoria { get; set; } //ID CATEGORIA
+
+        [ScaffoldColumn(false)]
+        public String NombreCategoria { get; set; }
         
 
-    */
+    
 
 
 

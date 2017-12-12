@@ -3,15 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+using DSM1GenNHibernate.CEN.DSM1;
+using DSM1GenNHibernate.EN.DSM1;
 
 namespace WebDSM.Models
 {
     public class Categoria
     {
-        /*
-        [ScaffoldColumn(false)]
-        public IEnumerable<SelectListItem>
-        */
+        
+        public List<SelectListItem> getAllNombres()
+        {
+            CategoriaCEN cen = new CategoriaCEN();
+            CategoriaEN en = new CategoriaEN();
+
+            IEnumerable<CategoriaEN> listaEN = cen.get_ICategoriaCAD().ReadAll(0, -1);
+
+            List<SelectListItem> miLista = new List<SelectListItem>();
+
+            foreach (CategoriaEN cat in listaEN)
+            {
+                SelectListItem item = new SelectListItem { Value = cat.Id.ToString(), Text = cat.Nombre };
+
+                miLista.Add(item);
+            }
+
+            return miLista;
+            
+
+
+        }
+        
 
         [ScaffoldColumn(false)]
         public int Id { get; set; }

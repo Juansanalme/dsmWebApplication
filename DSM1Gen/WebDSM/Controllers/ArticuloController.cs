@@ -15,16 +15,45 @@ namespace WebDSM.Controllers
 {
     public class ArticuloController : BasicController
     {
+        //PRUEBA
+        public ActionResult IdNombres()
+        {
+            SessionInitialize();
+
+            CategoriaCAD cad = new CategoriaCAD(session);
+            CategoriaCEN cen = new CategoriaCEN(cad);
+            
+            IEnumerable<CategoriaEN> listaEN = cen.get_ICategoriaCAD().ReadAll(0, -1);
+
+            List<SelectListItem> miLista = new List<SelectListItem>();
+
+            foreach (CategoriaEN cat in listaEN)
+            {
+                SelectListItem item = new SelectListItem { Value = cat.Id.ToString(), Text = cat.Nombre };
+
+                miLista.Add(item);
+            }
+
+            SessionClose();
+
+            return View();
+        }
+
+
         // GET: Articulo
         public ActionResult Index()
         {
             SessionInitialize();
+
             ArticuloCAD articuloCAD = new ArticuloCAD(session);
             ArticuloCEN articuloCEN = new ArticuloCEN(articuloCAD);
-            IList<ArticuloEN> articulos = articuloCEN.ReadAll(0, 1);
+
+            IList<ArticuloEN> articulos = articuloCEN.ReadAll(0, -1);
             IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulos).ToList();
+
             SessionClose();
-            return View();
+
+            return View(art);
         }
 
         // GET: Articulo/Details/5
@@ -48,12 +77,11 @@ namespace WebDSM.Controllers
                 // TODO: Add insert logic here
                 ArticuloCEN artCen = new ArticuloCEN();
                 CategoriaCEN catCEN = new CategoriaCEN();
-                
-                /*
-                int idCat =
 
-                artCen.New_(art.nombre, art.precio, art.nomCategoria, art.descripcion, art.stock);
-                */
+                art.NombreCategoria = catCEN.get_ICategoriaCAD().ReadOIDDefault(art.NomCategoria).Nombre;
+
+                artCen.New_(art.Nombre, art.Precio, art.NomCategoria, art.Descripcion, art.Stock);
+                
 
 
                 return RedirectToAction("Index");

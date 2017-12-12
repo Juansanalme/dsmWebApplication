@@ -18,6 +18,8 @@ namespace WebDSM.Models
             art.Precio = en.Precio;
             art.Descripcion = en.Descripcion;
             art.Stock = en.Stock;
+            art.NomCategoria = en.Categoria.Id;
+            art.NombreCategoria = en.Categoria.Nombre;
             
             return art;
             
