@@ -10,29 +10,29 @@ using DSM1GenNHibernate.CAD.DSM1;
 
 namespace WebDSM.Controllers
 {
-public class BasicController: Controller
-{
-protected ISession session;
+    public class BasicController: Controller
+    {
+        protected ISession session;
 
-protected BasicController()
-{
-}
-
-protected void SessionInitialize ()
-{
-        if (session == null) {
-                session = NHibernateHelper.OpenSession ();
+        protected BasicController()
+        {
         }
-}
 
-
-protected void SessionClose ()
-{
-        if (session != null && session.IsOpen) {
-                session.Close ();
-                session.Dispose ();
-                session = null;
+        protected void SessionInitialize ()
+        {
+                if (session == null) {
+                        session = NHibernateHelper.OpenSession ();
+                }
         }
-}
-}
+
+
+        protected void SessionClose ()
+        {
+                if (session != null && session.IsOpen) {
+                        session.Close ();
+                        session.Dispose ();
+                        session = null;
+                }
+        }
+    }
 }

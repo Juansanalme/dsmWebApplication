@@ -21,7 +21,19 @@ namespace WebDSM.Controllers
         // GET: Registrado
         public ActionResult Index()
         {
-            return View();
+            SessionInitialize();
+
+            RegistradoCAD cad = new RegistradoCAD(session);
+            RegistradoCEN cen = new RegistradoCEN(cad);
+
+            IList<RegistradoEN> listEN = cen.ReadAll(0, 10);
+
+            IEnumerable<Registrado> enumR = new AssemblerRegistrado().ConvertListENToModel(listEN).ToList();
+
+            SessionClose();
+
+            //CREA UNA VISTA QUE REPRESENTA ESOS DATOS
+            return View(enumR);
         }
 
         // GET: Registrado/Details/5
