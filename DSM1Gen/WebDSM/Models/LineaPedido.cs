@@ -10,6 +10,5 @@ namespace WebDSM.Models
     {
         //ID, CANTIDAD, ARTICULO, CARRITO, PEDIDO
 
-
     }
 }

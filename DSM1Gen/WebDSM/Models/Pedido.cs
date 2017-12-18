@@ -10,26 +10,22 @@ namespace WebDSM.Models
     {
 
         [ScaffoldColumn(false)]
-        public int id { get; set; }
+        public int Id { get; set; }
+
+        //[ScaffoldColumn(false)]
+        //public string Descripcion { get; set; }
 
         [ScaffoldColumn(false)]
-        public string descripcion { get; set; }
+        public DateTime? Fecha { get; set; }
 
         [ScaffoldColumn(false)]
-        public DateTime? fecha { get; set; }
-
-        /* ILIST
-        [ScaffoldColumn(false)]
-        public LineaPedido lineaPedido { get; set; }
-        */
+        public IList<int> Lineas { get; set; }
 
         [ScaffoldColumn(false)]
-        public Registrado registrado { get; set; }
+        public int Registrado { get; set; }
 
-        /*
-        [ScaffoldColumn(false)]
-        public Carrito carrito { get; set; }
-        */
+        //[ScaffoldColumn(false)]
+        //public Carrito carrito { get; set; }
 
     }
 }

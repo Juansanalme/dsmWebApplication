@@ -56,7 +56,7 @@ namespace WebDSM.Controllers
                     }
                 }
                 
-                valoracionEN.New_(val.puntuacion, val.texto, idUsu, val.articulo);
+                valoracionEN.New_(val.Puntuacion, val.Texto, idUsu, val.Articulo);
 
                 return RedirectToAction("Index");
             }

@@ -11,25 +11,19 @@ namespace WebDSM.Models
         //id, registrado, linped, precio, pedido
 
         [ScaffoldColumn(false)]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [ScaffoldColumn(false)]
-        public Registrado usuario { get; set; }
-        
-        //AL CREARLO EL PRECIO SERA CERO
-        [ScaffoldColumn(false)]
-        public double precio { get; set; }
-
-        /*
-        [ScaffoldColumn(false)]
-        public IList<LineaPedido> lineaPedido { get; set; }
+        public int Usuario { get; set; }
         
         [ScaffoldColumn(false)]
-        public Pedido pedido { get; set; }
-        */
+        public double Precio { get; set; }
 
-
-
+        [ScaffoldColumn(false)]
+        public IList<int> Lineas { get; set; }
+        
+        //[ScaffoldColumn(false)]
+        //public Pedido pedido { get; set; }
 
     }
 }

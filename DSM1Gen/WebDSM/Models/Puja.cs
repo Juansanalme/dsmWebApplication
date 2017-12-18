@@ -10,35 +10,33 @@ namespace WebDSM.Models
     {
 
         [ScaffoldColumn(false)]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [ScaffoldColumn(false)]
-        public DateTime? fecha { get; set; }
+        public DateTime? Fecha { get; set; }
 
         [Display(Prompt = "Cantidad incial de la puja", Description = "En cantidades de dinero", Name = "Pueja inicial")]
         [Required(ErrorMessage = "Debes introducir una cifra")]
         [StringLength(maximumLength: 999999, MinimumLength = 0, ErrorMessage = "Demasiado cara no crees")]
-        public float pujaInicial { get; set; }
+        public float PujaInicial { get; set; }
 
         [ScaffoldColumn(false)]
-        public Registrado usuarioGanador { get; set; }
-
-        //NO SE COMO SACAR ESTO
+        public int UsuarioGanador { get; set; }
+        
         [ScaffoldColumn(false)]
-        public Articulo articulo { get; set; }
+        public int Articulo { get; set; }
 
         [ScaffoldColumn(false)]
-        public float pujaMaxima { get; set; }
+        public float PujaMaxima { get; set; }
         
         //[ScaffoldColumn(false)]
-        //public Ilist<OfertaPuja> pujas { get; set; }
+        //public Ilist<int> Pujas { get; set; }
 
-        // QUE ES ESTO ?
-        [ScaffoldColumn(false)]
-        public int idUsuario { get; set; }
+        //[ScaffoldColumn(false)]
+        //public int IdUsuario { get; set; }
 
         [ScaffoldColumn(false)]
-        public bool cerrada { get; set; }
+        public bool Cerrada { get; set; }
 
     }
 }

@@ -193,7 +193,13 @@
     </Compile>
     <Compile Include="Models\Articulo.cs" />
     <Compile Include="Models\AssemblerArticulo.cs" />
+    <Compile Include="Models\AssemblerCarrito.cs" />
+    <Compile Include="Models\AssemblerCategoria.cs" />
+    <Compile Include="Models\AssemblerOfertaPuja.cs" />
+    <Compile Include="Models\AssemblerPedido.cs" />
+    <Compile Include="Models\AssemblerPuja.cs" />
     <Compile Include="Models\AssemblerRegistrado.cs" />
+    <Compile Include="Models\AssemblerValoracion.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Carrito.cs" />
     <Compile Include="Models\LineaPedido.cs" />

@@ -8,21 +8,19 @@ namespace WebDSM.Models
 {
     public class AssemblerRegistrado
     {
-        
         public Registrado ConvertENToModelUI(RegistradoEN en)
         {
             Registrado reg = new Registrado();
-            reg.id = en.Id;
-            reg.admin = en.Admin;
-            reg.nombre = en.Nombre;
-            reg.apellidos = en.Apellidos;
-            reg.edad = en.Edad;
-            reg.fNacimiento = en.Fecha_nac;
-            reg.contrasenya = en.Contrasenya;
-            reg.nUsuario = en.N_usuario;
+            reg.Id = en.Id;
+            reg.Admin = en.Admin;
+            reg.Nombre = en.Nombre;
+            reg.Apellidos = en.Apellidos;
+            reg.Edad = en.Edad;
+            reg.FNacimiento = en.Fecha_nac;
+            reg.Contrasenya = en.Contrasenya;
+            reg.NUsuario = en.N_usuario;
 
             return reg;
-            
         }
 
         public IList<Registrado> ConvertListENToModel(IList<RegistradoEN> ens)

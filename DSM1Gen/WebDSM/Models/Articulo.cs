@@ -12,26 +12,18 @@ namespace WebDSM.Models
 
         [ScaffoldColumn(false)]
         public int Id { get; set; }
-        
-        /*
-        [ScaffoldColumn(false)]
-        public LineaPedidoEN linped { get; set; }
-        */
+       
+        //[ScaffoldColumn(false)]
+        //public LineaPedidoEN linped { get; set; }
 
-        /*
-        [ScaffoldColumn(false)]
-        public PujaEN puja { get; set; }
-        */
+        //[ScaffoldColumn(false)]
+        //public PujaEN puja { get; set; }
 
-        /*
-        [ScaffoldColumn(false)]
-        public RegistradoEN registrado { get; set; }
-        */
+        //[ScaffoldColumn(false)]
+        //public RegistradoEN registrado { get; set; }
 
-        /*
-        [ScaffoldColumn(false)]
-        public Valoracion valoracion { get; set; }
-        */
+        //[ScaffoldColumn(false)]
+        //public int Valoracion { get; set; }
 
         [Display(Prompt = "Nombre del artículo", Description = "Nombre del artículo", Name = "Nombre" )]
         [Required(ErrorMessage = "Debe de indicar un nombre para el artículo")]
@@ -54,7 +46,6 @@ namespace WebDSM.Models
         //[DataType(DataType.Currency, ErrorMessage = "El stock debe de ser un valor numérico")]
         [Range(minimum: 0, maximum: 9999999, ErrorMessage = "El stock inicial debe de ser mayor que 0 y menor que 9999999")]
         public int Stock { get; set; }
-
         
         [Display(Prompt = "Categoría del artículo", Description = "Categoría del artículo", Name = "Categoría")]
         [Required(ErrorMessage = "Debe de indicar una categoría para el artículo")]

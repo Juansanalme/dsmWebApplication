@@ -29,9 +29,6 @@ namespace WebDSM.Models
             }
 
             return miLista;
-            
-
-
         }
         
 
