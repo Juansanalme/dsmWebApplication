@@ -65,7 +65,7 @@ namespace WebDSM.Controllers
             ArticuloCEN articuloCEN = new ArticuloCEN(articuloCAD);
 
             ArticuloEN articuloEN = articuloCAD.ReadOIDDefault(id);
-            Articulo art = new AssemblerArticulo().ConvertENToModelUI(articuloEN);
+            ArticuloYOpinion art = new AssemblerArticulo().ConvertENToViewModelUI(articuloEN);
             SessionClose();
 
             return View(art);

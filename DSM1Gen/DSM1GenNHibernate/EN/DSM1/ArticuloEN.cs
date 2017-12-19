@@ -6,7 +6,7 @@ namespace DSM1GenNHibernate.EN.DSM1
 public partial class ArticuloEN
 {
 /**
- *	Atributo id
+ *	Atributo idC:\Users\datri\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\EN\DSM1\ArticuloEN.cs
  */
 private int id;
 

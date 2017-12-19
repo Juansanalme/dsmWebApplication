@@ -36,6 +36,23 @@ namespace WebDSM.Models
             
         }
 
+        public ArticuloYOpinion ConvertENToViewModelUI(ArticuloEN en)
+        {
+
+            ArticuloYOpinion art = new ArticuloYOpinion();
+            art.articulo.Id = en.Id;
+            art.articulo.Nombre = en.Nombre;
+            art.articulo.Precio = en.Precio;
+            art.articulo.Descripcion = en.Descripcion;
+            art.articulo.Stock = en.Stock;
+            art.articulo.NomCategoria = en.Categoria.Id;
+            art.articulo.NombreCategoria = en.Categoria.Nombre;
+
+            //art.valoracion.Texto = 
+            return art;
+
+        }
+
         public IList<Articulo> ConvertListENToModel(IList<ArticuloEN> ens)
         {
             IList<Articulo> regs = new List<Articulo>();
