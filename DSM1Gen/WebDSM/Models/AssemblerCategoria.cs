@@ -10,10 +10,11 @@ namespace WebDSM.Models
     {
         public Categoria ConvertENToModelUI(CategoriaEN en)
         {
+            
             Categoria cat = new Categoria();
             cat.Id = en.Id;
             cat.Nombre = en.Nombre;
-            cat.NomSuper = en.Supercategoria.Nombre;
+            //cat.NumSuper = en.Supercategoria.Id;
 
             return cat;
         }

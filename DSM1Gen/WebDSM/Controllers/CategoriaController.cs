@@ -18,28 +18,62 @@ namespace WebDSM.Controllers
         // GET: Categoria
         public ActionResult Index()
         {
-            return View();
+
+            SessionInitialize();
+
+            CategoriaCAD cad = new CategoriaCAD(session);
+            CategoriaCEN cen = new CategoriaCEN(cad);
+
+            IList<CategoriaEN> listEn = cen.ReadAll(0, -1);
+            IEnumerable<Categoria> listModel = new AssemblerCategoria().ConvertListENToModel(listEn).ToList();
+
+            SessionClose();
+
+
+            return View(listModel);
         }
 
         // GET: Categoria/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            SessionInitialize();
+
+            CategoriaCAD cad = new CategoriaCAD(session);
+            CategoriaCEN cen = new CategoriaCEN(cad);
+
+            CategoriaEN en = cad.ReadOIDDefault(id);
+            Categoria model = new AssemblerCategoria().ConvertENToModelUI(en);
+
+
+            SessionClose();
+
+
+            return View(model);
         }
 
         // GET: Categoria/Create
         public ActionResult Create()
         {
+
+
+
+
+
             return View();
         }
 
         // POST: Categoria/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Categoria cat)
         {
             try
             {
                 // TODO: Add insert logic here
+                CategoriaCEN cen = new CategoriaCEN();
+
+                int catId = cen.New_(cat.Nombre, 0); //SE LE PASA 0, POR LOS LOLES
+
+                cen.Anyadir_supercat(catId,cat.NumSuper);
 
                 return RedirectToAction("Index");
             }
