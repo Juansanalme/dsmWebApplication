@@ -14,8 +14,8 @@ namespace WebDSM.Models
             puja.Id = en.Id;
             puja.Fecha = en.Fecha;
             puja.PujaInicial = en.Puja_inicial;
-            puja.UsuarioGanador = en.UsuarioGanador.Id;
-            puja.Articulo = en.Articulo.Id;
+            puja.UsuarioGanador = en.UsuarioGanador.Nombre;
+            puja.Articulo = en.Articulo.Nombre;
             puja.PujaMaxima = en.Puja_max;
             puja.Cerrada = en.Cerrada;
 

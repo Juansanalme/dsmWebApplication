@@ -13,7 +13,7 @@ namespace WebDSM.Models
             Carrito car = new Carrito();
 
             car.Id = en.Id;
-            car.Usuario = en.Registrado.Id;
+            car.Usuario = en.Registrado.Nombre;
             car.Precio = en.Precio;
 
             return car;

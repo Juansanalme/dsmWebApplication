@@ -11,9 +11,20 @@ namespace WebDSM.Models
         
         public Articulo ConvertENToModelUI(ArticuloEN en)
         {
-            
+            //Calcula la valoracion media
+            IList<ValoracionEN> vals = en.Valoracion;
+            int i = 0;
+            double valor = 0;
+            foreach (ValoracionEN valEN in vals)
+            {
+                i++;
+                valor += valEN.Puntuacion;
+            }
+            valor = valor / i;
+
             Articulo art = new Articulo();
             art.Id = en.Id;
+            art.Valoracion = valor;
             art.Nombre = en.Nombre;
             art.Precio = en.Precio;
             art.Descripcion = en.Descripcion;

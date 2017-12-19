@@ -18,8 +18,8 @@ namespace WebDSM.Models
         [ScaffoldColumn(false)]
         public DateTime? Fecha { get; set; }
 
-        [ScaffoldColumn(false)]
-        public IList<int> Lineas { get; set; }
+        //[ScaffoldColumn(false)]
+        //public IList<int> Lineas { get; set; }
 
         [ScaffoldColumn(false)]
         public int Registrado { get; set; }

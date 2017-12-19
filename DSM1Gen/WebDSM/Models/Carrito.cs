@@ -14,16 +14,16 @@ namespace WebDSM.Models
         public int Id { get; set; }
 
         [ScaffoldColumn(false)]
-        public int Usuario { get; set; }
+        public String Usuario { get; set; }
         
         [ScaffoldColumn(false)]
         public double Precio { get; set; }
 
-        [ScaffoldColumn(false)]
-        public IList<int> Lineas { get; set; }
-        
         //[ScaffoldColumn(false)]
-        //public Pedido pedido { get; set; }
+        //public LineaPedido Linea { get; set; }
+
+        //[ScaffoldColumn(false)]
+        //public Pedido Pedido { get; set; }
 
     }
 }
