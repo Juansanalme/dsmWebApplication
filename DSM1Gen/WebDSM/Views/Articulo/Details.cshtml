@@ -11,8 +11,53 @@
     <h4>ArticuloYOpinion</h4>
     <hr />
     <dl class="dl-horizontal">
-        @Model.Articulo.Nombre;
-       
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreCategoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreCategoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valoracion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valoracion)
+        </dd>
     </dl>
 @foreach (var item in Model.Valoracion)
 {

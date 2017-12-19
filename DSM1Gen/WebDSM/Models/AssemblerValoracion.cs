@@ -12,7 +12,7 @@ namespace WebDSM.Models
         {
             Valoracion val = new Valoracion();
             val.Id = en.Id;
-            val.Registrado = en.Registrado.Id;
+            val.Registrado = en.Registrado.Nombre;
             val.Articulo = en.Articulo.Id;
             val.Texto = en.Texto;
             val.Puntuacion = en.Puntuacion;
