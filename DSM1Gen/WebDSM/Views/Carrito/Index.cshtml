@@ -1,0 +1,27 @@
+﻿@model WebDSM.Models.Carrito
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    WebDSM.Models.LineaPedido lineas = new WebDSM.Models.LineaPedido();
+
+    IList<WebDSM.Models.LineaPedido> listaLineas = lineas.ListarLineasPedido(Model.Id);
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>Carrito</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (var item in listaLineas)
+        {
+            <p>@item.Articulo - @item.Cantidad</p>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "../Registrado/Index")
+</p>

@@ -187,6 +187,7 @@
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\RegistradoController.cs" />
     <Compile Include="Controllers\ValoracionController.cs" />
     <Compile Include="Global.asax.cs">
@@ -197,6 +198,7 @@
     <Compile Include="Models\AssemblerArticulo.cs" />
     <Compile Include="Models\AssemblerCarrito.cs" />
     <Compile Include="Models\AssemblerCategoria.cs" />
+    <Compile Include="Models\AssemblerLineaPedido.cs" />
     <Compile Include="Models\AssemblerOfertaPuja.cs" />
     <Compile Include="Models\AssemblerPedido.cs" />
     <Compile Include="Models\AssemblerPuja.cs" />
@@ -257,11 +259,11 @@
     <Content Include="Views\Categoria\Create.cshtml" />
     <Content Include="Views\Categoria\Index.cshtml" />
     <Content Include="Views\Categoria\Details.cshtml" />
+    <Content Include="Views\Carrito\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Carrito\" />
-    <Folder Include="Views\Categoria\" />
+    <Folder Include="Views\Pedido\" />
     <Folder Include="Views\Valoracion\" />
   </ItemGroup>
   <ItemGroup>

@@ -802,10 +802,10 @@ public static void InitializeData ()
                 int pMod = valoracionCEN.get_IValoracionCAD ().ReadOIDDefault (valoracionCEN_id1).Puntuacion;
                 valoracionCEN.Modify (valoracionCEN_id1, pMod, "He cambiado el texto y si, quiero que Lujan me apruebe");
                 System.Console.WriteLine (valoracionCEN.get_IValoracionCAD ().ReadOIDDefault (valoracionCEN_id1).Texto);
-                 
 
 
-
+                lineaPedidoCP.Anyado_lineaYprecio(2, articulo2, registrado0);
+                lineaPedidoCP.Anyado_lineaYprecio(2, articulo2, registrado1);
 
 
 
@@ -816,7 +816,7 @@ public static void InitializeData ()
                 // customer.New_ (p_user:"user", p_password:"1234");
 
                 /*PROTECTED REGION END*/
-        }
+            }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);

@@ -3,15 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using DSM1GenNHibernate.EN.DSM1;
+using DSM1GenNHibernate.CEN.DSM1;
+using DSM1GenNHibernate.CAD.DSM1;
+using DSM1GenNHibernate.CP.DSM1;
+using WebDSM.Models;
+using WebMatrix.WebData;
 
 namespace WebDSM.Controllers
 {
-    public class CarritoController : Controller
+    public class CarritoController : BasicController
     {
+
+
+
         // GET: Carrito
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            SessionInitialize();
+
+            CarritoCAD cad = new CarritoCAD(session);
+            CarritoCEN cen = new CarritoCEN(cad);
+
+            CarritoEN en = cen.get_ICarritoCAD().ReadOIDDefault(id);
+            Carrito model = new AssemblerCarrito().ConvertENToModelUI(en);
+            SessionClose();
+
+            return View(model);
         }
 
         // GET: Carrito/Details/5

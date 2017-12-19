@@ -27,7 +27,7 @@ namespace WebDSM.Controllers
             RegistradoCAD cad = new RegistradoCAD(session);
             RegistradoCEN cen = new RegistradoCEN(cad);
 
-            IList<RegistradoEN> listEN = cen.ReadAll(0, 10);
+            IList<RegistradoEN> listEN = cen.ReadAll(0, -1);
 
             IEnumerable<Registrado> enumR = new AssemblerRegistrado().ConvertListENToModel(listEN).ToList();
 

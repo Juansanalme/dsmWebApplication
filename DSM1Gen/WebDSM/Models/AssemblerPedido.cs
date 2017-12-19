@@ -13,8 +13,7 @@ namespace WebDSM.Models
             Pedido ped = new Pedido();
             ped.Id = en.Id;
             ped.Fecha = en.Fecha;
-            //ped.Lineas = en.LineaPedido.id;
-            ped.Registrado = en.Registrado.Id;
+            ped.Registrado = en.Registrado.Nombre;
 
             return ped;
         }
