@@ -1,4 +1,4 @@
-﻿@model WebDSM.Models.Articulo
+﻿@model WebDSM.Models.ArticuloYOpinion
 
 @{
     ViewBag.Title = "Details";
@@ -8,52 +8,14 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Articulo</h4>
+    <h4>ArticuloYOpinion</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Precio)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Precio)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Stock)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Stock)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NomCategoria)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NomCategoria)
-        </dd>
-
+        @Model.articulo.Nombre;
+       
     </dl>
 </div>
 <p>
-
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -53,14 +53,6 @@ namespace WebDSM.Models
 
         [ScaffoldColumn(false)]
         public String NombreCategoria { get; set; }
-        
-
-    
-
-
-
-
-
 
     }
 }
