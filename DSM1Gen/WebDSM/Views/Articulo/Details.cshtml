@@ -12,43 +12,43 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
+            @Html.DisplayNameFor(model => model.Articulo.Nombre)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Nombre)
+            @Html.DisplayFor(model => model.Articulo.Nombre)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Precio)
+            @Html.DisplayNameFor(model => model.Articulo.Precio)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Precio)
+            @Html.DisplayFor(model => model.Articulo.Precio)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.Articulo.Descripcion)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Descripcion)
+            @Html.DisplayFor(model => model.Articulo.Descripcion)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Stock)
+            @Html.DisplayNameFor(model => model.Articulo.Stock)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Stock)
+            @Html.DisplayFor(model => model.Articulo.Stock)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NombreCategoria)
+            @Html.DisplayNameFor(model => model.Articulo.NombreCategoria)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NombreCategoria)
+            @Html.DisplayFor(model => model.Articulo.NombreCategoria)
         </dd>
 
         <dt>
@@ -59,8 +59,7 @@
             @Html.DisplayFor(model => model.Valoracion)
         </dd>
     </dl>
-@foreach (var item in Model.Valoracion)
-{
+@foreach (var item in Model.Valoracion) { 
     <p>@item.Texto</p>
 }
 </div>

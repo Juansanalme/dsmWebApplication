@@ -24,7 +24,7 @@ namespace WebDSM.Models
 
             Articulo art = new Articulo();
             art.Id = en.Id;
-            art.Valoracion = valor;
+            art.ValoracionMedia = valor;
             art.Nombre = en.Nombre;
             art.Precio = en.Precio;
             art.Descripcion = en.Descripcion;
@@ -50,6 +50,8 @@ namespace WebDSM.Models
 
             Valoracion v;
             IList<ValoracionEN> var = en.Valoracion;
+            int i = 0;
+            double valor = 0;
             foreach (ValoracionEN item in var)
             {
                 v = new Valoracion();
@@ -57,8 +59,13 @@ namespace WebDSM.Models
                 v.Puntuacion = item.Puntuacion;
                 v.Texto = item.Texto;
                 art.Valoracion.Add(v);
-            }
 
+                i++;
+                valor += item.Puntuacion;
+            }
+            valor = valor / i;
+
+            art.Articulo.ValoracionMedia = valor;
 
             v = new Valoracion();
             v.Id = 50;

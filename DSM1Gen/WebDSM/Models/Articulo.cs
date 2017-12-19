@@ -14,7 +14,7 @@ namespace WebDSM.Models
         public int Id { get; set; }
 
         [ScaffoldColumn(false)]
-        public double Valoracion { get; set; }
+        public double ValoracionMedia { get; set; }
 
         [Display(Prompt = "Nombre del artículo", Description = "Nombre del artículo", Name = "Nombre" )]
         [Required(ErrorMessage = "Debe de indicar un nombre para el artículo")]
