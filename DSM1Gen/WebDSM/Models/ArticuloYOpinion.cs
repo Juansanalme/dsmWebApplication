@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Collections.Generic;
 
 namespace WebDSM.Models
 {
@@ -10,10 +11,10 @@ namespace WebDSM.Models
     {
         public ArticuloYOpinion()
         {
-            articulo = new Articulo();
-            valoracion = new Valoracion();
+            Articulo = new Articulo();
+            Valoracion = new List<Valoracion>();
         }
-        public Articulo articulo {get; set;}
-        public Valoracion valoracion {get; set;}
+        public Articulo Articulo {get; set;}
+        public IList<Valoracion> Valoracion {get; set;}
     }
 }

@@ -27,17 +27,34 @@ namespace WebDSM.Models
 
         public ArticuloYOpinion ConvertENToViewModelUI(ArticuloEN en)
         {
-
+            
             ArticuloYOpinion art = new ArticuloYOpinion();
-            art.articulo.Id = en.Id;
-            art.articulo.Nombre = en.Nombre;
-            art.articulo.Precio = en.Precio;
-            art.articulo.Descripcion = en.Descripcion;
-            art.articulo.Stock = en.Stock;
-            art.articulo.NomCategoria = en.Categoria.Id;
-            art.articulo.NombreCategoria = en.Categoria.Nombre;
+            art.Articulo.Id = en.Id;
+            art.Articulo.Nombre = en.Nombre;
+            art.Articulo.Precio = en.Precio;
+            art.Articulo.Descripcion = en.Descripcion;
+            art.Articulo.Stock = en.Stock;
+            art.Articulo.NomCategoria = en.Categoria.Id;
+            art.Articulo.NombreCategoria = en.Categoria.Nombre;
 
-            //art.valoracion.Texto = 
+            Valoracion v;
+            IList<ValoracionEN> var = en.Valoracion;
+            foreach (ValoracionEN item in var)
+            {
+                v = new Valoracion();
+                v.Id = item.Id;
+                v.Puntuacion = item.Puntuacion;
+                v.Texto = item.Texto;
+                art.Valoracion.Add(v);
+            }
+
+
+            v = new Valoracion();
+            v.Id = 50;
+            v.Puntuacion = 10;
+            v.Texto = "Hola";
+            art.Valoracion.Add(v);
+
             return art;
 
         }

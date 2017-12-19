@@ -11,9 +11,13 @@
     <h4>ArticuloYOpinion</h4>
     <hr />
     <dl class="dl-horizontal">
-        @Model.articulo.Nombre;
+        @Model.Articulo.Nombre;
        
     </dl>
+@foreach (var item in Model.Valoracion)
+{
+    <p>@item.Texto</p>
+}
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
