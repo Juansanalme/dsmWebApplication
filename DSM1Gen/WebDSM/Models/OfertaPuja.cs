@@ -19,7 +19,7 @@ namespace WebDSM.Models
         //public DateTime? Tiempo { get; set; }  
 
         [ScaffoldColumn(false)]
-        public int Registrado { get; set; }
+        public String Registrado { get; set; }
         
         [ScaffoldColumn(false)]
         public int Puja { get; set; }

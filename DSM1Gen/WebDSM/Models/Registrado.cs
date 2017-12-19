@@ -34,8 +34,6 @@ namespace WebDSM.Models
         //[ScaffoldColumn(false)]
         //public OfertaPuja ofertaPuja { get; set; }
 
-
-
         [Display(Prompt = "Nombre del usuario", Description = "Nombre del usuario", Name = "Nombre")]
         [Required(ErrorMessage = "Debe de indicar un nombre para el usuario")]
         [StringLength(maximumLength: 50, MinimumLength = 0, ErrorMessage = "El nombre tiene que tener entre 0 y 50 caracteres")]

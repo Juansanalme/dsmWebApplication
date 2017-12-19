@@ -13,7 +13,7 @@ namespace WebDSM.Models
             OfertaPuja ofp = new OfertaPuja();
             ofp.Id = en.Id;
             ofp.Fecha = en.Fecha;
-            ofp.Registrado = en.Registrado.Id;
+            ofp.Registrado = en.Registrado.Nombre;
             ofp.Puja = en.Puja.Id;
             ofp.Cantidad_puja = en.Cantidad_puja;
 

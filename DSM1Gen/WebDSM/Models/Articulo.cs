@@ -12,18 +12,9 @@ namespace WebDSM.Models
 
         [ScaffoldColumn(false)]
         public int Id { get; set; }
-       
-        //[ScaffoldColumn(false)]
-        //public LineaPedidoEN linped { get; set; }
 
-        //[ScaffoldColumn(false)]
-        //public PujaEN puja { get; set; }
-
-        //[ScaffoldColumn(false)]
-        //public RegistradoEN registrado { get; set; }
-
-        //[ScaffoldColumn(false)]
-        //public int Valoracion { get; set; }
+        [ScaffoldColumn(false)]
+        public double ValoracionMedia { get; set; }
 
         [Display(Prompt = "Nombre del artículo", Description = "Nombre del artículo", Name = "Nombre" )]
         [Required(ErrorMessage = "Debe de indicar un nombre para el artículo")]

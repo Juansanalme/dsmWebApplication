@@ -184,6 +184,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ArticuloController.cs" />
     <Compile Include="Controllers\BasicController.cs" />
+    <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegistradoController.cs" />
@@ -248,7 +249,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Registrado\ListaEjemplo.cshtml" />
     <Content Include="Views\Registrado\Create.cshtml" />
     <Content Include="Views\Articulo\Create.cshtml" />
     <Content Include="Views\Articulo\Index.cshtml" />
@@ -260,6 +260,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Carrito\" />
+    <Folder Include="Views\Categoria\" />
     <Folder Include="Views\Valoracion\" />
   </ItemGroup>
   <ItemGroup>

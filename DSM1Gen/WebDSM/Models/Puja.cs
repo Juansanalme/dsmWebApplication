@@ -21,10 +21,10 @@ namespace WebDSM.Models
         public float PujaInicial { get; set; }
 
         [ScaffoldColumn(false)]
-        public int UsuarioGanador { get; set; }
+        public String UsuarioGanador { get; set; }
         
         [ScaffoldColumn(false)]
-        public int Articulo { get; set; }
+        public String Articulo { get; set; }
 
         [ScaffoldColumn(false)]
         public float PujaMaxima { get; set; }

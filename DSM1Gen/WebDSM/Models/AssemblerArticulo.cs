@@ -11,9 +11,20 @@ namespace WebDSM.Models
         
         public Articulo ConvertENToModelUI(ArticuloEN en)
         {
-            
+            //Calcula la valoracion media
+            IList<ValoracionEN> vals = en.Valoracion;
+            int i = 0;
+            double valor = 0;
+            foreach (ValoracionEN valEN in vals)
+            {
+                i++;
+                valor += valEN.Puntuacion;
+            }
+            valor = valor / i;
+
             Articulo art = new Articulo();
             art.Id = en.Id;
+            art.ValoracionMedia = valor;
             art.Nombre = en.Nombre;
             art.Precio = en.Precio;
             art.Descripcion = en.Descripcion;
@@ -27,17 +38,41 @@ namespace WebDSM.Models
 
         public ArticuloYOpinion ConvertENToViewModelUI(ArticuloEN en)
         {
-
+            
             ArticuloYOpinion art = new ArticuloYOpinion();
-            art.articulo.Id = en.Id;
-            art.articulo.Nombre = en.Nombre;
-            art.articulo.Precio = en.Precio;
-            art.articulo.Descripcion = en.Descripcion;
-            art.articulo.Stock = en.Stock;
-            art.articulo.NomCategoria = en.Categoria.Id;
-            art.articulo.NombreCategoria = en.Categoria.Nombre;
+            art.Articulo.Id = en.Id;
+            art.Articulo.Nombre = en.Nombre;
+            art.Articulo.Precio = en.Precio;
+            art.Articulo.Descripcion = en.Descripcion;
+            art.Articulo.Stock = en.Stock;
+            art.Articulo.NomCategoria = en.Categoria.Id;
+            art.Articulo.NombreCategoria = en.Categoria.Nombre;
 
-            //art.valoracion.Texto = 
+            Valoracion v;
+            IList<ValoracionEN> var = en.Valoracion;
+            int i = 0;
+            double valor = 0;
+            foreach (ValoracionEN item in var)
+            {
+                v = new Valoracion();
+                v.Id = item.Id;
+                v.Puntuacion = item.Puntuacion;
+                v.Texto = item.Texto;
+                art.Valoracion.Add(v);
+
+                i++;
+                valor += item.Puntuacion;
+            }
+            valor = valor / i;
+
+            art.Articulo.ValoracionMedia = valor;
+
+            v = new Valoracion();
+            v.Id = 50;
+            v.Puntuacion = 10;
+            v.Texto = "Hola";
+            art.Valoracion.Add(v);
+
             return art;
 
         }

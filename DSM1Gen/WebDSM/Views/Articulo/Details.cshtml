@@ -11,9 +11,57 @@
     <h4>ArticuloYOpinion</h4>
     <hr />
     <dl class="dl-horizontal">
-        @Model.articulo.Nombre;
-       
+        <dt>
+            @Html.DisplayNameFor(model => model.Articulo.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Articulo.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Articulo.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Articulo.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Articulo.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Articulo.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Articulo.Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Articulo.Stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Articulo.NombreCategoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Articulo.NombreCategoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valoracion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valoracion)
+        </dd>
     </dl>
+@foreach (var item in Model.Valoracion) { 
+    <p>@item.Texto</p>
+}
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |

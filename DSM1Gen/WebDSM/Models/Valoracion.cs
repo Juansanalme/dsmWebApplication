@@ -15,7 +15,7 @@ namespace WebDSM.Models
         public int Id { get; set; }
 
         [ScaffoldColumn(false)]
-        public int Registrado { get; set; }
+        public String Registrado { get; set; }
 
         [ScaffoldColumn(false)]
         public int Articulo { get; set; }
