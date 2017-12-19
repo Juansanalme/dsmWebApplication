@@ -252,6 +252,7 @@
     <Content Include="Views\Articulo\Create.cshtml" />
     <Content Include="Views\Articulo\Index.cshtml" />
     <Content Include="Views\Registrado\Index.cshtml" />
+    <Content Include="Views\Articulo\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

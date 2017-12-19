@@ -59,7 +59,16 @@ namespace WebDSM.Controllers
         // GET: Articulo/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            SessionInitialize();
+
+            ArticuloCAD articuloCAD = new ArticuloCAD(session);
+            ArticuloCEN articuloCEN = new ArticuloCEN(articuloCAD);
+
+            ArticuloEN articuloEN = articuloCAD.ReadOIDDefault(id);
+            Articulo art = new AssemblerArticulo().ConvertENToModelUI(articuloEN);
+            SessionClose();
+
+            return View(art);
         }
 
         // GET: Articulo/Create
