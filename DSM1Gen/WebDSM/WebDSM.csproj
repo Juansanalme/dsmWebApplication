@@ -254,10 +254,12 @@
     <Content Include="Views\Articulo\Index.cshtml" />
     <Content Include="Views\Registrado\Index.cshtml" />
     <Content Include="Views\Articulo\Details.cshtml" />
+    <Content Include="Views\Categoria\Create.cshtml" />
+    <Content Include="Views\Categoria\Index.cshtml" />
+    <Content Include="Views\Categoria\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Categoria\" />
     <Folder Include="Views\Valoracion\" />
   </ItemGroup>
   <ItemGroup>
