@@ -63,15 +63,7 @@ namespace WebDSM.Models
                 i++;
                 valor += item.Puntuacion;
             }
-            valor = valor / i;
-
-            art.Articulo.ValoracionMedia = valor;
-
-            v = new Valoracion();
-            v.Id = 50;
-            v.Puntuacion = 10;
-            v.Texto = "Hola";
-            art.Valoracion.Add(v);
+            art.Articulo.ValoracionMedia = valor / i;
 
             return art;
 
