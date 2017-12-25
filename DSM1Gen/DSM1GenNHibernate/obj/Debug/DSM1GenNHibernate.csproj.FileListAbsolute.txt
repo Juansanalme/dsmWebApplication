@@ -84,3 +84,5 @@ C:\Users\datri\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\obj\Debug\
 C:\Users\datri\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\obj\Debug\DSM1GenNHibernate.csproj.CoreCompileInputs.cache
 C:\Users\datri\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\obj\Debug\DSM1GenNHibernate.dll
 C:\Users\datri\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\obj\Debug\DSM1GenNHibernate.pdb
+D:\Documentos\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\Microsoft.QualityTools.Testing.Fakes.dll
+D:\Documentos\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\es\Microsoft.QualityTools.Testing.Fakes.resources.dll

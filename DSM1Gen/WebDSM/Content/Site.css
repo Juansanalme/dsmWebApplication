@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+
     padding-bottom: 20px;
 }
 
@@ -21,4 +21,58 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.bg-absolute-black {
+    background: #000;
+    color: #f4f4f4;
+}
+
+.bg-black {
+    background: #242424;
+    color: #f4f4f4;
+}   
+
+.bg-orange {
+	background: #ff4700;
+}
+
+.bg-white {
+	background: #f4f4f4;
+    color: #242424;
+}
+
+.text-orange{
+    color: #e3c155;
+}
+
+.text-black {
+	color: #242424;
+}
+
+.text-white {
+	color: #f4f4f4;
+}
+
+.nav-link.active {
+    color: #e3c155
+}
+
+.nav-link {
+    padding: 8px 0;
+    color: rgba(244, 244, 244, 0.7);
+}
+
+.nav-link:hover {
+    color: rgba(244, 244, 244, 1);
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    background: url(../Images/NA-ME.png);
+    background-size: auto 70px;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0;
 }
