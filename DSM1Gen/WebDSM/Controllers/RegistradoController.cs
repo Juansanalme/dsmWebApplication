@@ -18,6 +18,29 @@ namespace WebDSM.Controllers
     public class RegistradoController : BasicController
     {
 
+        // POST: Registrado/Login
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]  //IMPIDE LA FALSIFICACION DE UNA SOLICITUD
+        public ActionResult Login(Registrado reg)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                RegistradoCEN cen = new RegistradoCEN();
+                Registrado reg2 = new Registrado();
+
+                cen.Login(reg.Id, reg.Contrasenya, reg.NUsuario);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View(reg);
+            }
+        }
+
+
         // GET: Registrado
         public ActionResult Index()
         {
@@ -64,7 +87,8 @@ namespace WebDSM.Controllers
 
                 //ENCRIPTACION DE LA CONTRASENYA
                 string encContra = Util.GetEncondeMD5(reg.Contrasenya);
-
+                
+                
                 //WebSecurity.CreateUserAndAccount(reg.NUsuario, encContra);    //REGISTRO EN LA BDD LITE DE SQL SERVER
                 //WebSecurity.Login(reg.NUsuario, encContra);                   //LOGIN
                 

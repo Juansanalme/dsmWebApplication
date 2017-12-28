@@ -15,6 +15,9 @@ namespace WebDSM.Models
         [ScaffoldColumn(false)]
         public bool Admin { get; set; }
 
+        [ScaffoldColumn(false)]
+        public bool Login { get; set; } //NO HACE FALTA DARLE VALOR, SIEMPRE VA A SER FALSE, A NO SER QUE SE INICIE SESION
+
         //[ScaffoldColumn(false)]
         //public Valoracion valoracion { get; set;} //LISTA DE VALORACIONES DEL USUARIO
 
