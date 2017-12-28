@@ -49,6 +49,11 @@ namespace WebDSM.Models
         [Range(minimum: 0, maximum: 100, ErrorMessage = "La edad debe de ser mayor que 0 y menor que 100")]
         public int Edad { get; set; }
 
+        [Display(Prompt = "DNI del usuario", Description = "DNI del usuario", Name = "DNI")]
+        [Required(ErrorMessage = "Debe de indicar un DNI para el usuario")]
+        [StringLength(maximumLength: 9, MinimumLength = 9, ErrorMessage = "El DNI tiene que tener 9 caracteres")]
+        public string Dni { get; set; }
+
         [Display(Prompt = "Fecha de nacimiento del usuario", Description = "Fecha de nacimiento del usuario", Name = "Fecha de nacimiento")]
         [Required(ErrorMessage = "Debe de introducir la fecha de nacimiento del usuario")]
         [DataType(DataType.Date , ErrorMessage = "La fecha de nacimiento debe de ser un valor de fecha")]

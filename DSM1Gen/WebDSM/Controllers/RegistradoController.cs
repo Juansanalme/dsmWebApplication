@@ -60,13 +60,13 @@ namespace WebDSM.Controllers
                 // TODO: Add insert logic here
                 RegistradoCP cp = new RegistradoCP();
 
-                RegistradoEN usuSingUp = cp.Nuevo_usuarioYcarrito(reg.Nombre, reg.Apellidos, reg.Edad, reg.FNacimiento, "65465A", reg.Contrasenya, reg.NUsuario, false);
+                RegistradoEN usuSingUp = cp.Nuevo_usuarioYcarrito(reg.Nombre, reg.Apellidos, reg.Edad, reg.FNacimiento, reg.Dni, reg.Contrasenya, reg.NUsuario, false);
 
                 //ENCRIPTACION DE LA CONTRASENYA
                 string encContra = Util.GetEncondeMD5(reg.Contrasenya);
 
-                WebSecurity.CreateUserAndAccount(reg.NUsuario, encContra);    //REGISTRO EN LA BDD LITE DE SQL SERVER
-                WebSecurity.Login(reg.NUsuario, encContra);                   //LOGIN
+                //WebSecurity.CreateUserAndAccount(reg.NUsuario, encContra);    //REGISTRO EN LA BDD LITE DE SQL SERVER
+                //WebSecurity.Login(reg.NUsuario, encContra);                   //LOGIN
                 
 
                 return RedirectToAction("Index");
