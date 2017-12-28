@@ -27,7 +27,8 @@ namespace WebDSM.Controllers
             CarritoCEN cen = new CarritoCEN(cad);
 
             CarritoEN en = cen.get_ICarritoCAD().ReadOIDDefault(id);
-            Carrito model = new AssemblerCarrito().ConvertENToModelUI(en);
+            CarritoYLineas model = new AssemblerCarrito().ConvertENToViewModelUI(en);
+            //Carrito model = new AssemblerCarrito().ConvertENToModelUI(en);
             SessionClose();
 
             return View(model);

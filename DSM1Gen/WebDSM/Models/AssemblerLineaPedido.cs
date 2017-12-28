@@ -13,7 +13,9 @@ namespace WebDSM.Models
             LineaPedido linped = new LineaPedido();
 
             linped.Id = en.Id;
-            //linped.Articulo = en.Articulo.Nombre;
+            linped.Articulo = en.Articulo.Nombre;
+            linped.PrecioUnidad = en.Articulo.Precio;
+            linped.Total = en.Articulo.Precio * en.Cantidad;
             linped.Cantidad = en.Cantidad;
 
             return linped;

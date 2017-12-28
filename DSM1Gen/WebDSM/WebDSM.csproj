@@ -204,6 +204,7 @@
     <Compile Include="Models\AssemblerPuja.cs" />
     <Compile Include="Models\AssemblerRegistrado.cs" />
     <Compile Include="Models\AssemblerValoracion.cs" />
+    <Compile Include="Models\CarritoYLineas.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Carrito.cs" />
     <Compile Include="Models\LineaPedido.cs" />
