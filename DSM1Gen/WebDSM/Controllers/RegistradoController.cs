@@ -17,6 +17,11 @@ namespace WebDSM.Controllers
 {
     public class RegistradoController : BasicController
     {
+        // GET: Registrado/Login
+        public ActionResult Login()
+        {
+            return View();
+        }
 
         // POST: Registrado/Login
         [HttpPost]
@@ -28,9 +33,27 @@ namespace WebDSM.Controllers
             {
                 // TODO: Add insert logic here
                 RegistradoCEN cen = new RegistradoCEN();
-                Registrado reg2 = new Registrado();
 
-                cen.Login(reg.Id, reg.Contrasenya, reg.NUsuario);
+                int finalID = 0;
+
+                IList<RegistradoEN> listEN = cen.get_IRegistradoCAD().ReadAll(0, -1);
+                foreach(RegistradoEN rEN in listEN)
+                {
+                    if(rEN.N_usuario == reg.NUsuario)
+                    {
+                        finalID = rEN.Id;
+                        break;
+                    }
+                }
+                
+                //RegistradoEN en = cen.get_IRegistradoCAD().ReadOIDDefault(finalID);
+
+                bool login = cen.Login(finalID, reg.Contrasenya, reg.NUsuario);
+
+                if (login)
+                {
+                    System.Web.HttpContext.Current.Session["login"] = reg.NUsuario;
+                }
 
                 return RedirectToAction("Index");
             }

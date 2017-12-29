@@ -8,7 +8,6 @@ namespace WebDSM.Models
 {
     public class Registrado
     {
-
         [ScaffoldColumn(false)]
         public int Id { get; set; }
 
