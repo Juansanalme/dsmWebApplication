@@ -14,7 +14,12 @@ namespace WebDSM.Models
             ped.Id = en.Id;
             ped.Fecha = en.Fecha;
             ped.Registrado = en.Registrado.Nombre;
-
+            ped.Total = 0;
+            
+            foreach (LineaPedidoEN item in en.LineaPedido)
+            {
+                ped.Total += item.Articulo.Precio * item.Cantidad;
+            }
             return ped;
         }
 
