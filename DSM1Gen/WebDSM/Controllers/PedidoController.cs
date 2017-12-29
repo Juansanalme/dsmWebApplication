@@ -23,17 +23,36 @@ namespace WebDSM.Controllers
             PedidoCAD cad = new PedidoCAD(session);
             PedidoCEN cen = new PedidoCEN(cad);
 
-            PedidoEN en = cen.get_IPedidoCAD().ReadOIDDefault(id);
-            Pedido model = new AssemblerPedido().ConvertENToModelUI(en);
+            IList<PedidoEN> listEN = cen.get_IPedidoCAD().ReadAll(0, -1);
+
+            IList<PedidoEN> pedidosList = new List<PedidoEN>();
+            foreach (PedidoEN pedido in listEN)
+            {
+                if (pedido.Registrado.Id == id)
+                {
+                    pedidosList.Add(pedido);
+                }
+            }
+
+            IEnumerable<Pedido> enumPed = new AssemblerPedido().ConvertListENToModel(pedidosList).ToList();
             SessionClose();
 
-            return View(model);
+            return View(enumPed);
         }
 
         // GET: Pedido/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            SessionInitialize();
+
+            PedidoCAD cad = new PedidoCAD(session);
+            PedidoCEN cen = new PedidoCEN(cad);
+
+            PedidoEN en = cen.get_IPedidoCAD().ReadOIDDefault(id);
+            PedidoYLineas model = new AssemblerPedido().ConvertENToViewModelUI(en);
+            SessionClose();
+
+            return View(model);
         }
 
         // GET: Pedido/Create

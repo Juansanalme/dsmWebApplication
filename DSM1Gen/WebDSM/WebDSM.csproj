@@ -210,6 +210,7 @@
     <Compile Include="Models\LineaPedido.cs" />
     <Compile Include="Models\OfertaPuja.cs" />
     <Compile Include="Models\Pedido.cs" />
+    <Compile Include="Models\PedidoYLineas.cs" />
     <Compile Include="Models\Puja.cs" />
     <Compile Include="Models\Registrado.cs" />
     <Compile Include="Models\Valoracion.cs" />
@@ -265,10 +266,11 @@
     <Content Include="Views\Carrito\Index.cshtml" />
     <Content Include="Views\Registrado\Login.cshtml" />
     <Content Include="Views\Articulo\AnyadirAlCarrito.cshtml" />
+    <Content Include="Views\Pedido\Index.cshtml" />
+    <Content Include="Views\Pedido\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Pedido\" />
     <Folder Include="Views\Valoracion\" />
   </ItemGroup>
   <ItemGroup>

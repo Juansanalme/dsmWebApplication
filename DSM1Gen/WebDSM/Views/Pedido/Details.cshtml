@@ -1,0 +1,23 @@
+﻿@model WebDSM.Models.PedidoYLineas
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PedidoYLineas</h4><b>Fecha: @Model.Pedido.Fecha Total: @Model.Pedido.Total</b>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (var item in Model.LineaPedido)
+        {
+            <p>@item.Articulo - Precio Unidad: @item.PrecioUnidad - Cantidad: @item.Cantidad</p>
+        }
+    </dl>
+</div>
+<p>
+    @* @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) | *@
+    @Html.ActionLink("Back to List", "Index")
+</p>

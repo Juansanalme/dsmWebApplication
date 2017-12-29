@@ -11,29 +11,6 @@ namespace WebDSM.Models
 {
     public class Pedido
     {
-        public IList<LineaPedido> ListarLineasPedido(int id)
-        {
-
-            PedidoCEN ccen = new PedidoCEN();
-            LineaPedidoCEN cen = new LineaPedidoCEN();
-
-            IList<LineaPedidoEN> listaEN = cen.ReadAll(0, -1);
-            IList<LineaPedidoEN> listAux = new List<LineaPedidoEN>();
-
-            foreach (LineaPedidoEN en in listaEN)
-            {
-                if (en.Pedido != null)
-                    if (en.Pedido.Id == id)
-                    {
-                        listAux.Add(en);
-                    }
-            }
-
-            IList<LineaPedido> fin = new AssemblerLineaPedido().ConvertListENToModel(listAux);
-
-            return (fin);
-        }
-
         [ScaffoldColumn(false)]
         public int Id { get; set; }
 
@@ -52,5 +29,7 @@ namespace WebDSM.Models
         //[ScaffoldColumn(false)]
         //public Carrito carrito { get; set; }
 
+        [ScaffoldColumn(false)]
+        public double Total { get; set; }
     }
 }
