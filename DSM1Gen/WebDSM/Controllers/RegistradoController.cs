@@ -53,9 +53,15 @@ namespace WebDSM.Controllers
                 if (login)
                 {
                     System.Web.HttpContext.Current.Session["login"] = reg.NUsuario;
+                    System.Web.HttpContext.Current.Session["idUsuario"] = finalID; //LO NECESITARE MÁS ADELANTE PARA OPERACIONES CON EL CARRITO
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(reg);
                 }
 
-                return RedirectToAction("Index");
             }
             catch
             {

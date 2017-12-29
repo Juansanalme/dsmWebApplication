@@ -10,13 +10,6 @@ namespace WebDSM.Models
 {
     public class Articulo
     {
-        public LineaPedidoEN AnyadirAlCarrito(int cantidad, int articuloID, int carritoID)
-        {
-            LineaPedidoCP lpCP = new LineaPedidoCP();
-            LineaPedidoEN lpen = lpCP.Anyado_lineaYprecio(1, articuloID, 32768);
-            return lpen;
-        }
-
         //[ScaffoldColumn(false)] para aquellos atributos "invisibles" en el create
 
         [ScaffoldColumn(false)]

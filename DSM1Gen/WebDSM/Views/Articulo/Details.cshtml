@@ -63,6 +63,13 @@
     <b>@item.Registrado</b>
     <p>@item.Texto</p>
 }
+    @if(Session["login"] != null)
+    {
+    <p>
+        @Html.ActionLink("Añadir a carrito", "../Articulo/AnyadirAlCarrito", new { id = Model.Articulo.Id })
+        @*@Html.Action("AnyadirAlCarrito", new { id = Model.Articulo.Id })*@
+    </p>
+    }
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |

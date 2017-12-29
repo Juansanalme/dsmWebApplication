@@ -39,6 +39,23 @@ namespace WebDSM.Controllers
             return View();
         }
 
+        // GET: Articulo/AnyadirAlCarrito
+        public ActionResult AnyadirAlCarrito(int id)
+        {
+            
+            LineaPedidoCP lpCP = new LineaPedidoCP();
+            ArticuloCEN aCEN = new ArticuloCEN();
+
+            int idUsuario = (int)Session["idUsuario"];
+
+            //POR AHORA LA CANTIDAD ES 1
+            lpCP.Anyado_lineaYprecio(1, id, idUsuario);
+
+            aCEN.Quitar_stock(id, 1);
+
+                        
+            return RedirectToAction("../Carrito/Index", new { id = idUsuario});
+        }
 
         // GET: Articulo
         public ActionResult Index()
