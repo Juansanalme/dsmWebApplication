@@ -58,7 +58,7 @@ namespace WebDSM.Models
                 v.Id = item.Id;
                 v.Puntuacion = item.Puntuacion;
                 v.Texto = item.Texto;
-                v.Registrado = item.Registrado.Nombre;
+                v.Registrado = item.Registrado.N_usuario;
                 art.Valoracion.Add(v);
 
                 i++;

@@ -89,9 +89,15 @@ namespace WebDSM.Controllers
         }
 
         // GET: Valoracion/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, int id2)
         {
-            return View();
+
+            ValoracionCEN cen = new ValoracionCEN();
+
+            cen.Destroy(id);
+
+
+            return RedirectToAction("../Articulo/Details/"+id2);
         }
 
         // POST: Valoracion/Delete/5

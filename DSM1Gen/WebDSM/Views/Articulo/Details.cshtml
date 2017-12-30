@@ -61,12 +61,14 @@
     </dl>
 @foreach (var item in Model.Valoracion) { 
     <b>@item.Registrado</b>
-    <p>@item.Texto</p>
-    if(Session["idUsuario"] != null && (string)Session["login"] == item.Registrado)
-    {
-        @*ES LA VALORACION DEL USUARIO*@
-        @Html.ActionLink("Eliminar", "../Valoracion/Delete", new { id = item.Id})
-    }
+    <p>
+        @item.Texto
+        @if(Session["idUsuario"] != null && (string)Session["login"] == item.Registrado)
+        {
+            @*ES LA VALORACION DEL USUARIO*@
+            @Html.ActionLink("(X)", "../Valoracion/Delete", new { id = item.Id, id2 = Model.Articulo.Id })
+        }
+    </p>
 }
     @if(Session["login"] != null)
     {
