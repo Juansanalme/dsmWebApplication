@@ -268,6 +268,7 @@
     <Content Include="Views\Articulo\AnyadirAlCarrito.cshtml" />
     <Content Include="Views\Pedido\Index.cshtml" />
     <Content Include="Views\Pedido\Details.cshtml" />
+    <Content Include="Views\Articulo\AnyadirValoracion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

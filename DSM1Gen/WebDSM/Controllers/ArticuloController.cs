@@ -39,6 +39,23 @@ namespace WebDSM.Controllers
             return View();
         }
 
+        // POST: Articulo/Details/5
+        // AL PUBLICAR UNA VALORACION
+        [HttpPost]
+        public ActionResult Details (ArticuloYOpinion op)
+        {
+            //CREO LA VALORACION
+            //EL ID DEL ARTICULO LO PASO MEDIANTE UN CAMPO OCULTO EN EL FORMULARIO
+            
+            ValoracionCEN cen = new ValoracionCEN();
+
+            int idUsuario = (int)Session["idUsuario"];
+
+            cen.New_(op.Puntuacion, op.Texto, idUsuario, op.IdArt);
+            
+            return RedirectToAction("Details", new { id = op.IdArt });
+        }
+
         // GET: Articulo/AnyadirAlCarrito
         public ActionResult AnyadirAlCarrito(int id)
         {

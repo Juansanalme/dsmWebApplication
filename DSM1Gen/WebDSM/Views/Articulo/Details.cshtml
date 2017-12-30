@@ -62,6 +62,11 @@
 @foreach (var item in Model.Valoracion) { 
     <b>@item.Registrado</b>
     <p>@item.Texto</p>
+    if(Session["idUsuario"] != null && (string)Session["login"] == item.Registrado)
+    {
+        @*ES LA VALORACION DEL USUARIO*@
+        @Html.ActionLink("Eliminar", "../Valoracion/Delete", new { id = item.Id})
+    }
 }
     @if(Session["login"] != null)
     {
@@ -69,7 +74,11 @@
         @Html.ActionLink("Añadir a carrito", "../Articulo/AnyadirAlCarrito", new { id = Model.Articulo.Id })
         @*@Html.Action("AnyadirAlCarrito", new { id = Model.Articulo.Id })*@
     </p>
+    <p>
+        @Html.Partial("AnyadirValoracion")
+    </p>
     }
+
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
