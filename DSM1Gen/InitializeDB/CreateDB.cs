@@ -766,6 +766,7 @@ public static void InitializeData ()
 
                 PujaCP pujaCP = new PujaCP ();
                 System.Console.WriteLine ("Cierro puja 1");
+                /*
                 pujaCP.Terminar_puja (pujaid, puja.Fecha, puja.Puja_inicial, puja.Puja_max, puja.Id_usuario, true);
                 try
                 {
@@ -780,7 +781,6 @@ public static void InitializeData ()
                 }
                 catch (Exception e) { System.Console.WriteLine (e.Message + "\n"); }
 
-
                 try
                 {
                         System.Console.WriteLine ("Pablo-sensei puja " + 100 + "$");
@@ -790,7 +790,7 @@ public static void InitializeData ()
                         System.Console.WriteLine ("Puja#" + puja.Id + " | MAX: " + max.N_usuario + " " + puja.Puja_max + "$\n");
                 }
                 catch (Exception e) { System.Console.WriteLine (e.Message + "\n"); }
-
+                */
 
                 
                 //CREO UNA VALORACION Y MODIFICO SU TEXTO
@@ -806,11 +806,6 @@ public static void InitializeData ()
 
                 lineaPedidoCP.Anyado_lineaYprecio(2, articulo2, registrado0);
                 lineaPedidoCP.Anyado_lineaYprecio(2, articulo2, registrado1);
-
-
-
-
-
 
                 // p.e. CustomerCEN customer = new CustomerCEN();
                 // customer.New_ (p_user:"user", p_password:"1234");
