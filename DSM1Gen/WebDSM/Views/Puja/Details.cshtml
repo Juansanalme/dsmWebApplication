@@ -7,10 +7,12 @@
 
 <div class="container-fluid bg-black item-background d-flex">
     <div class="row w-100 align-items-center">
-        <div id="target" class="col-6">
-            Testing!
+       
+        <div class="sketchfab-embed-wrapper col-12 col-lg-6 h-50 mt-4 mt-lg-0">
+            <iframe class="col h-100" src="https://sketchfab.com/models/35d80a2cc36b4df1adad7242df730d5c/embed" frameborder="0" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
         </div>
-        <div class="col-5">
+        
+        <div class="col-12 col-lg-5 pt-5 pt-lg-0">
             <div class="h1 text-orange">
                 @Html.DisplayFor(model => model.Articulo)
             </div>
@@ -50,12 +52,3 @@
        
     </div>
 </div>
-<script>
-      window.onload = function(){
-        mad = new Madeleine({
-          target: 'target',
-          data: '../../3D_Models/gallardo.stl',
-          path: '../../Scripts'
-        });
-      };
-</script>

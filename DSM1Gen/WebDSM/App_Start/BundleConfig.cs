@@ -22,11 +22,7 @@ namespace WebDSM
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/popper.js",
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js",
-                      "~/Scripts/stats.js",
-                      "~/Scripts/detector.js",
-                      "~/Scripts/three.min.js",
-                      "~/Scripts/Madeleine.js"));
+                      "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
