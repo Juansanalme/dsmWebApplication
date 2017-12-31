@@ -14,11 +14,28 @@
     </style>
 </head>
 <body>
-    
+
+    @{
+        var controllerName = string.Empty;
+        object controllerObj;
+        var actionName = string.Empty;
+        object actionObj;
+
+        if (ViewContext.RouteData.Values.TryGetValue("controller", out controllerObj))
+        {
+            controllerName = controllerObj.ToString();
+        }
+
+        if (ViewContext.RouteData.Values.TryGetValue("action", out actionObj))
+        {
+            actionName = actionObj.ToString();
+        }
+    }
+
     <div class="container-fluid bg-absolute-black">
         Idioma Twiter Facebook Google
     </div>
-    <nav class="navbar navbar-dark bg-black navbar-expand-lg d-lg-none sticky-top">
+    <nav class="navbar navbar-dark bg-black navbar-expand-lg d-lg-none sticky-top border-orange">
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -36,20 +53,36 @@
         </div>
     </nav>
 
-    <div class="container-fluid navbar-dark bg-black d-none py-2 d-lg-block sticky-top font-weight-bold">
+    <div class="container-fluid navbar-dark bg-black d-none py-2 d-lg-block sticky-top font-weight-bold border-orange">
         <div class="row text-center">
-            <div class="col-3 offset-2">&nbsp;
+            <div class="col-3 offset-2">
+                &nbsp;
                 <div class="row">
                     <div class="col">
-                        @Html.ActionLink("HOME", "Index", "Home", new { @class = "col nav-link active" })
+                        @if (controllerName == "Home")
+                        {
+                            @Html.ActionLink("HOME", "Index", "Home", null, new { @class = "col nav-link active" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("HOME", "Index", "Home", null, new { @class = "col nav-link" })
+                        }
                     </div>
                     <div class="col ">
-                        @Html.ActionLink("VIDEOJUEGOS", "Index", "Home", new { @class = "col nav-link" })
+                        @if (controllerName == "Videojuegos")
+                        {
+                             @Html.ActionLink("VIDEOJUEGOS", "Index", "Home", null, new { @class = "col nav-link active" })
+                        }
+                        else
+                        {
+                             @Html.ActionLink("VIDEOJUEGOS", "Index", "Home", null, new { @class = "col nav-link" })
+                        }
+   
                     </div>
                 </div>
             </div>
             <div class="col-2">
-                @Html.ActionLink(" ", "Index", "Home", new { @class = "col nav-link logo" })
+                @Html.ActionLink(" ", "Index", "Home", null, new { @class = "col nav-link logo" })
             </div>
             <div class="col-3">
                 <div class="row">
@@ -59,26 +92,41 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        @Html.ActionLink("PUJA", "Index", "Home", new { @class = "col nav-link" })
+                        @if (controllerName == "Puja")
+                        {
+                            @Html.ActionLink("PUJA", "Index", "Puja", null, new { @class = "col nav-link active" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("PUJA", "Index", "Puja", null, new { @class = "col nav-link" })
+                        }
                     </div>
                     <div class="col">
-                        @Html.ActionLink("CATEGORIA", "Index", "Home", new { @class = "col nav-link" })
+                        @if (controllerName == "Categoria")
+                        {
+                            @Html.ActionLink("CATEGORIA", "Index", "Home", null, new { @class = "col nav-link active" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("CATEGORIA", "Index", "Home", null, new { @class = "col nav-link" })
+                        }        
                     </div>
                 </div>
             </div>
             <div class="col-2">
                 <div class="row">
-                    @if(Session["login"] == null)
+                    @if (Session["login"] == null)
                     {
-                        <div class="col btn">
-                            @Html.ActionLink("LOGIN", "../Registrado/Login", "", new { @class = "col nav-link" })
+
+                        <div class="btn">
+                            @Html.ActionLink("Log In", "../Registrado/Login", "", new { @class = "col nav-link" })
                         </div>
-                        <div class="col btn btn-outline-danger mr-1">
-                            @Html.ActionLink("REGISTRO", "../Registrado/Create", "", new { @class = "col nav-link" })                    
+                        <div class="btn btn-outline-danger mr-1">
+                            @Html.ActionLink("Registro", "../Registrado/Create", "", new { @class = "col nav-link" })
                         </div>
                     }
                     else
-                    {   
+                    {
                         @*CON @SESSION[LOGIN] COJO EL NOMBRE DE USUARIO QUE HE ALMACENADO AL CREAR LA SESION*@
                         <div class="col btn">Bienvenido @Session["login"]</div>
                     }
@@ -86,13 +134,12 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
-    </div>
+    @RenderBody()
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+    </footer>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

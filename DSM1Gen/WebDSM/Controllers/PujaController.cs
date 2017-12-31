@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using DSM1GenNHibernate.EN.DSM1;
 using DSM1GenNHibernate.CEN.DSM1;
 using DSM1GenNHibernate.CAD.DSM1;
 using DSM1GenNHibernate.CP.DSM1;
 using WebDSM.Models;
+using WebMatrix.WebData;
+using DSM1GenNHibernate.Utils;
 
 namespace WebDSM.Controllers
 {
@@ -109,5 +112,31 @@ namespace WebDSM.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+
+        public ActionResult NuevaPuja(float puja, int id)
+        {
+            try
+            {
+                SessionInitialize();
+
+                OfertaPujaCAD ofertaPujaCAD = new OfertaPujaCAD(session);
+                OfertaPujaCEN ofertaPujaCEN = new OfertaPujaCEN(ofertaPujaCAD);
+
+                OfertaPujaCP ofertaPujaCP = new OfertaPujaCP();
+
+                ofertaPujaCP.Nueva_oferta(DateTime.Now, DateTime.Now, (int)Session["idUsuario"], id, puja); //Nueva oferta 
+                SessionClose();
+                
+                return RedirectToAction("Details/"+id);
+            }
+            catch
+            {
+                return RedirectToAction("Details/"+id);
+            }
+        }
+
     }
 }

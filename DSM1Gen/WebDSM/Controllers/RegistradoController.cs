@@ -12,7 +12,6 @@ using WebDSM.Models;
 using WebMatrix.WebData;
 using DSM1GenNHibernate.Utils;
 
-
 namespace WebDSM.Controllers
 {
     public class RegistradoController : BasicController

@@ -221,11 +221,19 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Images\Black_background.png" />
+    <Content Include="Images\Black_background_v2.png" />
+    <Content Include="Images\Facebook.png" />
+    <Content Include="Images\Google.png" />
+    <Content Include="Images\Login-separator.png" />
     <Content Include="Images\NA-ME.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\NA-ME_dark.png" />
+    <Content Include="Images\Password.png" />
+    <Content Include="Images\Twitter.png" />
+    <Content Include="Images\User.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -273,6 +281,7 @@
     <Content Include="Views\Articulo\AnyadirValoracion.cshtml" />
     <Content Include="Views\Puja\Index.cshtml" />
     <Content Include="Views\Puja\Details.cshtml" />
+    <Content Include="Views\Shared\SimpleLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
