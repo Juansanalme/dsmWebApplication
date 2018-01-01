@@ -42,6 +42,9 @@ textarea {
     color: #242424;
 }
 
+.bg-footer{
+    background: #11100f;
+}
 .text-orange{
     color: #e3c155;
 }
@@ -58,6 +61,10 @@ textarea {
     color: #e10031;
 }
 
+.text-secondary{
+    color: #8c8c8b;
+}
+
 .nav-link.active {
     color: #e3c155
 }
@@ -67,10 +74,13 @@ textarea {
     color: rgba(244, 244, 244, 0.7);
 }
 
-.nav-link:hover {
+.nav-link:hover{
     color: rgba(244, 244, 244, 1);
 }
-
+a:hover {
+    color: rgba(244, 244, 244, 1);
+    text-decoration: none;
+}
 .logo {
     width: 100%;
     height: 100%;
@@ -147,11 +157,22 @@ textarea {
     }
 }
 
-
+.footer_logo{
+    height: 100px;
+    width:auto;
+}
+.small{
+    font-size: 12px;
+    line-height: 15px;
+}
 .pointer{
     cursor: pointer;
 }
 
 .header_login{
     height: 90px;
+}
+.social{
+    width:42px;
+    height:auto;
 }

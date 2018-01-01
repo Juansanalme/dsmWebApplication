@@ -136,9 +136,38 @@
         </div>
     </div>
     @RenderBody()
-    <hr />
+ 
     <footer>
-        <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+        <div class="container-fluid bg-footer py-3">
+            <div class="row text-center">
+                <div class="col-12 offset-md-4 col-md-4">
+                    <img class="footer_logo" src="~/Images/NA-ME.png" alt="NA-ME" />
+                </div>
+                <div class="col-12 col-md-4 my-3 text-md-right">
+                    <a href="#"><img class="social mx-2" src="~/Images/Facebook-rounded.png" /></a>
+                    <a href="#"><img class="social mx-2" src="~/Images/Twitter-rounded.png" /></a>
+                    <a href="#"><img class="social mx-2" src="~/Images/Google-rounded.png" /></a>
+                </div>
+                
+            </div>
+            <div class="row justify-content-center">
+                <div class="text-secondary text-center">
+                    <p class="small px-2">
+                        ©2017 NA-ME, INC. ALL RIGHTS RESERVED.<br />
+                        Todos los derechos reservados. Todas las marcas registradas son propiedad de sus respectivos dueños.
+                    </p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col text-right">
+                    <a href="#" class="text-orange">PRIVACIDAD</a>
+                </div>
+                <div class="text-white">|</div>
+                <div class="col text-orange text-left">
+                    <a href="#" class="text-orange">TÉRMINOS</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
