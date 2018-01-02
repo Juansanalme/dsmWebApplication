@@ -226,6 +226,7 @@
     <Content Include="Images\Facebook.png" />
     <Content Include="Images\Google-rounded.png" />
     <Content Include="Images\Google.png" />
+    <Content Include="Images\Indexv2.jpg" />
     <Content Include="Images\Login-separator.png" />
     <Content Include="Images\NA-ME.png" />
     <Content Include="favicon.ico" />
@@ -234,9 +235,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\NA-ME_dark.png" />
     <Content Include="Images\Password.png" />
+    <Content Include="Images\Shut-up-and-take-my-money!.png" />
     <Content Include="Images\Twitter-rounded.png" />
     <Content Include="Images\Twitter.png" />
     <Content Include="Images\User.png" />
+    <Content Include="Images\World.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

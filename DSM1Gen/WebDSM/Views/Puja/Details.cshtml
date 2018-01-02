@@ -5,22 +5,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container-fluid bg-black item-background d-flex">
-    <div class="row w-100 align-items-center">
+<div class="container-fluid bg-black item-background d-md-flex">
+    <div class="row w-100 ">
        
-        <div class="sketchfab-embed-wrapper col-12 col-lg-6 h-50 mt-4 mt-lg-0">
-            <iframe class="col h-100" src="https://sketchfab.com/models/35d80a2cc36b4df1adad7242df730d5c/embed" frameborder="0" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
+        <div class="sketchfab-embed-wrapper col-12 col-md-6 mt-4 mt-md-0 py-md-5 h-75 align-self-center">
+            <iframe class="col h-100 height-300px" src="https://sketchfab.com/models/35d80a2cc36b4df1adad7242df730d5c/embed" frameborder="0" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
         </div>
         
-        <div class="col-12 col-lg-5 pt-5 pt-lg-0">
-            <div class="h1 text-orange">
+        <div class="col-12 col-md-5 pt-2 pt-md-5 mt-md-5">
+            <div class="h1 text-orange ">
                 @Html.DisplayFor(model => model.Articulo)
             </div>
-            <div class="h2">CS:GO Knife (Nombre del juego?)</div>
+            <div class="h3 elegant">CS:GO Knife (Nombre del juego?)</div>
             <div>
                 @Html.DisplayFor(model => model.ArtDescripcion)
             </div>
-            <div class="h3 text-capitalize mt-4">
+            <div class="h3 text-capitalize mt-4 elegant">
                 PUJA MAXIMA:
                 <span class="text-blood">
                     @Html.DisplayFor(model => model.PujaMaxima)
@@ -28,11 +28,9 @@
                 </span>
             </div>
 
-            <!-------------------------------------------------- En proceso -------------------------------------------------->
             @Session["idUsuario"]
             <form action="../NuevaPuja" method="post">
                 <div class="form-group row">
-
                     <div class="col-10">
                         <input type="hidden" name="id" value="@Html.DisplayFor(model => model.Id)" />
                         <input type="number" step="0.01" name="puja" />
@@ -45,8 +43,18 @@
                 </div>
             </form>
         </div>
-        <div class="col-1">
-            asd
+        <div class="col-1 align-self-center elegant">
+            asd<br />
+            asd<br />
+            asd<br />
+            asd<br />
+            asd<br />
+            asd<br />
+            asd<br />
+            asd<br />
+            asd<br />
+            asd<br />
+            asd<br />
         </div>
 
        

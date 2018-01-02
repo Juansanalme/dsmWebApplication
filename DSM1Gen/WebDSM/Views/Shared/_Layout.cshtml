@@ -34,7 +34,10 @@
     }
 
     <div class="container-fluid bg-absolute-black">
-        Idioma Twiter Facebook Google
+        <a class="text-white" href="#"><img class="social-mini mx-1" src="~/Images/World.png" />Idioma</a>
+        <a href="#"><img class="social-mini ml-5 mx-1" src="~/Images/Facebook-rounded.png" /></a>
+        <a href="#"><img class="social-mini mx-1" src="~/Images/Twitter-rounded.png" /></a>
+        <a href="#"><img class="social-mini mx-1" src="~/Images/Google-rounded.png" /></a>
     </div>
     <nav class="navbar navbar-dark bg-black navbar-expand-lg d-lg-none sticky-top border-orange">
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +57,7 @@
         </div>
     </nav>
 
-    <div class="container-fluid navbar-dark bg-black d-none py-2 d-lg-block sticky-top font-weight-bold border-orange">
+    <div class="container-fluid navbar-dark bg-black d-none py-2 d-lg-block sticky-top font-weight-bold border-orange menu">
         <div class="row text-center">
             <div class="col-3 offset-2">
                 &nbsp;
@@ -62,23 +65,23 @@
                     <div class="col">
                         @if (controllerName == "Home")
                         {
-                            @Html.ActionLink("HOME", "Index", "Home", null, new { @class = "col nav-link active" })
+                            @Html.ActionLink("HOME", "Index", "Home", null, new { @class = "col nav-link active elegant" })
                         }
                         else
                         {
-                            @Html.ActionLink("HOME", "Index", "Home", null, new { @class = "col nav-link" })
+                            @Html.ActionLink("HOME", "Index", "Home", null, new { @class = "col nav-link elegant" })
                         }
                     </div>
                     <div class="col ">
                         @if (controllerName == "Videojuegos")
                         {
-                             @Html.ActionLink("VIDEOJUEGOS", "Index", "Home", null, new { @class = "col nav-link active" })
+                            @Html.ActionLink("VIDEOJUEGOS", "Index", "Home", null, new { @class = "col nav-link active elegant" })
                         }
                         else
                         {
-                             @Html.ActionLink("VIDEOJUEGOS", "Index", "Home", null, new { @class = "col nav-link" })
+                            @Html.ActionLink("VIDEOJUEGOS", "Index", "Home", null, new { @class = "col nav-link elegant" })
                         }
-   
+
                     </div>
                 </div>
             </div>
@@ -95,22 +98,22 @@
                     <div class="col">
                         @if (controllerName == "Puja")
                         {
-                            @Html.ActionLink("PUJA", "Index", "Puja", null, new { @class = "col nav-link active" })
+                            @Html.ActionLink("PUJA", "Index", "Puja", null, new { @class = "col nav-link active elegant" })
                         }
                         else
                         {
-                            @Html.ActionLink("PUJA", "Index", "Puja", null, new { @class = "col nav-link" })
+                            @Html.ActionLink("PUJA", "Index", "Puja", null, new { @class = "col nav-link elegant" })
                         }
                     </div>
                     <div class="col">
                         @if (controllerName == "Categoria")
                         {
-                            @Html.ActionLink("CATEGORIA", "Index", "Home", null, new { @class = "col nav-link active" })
+                            @Html.ActionLink("CATEGORIA", "Index", "Home", null, new { @class = "col nav-link active elegant" })
                         }
                         else
                         {
-                            @Html.ActionLink("CATEGORIA", "Index", "Home", null, new { @class = "col nav-link" })
-                        }        
+                            @Html.ActionLink("CATEGORIA", "Index", "Home", null, new { @class = "col nav-link elegant" })
+                        }
                     </div>
                 </div>
             </div>
@@ -136,7 +139,7 @@
         </div>
     </div>
     @RenderBody()
- 
+
     <footer>
         <div class="container-fluid bg-footer py-3">
             <div class="row text-center">
@@ -148,7 +151,6 @@
                     <a href="#"><img class="social mx-2" src="~/Images/Twitter-rounded.png" /></a>
                     <a href="#"><img class="social mx-2" src="~/Images/Google-rounded.png" /></a>
                 </div>
-                
             </div>
             <div class="row justify-content-center">
                 <div class="text-secondary text-center">
@@ -173,5 +175,141 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script>
+        $(document).ready(function () {
+
+            $.fn.menumaker = function (options) {
+
+
+
+                var cssmenu = $(this), settings = $.extend({
+
+                    title: "Menu",
+
+                    format: "dropdown",
+
+                    sticky: false
+
+                }, options);
+
+
+
+                return this.each(function () {
+
+
+
+                    cssmenu.prepend('<div id="menu-button"><span></span><span></span><span></span>' + settings.title + '</div>');
+
+                    $(this).find("#menu-button").on('click', function () {
+
+                        $(this).toggleClass('menu-opened');
+
+                        var mainmenu = $(this).next('ul');
+
+                        if (mainmenu.hasClass('open')) {
+
+                            mainmenu.slideUp().removeClass('open');
+
+                        }
+
+                        else {
+
+                            mainmenu.slideDown().addClass('open');
+
+                            if (settings.format === "dropdown") {
+
+                                mainmenu.find('ul').slideDown();
+
+                            }
+
+                        }
+
+                    });
+
+
+
+                    cssmenu.find('li ul').parent().addClass('has-sub');
+
+
+
+                    multiTg = function () {
+
+                        cssmenu.find(".has-sub").prepend('<span class="submenu-button"></span>');
+
+                        cssmenu.find('.submenu-button').on('click', function () {
+
+                            $(this).toggleClass('submenu-opened');
+
+                            if ($(this).siblings('ul').hasClass('open')) {
+
+                                $(this).siblings('ul').removeClass('open').slideUp();
+
+                            }
+
+                            else {
+
+                                $(this).siblings('ul').addClass('open').slideDown();
+
+                            }
+
+                        });
+
+                    };
+
+
+
+                    if (settings.format === 'multitoggle') multiTg();
+
+                    else cssmenu.addClass('dropdown');
+
+
+
+
+
+                });
+
+            };
+
+
+
+            $(".navy").menumaker({
+
+                title: "Navigation",
+
+                format: "multitoggle"
+
+            });
+
+
+
+
+
+            $('#menu-button').click(function () {
+
+                $(this).toggleClass('open');
+
+            });
+
+
+
+
+
+            new AnimOnScroll(document.getElementById('grid'), {
+
+                minDuration: 0.4,
+
+                maxDuration: 0.7,
+
+                viewportFactor: 0.2
+
+            });
+
+
+
+        });
+
+
+    </script>
 </body>
 </html>

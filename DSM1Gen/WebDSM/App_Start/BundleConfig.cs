@@ -22,7 +22,12 @@ namespace WebDSM
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/popper.js",
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/masonry.pkgd.min.js",
+                      "~/Scripts/imagesloaded.js",
+                      "~/Scripts/classie.js",
+                      "~/Scripts/AnimOnScroll.js",
+                      "~/Scripts/modernizr.custom.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
