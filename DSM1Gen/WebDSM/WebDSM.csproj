@@ -218,23 +218,29 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Avana.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Images\Black_background.png" />
     <Content Include="Images\Black_background_v2.png" />
+    <Content Include="Images\Cesta.png" />
     <Content Include="Images\Facebook-rounded.png" />
     <Content Include="Images\Facebook.png" />
     <Content Include="Images\Google-rounded.png" />
     <Content Include="Images\Google.png" />
     <Content Include="Images\Indexv2.jpg" />
+    <Content Include="Images\kirito-wallpaper-3.jpg" />
     <Content Include="Images\Login-separator.png" />
+    <Content Include="Images\maxresdefault.jpg" />
     <Content Include="Images\NA-ME.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\NA-ME_dark.png" />
+    <Content Include="Images\Nier.jpg" />
     <Content Include="Images\Password.png" />
+    <Content Include="Images\search-icon.png" />
     <Content Include="Images\Shut-up-and-take-my-money!.png" />
     <Content Include="Images\Twitter-rounded.png" />
     <Content Include="Images\Twitter.png" />
@@ -257,10 +263,10 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\scrollreveal.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

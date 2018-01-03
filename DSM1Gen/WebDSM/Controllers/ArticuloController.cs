@@ -178,5 +178,20 @@ namespace WebDSM.Controllers
                 return View();
             }
         }
+
+        public ActionResult Busqueda(String termino)
+        {
+            SessionInitialize();
+
+            ArticuloCAD articuloCAD = new ArticuloCAD(session);
+            ArticuloCEN articuloCEN = new ArticuloCEN(articuloCAD);
+
+            IList<ArticuloEN> articulos = articuloCEN.Busqueda_por_nombre(termino);
+            IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulos).ToList();
+
+            SessionClose();
+
+            return View("Index", art);
+        }
     }
 }

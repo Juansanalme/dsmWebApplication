@@ -45,12 +45,12 @@ public DSM1GenNHibernate.EN.DSM1.OfertaPujaEN Nueva_oferta (Nullable<DateTime> p
                 PujaEN pujaEN = pujaCEN.get_IPujaCAD ().ReadOIDDefault (p_puja);  //Consigo la puja a la cual va dirigida esta oferta
 
                 if (pujaEN.Cerrada == true) {
-                        Exception cerrada = new Exception ("ESTA CERRADA! LARGO DE AQUI");
+                        Exception cerrada = new Exception ("Está cerrada, largo de aquí!");
                         throw cerrada;
                 }
 
                 if (pujaEN.Id_usuario == p_registrado) {
-                        Exception PP = new Exception ("YA HAS PUJADO, VUELVE MAS TARDE");
+                        Exception PP = new Exception ("Ya eres el máximo pujador, vuelve más tarde");
                         throw PP;
                 }
 
@@ -69,7 +69,7 @@ public DSM1GenNHibernate.EN.DSM1.OfertaPujaEN Nueva_oferta (Nullable<DateTime> p
                         pujaCEN.get_IPujaCAD ().Actualizar (nueva); //Actualizamos
                 }
                 else{
-                        Exception pasta = new Exception ("FALTA PASTA!");
+                        Exception pasta = new Exception ("Debes introducir un importe mayor!");
                         throw pasta;
                 }
                 int oid;

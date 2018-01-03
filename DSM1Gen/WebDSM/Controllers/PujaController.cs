@@ -118,6 +118,11 @@ namespace WebDSM.Controllers
 
         public ActionResult NuevaPuja(float puja, int id)
         {
+            if(puja == 0)
+            {
+                System.Web.HttpContext.Current.Session["PujaError"] = "Introduce un importe";
+                return RedirectToAction("Details/" + id);
+            }
             try
             {
                 SessionInitialize();
@@ -132,8 +137,10 @@ namespace WebDSM.Controllers
                 
                 return RedirectToAction("Details/"+id);
             }
-            catch
+            catch(Exception e)
             {
+                System.Web.HttpContext.Current.Session["PujaError"] = e.Message;
+                
                 return RedirectToAction("Details/"+id);
             }
         }
