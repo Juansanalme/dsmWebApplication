@@ -44,10 +44,12 @@ namespace WebDSM.Models
         [Display(Prompt = "Supercategoría de la categoría", Description = "Supercategoría de la categoría", Name = "Supercategoría")]
         [Required(ErrorMessage = "Debe de indicar una supercategoría para la categoría")]
         */
+
+        [ScaffoldColumn(false)]
+        public String NomSuper { get; set; }
+
         [ScaffoldColumn(false)]
         public int NumSuper { get; set; }
-
-
 
     }
 }

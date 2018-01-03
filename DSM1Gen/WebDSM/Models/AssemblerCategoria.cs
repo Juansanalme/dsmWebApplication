@@ -14,7 +14,7 @@ namespace WebDSM.Models
             Categoria cat = new Categoria();
             cat.Id = en.Id;
             cat.Nombre = en.Nombre;
-            //cat.NumSuper = en.Supercategoria.Id;
+            //cat.NomSuper = en.Supercategoria.Nombre;
 
             return cat;
         }
