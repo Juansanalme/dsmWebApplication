@@ -49,7 +49,10 @@ namespace WebDSM.Models
         public String NomSuper { get; set; }
 
         [ScaffoldColumn(false)]
-        public int NumSuper { get; set; }
+        public int SuperId { get; set; }
 
-    }
+        [ScaffoldColumn(false)]
+        public List<Categoria> Subs { get; set; }
+
+}
 }

@@ -73,7 +73,7 @@ namespace WebDSM.Controllers
 
                 int catId = cen.New_(cat.Nombre, 0); //SE LE PASA 0, POR LOS LOLES
 
-                cen.Anyadir_supercat(catId,cat.NumSuper);
+                cen.Anyadir_supercat(catId,cat.SuperId);
 
                 return RedirectToAction("Index");
             }
