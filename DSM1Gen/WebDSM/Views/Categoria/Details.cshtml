@@ -25,7 +25,7 @@
         }
 
         <dt>Subcategorías</dt>
-        @if (Model.Subs != null)
+        @if (Model.Subs.Any())
         {
             foreach (var item in Model.Subs)
             {
