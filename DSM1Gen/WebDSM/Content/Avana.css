@@ -36,9 +36,6 @@
             line-height: 100%;
         }
 
-            .grid figure figcaption header a {
-            }
-
             .grid figure figcaption::before,
             .grid figure figcaption::after {
                 pointer-events: none;

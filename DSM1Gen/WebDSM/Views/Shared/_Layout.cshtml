@@ -39,7 +39,7 @@
         <a href="#"><img class="social-mini mx-1" src="~/Images/Twitter-rounded.png" /></a>
         <a href="#"><img class="social-mini mx-1" src="~/Images/Google-rounded.png" /></a>
     </div>
-    <nav class="navbar navbar-dark bg-black navbar-expand-lg d-lg-none sticky-top border-orange">
+    <nav class="navbar navbar-dark bg-black navbar-expand-lg d-lg-none sticky-top border-orange-bottom">
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -57,7 +57,7 @@
         </div>
     </nav>
 
-    <div class="container-fluid navbar-dark bg-black d-none py-2 d-lg-block sticky-top font-weight-bold border-orange menu">
+    <div class="container-fluid navbar-dark bg-black d-none py-2 d-lg-block sticky-top font-weight-bold border-orange-bottom menu">
         <div class="row text-center">
             <div class="col-3 offset-2">
                 &nbsp;
@@ -127,19 +127,20 @@
                     {
 
                         <div class="btn">
-                            @Html.ActionLink("Log In", "../Registrado/Login", "", new { @class = "col nav-link" })
+                            @Html.ActionLink("Log In", "Login", "Registrado", null, new { @class = "col nav-link" })
                         </div>
                         <div class="btn btn-outline-light mr-1">
-                            @Html.ActionLink("Registro", "../Registrado/Create", "", new { @class = "col nav-link" })
+                            @Html.ActionLink("Registro", "Create", "Registrado", null, new { @class = "col nav-link" })
                         </div>
                     }
                     else
                     {
                         @*CON @SESSION[LOGIN] COJO EL NOMBRE DE USUARIO QUE HE ALMACENADO AL CREAR LA SESION*@
                         <div class="col-6"> @Session["login"]</div>
-                        <a class="col-6 cesta pr-2 pt-2" href="#">
+                        <a class="col-6 cesta pr-2 pt-2" href="@Url.Action("Index", "Carrito", new {id = Session["idUsuario"] })">
                             0  <span>Cesta</span>
                         </a>
+
                     }
                 </div>
             </div>

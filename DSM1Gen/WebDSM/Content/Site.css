@@ -34,8 +34,30 @@ textarea {
     color: #f4f4f4;
 }
 
-.border-orange {
+.border-orange-bottom {
     border-bottom: 2px #ff4700 solid;
+}
+
+.border-orange-top {
+    border-top: 2px #ff4700 solid;
+}
+
+.border-orange-top-double {
+    border-top: 5px #ff4700 solid;
+}
+
+.border-orange-y {
+    border-top: 2px #ff4700 solid;
+    border-bottom: 2px #ff4700 solid;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
 }
 
 .bg-white {
@@ -209,10 +231,6 @@ a:hover {
     font-weight: 300;
 }
 
-.carousel-size{
-
-}
-
 .fry {
     min-height: 500px;
     width: 100%;
@@ -237,7 +255,6 @@ a:hover {
     background: #121212;
 
 }
-.carousel img{}
 
 .image-wrapper {
     width: 100%;
@@ -342,3 +359,7 @@ p, label, img, input, header, span, section, div, table, figure, a {
     margin: 0 auto;
 }
 
+.miniatura-carrito{
+    max-width: 100%;
+    max-height: 200px;
+}
