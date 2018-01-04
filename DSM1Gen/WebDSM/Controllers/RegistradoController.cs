@@ -89,9 +89,18 @@ namespace WebDSM.Controllers
         }
 
         // GET: Registrado/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Perfil(int id)
         {
-            return View();
+            SessionInitialize();
+
+            RegistradoCAD cad = new RegistradoCAD(session);
+
+            RegistradoEN en = cad.ReadOIDDefault(id);
+            Registrado model = new AssemblerRegistrado().ConvertENToModelUI(en);
+
+            SessionClose();
+
+            return View(model);
         }
 
         // GET: Registrado/Create

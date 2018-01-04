@@ -72,10 +72,6 @@ namespace WebDSM.Models
         [Required(ErrorMessage = "Debe de indicar un nombre de usuario")]
         [StringLength(maximumLength: 30, MinimumLength = 0, ErrorMessage = "El nombre de usuario debe tener entre 0 y 30 caracteres")]
         public string NUsuario { get; set; }
-        
-        
-
-
 
 
     }

@@ -298,6 +298,8 @@
     <Content Include="Views\Puja\Index.cshtml" />
     <Content Include="Views\Puja\Details.cshtml" />
     <Content Include="Views\Shared\SimpleLayout.cshtml" />
+    <Content Include="Views\Registrado\Perfil.cshtml" />
+    <Content Include="Views\Registrado\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

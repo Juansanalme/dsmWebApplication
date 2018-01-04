@@ -221,9 +221,6 @@ namespace WebDSM.Controllers
 
             IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulosEN);
 
-            //IList<ArticuloEN> articulos = articuloCEN.Busqueda_por_categoria(termino);
-            //IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulos).ToList();
-
             SessionClose();
 
             return View("Index", art);

@@ -3,6 +3,11 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int UserId = 0;
+    if (Session["login"] != null)
+    {
+        UserId = (int)Session["idUsuario"];
+    }
 }
 
 <h2>Details</h2>
@@ -19,5 +24,12 @@
 </div>
 <p>
     @* @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) | *@
-    @Html.ActionLink("Back to List", "Index")
+    @if (UserId != 0)
+    {
+        @Html.ActionLink("Lista de Pedidos", "../Pedido/Index", new { id = UserId })
+    }
+    else
+    {
+    <p>No logeado</p>
+    }
 </p>

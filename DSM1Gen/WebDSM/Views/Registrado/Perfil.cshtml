@@ -1,0 +1,71 @@
+﻿@model WebDSM.Models.Registrado
+
+<div>
+    <h4>Perfil</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dni)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FNacimiento)
+        </dd>
+        @*
+        <dt>
+            @Html.DisplayNameFor(model => model.Contrasenya)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contrasenya)
+        </dd>
+        *@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Pedidos", "../Pedido/Index", new { id = Model.Id })
+    @*@Html.ActionLink("Back to List", "Index")*@
+
+</p>
