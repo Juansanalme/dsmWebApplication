@@ -10,11 +10,8 @@
     }
 }
 
-<h2>Index</h2>
+<h2>Lista de Pedidos</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>@Html.DisplayNameFor(model => model.Id)</th>
@@ -30,8 +27,7 @@
             <td>@Html.DisplayFor(modelItem => item.Fecha)</td>
             <td>@Html.DisplayFor(modelItem => item.Total)</td>
             <td>
-                @* @Html.ActionLink("Edit", "Edit", new { id = item.Id }) | *@
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                @Html.ActionLink("Detalles del pedido", "Details", new { id = item.Id })
             </td>
         </tr>
     }

@@ -69,6 +69,12 @@ namespace WebDSM.Controllers
             }
         }
 
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            Session.RemoveAll();
+            return RedirectToAction("../Home");
+        }
 
         // GET: Registrado
         public ActionResult Index()
@@ -92,13 +98,11 @@ namespace WebDSM.Controllers
         // GET: Registrado/Perfil/5
         public ActionResult Perfil(int id)
         {
-            SessionInitialize();
-
-            RegistradoCAD cad = new RegistradoCAD(session);
-
+            RegistradoCAD cad = new RegistradoCAD();
             RegistradoEN en = cad.ReadOIDDefault(id);
-            Registrado model = new AssemblerRegistrado().ConvertENToModelUI(en);
 
+            Registrado model = new AssemblerRegistrado().ConvertENToModelUI(en);
+            
             //SACO EL ICONO DEL USUARIO
             string idUsu = model.Id.ToString();
             string iconoUsu = Path.Combine(Server.MapPath("~/Content/Uploads/User_icons"), idUsu);
