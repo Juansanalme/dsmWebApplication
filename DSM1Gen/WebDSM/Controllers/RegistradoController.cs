@@ -57,7 +57,7 @@ namespace WebDSM.Controllers
                     System.Web.HttpContext.Current.Session["idUsuario"] = finalID; //LO NECESITARE MÁS ADELANTE PARA OPERACIONES CON EL CARRITO
                     System.Web.HttpContext.Current.Session["admin"] = admin;
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("../Home");
                 }
                 else
                 {
