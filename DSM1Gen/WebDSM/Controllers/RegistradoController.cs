@@ -35,13 +35,14 @@ namespace WebDSM.Controllers
                 RegistradoCEN cen = new RegistradoCEN();
 
                 int finalID = 0;
-
+                bool admin = false;
                 IList<RegistradoEN> listEN = cen.get_IRegistradoCAD().ReadAll(0, -1);
                 foreach(RegistradoEN rEN in listEN)
                 {
                     if(rEN.N_usuario == reg.NUsuario)
                     {
                         finalID = rEN.Id;
+                        admin = rEN.Admin;
                         break;
                     }
                 }
@@ -54,6 +55,7 @@ namespace WebDSM.Controllers
                 {
                     System.Web.HttpContext.Current.Session["login"] = reg.NUsuario;
                     System.Web.HttpContext.Current.Session["idUsuario"] = finalID; //LO NECESITARE MÁS ADELANTE PARA OPERACIONES CON EL CARRITO
+                    System.Web.HttpContext.Current.Session["admin"] = admin;
 
                     return RedirectToAction("../Home");
                 }
@@ -232,6 +234,12 @@ namespace WebDSM.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Admin()
+        {
+
+            return View();
         }
 
     }

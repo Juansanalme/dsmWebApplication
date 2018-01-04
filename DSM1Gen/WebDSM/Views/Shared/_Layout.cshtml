@@ -39,27 +39,46 @@
         <a href="#"><img class="social-mini mx-1" src="~/Images/Twitter-rounded.png" /></a>
         <a href="#"><img class="social-mini mx-1" src="~/Images/Google-rounded.png" /></a>
     </div>
-    <nav class="navbar navbar-dark bg-black navbar-expand-lg d-lg-none sticky-top border-orange-bottom">
-        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="container-fluid navbar navbar-dark bg-black navbar-expand-lg d-lg-none sticky-top border-orange-bottom">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="row w-50">
+            <div class="col">
+                @using (Html.BeginForm("Busqueda", "Articulo", FormMethod.Post, new { @class = "form-inline" }))
+                {
+                    <input class="busqueda" type="search" placeholder="Busqueda" name="termino" />
+                    <button class="icon pointer" type="submit"></button>
+                }
+            </div>
+        </div>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="container navbar-nav text-center">
                 @Html.ActionLink("HOME", "Index", "Home", new { @class = "nav-item nav-link active" })
                 @Html.ActionLink("VIDEOJUEGOS", "Index", "Home", new { @class = "nav-item nav-link" })
                 @Html.ActionLink("PUJA", "Index", "Home", new { @class = "nav-item nav-link" })
                 @Html.ActionLink("CATEGORIA", "Index", "Home", new { @class = "nav-item nav-link" })
+               
                 <div>
-                    <a class="btn">Log In</a>
-                    <a class="btn btn-outline-danger">Register</a>
+                    @Html.ActionLink("Log In", "Login", "Registrado", null, new { @class = "btn" })
+                    @Html.ActionLink("Registro", "Create", "Registrado", null, new { @class = "btn btn-outline-light" })
                 </div>
             </div>
         </div>
+        
     </nav>
 
     <div class="container-fluid navbar-dark bg-black d-none py-2 d-lg-block sticky-top font-weight-bold border-orange-bottom menu">
         <div class="row text-center">
-            <div class="col-3 offset-2">
+            <div class="col-2 d-flex align-items-center justify-content-center">
+                @if (Session["admin"] != null && (bool)Session["admin"])
+                {
+                    <a class="elegant btn btn-outline-danger" href="@Url.Action("Admin", "Registrado" )">
+                        PANEL DE ADMINISTRADOR
+                    </a>
+                }
+            </div>
+            <div class="col-3">
                 &nbsp;
                 <div class="row">
                     <div class="col">
@@ -121,16 +140,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-2">
-                <div class="row">
+            <div class="col-2 d-flex align-items-center">
+                <div class="row w-100">
                     @if (Session["login"] == null)
                     {
-
-                        <div class="btn">
-                            @Html.ActionLink("Log In", "Login", "Registrado", null, new { @class = "col nav-link" })
+                        <div class="col">
+                            @Html.ActionLink("Log In", "Login", "Registrado", null, new { @class = "nav-link btn w-100 text-center p-2" })
                         </div>
-                        <div class="btn btn-outline-light mr-1">
-                            @Html.ActionLink("Registro", "Create", "Registrado", null, new { @class = "col nav-link" })
+                        <div class="col">        
+                            @Html.ActionLink("Registro", "Create", "Registrado", null, new { @class = "btn btn-outline-light w-100 p-2 mr-1" })
                         </div>
                     }
                     else
@@ -151,6 +169,7 @@
             </div>
         </div>
     </div>
+
     @RenderBody()
 
     <footer>

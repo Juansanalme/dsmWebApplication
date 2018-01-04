@@ -152,7 +152,8 @@ namespace WebDSM.Controllers
 
         // POST: Articulo/Create
         [HttpPost]
-        public ActionResult Create(HttpPostedFileBase file, Articulo art)
+        public ActionResult Create(HttpPostedFileBase file, Models.Admin art)
+
         {
             try
             {
@@ -161,9 +162,10 @@ namespace WebDSM.Controllers
                 ArticuloCEN artCen = new ArticuloCEN();
                 CategoriaCEN catCEN = new CategoriaCEN();
 
-                art.NombreCategoria = catCEN.get_ICategoriaCAD().ReadOIDDefault(art.NomCategoria).Nombre;
 
-                int art2 = artCen.New_(art.Nombre, art.Precio, art.NomCategoria, art.Descripcion, art.Stock);
+                art.Articulo.NombreCategoria = catCEN.get_ICategoriaCAD().ReadOIDDefault(art.Articulo.NomCategoria).Nombre;
+
+                int art2 = artCen.New_(art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.NomCategoria, art.Articulo.Descripcion, art.Articulo.Stock);
 
                 //SUBIDA DE LA IMAGEN DEL ARTICULO
                 var path = "";
@@ -217,16 +219,22 @@ namespace WebDSM.Controllers
         // GET: Articulo/Delete/5
         public ActionResult Delete(int id)
         {
+           
             return View();
+            
+
         }
 
         // POST: Articulo/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Models.Admin cat)
         {
             try
             {
-                // TODO: Add delete logic here
+                // TODO: Add insert logic here
+                ArticuloCEN cen = new ArticuloCEN();
+
+                cen.Destroy(cat.Articulo.Id);
 
                 return RedirectToAction("Index");
             }

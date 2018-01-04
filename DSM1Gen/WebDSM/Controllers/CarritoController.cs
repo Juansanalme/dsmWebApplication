@@ -33,6 +33,9 @@ namespace WebDSM.Controllers
             CarritoYLineas model = new AssemblerCarrito().ConvertENToViewModelUI(en);
             //Carrito model = new AssemblerCarrito().ConvertENToModelUI(en);
 
+            CarritoCP cp = new CarritoCP();
+            cp.Calcular_precio(id);
+
             //SACAR LAS FOTOS DE CADA ARTICULO
             foreach(LineaPedido lp in model.LineaPedido)
             {
@@ -142,5 +145,21 @@ namespace WebDSM.Controllers
                 return View();
             }
         }
+
+        public ActionResult QuitarDeCarrito (int id)
+        {
+            
+            LineaPedidoCP cp = new LineaPedidoCP();
+            CarritoCP cp2 = new CarritoCP();
+
+            cp.Quito_linea_a_carroYprecio(id);
+
+            int idUsuario = (int)Session["idUsuario"];
+
+            cp2.Calcular_precio(idUsuario);
+
+            return RedirectToAction("Index", new { id = idUsuario } );
+        }
+
     }
 }
