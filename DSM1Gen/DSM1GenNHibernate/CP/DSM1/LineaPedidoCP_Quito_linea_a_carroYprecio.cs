@@ -47,12 +47,12 @@ public void Quito_linea_a_carroYprecio (int p_LineaPedido_OID)
                 //ELIMINO LA RELACION LINPED CON CARRITO
                 lineaPedidoCEN.Eliminar_producto (p_LineaPedido_OID, carritoId);
 
-                //CALCULO PRECIO DEL CARRITO
-                carritoCP.Calcular_precio (carritoId);
 
                 //DESTROY CP
                 lineaPedidoCAD.Quito_linea_a_carroYprecio (p_LineaPedido_OID);
 
+                //CALCULO PRECIO DEL CARRITO
+                carritoCP.Calcular_precio (carritoId);
 
                 SessionCommit ();
         }
