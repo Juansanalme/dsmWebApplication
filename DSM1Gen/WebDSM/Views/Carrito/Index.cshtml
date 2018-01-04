@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <div class="container my-5">
@@ -42,7 +43,9 @@
                         <div class="col-3 col-md-2 p-0">
                             <span class="d-md-none">TOTAL: </span>@item.Total €
                         </div>
-                        <div class="col-1">X</div>
+                        <div class="col-1">
+                            @Html.ActionLink("X", "QuitarDeCarrito", new { id = item.Id})
+                        </div>
                     </div>
                     <hr />
                 }
