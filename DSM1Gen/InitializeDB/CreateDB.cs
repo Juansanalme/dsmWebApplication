@@ -184,12 +184,16 @@ public static void InitializeData ()
                 List<int> articulos = new List<int>();
                 int articulo1 = articuloCEN.New_ ("FrostMourne", 10.01, cat1, "Un arma muy especial", 5);
                 int articulo2 = articuloCEN.New_ ("Escopeta Frost L4D", 1, cat2, "Piun, piun", 5);
-                int articulo3 = articuloCEN.New_ ("Contrato Virtuoso", 800, cat2, "Espada YohRa", 5);
+                int articulo3 = articuloCEN.New_ ("Contrato Virtuoso", 800, cat3, "Espada YohRa", 5);
                 int articulo4 = articuloCEN.New_ ("Raygun", 50, cat2, "Arma de rayos molona", 5);
+                int articulo5 = articuloCEN.New_("Excalibur", 90, cat1, "Moar armas molonas", 5);
+                int articulo6 = articuloCEN.New_("Daga del tiempo", 550, cat1, "Daga de Prince of Persia, puede controlar el tiempo", 5);
                 articulos.Add (articulo1);
                 articulos.Add (articulo2);
                 articulos.Add (articulo3);
                 articulos.Add (articulo4);
+                articulos.Add (articulo5);
+                articulos.Add (articulo6);
 
                 Console.WriteLine ("Creo dos articulos:");
                 Console.WriteLine ("  Nombre: " + articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulo1).Nombre);

@@ -315,28 +315,30 @@ p, label, img, input, header, span, section, div, table, figure, a {
     -moz-column-gap: 2px;
     column-gap: 2px;
     
+    -webkit-column-width: 700px;
+    -moz-column-width: 700px;
     column-width: 700px;
-    column-fill: auto;
+
+    column-fill: balance;
 
     margin: 0;
     -webkit-transition: none;
     transition: none;
-    padding: 50px 0 50px;
+    padding: 50px 2px 50px;
+    position: relative;
 }
 
 .column figure{
     text-shadow: 2px 0 0 #242424, -2px 0 0 #242424, 0 2px 0 #242424, 0 -2px 0 #242424, 1px 1px #242424, -1px -1px 0 #242424, 1px -1px 0 #242424, -1px 1px 0 #242424;
-    display: inline-block !important;
+    display: block !important;
     position: relative !important;
 	width: 100% !important;
 	margin: 0 0 2px !important;
 	overflow: hidden !important;
-    float: left !important;
 }
 
 .column figure img{
     max-height: 100% !important;
     margin: 0 auto;
 }
-
 
