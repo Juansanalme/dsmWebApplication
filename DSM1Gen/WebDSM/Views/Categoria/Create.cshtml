@@ -28,9 +28,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NumSuper, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.NomSuper, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.NumSuper, new SelectList(listSCat, "Value", "Text"), "Selecciona una supercategoria")
+                @Html.DropDownListFor(model => model.NomSuper, new SelectList(listSCat, "Value", "Text"), "Selecciona una supercategoria")
 
 
                 @*

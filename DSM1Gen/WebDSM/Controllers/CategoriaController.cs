@@ -64,16 +64,17 @@ namespace WebDSM.Controllers
 
         // POST: Categoria/Create
         [HttpPost]
-        public ActionResult Create(Categoria cat)
+        public ActionResult Create(Models.Admin cat)
         {
             try
             {
                 // TODO: Add insert logic here
                 CategoriaCEN cen = new CategoriaCEN();
 
-                int catId = cen.New_(cat.Nombre, 0); //SE LE PASA 0, POR LOS LOLES
+                int catId = cen.New_(cat.Categoria.Nombre, 0); //SE LE PASA 0, POR LOS LOLES
 
-                cen.Anyadir_supercat(catId,cat.SuperId);
+                if(cat.Categoria.SuperId != 0)
+                    cen.Anyadir_supercat(catId,cat.Categoria.SuperId);
 
                 return RedirectToAction("Index");
             }
@@ -113,11 +114,14 @@ namespace WebDSM.Controllers
 
         // POST: Categoria/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Models.Admin cat)
         {
             try
             {
-                // TODO: Add delete logic here
+                // TODO: Add insert logic here
+                CategoriaCEN cen = new CategoriaCEN();
+
+                cen.Destroy(cat.Categoria.Id);
 
                 return RedirectToAction("Index");
             }
