@@ -5,54 +5,57 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<section class="grid column">
+    @foreach (var item in Model)
+    {
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Precio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Stock)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NombreCategoria)
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink(item.Nombre, "Details", new { id = item.Id})
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Precio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stock)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombreCategoria)
-        </td>
-
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+        <figure class="effect-oscar">
+            <img src="~/Images/maxresdefault.jpg" alt="" />
+            <figcaption>
+                <h2>@Html.DisplayFor(modelItem => item.Nombre) <span> @Html.DisplayFor(modelItem => item.Precio)</span></h2>
+                <p>@Html.DisplayFor(modelItem => item.Descripcion)</p>
+                <a href="#">View more</a>
+            </figcaption>
+        </figure>
+        <figure class="effect-oscar">
+            <img src="~/Images/kirito-wallpaper-3.jpg" alt="" />
+            <figcaption>
+                <h2>@Html.DisplayFor(modelItem => item.Nombre) <span> @Html.DisplayFor(modelItem => item.Precio)</span></h2>
+                <p>@Html.DisplayFor(modelItem => item.Descripcion)</p>
+                <a href="#">View more</a>
+            </figcaption>
+        </figure>
+        <figure class="effect-oscar">
+            <img src="~/Images/Shut-up-and-take-my-money!.png" alt="" />
+            <figcaption>
+                <h2>@Html.DisplayFor(modelItem => item.Nombre) <span> @Html.DisplayFor(modelItem => item.Precio)</span></h2>
+                <p>@Html.DisplayFor(modelItem => item.Descripcion)</p>
+                <a href="#">View more</a>
+            </figcaption>
+        </figure>
+        <figure class="effect-oscar">
+            <img src="~/Images/Nier.jpg" alt="" />
+            <figcaption>
+                <h2>@Html.DisplayFor(modelItem => item.Nombre) <span> @Html.DisplayFor(modelItem => item.Precio)</span></h2>
+                <p>@Html.DisplayFor(modelItem => item.Descripcion)</p>
+                <a href="#">View more</a>
+            </figcaption>
+        </figure>
+        <figure class="effect-oscar">
+            <img src="~/Images/Shut-up-and-take-my-money!.png" alt="" />
+            <figcaption>
+                <h2>@Html.DisplayFor(modelItem => item.Nombre) <span> @Html.DisplayFor(modelItem => item.Precio)</span></h2>
+                <p>@Html.DisplayFor(modelItem => item.Descripcion)</p>
+                <a href="#">View more</a>
+            </figcaption>
+        </figure>
+        <figure class="effect-oscar">
+            <img src="~/Images/Shut-up-and-take-my-money!.png" alt="" />
+            <figcaption>
+                <h2>@Html.DisplayFor(modelItem => item.Nombre) <span> @Html.DisplayFor(modelItem => item.Precio)</span></h2>
+                <p>@Html.DisplayFor(modelItem => item.Descripcion)</p>
+                <a href="#">View more</a>
+            </figcaption>
+        </figure>
+    }
+</section>
