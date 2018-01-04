@@ -3,12 +3,17 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int UserId = 0;
+    if (Session["login"] != null)
+    {
+        UserId = (int)Session["idUsuario"];
+    }
 }
 
-<h2>Details</h2>
+<h2>Detalles del Pedido</h2>
 
 <div>
-    <h4>PedidoYLineas</h4><b>Fecha: @Model.Pedido.Fecha Total: @Model.Pedido.Total</b>
+    <h4>Datos</h4><b>Fecha: @Model.Pedido.Fecha - Total: @Model.Pedido.Total</b>
     <hr />
     <dl class="dl-horizontal">
         @foreach (var item in Model.LineaPedido)
@@ -18,6 +23,12 @@
     </dl>
 </div>
 <p>
-    @* @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) | *@
-    @Html.ActionLink("Back to List", "Index")
+    @if (UserId != 0)
+    {
+        @Html.ActionLink("Lista de Pedidos", "../Pedido/Index", new { id = UserId })
+    }
+    else
+    {
+    <p>No logeado</p>
+    }
 </p>

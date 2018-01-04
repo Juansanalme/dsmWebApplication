@@ -154,7 +154,12 @@
                     else
                     {
                         @*CON @SESSION[LOGIN] COJO EL NOMBRE DE USUARIO QUE HE ALMACENADO AL CREAR LA SESION*@
-                        <div class="col-6"> @Session["login"]</div>
+                        <a class="col-6" href="@Url.Action("Perfil", "Registrado", new { id = Session["idUsuario"] })">@Session["login"]</a>
+
+                        using (Html.BeginForm("Logout", "Registrado", FormMethod.Post))
+                        {
+                            <input type="submit" value="Logout" />
+                        }
                         <a class="col-6 cesta pr-2 pt-2" href="@Url.Action("Index", "Carrito", new {id = Session["idUsuario"] })">
                             0  <span>Cesta</span>
                         </a>

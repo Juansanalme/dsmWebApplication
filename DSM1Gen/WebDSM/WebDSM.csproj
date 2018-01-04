@@ -300,9 +300,14 @@
     <Content Include="Views\Puja\Details.cshtml" />
     <Content Include="Views\Shared\SimpleLayout.cshtml" />
     <Content Include="Views\Registrado\Admin.cshtml" />
+    <Content Include="Views\Registrado\Perfil.cshtml" />
+    <Content Include="Views\Registrado\Edit.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Uploads\Item_images\" />
+    <Folder Include="Content\Uploads\User_icons\" />
     <Folder Include="Views\Valoracion\" />
   </ItemGroup>
   <ItemGroup>

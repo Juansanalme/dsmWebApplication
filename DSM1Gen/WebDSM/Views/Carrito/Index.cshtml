@@ -22,7 +22,15 @@
                         <div class="col-5 text-left pl-3">
                             <div class="row">
                                 <div class="col">
-                                    <img class="miniatura-carrito" src="~/Images/kirito-wallpaper-3.jpg" />
+                                    @if(item.Imagen != "")
+                                    {
+                                        <img src="@Url.Content("~/Content/Uploads/Item_images/"+item.Imagen)" class="miniatura-carrito"/>
+                                    }
+                                    else
+                                    {
+                                        <img class="miniatura-carrito" src="~/Images/kirito-wallpaper-3.jpg" />
+                                    }
+
                                 </div>
                                 <div class="col">
                                     @item.Articulo

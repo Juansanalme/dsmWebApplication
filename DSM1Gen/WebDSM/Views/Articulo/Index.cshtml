@@ -10,7 +10,17 @@
     {
 
         <figure class="effect-oscar">
-            <img src="~/Images/Shut-up-and-take-my-money!.png" alt="" />
+
+            @if (item.Item_Image != "")
+            {
+                <img src=" @Url.Content("~/Content/Uploads/Item_images/"+item.Item_Image)" alt="Imagen del articulo @item.Nombre" />
+            }
+            else
+            {
+                <img src="~/Images/Shut-up-and-take-my-money!.png" alt="" />
+            }
+
+
             <figcaption>
                 <h2>@Html.DisplayFor(modelItem => item.Nombre) <span> @Html.DisplayFor(modelItem => item.Precio)</span></h2>
                 <p>@Html.DisplayFor(modelItem => item.Descripcion)</p>

@@ -17,6 +17,9 @@ namespace WebDSM.Models
         [ScaffoldColumn(false)]
         public bool Login { get; set; } //NO HACE FALTA DARLE VALOR, SIEMPRE VA A SER FALSE, A NO SER QUE SE INICIE SESION
 
+        [ScaffoldColumn(false)]
+        public string User_Icon { get; set; }
+
         //[ScaffoldColumn(false)]
         //public Valoracion valoracion { get; set;} //LISTA DE VALORACIONES DEL USUARIO
 
@@ -72,10 +75,6 @@ namespace WebDSM.Models
         [Required(ErrorMessage = "Debe de indicar un nombre de usuario")]
         [StringLength(maximumLength: 30, MinimumLength = 0, ErrorMessage = "El nombre de usuario debe tener entre 0 y 30 caracteres")]
         public string NUsuario { get; set; }
-        
-        
-
-
 
 
     }

@@ -11,6 +11,7 @@ using DSM1GenNHibernate.CP.DSM1;
 using WebDSM.Models;
 using WebMatrix.WebData;
 using DSM1GenNHibernate.Utils;
+using System.IO;
 
 namespace WebDSM.Controllers
 {
@@ -70,6 +71,12 @@ namespace WebDSM.Controllers
             }
         }
 
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            Session.RemoveAll();
+            return RedirectToAction("../Home");
+        }
 
         // GET: Registrado
         public ActionResult Index()
@@ -90,10 +97,43 @@ namespace WebDSM.Controllers
             return View(enumR);
         }
 
-        // GET: Registrado/Details/5
-        public ActionResult Details(int id)
+        // GET: Registrado/Perfil/5
+        public ActionResult Perfil(int id)
         {
-            return View();
+            RegistradoCAD cad = new RegistradoCAD();
+            RegistradoEN en = cad.ReadOIDDefault(id);
+
+            Registrado model = new AssemblerRegistrado().ConvertENToModelUI(en);
+            
+            //SACO EL ICONO DEL USUARIO
+            string idUsu = model.Id.ToString();
+            string iconoUsu = Path.Combine(Server.MapPath("~/Content/Uploads/User_icons"), idUsu);
+
+            if ((System.IO.File.Exists(iconoUsu + ".jpg")))
+            {
+                model.User_Icon = model.Id + ".jpg";
+            }
+            else if ((System.IO.File.Exists(iconoUsu + ".jpeg")))
+            {
+                model.User_Icon = model.Id + ".jpeg";
+            }
+            else if ((System.IO.File.Exists(iconoUsu + ".png")))
+            {
+                model.User_Icon = model.Id + ".png";
+            }
+            else if ((System.IO.File.Exists(iconoUsu + ".gif")))
+            {
+                model.User_Icon = model.Id + ".gif";
+            }
+            else
+            {
+                //SI NO TIENE FOTO DE PERFIL
+                model.User_Icon = "";
+            }
+
+            SessionClose();
+
+            return View(model);
         }
 
         // GET: Registrado/Create
@@ -106,10 +146,11 @@ namespace WebDSM.Controllers
         [HttpPost]
         [AllowAnonymous]            
         [ValidateAntiForgeryToken]  //IMPIDE LA FALSIFICACION DE UNA SOLICITUD
-        public ActionResult Create(Registrado reg)
+        public ActionResult Create(HttpPostedFileBase file, Registrado reg)
         {
             try
             {
+                
                 // TODO: Add insert logic here
                 RegistradoCP cp = new RegistradoCP();
 
@@ -118,10 +159,29 @@ namespace WebDSM.Controllers
                 //ENCRIPTACION DE LA CONTRASENYA
                 string encContra = Util.GetEncondeMD5(reg.Contrasenya);
                 
-                
+
                 //WebSecurity.CreateUserAndAccount(reg.NUsuario, encContra);    //REGISTRO EN LA BDD LITE DE SQL SERVER
                 //WebSecurity.Login(reg.NUsuario, encContra);                   //LOGIN
-                
+
+                //SUBIDA DE LA FOTO
+                var path = "";
+
+                if (file != null)
+                {
+                    if (file.ContentLength > 0)
+                    {
+                        //PARA UTILIZAR PATH SE NECESITA using System.IO
+                        if (    (Path.GetExtension(file.FileName).ToLower() == ".jpg") || (Path.GetExtension(file.FileName).ToLower() == ".png") || 
+                                (Path.GetExtension(file.FileName).ToLower() == ".gif") || (Path.GetExtension(file.FileName).ToLower() == ".jpeg")   )
+                        {
+                            path = Path.Combine(Server.MapPath("~/Content/Uploads/User_icons"), usuSingUp.Id+Path.GetExtension(file.FileName).ToLower());
+                            file.SaveAs(path);
+
+                        }
+
+                    }
+                }
+
 
                 return RedirectToAction("Index");
             }

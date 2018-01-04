@@ -42,7 +42,6 @@ C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\
 C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\Iesi.Collections.dll
 C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\Antlr3.Runtime.dll
 C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\log4net.dll
-C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\obj\Debug\DSM1GenNHibernate.csprojResolveAssemblyReference.cache
 C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\obj\Debug\DSM1GenNHibernate.csproj.CoreCompileInputs.cache
 C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\obj\Debug\DSM1GenNHibernate.dll
 C:\Users\Pablo\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\obj\Debug\DSM1GenNHibernate.pdb
@@ -86,3 +85,4 @@ C:\Users\datri\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\obj\Debug\
 C:\Users\datri\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\obj\Debug\DSM1GenNHibernate.pdb
 D:\Documentos\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\Microsoft.QualityTools.Testing.Fakes.dll
 D:\Documentos\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\es\Microsoft.QualityTools.Testing.Fakes.resources.dll
+C:\Users\pablo\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\obj\Debug\DSM1GenNHibernate.csprojResolveAssemblyReference.cache

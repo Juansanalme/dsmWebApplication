@@ -19,6 +19,7 @@ namespace WebDSM.Models
             reg.FNacimiento = en.Fecha_nac;
             reg.Contrasenya = en.Contrasenya;
             reg.NUsuario = en.N_usuario;
+            reg.Dni = en.Dni;
             
             return reg;
         }
