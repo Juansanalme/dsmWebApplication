@@ -12,6 +12,21 @@
             @Html.DisplayFor(model => model.NUsuario)
         </dd>
 
+        @if (Model.User_Icon != "")
+        {
+            <dt>
+                @*
+                @Html.DisplayNameFor(model => model.User_Icon)
+                *@
+                Icono del usuario
+            </dt>
+
+            <dd>
+                <img src=" @Url.Content("~/Content/Uploads/User_icons/"+Model.User_Icon)" width="200" height="200" alt="Foto del usuario" />
+            </dd>
+
+        }
+
         <dt>
             @Html.DisplayNameFor(model => model.Nombre)
         </dt>
