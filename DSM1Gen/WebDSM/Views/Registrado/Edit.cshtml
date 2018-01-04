@@ -80,7 +80,6 @@
     </div>
 }
 <p>
-    @* @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) | *@
     @if (UserId != 0)
     {
         @Html.ActionLink("Volver al Perfil", "../Registrado/Perfil", new { id = UserId })
@@ -88,5 +87,5 @@
     else
     {
     <p>No logeado</p>
-}
-    </p>
+    }
+</p>
