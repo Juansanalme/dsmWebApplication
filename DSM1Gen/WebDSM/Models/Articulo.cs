@@ -18,6 +18,9 @@ namespace WebDSM.Models
         [ScaffoldColumn(false)]
         public double ValoracionMedia { get; set; }
 
+        [ScaffoldColumn(false)]
+        public string Item_Image { get; set; }
+
         [Display(Prompt = "Nombre del artículo", Description = "Nombre del artículo", Name = "Nombre" )]
         [Required(ErrorMessage = "Debe de indicar un nombre para el artículo")]
         [StringLength(maximumLength: 50, MinimumLength = 0, ErrorMessage = "El nombre tiene que tener entre 0 y 50 caracteres")]

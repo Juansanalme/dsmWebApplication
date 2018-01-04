@@ -41,6 +41,9 @@ namespace WebDSM.Models
         public String Articulo { get; set; }
 
         [ScaffoldColumn(false)]
+        public string Imagen { get; set; }
+
+        [ScaffoldColumn(false)]
         public double PrecioUnidad { get; set; }
 
         [ScaffoldColumn(false)]

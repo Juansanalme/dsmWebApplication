@@ -10,6 +10,7 @@ using DSM1GenNHibernate.CAD.DSM1;
 using DSM1GenNHibernate.CP.DSM1;
 using WebDSM.Models;
 using WebMatrix.WebData;
+using System.IO;
 
 namespace WebDSM.Controllers
 {
@@ -37,6 +38,40 @@ namespace WebDSM.Controllers
             SessionClose();
 
             return View();
+        }
+
+        //DEVUELVE EL MISMO IENUMERABLE<ARTICULO> QUE LE PASES PERO CON LAS FOTOS DE CADA ARTICULO
+        public IEnumerable<Articulo> GetAllFotos(IEnumerable<Articulo> art)
+        {
+            //SACO CADA FOTO DE CADA ARTICULO
+            foreach (Articulo a in art)
+            {
+                string imagen = Path.Combine(Server.MapPath("~/Content/Uploads/Item_images"), a.Id.ToString());
+
+                if ((System.IO.File.Exists(imagen + ".jpg")))
+                {
+                    a.Item_Image = a.Id + ".jpg";
+                }
+                else if ((System.IO.File.Exists(imagen + ".jpeg")))
+                {
+                    a.Item_Image = a.Id + ".jpeg";
+                }
+                else if ((System.IO.File.Exists(imagen + ".png")))
+                {
+                    a.Item_Image = a.Id + ".png";
+                }
+                else if ((System.IO.File.Exists(imagen + ".gif")))
+                {
+                    a.Item_Image = a.Id + ".gif";
+                }
+                else
+                {
+                    //SI NO TIENE FOTO DE PERFIL
+                    a.Item_Image = "";
+                }
+            }
+
+            return art;
         }
 
         // POST: Articulo/Details/5
@@ -85,10 +120,14 @@ namespace WebDSM.Controllers
             IList<ArticuloEN> articulos = articuloCEN.ReadAll(0, -1);
             IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulos).ToList();
 
+            art = GetAllFotos(art);
+
             SessionClose();
 
             return View(art);
         }
+
+       
 
         // GET: Articulo/Details/5
         public ActionResult Details(int id)
@@ -113,19 +152,37 @@ namespace WebDSM.Controllers
 
         // POST: Articulo/Create
         [HttpPost]
-        public ActionResult Create(Articulo art)
+        public ActionResult Create(HttpPostedFileBase file, Articulo art)
         {
             try
             {
+
                 // TODO: Add insert logic here
                 ArticuloCEN artCen = new ArticuloCEN();
                 CategoriaCEN catCEN = new CategoriaCEN();
 
                 art.NombreCategoria = catCEN.get_ICategoriaCAD().ReadOIDDefault(art.NomCategoria).Nombre;
 
-                artCen.New_(art.Nombre, art.Precio, art.NomCategoria, art.Descripcion, art.Stock);
-                
+                int art2 = artCen.New_(art.Nombre, art.Precio, art.NomCategoria, art.Descripcion, art.Stock);
 
+                //SUBIDA DE LA IMAGEN DEL ARTICULO
+                var path = "";
+
+                if (file != null)
+                {
+                    if (file.ContentLength > 0)
+                    {
+                        //PARA UTILIZAR PATH SE NECESITA using System.IO
+                        if ((Path.GetExtension(file.FileName).ToLower() == ".jpg") || (Path.GetExtension(file.FileName).ToLower() == ".png") ||
+                                (Path.GetExtension(file.FileName).ToLower() == ".gif") || (Path.GetExtension(file.FileName).ToLower() == ".jpeg"))
+                        {
+                            path = Path.Combine(Server.MapPath("~/Content/Uploads/Item_images"), art2 + Path.GetExtension(file.FileName).ToLower());
+                            file.SaveAs(path);
+
+                        }
+
+                    }
+                }
 
                 return RedirectToAction("Index");
             }
@@ -191,6 +248,8 @@ namespace WebDSM.Controllers
 
             SessionClose();
 
+            art = GetAllFotos(art);
+
             return View("Index", art);
         }
 
@@ -222,6 +281,8 @@ namespace WebDSM.Controllers
             IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulosEN);
 
             SessionClose();
+
+            art = GetAllFotos(art);
 
             return View("Index", art);
         }
