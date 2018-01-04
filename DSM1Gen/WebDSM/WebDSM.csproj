@@ -194,6 +194,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Articulo.cs" />
     <Compile Include="Models\ArticuloYOpinion.cs" />
     <Compile Include="Models\AssemblerArticulo.cs" />
@@ -298,6 +299,7 @@
     <Content Include="Views\Puja\Index.cshtml" />
     <Content Include="Views\Puja\Details.cshtml" />
     <Content Include="Views\Shared\SimpleLayout.cshtml" />
+    <Content Include="Views\Registrado\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

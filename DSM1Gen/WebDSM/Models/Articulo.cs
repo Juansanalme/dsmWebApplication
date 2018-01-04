@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using DSM1GenNHibernate.CP.DSM1;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 using DSM1GenNHibernate.EN.DSM1;
+using DSM1GenNHibernate.CEN.DSM1;
 
 namespace WebDSM.Models
 {
@@ -46,6 +47,26 @@ namespace WebDSM.Models
 
         [ScaffoldColumn(false)]
         public String NombreCategoria { get; set; }
+
+
+        public List<SelectListItem> getAllNombres()
+        {
+            ArticuloCEN cen = new ArticuloCEN();
+            ArticuloEN en = new ArticuloEN();
+
+            IEnumerable<ArticuloEN> listaEN = cen.get_IArticuloCAD().ReadAll(0, -1);
+
+            List<SelectListItem> miLista = new List<SelectListItem>();
+
+            foreach (ArticuloEN cat in listaEN)
+            {
+                SelectListItem item = new SelectListItem { Value = cat.Id.ToString(), Text = cat.Nombre };
+
+                miLista.Add(item);
+            }
+
+            return miLista;
+        }
 
     }
 }
