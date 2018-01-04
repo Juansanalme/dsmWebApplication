@@ -21,8 +21,12 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-@*          @Html.DisplayFor(modelItem => item.Nombre)*@
-            @Html.ActionLink(item.Nombre, "Details", new { id = item.Id })
+            @*@Html.DisplayFor(modelItem => item.Nombre)*@
+            @*@Html.ActionLink(item.Nombre, "../Articulo/Categoria", new { id = item.Nombre })*@
+            <form action="../Articulo/Categoria" method="post">
+                <input style="display: none;" name="termino" value="@item.Nombre">
+                <button type="submit">@item.Nombre</button>
+            </form>
         </td>
 
         <td>

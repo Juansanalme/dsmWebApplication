@@ -193,5 +193,40 @@ namespace WebDSM.Controllers
 
             return View("Index", art);
         }
+
+        public ActionResult Categoria(String termino)
+        {
+            SessionInitialize();
+
+            ArticuloCAD articuloCAD = new ArticuloCAD(session);
+            ArticuloCEN articuloCEN = new ArticuloCEN(articuloCAD);
+
+            CategoriaCAD categoriaCAD = new CategoriaCAD(session);
+            CategoriaCEN categoriaCEN = new CategoriaCEN(categoriaCAD);
+
+            List<ArticuloEN> articulosEN = new List<ArticuloEN>();
+            articulosEN.AddRange(articuloCEN.Busqueda_por_categoria(termino));
+
+            foreach (CategoriaEN cat in categoriaCAD.ReadAll(0, -1))
+            {
+                if(cat.Nombre == termino)
+                {
+                    foreach (CategoriaEN subcat in cat.Subcategoria)
+                    {
+                        IList<ArticuloEN> articulos = articuloCEN.Busqueda_por_categoria(subcat.Nombre);
+                        articulosEN.AddRange(articulos);
+                    }
+                }
+            }
+
+            IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulosEN);
+
+            //IList<ArticuloEN> articulos = articuloCEN.Busqueda_por_categoria(termino);
+            //IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulos).ToList();
+
+            SessionClose();
+
+            return View("Index", art);
+        }
     }
 }

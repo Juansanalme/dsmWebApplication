@@ -11,13 +11,31 @@
     <h4>Categoria</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
+        <dt>@Html.DisplayNameFor(model => model.Nombre)</dt>
+        <dd>@Html.DisplayFor(model => model.Nombre)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+        <dt>Supercategoría</dt>
+        @if (Model.NomSuper != null)
+        {
+            <dd>@Html.ActionLink(Model.NomSuper, null, new { id = Model.SuperId })</dd>
+        }
+        else
+        {
+            <dd>No tiene</dd>
+        }
+
+        <dt>Subcategorías</dt>
+        @if (Model.Subs.Any())
+        {
+            foreach (var item in Model.Subs)
+            {
+                <dd>@Html.ActionLink(item.Nombre, null, new { id = item.Id })</dd>
+            }
+        }
+        else
+        {
+            <dd>No tiene</dd>
+        }
 
     </dl>
 </div>

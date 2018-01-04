@@ -14,7 +14,21 @@ namespace WebDSM.Models
             Categoria cat = new Categoria();
             cat.Id = en.Id;
             cat.Nombre = en.Nombre;
-            //cat.NumSuper = en.Supercategoria.Id;
+            if (en.Supercategoria != null)
+            {
+                cat.NomSuper = en.Supercategoria.Nombre;
+                cat.SuperId = en.Supercategoria.Id;
+            }
+            
+            if (en.Subcategoria != null)
+            {
+                cat.Subs = new List<Categoria>();
+                foreach (CategoriaEN item in en.Subcategoria)
+                {
+                    Categoria sub = ConvertENToModelUI(item);
+                    cat.Subs.Add(sub);
+                }
+            }
 
             return cat;
         }
