@@ -102,7 +102,8 @@ namespace WebDSM.Controllers
                 cen.Modify(cat.Categoria.Id, cat.Categoria.Nombre, n);
                 if (cat.Categoria.SuperId != 0)
                     cen.Anyadir_supercat(cat.Categoria.Id, cat.Categoria.SuperId);
-
+                else
+                    cen.Anyadir_supercat(cat.Categoria.Id, 0);
                 return RedirectToAction("Index");
             }
             catch (Exception e)
@@ -135,6 +136,49 @@ namespace WebDSM.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        public JsonResult AjaxMethod(int id)
+        {
+            SessionInitialize();
+            CategoriaCAD categoriaCAD = new CategoriaCAD(session);
+            CategoriaCEN categoriaCEN = new CategoriaCEN(categoriaCAD);
+            CategoriaEN categoriaEN = categoriaCEN.get_ICategoriaCAD().ReadOIDDefault(id);
+
+            Categoria cat = null;
+
+            Categoria sub_aux = null;
+            List<Categoria> subs = new List<Categoria>();
+
+            foreach (CategoriaEN sub in categoriaEN.Subcategoria)
+            {
+                sub_aux = new Categoria();
+                sub_aux.Id = sub.Id;
+                sub_aux.Nombre = sub.Nombre;
+                subs.Add(sub_aux);
+            }
+
+            if(categoriaEN.Supercategoria != null)
+            {
+                cat = new Categoria
+                {
+                    Nombre = categoriaEN.Nombre,
+                    SuperId = categoriaEN.Supercategoria.Id,
+                    Subs = subs
+                };
+            }
+            else
+            {
+                cat = new Categoria
+                {
+                    Nombre = categoriaEN.Nombre,
+                    SuperId = -1,
+                    Subs = subs
+                };
+            }
+
+            return Json(cat);
         }
     }
 }

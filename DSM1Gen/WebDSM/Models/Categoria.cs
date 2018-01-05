@@ -14,6 +14,7 @@ namespace WebDSM.Models
         
         public List<SelectListItem> getAllNombres()
         {
+
             CategoriaCEN cen = new CategoriaCEN();
             CategoriaEN en = new CategoriaEN();
 

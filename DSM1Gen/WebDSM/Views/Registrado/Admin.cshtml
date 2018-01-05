@@ -82,7 +82,7 @@
 
                             <div class="form-group">
                                 <label for="Categoria_NomSuper">Supercategoria</label>
-                                @Html.DropDownListFor(model => model.Categoria.SuperId, new SelectList(listSCat, "Value", "Text"), "", new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.Categoria.SuperId, new SelectList(listSCat, "Value", "Text"), "-", new { @class = "form-control" })
                                 <small id="SuperHelp" class="form-text text-muted">Puedes elegir si esta categoría se encuentra dentro de otra.</small>
                             </div>
                             <button type="submit" class="btn btn-outline-dark pointer">Añadir</button>
@@ -107,7 +107,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="Categoria_NomSuper">Supercategoria</label>
-                                @Html.DropDownListFor(model => model.Categoria.SuperId, new SelectList(listSCat, "Value", "Text"), "", new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.Categoria.SuperId, new SelectList(listSCat, "Value", "Text"), "-", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Categoria.SuperId, "", new { @class = "text-danger" })
                                 <small id="SuperHelp" class="form-text text-muted">Puedes elegir si esta categoría se encuentra dentro de otra.</small>
                             </div>
                             <button type="submit" class="btn btn-outline-dark pointer">Actualizar</button>
@@ -174,6 +175,8 @@
                             <button type="submit" class="btn btn-outline-dark pointer">Añadir</button>
                         }
                     </div>
+
+                    <!--MODIFICAR ARTICULO-->
                     <div class="tab-pane fade" id="art-modify" role="tabpanel" aria-labelledby="art-modify-tab">
                         <div class="display-4 text-center mt-4">Editar artículo</div>
                         @using (Html.BeginForm("Edit", "Articulo", FormMethod.Post, new { id = "needs-validation", novalidate = "" }))

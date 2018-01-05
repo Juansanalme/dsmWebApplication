@@ -31,6 +31,67 @@
     @RenderSection("scripts", required: false)
     <script>
         $(function () {
+            $("#Categoria_Id").change(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Categoria/AjaxMethod",
+                    data: '{id: "' + $("#Categoria_Id").val() + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        $("#cat-modify select#Categoria_SuperId").attr("disabled", false);
+                        $("#cat-modify select#Categoria_SuperId + small#SuperHelp").text('Puedes elegir si esta categoría se encuentra dentro de otra.');
+                        $("#cat-modify select#Categoria_SuperId option").show();
+                        if (response.Subs.length != 0) {
+                            for (var i=0; i < response.Subs.length; i++) {
+                                $("#cat-modify select#Categoria_SuperId option[value=" + response.Subs[i].Id + "]").hide();
+                            }
+                        }
+                        $("#cat-modify select#Categoria_SuperId option[value=" + $("#Categoria_Id").val() + "]").hide();
+                        $("#cat-modify input#Categoria_Nombre").val(response.Nombre);
+                        $("#cat-modify select#Categoria_SuperId").val(response.SuperId);
+                        var length = $('#cat-modify select#Categoria_SuperId option').filter(function () {
+                            return $(this).css('display') != 'none';
+                        }).length;
+
+                        if (length == 1) {
+                            $("#cat-modify select#Categoria_SuperId").attr("disabled", true);
+                            $("#cat-modify select#Categoria_SuperId + small#SuperHelp").text('No existen categorias disponibles que no sean subcategorias.');
+                        }
+                        
+                    }
+                });
+            });
+            $.ajax({
+                type: "POST",
+                url: "/Categoria/AjaxMethod",
+                data: '{id: "' + $("#Categoria_Id").val() + '" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    $("#cat-modify select#Categoria_SuperId").attr("disabled", false);
+                    $("#cat-modify select#Categoria_SuperId + small#SuperHelp").text('Puedes elegir si esta categoría se encuentra dentro de otra.');
+                    if (response.Subs.length != 0) {
+                        for (var i=0; i < response.Subs.length; i++) {
+                            $("#cat-modify select#Categoria_SuperId option[value=" + response.Subs[i].Id + "]").hide();
+                        }
+                    } 
+                    $("#cat-modify select#Categoria_SuperId option[value=" + $("#Categoria_Id").val()+"]").hide();
+                    $("#cat-modify input#Categoria_Nombre").val(response.Nombre);
+                    $("#cat-modify select#Categoria_SuperId").val(response.SuperId);
+
+                    var length = $('#cat-modify select#Categoria_SuperId option').filter(function () {
+                        return $(this).css('display') != 'none';
+                    }).length;
+
+                    if (length == 1) {
+                        $("#cat-modify select#Categoria_SuperId").attr("disabled", true);
+                        $("#cat-modify select#Categoria_SuperId + small#SuperHelp").text('No existen categorias disponibles que no sean subcategorias.');
+                    }
+                    
+                }
+            });
+
             $("#Articulo_Id").change(function () {
                 $.ajax({
                     type: "POST",
@@ -62,6 +123,7 @@
                 }
             });
         });
+
         $('a.nav-link').on('click', function () {
             $('.collapse').collapse('hide');
         });

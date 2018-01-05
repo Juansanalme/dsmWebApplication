@@ -276,6 +276,11 @@ namespace WebDSM.Controllers
 
             registradoCEN.Convertir_usuario(id, ad);
 
+            if(!ad && id == (int)Session["idUsuario"])
+            {
+                System.Web.HttpContext.Current.Session.Remove("admin");
+            }
+
             IList<RegistradoEN> registrados = registradoCEN.get_IRegistradoCAD().ReadAll(0, -1);
 
             Admin art = new AssemblerRegistrado().Conversion(registrados);
