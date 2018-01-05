@@ -1,5 +1,4 @@
-﻿
-@model WebDSM.Models.Admin
+﻿@model WebDSM.Models.Admin
 
 @{
     Layout = "~/Views/Shared/SimpleLayout.cshtml";
@@ -10,6 +9,19 @@
 
     var message = @Session["PujaError"];
     if (message != null) System.Web.HttpContext.Current.Session.Remove("PujaError");
+
+    
+    
+
+
+}
+
+@{ 
+    @*PETA SI NO LO PONGO AQUI*@
+    if(Session["admin"] == null || (bool)Session["admin"] == false)
+    {
+        Response.Redirect("~/Home");
+    }
 }
 
 

@@ -1,16 +1,37 @@
 ﻿@model WebDSM.Models.Registrado
 
-@{ 
+@{
     int UserId = 0;
-    if (Session["login"] != null)
+    bool aux = false;
+    string aux2 = Request.RawUrl; @*/Registrado/Edit/32768*@
+
+    if (Session["login"] == null)
+    {
+
+        Response.Redirect("~/Registrado/Login");
+
+    }
+    else if (aux2 != "/Registrado/Edit/" + (int)Session["idUsuario"] && (bool)Session["admin"] == false)
+    {
+
+        aux = true;
+        Response.Redirect("~/Home");
+
+    }
+    else
     {
         UserId = (int)Session["idUsuario"];
     }
+
 }
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+    if (aux)
+    {
+        @*ESTA ASI PORQUE SINO PETA*@
+        @Html.AntiForgeryToken()
+    }
 
     <div class="form-horizontal">
         <h4>Registrado</h4>
@@ -87,5 +108,5 @@
     else
     {
     <p>No logeado</p>
-    }
-</p>
+}
+    </p>

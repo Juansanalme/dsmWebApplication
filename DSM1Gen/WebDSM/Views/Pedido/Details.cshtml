@@ -3,11 +3,23 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
     int UserId = 0;
-    if (Session["login"] != null)
+
+    if (Session["login"] == null)
+    {
+        Response.Redirect("~/Registrado/Login");
+    }
+    else if (Model.Pedido.Registrado != (string)Session["login"] && (bool)Session["admin"] == false)
+    {
+
+        Response.Redirect("~/Home");
+    }
+    else
     {
         UserId = (int)Session["idUsuario"];
     }
+
 }
 
 <h2>Detalles del Pedido</h2>

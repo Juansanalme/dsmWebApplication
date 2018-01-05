@@ -3,11 +3,26 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
     int UserId = 0;
-    if (Session["login"] != null)
+    string aux = Request.RawUrl; @*/Pedido/Index/32768*@
+
+
+    if (Session["login"] == null)
+    {
+        Response.Redirect("~/Registrado/Login");
+    }
+    else if (aux != "/Pedido/Index/"+(int)Session["idUsuario"] && (bool)Session["admin"] == false)
+    {
+
+        Response.Redirect("~/Home");
+    }
+    else
     {
         UserId = (int)Session["idUsuario"];
     }
+
+
 }
 
 <h2>Lista de Pedidos</h2>
@@ -40,6 +55,6 @@
     }
     else
     {
-    <p>No logeado</p>
-}
-    </p>
+        <p>No logeado</p>
+    }
+</p>

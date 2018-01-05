@@ -4,6 +4,19 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
+    string aux = Request.RawUrl; @*/Carrito/Index/32768*@
+
+    
+    if (Session["login"] == null)
+    {
+        Response.Redirect("~/Registrado/Login");
+    }
+    
+    else if (aux != "/Carrito/Index/"+(int)Session["idUsuario"] && (bool)Session["admin"] == false)
+    {
+        Response.Redirect("~/Home");
+    }
+
 }
 
 <div class="container my-5">

@@ -1,5 +1,16 @@
 ﻿@model WebDSM.Models.Registrado
 
+@{ 
+    if(Session["login"] == null)
+    {
+        Response.Redirect("~/Registrado/Login");
+    }
+    else if(Model.Id != (int)Session["idUsuario"] && (bool)Session["admin"] == false)
+    {
+        Response.Redirect("~/Home");
+    }
+}
+
 <div>
     <h4>Perfil</h4>
     <hr />
