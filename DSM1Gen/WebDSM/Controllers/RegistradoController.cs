@@ -217,7 +217,14 @@ namespace WebDSM.Controllers
         // GET: Registrado/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            RegistradoCEN registradoCEN = new RegistradoCEN();
+
+            registradoCEN.Destroy(id);
+
+            IList<RegistradoEN> registrados = registradoCEN.get_IRegistradoCAD().ReadAll(0, -1);
+            Admin art = new AssemblerRegistrado().Conversion(registrados);
+
+            return View("Admin", art);
         }
 
         // POST: Registrado/Delete/5
@@ -247,6 +254,19 @@ namespace WebDSM.Controllers
             Admin art = new AssemblerRegistrado().Conversion(registrados);
 
             return View(art);
+        }
+
+        public ActionResult Beater(int id, bool ad)
+        {
+            RegistradoCEN registradoCEN = new RegistradoCEN();
+
+            registradoCEN.Convertir_usuario(id, ad);
+
+            IList<RegistradoEN> registrados = registradoCEN.get_IRegistradoCAD().ReadAll(0, -1);
+
+            Admin art = new AssemblerRegistrado().Conversion(registrados);
+
+            return View("Admin", art);
         }
 
     }

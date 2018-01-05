@@ -202,17 +202,22 @@ namespace WebDSM.Controllers
 
         // POST: Articulo/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Models.Admin art)
         {
             try
             {
-                // TODO: Add update logic here
+                ArticuloCEN articuloCEN = new ArticuloCEN();
 
-                return RedirectToAction("Index");
+                ArticuloEN new_art = new ArticuloEN();
+
+                articuloCEN.Modify(art.Articulo.Id, art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.Descripcion, art.Articulo.Stock);
+
+                return RedirectToAction("Details/"+art.Articulo.Id);
             }
             catch
             {
-                return View();
+                System.Web.HttpContext.Current.Session["PujaError"] = "Error al actualizar artículo";
+                return RedirectToAction("../Registrado/Admin");
             }
         }
 

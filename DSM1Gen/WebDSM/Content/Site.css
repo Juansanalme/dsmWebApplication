@@ -330,6 +330,7 @@ a:hover {
     outline: none;
 }
 
+
 p, label, img, input, header, span, section, div, table, figure, a {
     -webkit-transition: width 0.3s ease-in-out;
     transition: width 0.3s ease-in-out;
@@ -343,9 +344,9 @@ p, label, img, input, header, span, section, div, table, figure, a {
     -moz-column-gap: 2px;
     column-gap: 2px;
     
-    -webkit-column-width: 700px;
-    -moz-column-width: 700px;
-    column-width: 700px;
+    -webkit-column-width: 600px;
+    -moz-column-width: 600px;
+    column-width: 600px;
 
     column-fill: balance;
 

@@ -25,44 +25,46 @@
 }
 
 
-<div class="col-3 h-100 bg-black position-fixed"></div>
+<div class="col-3 h-100 bg-black position-fixed d-none d-lg-block"></div>
 
-<div class="container-fluid">
-
+<div class="container-fluid pb-3">
     <div class="row">
-        <div class="col-3">
-            <div class="row justify-content-center mb-3">
+        <div class="col-12 flex-lg-column col-lg-3 navbar navbar-expand-lg navbar-dark  bg-black">
+            <div class="row justify-content-center mb-3 w-100">
                 <div class="col-12 text-center pt-2">
                     <img class="logo-img" src="~/Images/NA-ME.png" alt="NA-ME" />
                 </div>
+                <button class="navbar-toggler mr-1" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 @Html.ActionLink("Volver", "Index", "Home", null, new { @class = "btn btn-outline-danger w-50" })
+
             </div>
-            <div class="row">
-                <div class="col nav flex-column p-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-
-                    <h4 class="elegant text-white">Categoría</h4>
-                    <a class="nav-link pl-3" id="cat-create-tab" data-toggle="pill" href="#cat-create" role="tab" aria-controls="cat-create" aria-selected="false">Añadir</a>
-                    <a class="nav-link pl-3" id="cat-modify-tab" data-toggle="pill" href="#cat-modify" role="tab" aria-controls="cat-modify" aria-selected="false">Editar</a>
-                    <a class="nav-link pl-3" id="cat-delete-tab" data-toggle="pill" href="#cat-delete" role="tab" aria-controls="cat-delete" aria-selected="false">Eliminar</a>
-
-
-                    <h4 class="elegant text-white mt-3">Artículo</h4>
-                    <a class="nav-link pl-3" id="art-create-tab" data-toggle="pill" href="#art-create" role="tab" aria-controls="art-create" aria-selected="false">Añadir</a>
-                    <a class="nav-link pl-3" id="art-modify-tab" data-toggle="pill" href="#art-modify" role="tab" aria-controls="art-modify" aria-selected="false">Editar</a>
-                    <a class="nav-link pl-3" id="art-delete-tab" data-toggle="pill" href="#art-delete" role="tab" aria-controls="art-delete" aria-selected="false">Eliminar</a>
+            
+            <div class="navbar-collapse row w-100 collapse" id="navbarSupportedContent">     
+                <div class="nav h-100 w-100 align-self-baseline text-center text-lg-left" >
+                    <h4 class="col-12 px-0 elegant text-white">Categoría</h4>
+                    <a class="col-12 nav-link pl-lg-3" id="cat-create-tab" data-toggle="pill" href="#cat-create">Añadir</a>
+                    <a class="col-12 nav-link pl-lg-3" id="cat-modify-tab" data-toggle="pill" href="#cat-modify">Editar</a>
+                    <a class="col-12 nav-link pl-lg-3" id="cat-delete-tab" data-toggle="pill" href="#cat-delete">Eliminar</a>
 
 
-                    <h4 class="elegant text-white mt-3">Puja</h4>
-                    <a class="nav-link pl-3" id="puj-create-tab" data-toggle="pill" href="#puj-create" role="tab" aria-controls="puj-create" aria-selected="false">Añadir</a>
-                    <a class="nav-link pl-3" id="puj-delete-tab" data-toggle="pill" href="#puj-delete" role="tab" aria-controls="puj-delete" aria-selected="false">Cerrar</a>
+                    <h4 class="col-12 px-0 elegant text-white mt-3">Artículo</h4>
+                    <a class="col-12 nav-link pl-lg-3" id="art-create-tab" data-toggle="pill" href="#art-create">Añadir</a>
+                    <a class="col-12 nav-link pl-lg-3" id="art-modify-tab" data-toggle="pill" href="#art-modify">Editar</a>
+                    <a class="col-12 nav-link pl-lg-3" id="art-delete-tab" data-toggle="pill" href="#art-delete">Eliminar</a>
 
-                    <h4 class="elegant text-white mt-3">Usuarios</h4>
-                    <a class="nav-link pl-3" id="users-tab" data-toggle="pill" href="#users" role="tab" aria-controls="users" aria-selected="false">Administrar</a>
 
+                    <h4 class="col-12 px-0 elegant text-white mt-3">Puja</h4>
+                    <a class="col-12 nav-link pl-lg-3" id="puj-create-tab" data-toggle="pill" href="#puj-create">Añadir</a>
+                    <a class="col-12 nav-link pl-lg-3" id="puj-delete-tab" data-toggle="pill" href="#puj-delete">Cerrar</a>
+
+                    <h4 class="col-12 px-0 elegant text-white mt-3">Usuarios</h4>
+                    <a class="col-12 nav-link pl-lg-3" id="users-tab" data-toggle="pill" href="#users" role="tab" aria-controls="users" aria-selected="false">Administrar</a>
                 </div>
             </div>
         </div>
-        <div class="col-9">
+        <div class="col-12 col-lg-9">
             <div class="row">
                 <div class="col tab-content" id="v-pills-tabContent">
                     @message
@@ -165,7 +167,7 @@
                     </div>
                     <div class="tab-pane fade" id="art-modify" role="tabpanel" aria-labelledby="art-modify-tab">
                         <div class="display-4 text-center mt-4">Editar artículo</div>
-                        @using (Html.BeginForm("Modify", "Articulo", FormMethod.Post, new { id = "needs-validation", novalidate = "" }))
+                        @using (Html.BeginForm("Edit", "Articulo", FormMethod.Post, new { id = "needs-validation", novalidate = "" }))
                         {
                             <div class="form-group mt-3">
                                 <label for="Categoria_NomSuper">Artículo</label>
@@ -186,12 +188,6 @@
                                 <small id="nameHelp" class="form-text text-muted">Elige un nuevo precio para el artículo.</small>
                             </div>
 
-                            <div class="form-group">
-                                <label for="Articulo_NomCategoria">Categoria</label>
-                                @Html.DropDownListFor(model => model.Articulo.NomCategoria, new SelectList(listSCat, "Value", "Text"), null, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Articulo.NomCategoria, "", new { @class = "text-danger" })
-                                <small id="SuperHelp" class="form-text text-muted">Elige una nueva categoría para el artículo.</small>
-                            </div>
 
                             <div class="form-group">
                                 <label for="Articulo_Descripcion">Descripcion</label>
@@ -207,9 +203,6 @@
                                 <small id="nameHelp" class="form-text text-muted">Cambia el número de unidades disponibles.</small>
                             </div>
 
-                            <div class="form-group">
-                                <input type="file" name="file" value="Browse" />
-                            </div>
                             <button type="submit" class="btn btn-outline-dark pointer">Editar</button>
                         }
                     </div>
@@ -226,8 +219,6 @@
                             <button type="submit" class="btn btn-outline-dark pointer">Eliminar</button>
                         }
                     </div>
-
-
 
                     <div class="tab-pane fade" id="puj-create" role="tabpanel" aria-labelledby="puj-create-tab">
                         <div class="display-4 text-center mt-4">Añadir puja</div>
@@ -258,7 +249,7 @@
                     </div>
 
                     <div class="tab-pane fade" id="puj-delete" role="tabpanel" aria-labelledby="puj-delete-tab">
-                         <div class="display-4 text-center mt-4">Cerrar puja</div>
+                        <div class="display-4 text-center mt-4">Cerrar puja</div>
                         @using (Html.BeginForm("Cierra", "Puja", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             <div class="form-group mt-3">
@@ -283,27 +274,38 @@
                         <div class="display-4 text-center mt-4">Administrar usuarios</div>
                         <div class="row mx-2 mt-4 p-3 d-none d-xl-flex">
                             <div class="col-1">Nombre de usuario</div>
-                            <div class="col-4">Contraseña</div>
+                            <div class="col-3 text-left text-xl-center">Contraseña</div>
                             <div class="col-1">Nombre</div>
                             <div class="col-1">Apellidos</div>
                             <div class="col-1">Fecha de nacimiento</div>
                             <div class="col-1 text-center">Edad</div>
                         </div>
-                        @foreach (var item in Model.Registrado) {
-                        <div class="row mx-2 mt-2 p-3 bg-black">
-                            <div class="col-12 mb-3 mb-xl-0 col-xl-1 "><small class="clearfix d-xl-none">Nombre de usuario: </small> @Html.DisplayFor(modelItem => item.NUsuario)</div>
-                            <div class="col-12 mb-3 mb-xl-0 col-xl-4"><small class="clearfix d-xl-none">Contraseña: </small> @Html.DisplayFor(modelItem => item.Contrasenya)</div>
-                            <div class="col-12 col-md-6 mb-3 mb-xl-0 col-xl-1"><small class="clearfix d-xl-none">Nombre: </small> @Html.DisplayFor(modelItem => item.Nombre)</div>
-                            <div class="col-12 col-md-6 mb-3 mb-xl-0 col-xl-1"><small class="clearfix d-xl-none">Apellidos: </small> @Html.DisplayFor(modelItem => item.Apellidos)</div>
-                            <div class="col-6 col-xl-1"><small class="clearfix d-xl-none">Fecha de nacimiento: </small> @Html.DisplayFor(modelItem => item.FNacimiento)</div>
-                            <div class="col-6 mb-3 mb-xl-0 col-xl-1"><small class="clearfix d-xl-none">Edad: </small> @Html.DisplayFor(modelItem => item.Edad)</div>
-                            <div class="col-12 mb-2 mb-xl-0 col-xl-1 px-1">@Html.ActionLink("Carrito", "Index", "Carrito", new { id = item.Id }, new { @class = "btn btn-outline-light w-100" })</div>
-                            <div class="col-12 mb-2 mb-xl-0 col-xl-1 px-1">@Html.ActionLink("Pedidos", "Index", "Pedido", new { id = item.Id }, new { id = item.Id, @class = "btn btn-outline-light w-100" })</div>
-                            <div class="col-12 mb-2 mb-xl-0 col-xl-1 px-1">@Html.ActionLink("Borrar", "Delete", "Registrado", new { id = item.Id }, new { id = item.Id, @class="btn btn-outline-light w-100" })</div>
-                        </div>
+                        @foreach (var item in Model.Registrado)
+                        {
+                            <div class="row mx-2 mt-2 p-2 bg-black">
+
+                                <div class="col-12 mb-3 mb-xl-0 col-xl-1 "><small class="clearfix d-xl-none">Nombre de usuario: </small> @Html.DisplayFor(modelItem => item.NUsuario)</div>
+                                <div class="col-12 mb-3 mb-xl-0 col-xl-3 text-left text-xl-center"><small class="clearfix d-xl-none">Contraseña: </small> <small> @Html.DisplayFor(modelItem => item.Contrasenya) </small> </div>
+                                <div class="col-12 col-md-6 mb-3 mb-xl-0 col-xl-1"><small class="clearfix d-xl-none">Nombre: </small> @Html.DisplayFor(modelItem => item.Nombre)</div>
+                                <div class="col-12 col-md-6 mb-3 mb-xl-0 col-xl-1"><small class="clearfix d-xl-none">Apellidos: </small> @Html.DisplayFor(modelItem => item.Apellidos)</div>
+                                <div class="col-6 col-xl-1"><small class="clearfix d-xl-none">Fecha de nacimiento: </small> @Html.DisplayFor(modelItem => item.FNacimiento)</div>
+                                <div class="col-6 mb-3 mb-xl-0 col-xl-1 text-left text-xl-center"><small class="clearfix d-xl-none">Edad: </small> @Html.DisplayFor(modelItem => item.Edad)</div>
+                                <div class="col-12 mb-2 mb-xl-0 col-xl-1 px-1">@Html.ActionLink("Carrito", "Index", "Carrito", new { id = item.Id }, new { @class = "btn btn-outline-light w-100" })</div>
+                                <div class="col-12 mb-2 mb-xl-0 col-xl-1 px-1">@Html.ActionLink("Pedidos", "Index", "Pedido", new { id = item.Id }, new { id = item.Id, @class = "btn btn-outline-light w-100" })</div>
+
+                                @if (item.Admin)
+                                {
+                                    <div class="col-12 mb-2 mb-xl-0 col-xl-1 px-1">@Html.ActionLink("Admin --", "Beater", "Registrado", new { id = item.Id, ad = false }, new { @class = "btn btn-outline-danger w-100" })</div>
+                                }
+                                else
+                                {
+                                    <div class="col-12 mb-2 mb-xl-0 col-xl-1 px-1">@Html.ActionLink("Admin ++", "Beater", "Registrado", new { id = item.Id, ad = true }, new { @class = "btn btn-outline-light w-100" })</div>
+                                }
+                                <div class="col-12 mb-2 mb-xl-0 col-xl-1 px-1">@Html.ActionLink("Destruir", "Delete", "Registrado", new { id = item.Id }, new { id = item.Id, @class = "btn btn-outline-light w-100" })</div>
+                            </div>
                         }
-                      
-                        
+
+
                     </div>
                 </div>
             </div>
