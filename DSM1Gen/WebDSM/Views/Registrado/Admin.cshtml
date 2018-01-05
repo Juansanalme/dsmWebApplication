@@ -6,11 +6,14 @@
     WebDSM.Models.Admin superCat = new WebDSM.Models.Admin();
     List<SelectListItem> listSCat = superCat.Categoria.getAllNombres();
     List<SelectListItem> listSArt = superCat.Articulo.getAllNombres();
+    List<SelectListItem> listSPuj = superCat.Puja.getAllNombres();
 
+    var message = @Session["PujaError"];
+    if (message != null) System.Web.HttpContext.Current.Session.Remove("PujaError");
 }
 
 
-<div class="col-3 absolute h-100 bg-black"></div>
+<div class="col-3 h-100 bg-black position-fixed"></div>
 
 <div class="container-fluid">
 
@@ -23,26 +26,26 @@
                 @Html.ActionLink("Volver", "Index", "Home", null, new { @class = "btn btn-outline-danger w-50" })
             </div>
             <div class="row">
-                <div class="col-3 nav flex-column p-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <div class="col nav flex-column p-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
                     <h4 class="elegant text-white">Categoría</h4>
-                        <a class="nav-link pl-3" id="cat-create-tab" data-toggle="pill" href="#cat-create" role="tab" aria-controls="cat-create" aria-selected="false">Añadir</a>
-                        <a class="nav-link pl-3" id="cat-delete-tab" data-toggle="pill" href="#cat-delete" role="tab" aria-controls="cat-delete" aria-selected="false">Eliminar</a>
+                    <a class="nav-link pl-3" id="cat-create-tab" data-toggle="pill" href="#cat-create" role="tab" aria-controls="cat-create" aria-selected="false">Añadir</a>
+                    <a class="nav-link pl-3" id="cat-modify-tab" data-toggle="pill" href="#cat-modify" role="tab" aria-controls="cat-modify" aria-selected="false">Editar</a>
+                    <a class="nav-link pl-3" id="cat-delete-tab" data-toggle="pill" href="#cat-delete" role="tab" aria-controls="cat-delete" aria-selected="false">Eliminar</a>
 
 
                     <h4 class="elegant text-white mt-3">Artículo</h4>
-                        <a class="nav-link pl-3" id="art-create-tab" data-toggle="pill" href="#art-create" role="tab" aria-controls="art-create" aria-selected="false">Añadir</a>
-                        <a class="nav-link pl-3" id="art-modify-tab" data-toggle="pill" href="#art-modify" role="tab" aria-controls="art-modify" aria-selected="false">Editar</a>
-                        <a class="nav-link pl-3" id="art-delete-tab" data-toggle="pill" href="#art-delete" role="tab" aria-controls="art-delete" aria-selected="false">Eliminar</a>
+                    <a class="nav-link pl-3" id="art-create-tab" data-toggle="pill" href="#art-create" role="tab" aria-controls="art-create" aria-selected="false">Añadir</a>
+                    <a class="nav-link pl-3" id="art-modify-tab" data-toggle="pill" href="#art-modify" role="tab" aria-controls="art-modify" aria-selected="false">Editar</a>
+                    <a class="nav-link pl-3" id="art-delete-tab" data-toggle="pill" href="#art-delete" role="tab" aria-controls="art-delete" aria-selected="false">Eliminar</a>
 
 
                     <h4 class="elegant text-white mt-3">Puja</h4>
-                        <a class="nav-link pl-3" id="puj-create-tab" data-toggle="pill" href="#puj-create" role="tab" aria-controls="puj-create" aria-selected="false">Añadir</a>
-                        <a class="nav-link pl-3" id="puj-modify-tab" data-toggle="pill" href="#puj-modify" role="tab" aria-controls="puj-modify" aria-selected="false">Editar</a>
-                        <a class="nav-link pl-3" id="puj-delete-tab" data-toggle="pill" href="#puj-delete" role="tab" aria-controls="puj-delete" aria-selected="false">Cerrar</a>
+                    <a class="nav-link pl-3" id="puj-create-tab" data-toggle="pill" href="#puj-create" role="tab" aria-controls="puj-create" aria-selected="false">Añadir</a>
+                    <a class="nav-link pl-3" id="puj-delete-tab" data-toggle="pill" href="#puj-delete" role="tab" aria-controls="puj-delete" aria-selected="false">Cerrar</a>
 
                     <h4 class="elegant text-white mt-3">Usuarios</h4>
-                        <a class="nav-link pl-3" id="users-tab" data-toggle="pill" href="#users" role="tab" aria-controls="users" aria-selected="false">Administrar</a>
+                    <a class="nav-link pl-3" id="users-tab" data-toggle="pill" href="#users" role="tab" aria-controls="users" aria-selected="false">Administrar</a>
 
                 </div>
             </div>
@@ -50,7 +53,7 @@
         <div class="col-9">
             <div class="row">
                 <div class="col tab-content" id="v-pills-tabContent">
-
+                    @message
                     <div class="tab-pane fade" id="cat-create" role="tabpanel" aria-labelledby="cat-create-tab">
                         <div class="display-4 text-center mt-4">Añadir categoría</div>
                         @using (Html.BeginForm("Create", "Categoria", FormMethod.Post))
@@ -63,12 +66,30 @@
 
                             <div class="form-group">
                                 <label for="Categoria_NomSuper">Supercategoria</label>
-                                @Html.DropDownListFor(model => model.Categoria.SuperId, new SelectList(listSCat, "Value", "Text"), null, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.Categoria.SuperId, new SelectList(listSCat, "Value", "Text"), "", new { @class = "form-control" })
                                 <small id="SuperHelp" class="form-text text-muted">Puedes elegir si esta categoría se encuentra dentro de otra.</small>
                             </div>
                             <button type="submit" class="btn btn-outline-dark pointer">Añadir</button>
                         }
 
+
+                    </div>
+                    <div class="tab-pane fade" id="cat-modify" role="tabpanel" aria-labelledby="cat-modify-tab">
+                        <div class="display-4 text-center mt-4">Editar categoría</div>
+                        @using (Html.BeginForm("Edit", "Categoria", FormMethod.Post))
+                        {
+                            <div class="form-group mt-3">
+                                <label for="Categoria_NomSuper">Categoría</label>
+                                @Html.DropDownListFor(model => model.Categoria.Id, new SelectList(listSCat, "Value", "Text"), null, new { @class = "form-control" })
+                                <small id="SuperHelp" class="form-text text-muted">Elige la categoría que quieres modificar.</small>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="Categoria_Nombre">Nombre<span class="text-blood">*</span></label>
+                                @Html.EditorFor(model => model.Categoria.Nombre, new { htmlAttributes = new { @class = "form-control", placeholder = "Introduce el nombre de la categoria" } })
+                                <small id="nameHelp" class="form-text text-muted">Elige un nuevo nombre para la categoría.</small>
+                            </div>
+                            <button type="submit" class="btn btn-outline-dark pointer">Actualizar</button>
+                        }
 
                     </div>
                     <div class="tab-pane fade" id="cat-delete" role="tabpanel" aria-labelledby="cat-delete-tab">
@@ -86,7 +107,6 @@
                     </div>
 
 
-
                     <div class="tab-pane fade" id="art-create" role="tabpanel" aria-labelledby="art-create-tab">
                         <div class="display-4 text-center mt-4">Añadir artículo</div>
                         @using (Html.BeginForm("Create", "Articulo", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -94,12 +114,14 @@
                             <div class="form-group mt-3">
                                 <label for="Articulo_Nombre">Nombre<span class="text-blood">*</span></label>
                                 @Html.EditorFor(model => model.Articulo.Nombre, new { htmlAttributes = new { @class = "form-control", placeholder = "Introduce el nombre del artículo" } })
+                                @Html.ValidationMessageFor(model => model.Articulo.Nombre, "", new { @class = "text-danger" })
                                 <small id="nameHelp" class="form-text text-muted">Elige un nombre para el nuevo artículo.</small>
                             </div>
 
                             <div class="form-group">
                                 <label for="Articulo_Precio">Precio<span class="text-blood">*</span></label>
-                                @Html.EditorFor(model => model.Articulo.Precio, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0", @class = "form-control" } })
+                                @Html.EditorFor(model => model.Articulo.Precio, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Articulo.Precio, "", new { @class = "text-danger" })
                                 <small id="nameHelp" class="form-text text-muted">Elige el precio para el nuevo artículo.</small>
                             </div>
 
@@ -112,23 +134,72 @@
                             <div class="form-group">
                                 <label for="Articulo_Descripcion">Descripcion<span class="text-blood">*</span></label>
                                 @Html.EditorFor(model => model.Articulo.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Articulo.Descripcion, "", new { @class = "text-danger" })
                                 <small id="nameHelp" class="form-text text-muted">¿Cómo es el producto?</small>
                             </div>
 
                             <div class="form-group">
                                 <label for="Articulo_Stock">Stock<span class="text-blood">*</span></label>
                                 @Html.EditorFor(model => model.Articulo.Stock, new { htmlAttributes = new { @type = "number", @min = "0", @step = "1", @value = "0", @class = "form-control", placeholder = "0, 1, 5, 10..." } })
+                                @Html.ValidationMessageFor(model => model.Articulo.Stock, "", new { @class = "text-danger" })
                                 <small id="nameHelp" class="form-text text-muted">Introduce el número de unidades disponibles.</small>
                             </div>
 
                             <div class="form-group">
-                                 <input type="file" name="file" value="Browse" />
+                                <input type="file" name="file" value="Browse" />
                             </div>
                             <button type="submit" class="btn btn-outline-dark pointer">Añadir</button>
                         }
                     </div>
                     <div class="tab-pane fade" id="art-modify" role="tabpanel" aria-labelledby="art-modify-tab">
+                        <div class="display-4 text-center mt-4">Editar artículo</div>
+                        @using (Html.BeginForm("Modify", "Articulo", FormMethod.Post, new { id = "needs-validation", novalidate = "" }))
+                        {
+                            <div class="form-group mt-3">
+                                <label for="Categoria_NomSuper">Artículo</label>
+                                @Html.DropDownListFor(model => model.Articulo.Id, new SelectList(listSArt, "Value", "Text"), null, new { @class = "form-control" })
+                                <small id="SuperHelp" class="form-text text-muted">Elige el artículo que quieres editar.</small>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="Articulo_Nombre">Nombre</label>
+                                @Html.EditorFor(model => model.Articulo.Nombre, new { htmlAttributes = new { @class = "form-control", placeholder = "Introduce el nombre del artículo", value = "Ueee" } })
+                                @Html.ValidationMessageFor(model => model.Articulo.Nombre, "", new { @class = "text-danger" })
+                                <small id="nameHelp" class="form-text text-muted">Elige un nuevo nombre para el artículo.</small>
+                            </div>
 
+                            <div class="form-group">
+                                <label for="Articulo_Precio">Precio</label>
+                                @Html.EditorFor(model => model.Articulo.Precio, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Articulo.Precio, "", new { @class = "text-danger" })
+                                <small id="nameHelp" class="form-text text-muted">Elige un nuevo precio para el artículo.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Articulo_NomCategoria">Categoria</label>
+                                @Html.DropDownListFor(model => model.Articulo.NomCategoria, new SelectList(listSCat, "Value", "Text"), null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Articulo.NomCategoria, "", new { @class = "text-danger" })
+                                <small id="SuperHelp" class="form-text text-muted">Elige una nueva categoría para el artículo.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Articulo_Descripcion">Descripcion</label>
+                                @Html.EditorFor(model => model.Articulo.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Articulo.Descripcion, "", new { @class = "text-danger" })
+                                <small id="nameHelp" class="form-text text-muted">Edita la descripción.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Articulo_Stock">Stock</label>
+                                @Html.EditorFor(model => model.Articulo.Stock, new { htmlAttributes = new { @type = "number", @min = "0", @step = "1", @value = "0", @class = "form-control", placeholder = "0, 1, 5, 10..." } })
+                                @Html.ValidationMessageFor(model => model.Articulo.Stock, "", new { @class = "text-danger" })
+                                <small id="nameHelp" class="form-text text-muted">Cambia el número de unidades disponibles.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="file" name="file" value="Browse" />
+                            </div>
+                            <button type="submit" class="btn btn-outline-dark pointer">Editar</button>
+                        }
                     </div>
                     <div class="tab-pane fade" id="art-delete" role="tabpanel" aria-labelledby="art-delete-tab">
                         <div class="display-4 text-center mt-4">Eliminar artículo</div>
@@ -147,19 +218,80 @@
 
 
                     <div class="tab-pane fade" id="puj-create" role="tabpanel" aria-labelledby="puj-create-tab">
+                        <div class="display-4 text-center mt-4">Añadir puja</div>
+                        @using (Html.BeginForm("Create", "Puja", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="form-group mt-3">
+                                <label for="Categoria_NomSuper">Artículo</label>
+                                <select class="form-control" id="Articulo_Nombre" name="Articulo">
+                                    @foreach (var item in listSArt)
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                </select>
 
-                    </div>
-                    <div class="tab-pane fade" id="puj-modify" role="tabpanel" aria-labelledby="puj-modify-tab">
+                                <small id="SuperHelp" class="form-text text-muted">Elige el artículo para ponerlo en subasta.</small>
+                            </div>
 
+                            <div class="form-group">
+                                <label for="Articulo_Precio">Precio de inicio<span class="text-blood">*</span></label>
+
+                                <input class="form-control text-box single-line valid" data-val="true" data-val-length="Demasiado cara no crees" data-val-length-max="999999" data-val-number="El campo Puja inicial debe ser un número." data-val-required="Debes introducir una cifra" id="Puja_PujaInicial" min="0" name="Puja" step="0.01" type="number" value="">
+                                @Html.ValidationMessageFor(model => model.Puja.PujaInicial, "", new { @class = "text-danger" })
+                                <small id="nameHelp" class="form-text text-muted">Elige el precio de lanzamiento de la puja.</small>
+                            </div>
+
+                            <button type="submit" class="btn btn-outline-dark pointer">Añadir</button>
+                        }
                     </div>
+
                     <div class="tab-pane fade" id="puj-delete" role="tabpanel" aria-labelledby="puj-delete-tab">
+                         <div class="display-4 text-center mt-4">Cerrar puja</div>
+                        @using (Html.BeginForm("Cierra", "Puja", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="form-group mt-3">
+                                <label for="Categoria_NomSuper">Puja</label>
+                                <select class="form-control" id="Articulo_Nombre" name="id">
+                                    @foreach (var item in listSPuj)
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                </select>
 
+                                <small id="SuperHelp" class="form-text text-muted">Elige la subasta que quieres cerrar.</small>
+                            </div>
+
+                            <button type="submit" class="btn btn-outline-dark pointer">Cerrar</button>
+                        }
                     </div>
 
 
 
                     <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users">
-
+                        <div class="display-4 text-center mt-4">Administrar usuarios</div>
+                        <div class="row mx-2 mt-4 p-3 d-none d-xl-flex">
+                            <div class="col-1">Nombre de usuario</div>
+                            <div class="col-4">Contraseña</div>
+                            <div class="col-1">Nombre</div>
+                            <div class="col-1">Apellidos</div>
+                            <div class="col-1">Fecha de nacimiento</div>
+                            <div class="col-1 text-center">Edad</div>
+                        </div>
+                        @foreach (var item in Model.Registrado) {
+                        <div class="row mx-2 mt-2 p-3 bg-black">
+                            <div class="col-12 mb-3 mb-xl-0 col-xl-1 "><small class="clearfix d-xl-none">Nombre de usuario: </small> @Html.DisplayFor(modelItem => item.NUsuario)</div>
+                            <div class="col-12 mb-3 mb-xl-0 col-xl-4"><small class="clearfix d-xl-none">Contraseña: </small> @Html.DisplayFor(modelItem => item.Contrasenya)</div>
+                            <div class="col-12 col-md-6 mb-3 mb-xl-0 col-xl-1"><small class="clearfix d-xl-none">Nombre: </small> @Html.DisplayFor(modelItem => item.Nombre)</div>
+                            <div class="col-12 col-md-6 mb-3 mb-xl-0 col-xl-1"><small class="clearfix d-xl-none">Apellidos: </small> @Html.DisplayFor(modelItem => item.Apellidos)</div>
+                            <div class="col-6 col-xl-1"><small class="clearfix d-xl-none">Fecha de nacimiento: </small> @Html.DisplayFor(modelItem => item.FNacimiento)</div>
+                            <div class="col-6 mb-3 mb-xl-0 col-xl-1"><small class="clearfix d-xl-none">Edad: </small> @Html.DisplayFor(modelItem => item.Edad)</div>
+                            <div class="col-12 mb-2 mb-xl-0 col-xl-1 px-1">@Html.ActionLink("Carrito", "Index", "Carrito", new { id = item.Id }, new { @class = "btn btn-outline-light w-100" })</div>
+                            <div class="col-12 mb-2 mb-xl-0 col-xl-1 px-1">@Html.ActionLink("Pedidos", "Index", "Pedido", new { id = item.Id }, new { id = item.Id, @class = "btn btn-outline-light w-100" })</div>
+                            <div class="col-12 mb-2 mb-xl-0 col-xl-1 px-1">@Html.ActionLink("Borrar", "Delete", "Registrado", new { id = item.Id }, new { id = item.Id, @class="btn btn-outline-light w-100" })</div>
+                        </div>
+                        }
+                      
+                        
                     </div>
                 </div>
             </div>
@@ -169,3 +301,8 @@
 
 
 </div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

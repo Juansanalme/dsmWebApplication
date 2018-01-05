@@ -294,5 +294,21 @@ namespace WebDSM.Controllers
 
             return View("Index", art);
         }
+
+        [HttpPost]
+        public JsonResult AjaxMethod(int id)
+        {
+            ArticuloCEN articuloCEN = new ArticuloCEN();
+            ArticuloEN articuloEN = articuloCEN.get_IArticuloCAD().ReadOIDDefault(id);
+            Articulo art = new Articulo
+            {
+                Nombre = articuloEN.Nombre,
+                Precio = articuloEN.Precio,
+                NomCategoria = articuloEN.Categoria.Id,
+                Descripcion = articuloEN.Descripcion,
+                Stock = articuloEN.Stock
+            };
+            return Json(art);
+        }
     }
 }

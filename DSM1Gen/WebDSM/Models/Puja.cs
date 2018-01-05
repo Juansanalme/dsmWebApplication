@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+using DSM1GenNHibernate.EN.DSM1;
+using DSM1GenNHibernate.CEN.DSM1;
+using NHibernate;
+using DSM1GenNHibernate.CAD.DSM1;
 
 namespace WebDSM.Models
 {
@@ -41,5 +46,32 @@ namespace WebDSM.Models
         [ScaffoldColumn(false)]
         public bool Cerrada { get; set; }
 
+        public List<SelectListItem> getAllNombres()
+        {
+            ISession session;
+            session = NHibernateHelper.OpenSession();
+
+            PujaCAD pujaCAD = new PujaCAD(session);
+            PujaCEN pujaCEN = new PujaCEN(pujaCAD);
+
+            IEnumerable<PujaEN> listaEN = pujaCEN.get_IPujaCAD().ReadAll(0, -1);
+
+            List<SelectListItem> miLista = new List<SelectListItem>();
+            
+
+            foreach (PujaEN cat in listaEN)
+            {
+                
+                SelectListItem item = new SelectListItem { Value = cat.Id.ToString(), Text = cat.Articulo.Nombre };
+                if(!cat.Cerrada)
+                    miLista.Add(item);
+            }
+
+            session.Close();
+            session.Dispose();
+            session = null;
+
+            return miLista;
+        }
     }
 }

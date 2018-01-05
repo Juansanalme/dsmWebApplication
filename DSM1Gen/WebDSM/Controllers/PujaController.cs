@@ -55,11 +55,31 @@ namespace WebDSM.Controllers
 
         // POST: Puja/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(int Articulo, float Puja)
         {
             try
             {
-                // TODO: Add insert logic here
+                bool repetido = false;
+                PujaCEN pujaCEN = new PujaCEN();
+                IList<PujaEN> pujas = pujaCEN.ReadAll(0, -1);
+                foreach (var item in pujas)
+                {
+                    if(item.Articulo.Id == Articulo)
+                    {
+                        repetido = true;
+                        break;
+                    }
+                }
+
+                if (!repetido)
+                {
+                    pujaCEN.New_(DateTime.Now, Puja, Articulo, Puja, -1, false);
+                }
+                else
+                {
+                    System.Web.HttpContext.Current.Session["PujaError"] = "Repetida";
+                    return RedirectToAction("../Registrado/Admin");
+                }
 
                 return RedirectToAction("Index");
             }
@@ -77,12 +97,14 @@ namespace WebDSM.Controllers
 
         // POST: Puja/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Models.Admin puj)
         {
             try
             {
-                // TODO: Add update logic here
+                PujaCEN pujaCEN = new PujaCEN();
+                
 
+                pujaCEN.New_(DateTime.Now, puj.Puja.PujaInicial, puj.Puja.Id, puj.Puja.PujaInicial, -1, false);
                 return RedirectToAction("Index");
             }
             catch
@@ -145,5 +167,27 @@ namespace WebDSM.Controllers
             }
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+
+        public ActionResult Cierra(int id)
+        {
+            try
+            {
+                PujaCEN pujaCEN = new PujaCEN();
+                PujaEN pujaEN = pujaCEN.get_IPujaCAD().ReadOIDDefault(id);
+
+                PujaCP pujaCP = new PujaCP();
+
+                pujaCP.Terminar_puja(id, DateTime.Now, pujaEN.Puja_inicial, pujaEN.Puja_max, pujaEN.Id_usuario, true);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                System.Web.HttpContext.Current.Session["PujaError"] = e.Message;
+                return RedirectToAction("../Registrado/Admin");
+            }
+        }
     }
 }

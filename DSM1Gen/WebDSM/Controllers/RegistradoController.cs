@@ -239,7 +239,14 @@ namespace WebDSM.Controllers
         public ActionResult Admin()
         {
 
-            return View();
+            ArticuloCEN articuloCEN = new ArticuloCEN();
+            RegistradoCEN registradoCEN = new RegistradoCEN();
+
+            IList<RegistradoEN> registrados = registradoCEN.get_IRegistradoCAD().ReadAll(0, -1);
+
+            Admin art = new AssemblerRegistrado().Conversion(registrados);
+
+            return View(art);
         }
 
     }

@@ -49,11 +49,7 @@ public void Terminar_puja (int p_Puja_OID, Nullable<DateTime> p_fecha, float p_p
                                 break;
                         }
                 }
-                if (puja_ganadora == null) {
-                        Exception ex = new Exception ("NO HAN HABIDO PUJAS :D");
-                        throw ex;
-                }
-                else {
+                if (puja_ganadora != null) {
                         pujaCEN.Declarar_ganador (p_Puja_OID, puja_ganadora.Registrado.Id);
                         RegistradoCEN registradoCEN = new RegistradoCEN ();
                         Console.ForegroundColor = ConsoleColor.Red;

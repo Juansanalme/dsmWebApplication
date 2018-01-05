@@ -29,5 +29,39 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+    $(function () {
+        $("#Articulo_Id").change(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Articulo/AjaxMethod",
+                data: '{id: "' + $("#Articulo_Id").val() + '" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    $("input#Articulo_Nombre").val(response.Nombre);
+                    $("input#Articulo_Precio").val(response.Precio);
+                    $("input#Articulo_NomCategoria").val(response.NomCategoria);
+                    $("input#Articulo_Descripcion").val(response.Descripcion);
+                    $("input#Articulo_Stock").val(response.Stock);
+                }
+            });
+        });
+        $.ajax({
+            type: "POST",
+            url: "/Articulo/AjaxMethod",
+            data: '{id: "' + $("#Articulo_Id").val() + '" }',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                $("input#Articulo_Nombre").val(response.Nombre);
+                $("input#Articulo_Precio").val(response.Precio);
+                $("input#Articulo_NomCategoria").val(response.NomCategoria);
+                $("input#Articulo_Descripcion").val(response.Descripcion);
+                $("input#Articulo_Stock").val(response.Stock);
+            }
+        });
+    });
+    </script>
 </body>
 </html>

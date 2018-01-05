@@ -97,10 +97,6 @@ hr {
     color: rgba(244, 244, 244, 0.7);
 }
 
-.absolute{
-    position: absolute !important;
-}
-
 .nav-link:hover{
     color: rgba(244, 244, 244, 1);
 }
@@ -255,6 +251,10 @@ a:hover {
     position:absolute;
     bottom:0;
     left:0;
+}
+
+.isfry {
+    visibility: hidden;
 }
 
 .menu{

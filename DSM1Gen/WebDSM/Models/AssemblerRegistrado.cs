@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using DSM1GenNHibernate.EN.DSM1;
+using DSM1GenNHibernate.CEN.DSM1;
 
 namespace WebDSM.Models
 {
@@ -22,6 +23,29 @@ namespace WebDSM.Models
             reg.Dni = en.Dni;
             
             return reg;
+        }
+
+        public Admin Conversion(IList<RegistradoEN> ens)
+        {
+            Admin admin = new Admin();
+            
+            foreach (RegistradoEN item in ens)
+            {
+                Registrado reg = new Registrado();
+                reg.Admin = item.Admin;
+                reg.Apellidos = item.Apellidos;
+                reg.Contrasenya = item.Contrasenya;
+                reg.Dni = item.Dni;
+                reg.Edad = item.Edad;
+                reg.FNacimiento = item.Fecha_nac;
+                reg.Id = item.Id;
+                reg.Nombre = item.Nombre;
+                reg.NUsuario = item.N_usuario;
+
+                admin.Registrado.Add(reg);
+            }
+
+            return admin;
         }
 
         public IList<Registrado> ConvertListENToModel(IList<RegistradoEN> ens)

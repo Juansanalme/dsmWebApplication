@@ -92,17 +92,21 @@ namespace WebDSM.Controllers
 
         // POST: Categoria/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Models.Admin cat)
         {
             try
             {
-                // TODO: Add update logic here
+                CategoriaCEN cen = new CategoriaCEN();
+                int n = cen.get_ICategoriaCAD().ReadOIDDefault(cat.Categoria.Id).Articulo;
+
+                cen.Modify(cat.Categoria.Id, cat.Categoria.Nombre, n);
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                System.Web.HttpContext.Current.Session["PujaError"] = e.Message;
+                return RedirectToAction("../Registrado/Admin");
             }
         }
 

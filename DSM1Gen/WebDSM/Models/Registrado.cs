@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+using DSM1GenNHibernate.CEN.DSM1;
+using DSM1GenNHibernate.EN.DSM1;
 
 namespace WebDSM.Models
 {
@@ -76,6 +79,23 @@ namespace WebDSM.Models
         [StringLength(maximumLength: 30, MinimumLength = 0, ErrorMessage = "El nombre de usuario debe tener entre 0 y 30 caracteres")]
         public string NUsuario { get; set; }
 
+        public List<RegistradoEN> getAllNombres()
+        {
+            RegistradoCEN cen = new RegistradoCEN();
+            RegistradoEN en = new RegistradoEN();
 
+            IEnumerable<RegistradoEN> listaEN = cen.get_IRegistradoCAD().ReadAll(0, -1);
+
+            List<RegistradoEN> miLista = new List<RegistradoEN>();
+
+            foreach (RegistradoEN cat in listaEN)
+            {
+                RegistradoEN item = cat;
+
+                miLista.Add(item);
+            }
+
+            return miLista;
+        }
     }
 }
