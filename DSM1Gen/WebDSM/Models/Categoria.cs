@@ -54,5 +54,8 @@ namespace WebDSM.Models
         [ScaffoldColumn(false)]
         public List<Categoria> Subs { get; set; }
 
-}
+        [ScaffoldColumn(false)]
+        public int Arts { get; set; }
+
+    }
 }
