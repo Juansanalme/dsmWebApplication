@@ -14,6 +14,8 @@ namespace WebDSM.Models
             Categoria cat = new Categoria();
             cat.Id = en.Id;
             cat.Nombre = en.Nombre;
+            cat.Arts = en.Articulo_0.Count();
+            
             if (en.Supercategoria != null)
             {
                 cat.NomSuper = en.Supercategoria.Nombre;
@@ -27,6 +29,7 @@ namespace WebDSM.Models
                 {
                     Categoria sub = ConvertENToModelUI(item);
                     cat.Subs.Add(sub);
+                    cat.Arts += item.Articulo_0.Count();
                 }
             }
 

@@ -25,7 +25,7 @@
 
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Registrado", FormMethod.Post))
 {
     if (aux)
     {
@@ -34,14 +34,13 @@
     }
 
     <div class="form-horizontal">
-        <h4>Registrado</h4>
+        <h4>Editar Perfil</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -49,7 +48,6 @@
             @Html.LabelFor(model => model.Apellidos, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Apellidos, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Apellidos, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -57,7 +55,6 @@
             @Html.LabelFor(model => model.Edad, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Edad, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Edad, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -65,7 +62,6 @@
             @Html.LabelFor(model => model.Dni, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Dni, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Dni, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -73,7 +69,6 @@
             @Html.LabelFor(model => model.FNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.FNacimiento, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FNacimiento, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -81,15 +76,7 @@
             @Html.LabelFor(model => model.Contrasenya, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Contrasenya, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Contrasenya, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.NUsuario, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NUsuario, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NUsuario, "", new { @class = "text-danger" })
+                @*@Html.ValidationMessageFor(model => model.Contrasenya, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
@@ -107,6 +94,6 @@
     }
     else
     {
-    <p>No logeado</p>
-}
-    </p>
+        <p>No logeado</p>
+    }
+</p>

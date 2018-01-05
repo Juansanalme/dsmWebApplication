@@ -200,13 +200,27 @@ namespace WebDSM.Controllers
 
         // POST: Registrado/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Models.Registrado reg)
         {
             try
             {
-                // TODO: Add update logic here
+                int regId = (int)Session["idUsuario"];
 
-                return RedirectToAction("Index");
+                RegistradoCAD registradoCAD = new RegistradoCAD();
+                RegistradoCEN registradoCEN = new RegistradoCEN();
+                RegistradoEN  registradoEN  = registradoCEN.get_IRegistradoCAD().ReadOIDDefault(regId);
+
+                if (reg.Nombre != null) registradoEN.Nombre = reg.Nombre;
+                if (reg.Apellidos != null) registradoEN.Apellidos = reg.Apellidos;
+                if (reg.Edad != 0) registradoEN.Edad = reg.Edad;
+                if (reg.Dni != null) registradoEN.Dni = reg.Dni;
+                if (reg.FNacimiento != null) registradoEN.Fecha_nac = reg.FNacimiento;
+
+                if (reg.Contrasenya != null) registradoEN.Contrasenya = reg.Contrasenya;
+
+                registradoCAD.Modify(registradoEN);
+
+                return RedirectToAction("../Registrado/Perfil", new { id = regId });
             }
             catch
             {
