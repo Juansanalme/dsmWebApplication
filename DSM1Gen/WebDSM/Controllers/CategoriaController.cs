@@ -100,6 +100,8 @@ namespace WebDSM.Controllers
                 int n = cen.get_ICategoriaCAD().ReadOIDDefault(cat.Categoria.Id).Articulo;
 
                 cen.Modify(cat.Categoria.Id, cat.Categoria.Nombre, n);
+                if (cat.Categoria.SuperId != 0)
+                    cen.Anyadir_supercat(cat.Categoria.Id, cat.Categoria.SuperId);
 
                 return RedirectToAction("Index");
             }

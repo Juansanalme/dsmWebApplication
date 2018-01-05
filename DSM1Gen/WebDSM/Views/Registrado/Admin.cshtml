@@ -68,6 +68,8 @@
             <div class="row">
                 <div class="col tab-content" id="v-pills-tabContent">
                     @message
+
+                    <!--AÑADIR CATEGORIA-->
                     <div class="tab-pane fade" id="cat-create" role="tabpanel" aria-labelledby="cat-create-tab">
                         <div class="display-4 text-center mt-4">Añadir categoría</div>
                         @using (Html.BeginForm("Create", "Categoria", FormMethod.Post))
@@ -85,9 +87,9 @@
                             </div>
                             <button type="submit" class="btn btn-outline-dark pointer">Añadir</button>
                         }
-
-
                     </div>
+
+                    <!--MODIFICAR CATEGORIA-->
                     <div class="tab-pane fade" id="cat-modify" role="tabpanel" aria-labelledby="cat-modify-tab">
                         <div class="display-4 text-center mt-4">Editar categoría</div>
                         @using (Html.BeginForm("Edit", "Categoria", FormMethod.Post))
@@ -100,12 +102,19 @@
                             <div class="form-group mt-3">
                                 <label for="Categoria_Nombre">Nombre<span class="text-blood">*</span></label>
                                 @Html.EditorFor(model => model.Categoria.Nombre, new { htmlAttributes = new { @class = "form-control", placeholder = "Introduce el nombre de la categoria" } })
+                                @Html.ValidationMessageFor(model => model.Categoria.Nombre, "", new { @class = "text-danger" })
                                 <small id="nameHelp" class="form-text text-muted">Elige un nuevo nombre para la categoría.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="Categoria_NomSuper">Supercategoria</label>
+                                @Html.DropDownListFor(model => model.Categoria.SuperId, new SelectList(listSCat, "Value", "Text"), "", new { @class = "form-control" })
+                                <small id="SuperHelp" class="form-text text-muted">Puedes elegir si esta categoría se encuentra dentro de otra.</small>
                             </div>
                             <button type="submit" class="btn btn-outline-dark pointer">Actualizar</button>
                         }
-
                     </div>
+
+                    <!--ELIMINAR CATEGORIA-->
                     <div class="tab-pane fade" id="cat-delete" role="tabpanel" aria-labelledby="cat-delete-tab">
                         <div class="display-4 text-center mt-4">Eliminar categoría</div>
                         @using (Html.BeginForm("Delete", "Categoria", FormMethod.Post, new { id = "needs-validation", novalidate = "" }))
