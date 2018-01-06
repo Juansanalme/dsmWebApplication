@@ -57,9 +57,9 @@
                 {
                     <div class="col-3 col-sm-2 p-0">
                         <div class="row h-100 m-0 d-flex">
-                            <a class="col-6 p-0 dropdown-toggle no-arrow align-self-center" href="#" id="navbarDropdownMenuLink">
+                            <div class="col-6 p-0 dropdown-toggle no-arrow align-self-center pointer" id="navbarDropdownMenuLink">
                                 <div class="d-inline-block ml-auto foto-perfil p-0" style="background: url(@Session["foto"]) no-repeat center center; background-size: auto 100%;"></div> 
-                            </a>    
+                            </div>    
                             <a class="col-6 p-0 cesta-mini font-weight-bold pl-1" href="@Url.Action("Index", "Carrito", new {id = Session["idUsuario"] })">
                                 @Session["nCarrito"]
                             </a>
@@ -183,7 +183,7 @@
                     {
                         @*CON @SESSION[LOGIN] COJO EL NOMBRE DE USUARIO QUE HE ALMACENADO AL CREAR LA SESION*@
                         
-                        <a class="col-6 dropdown-toggle no-arrow align-self-center text-orange px-0 position-relative h-100 d-flex" href="#" id="navbarDropdownMenuLink">
+                        <div class="col-6 dropdown-toggle no-arrow align-self-center text-orange px-0 position-relative h-100 d-flex pointer" id="navbarDropdownMenuLink">
                             <div class="row m-0 w-100 d-flex align-self-center">
                                 <small class="p-0 align-self-center text-mini ml-auto">
                                     @Session["login"]
@@ -191,7 +191,7 @@
                                 <div class="d-inline-block ml-auto foto-perfil p-0" style="background: url(@Session["foto"]) no-repeat center center; background-size: auto 100%;"></div>  
                             </div>
                             
-                        </a>
+                        </div>
                         
                         <a class="col-6 cesta pr-2 pt-2" href="@Url.Action("Index", "Carrito", new {id = Session["idUsuario"] })">
                             @Session["nCarrito"]  <span>Cesta</span>
@@ -206,8 +206,8 @@
         <div id="mySidenav" class="sidenav" style="width: 0">
             <div class="d-lg-none text-white pl-3 pt-2 ">@Session["login"]</div>
             <a href="@Url.Action("Perfil", "Registrado", new {id = Session["idUsuario"] })">Perfil</a>
-            <a href="@Url.Action("Perfil", "Favoritos", new {id = Session["idUsuario"] })">Favoritos</a>
-            <a href="@Url.Action("Pedido", "Details", new {id = Session["idUsuario"] })">Pedidos</a>
+            <a href="@Url.Action("Favoritos", "Registrado", new {id = Session["idUsuario"] })">Favoritos</a>
+            <a href="@Url.Action("Index", "Pedido", new {id = Session["idUsuario"] })">Pedidos</a>
             <a href="@Url.Action("Logout", "Registrado")">Logout</a>
         </div>
 
@@ -296,9 +296,10 @@
         $('html').click(function (e) {
             if (!$(e.target).is('#mySidenav') && $(e.target).parents("#navbarDropdownMenuLink").length != 1 && !$(e.target).is("#navbarDropdownMenuLink")) {
                 $("div#mySidenav").css({ "width": "0" });
+                flag = false;
             }
         });
-        $("a#navbarDropdownMenuLink").mouseup(function () {
+        $("div#navbarDropdownMenuLink").mouseup(function () {
             var w = $(window).width();
             if (w < 500) {
                 w = "30%";
@@ -320,19 +321,23 @@
             }
         });
 
+        
         $(window).resize(function () {
-            var w = $(window).width();
-            if (w < 500) {
-                w = "30%";
+            if (flag) {
+                var w = $(window).width();
+                if (w < 500) {
+                    w = "30%";
+                }
+                else if (w > 1270) {
+                    w = "17%";
+                }
+                else {
+                    w = "21%";
+                }
+                $("div#mySidenav").css({ "width": w });
             }
-            else if (w > 1270) {
-                w = "17%";
-            }
-            else {
-                w = "21%";
-            }
-            $("div#mySidenav").css({ "width": w });
         });
+        
     </script>
 </body>
 </html>

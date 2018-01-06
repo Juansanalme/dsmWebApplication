@@ -448,7 +448,7 @@ footer{
     right: 0;
     background-color: #111;
     overflow-x: hidden; /* Disable horizontal scroll */
-    margin-top: 92px; /* Place content 60px from the top */
+    margin-top: 91px; /* Place content 60px from the top */
     padding-top:23px;
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
