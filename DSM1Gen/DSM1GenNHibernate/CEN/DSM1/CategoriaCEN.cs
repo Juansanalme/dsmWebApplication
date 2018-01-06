@@ -88,5 +88,17 @@ public System.Collections.Generic.IList<CategoriaEN> ReadAll (int first, int siz
         list = _ICategoriaCAD.ReadAll (first, size);
         return list;
 }
+public void Quitar_supercat (int p_Categoria_OID, int p_supercategoria_OID)
+{
+        //Call to CategoriaCAD
+
+        _ICategoriaCAD.Quitar_supercat (p_Categoria_OID, p_supercategoria_OID);
+}
+public void Quitar_subcat (int p_Categoria_OID, System.Collections.Generic.IList<int> p_subcategoria_OIDs)
+{
+        //Call to CategoriaCAD
+
+        _ICategoriaCAD.Quitar_subcat (p_Categoria_OID, p_subcategoria_OIDs);
+}
 }
 }

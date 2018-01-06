@@ -6,7 +6,7 @@ namespace DSM1GenNHibernate.EN.DSM1
 public partial class ArticuloEN
 {
 /**
- *	Atributo idC:\Users\datri\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\EN\DSM1\ArticuloEN.cs
+ *	Atributo id
  */
 private int id;
 
@@ -75,6 +75,20 @@ private int stock;
 
 
 
+/**
+ *	Atributo imagen
+ */
+private string imagen;
+
+
+
+/**
+ *	Atributo img_3d
+ */
+private string img_3d;
+
+
+
 
 
 
@@ -138,6 +152,18 @@ public virtual int Stock {
 
 
 
+public virtual string Imagen {
+        get { return imagen; } set { imagen = value;  }
+}
+
+
+
+public virtual string Img_3d {
+        get { return img_3d; } set { img_3d = value;  }
+}
+
+
+
 
 
 public ArticuloEN()
@@ -149,20 +175,20 @@ public ArticuloEN()
 
 
 
-public ArticuloEN(int id, string nombre, double precio, DSM1GenNHibernate.EN.DSM1.CategoriaEN categoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.PujaEN puja, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> registrado, string descripcion, int stock
+public ArticuloEN(int id, string nombre, double precio, DSM1GenNHibernate.EN.DSM1.CategoriaEN categoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.PujaEN puja, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> registrado, string descripcion, int stock, string imagen, string img_3d
                   )
 {
-        this.init (Id, nombre, precio, categoria, valoracion, lineaPedido, puja, registrado, descripcion, stock);
+        this.init (Id, nombre, precio, categoria, valoracion, lineaPedido, puja, registrado, descripcion, stock, imagen, img_3d);
 }
 
 
 public ArticuloEN(ArticuloEN articulo)
 {
-        this.init (Id, articulo.Nombre, articulo.Precio, articulo.Categoria, articulo.Valoracion, articulo.LineaPedido, articulo.Puja, articulo.Registrado, articulo.Descripcion, articulo.Stock);
+        this.init (Id, articulo.Nombre, articulo.Precio, articulo.Categoria, articulo.Valoracion, articulo.LineaPedido, articulo.Puja, articulo.Registrado, articulo.Descripcion, articulo.Stock, articulo.Imagen, articulo.Img_3d);
 }
 
 private void init (int id
-                   , string nombre, double precio, DSM1GenNHibernate.EN.DSM1.CategoriaEN categoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.PujaEN puja, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> registrado, string descripcion, int stock)
+                   , string nombre, double precio, DSM1GenNHibernate.EN.DSM1.CategoriaEN categoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.PujaEN puja, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> registrado, string descripcion, int stock, string imagen, string img_3d)
 {
         this.Id = id;
 
@@ -184,6 +210,10 @@ private void init (int id
         this.Descripcion = descripcion;
 
         this.Stock = stock;
+
+        this.Imagen = imagen;
+
+        this.Img_3d = img_3d;
 }
 
 public override bool Equals (object obj)

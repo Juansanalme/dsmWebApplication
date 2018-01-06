@@ -107,6 +107,12 @@ public void ModifyDefault (ArticuloEN articulo)
 
                 articuloEN.Stock = articulo.Stock;
 
+
+                articuloEN.Imagen = articulo.Imagen;
+
+
+                articuloEN.Img_3d = articulo.Img_3d;
+
                 session.Update (articuloEN);
                 SessionCommit ();
         }
@@ -176,6 +182,12 @@ public void Modify (ArticuloEN articulo)
 
 
                 articuloEN.Stock = articulo.Stock;
+
+
+                articuloEN.Imagen = articulo.Imagen;
+
+
+                articuloEN.Img_3d = articulo.Img_3d;
 
                 session.Update (articuloEN);
                 SessionCommit ();

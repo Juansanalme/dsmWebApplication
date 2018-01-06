@@ -258,5 +258,75 @@ public System.Collections.Generic.IList<CategoriaEN> ReadAll (int first, int siz
 
         return result;
 }
+
+public void Quitar_supercat (int p_Categoria_OID, int p_supercategoria_OID)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                DSM1GenNHibernate.EN.DSM1.CategoriaEN categoriaEN = null;
+                categoriaEN = (CategoriaEN)session.Load (typeof(CategoriaEN), p_Categoria_OID);
+
+                if (categoriaEN.Supercategoria.Id == p_supercategoria_OID) {
+                        categoriaEN.Supercategoria = null;
+                }
+                else
+                        throw new ModelException ("The identifier " + p_supercategoria_OID + " in p_supercategoria_OID you are trying to unrelationer, doesn't exist in CategoriaEN");
+
+                session.Update (categoriaEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in CategoriaCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+public void Quitar_subcat (int p_Categoria_OID, System.Collections.Generic.IList<int> p_subcategoria_OIDs)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                DSM1GenNHibernate.EN.DSM1.CategoriaEN categoriaEN = null;
+                categoriaEN = (CategoriaEN)session.Load (typeof(CategoriaEN), p_Categoria_OID);
+
+                DSM1GenNHibernate.EN.DSM1.CategoriaEN subcategoriaENAux = null;
+                if (categoriaEN.Subcategoria != null) {
+                        foreach (int item in p_subcategoria_OIDs) {
+                                subcategoriaENAux = (DSM1GenNHibernate.EN.DSM1.CategoriaEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.CategoriaEN), item);
+                                if (categoriaEN.Subcategoria.Contains (subcategoriaENAux) == true) {
+                                        categoriaEN.Subcategoria.Remove (subcategoriaENAux);
+                                        subcategoriaENAux.Supercategoria = null;
+                                }
+                                else
+                                        throw new ModelException ("The identifier " + item + " in p_subcategoria_OIDs you are trying to unrelationer, doesn't exist in CategoriaEN");
+                        }
+                }
+
+                session.Update (categoriaEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSM1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSM1GenNHibernate.Exceptions.DataLayerException ("Error in CategoriaCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }
