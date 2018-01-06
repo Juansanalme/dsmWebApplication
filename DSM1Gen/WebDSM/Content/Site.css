@@ -1,8 +1,11 @@
-﻿html, body {
+﻿
+
+html, body {
     height: 100%;
     width: 100%;
     background: #f4f4f4;
     overflow: visible;
+    min-width: 350px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -357,9 +360,9 @@ p, label, img, input, header, span, section, div, table, figure, a {
     -moz-column-gap: 2px;
     column-gap: 2px;
     
-    -webkit-column-width: 550px;
-    -moz-column-width: 550px;
-    column-width: 550px;
+    -webkit-column-width: 450px;
+    -moz-column-width: 450px;
+    column-width: 450px;
     column-fill: balance;
 
     margin: 0;
@@ -419,6 +422,55 @@ p, label, img, input, header, span, section, div, table, figure, a {
 }
 
 .text-mini{
-    font-size: 12px;
+    font-size: 13px;
+}
+
+.content-for-footer {
+    min-height: 100%;
+    position: relative;
+}
+
+.content-body{
+    padding-bottom: 280px;
+}
+
+footer{
+    width:100%;
+    position:absolute;
+    bottom:0;
+}
+
+.sidenav {
+    width: 0; 
+    position: fixed;
+    z-index: 1; 
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    margin-top: 92px; /* Place content 60px from the top */
+    padding-top:23px;
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 13px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+@media (max-width:992px) {
+    .sidenav{
+        padding-top: 0;
+    }
 }
 

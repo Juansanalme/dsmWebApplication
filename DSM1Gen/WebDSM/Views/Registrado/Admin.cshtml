@@ -258,6 +258,8 @@
                             </div>
                         }
                     </div>
+
+                    <!--ELIMINAR ARTICULO-->
                     <div class="tab-pane fade" id="art-delete" role="tabpanel" aria-labelledby="art-delete-tab">
                         <div class="display-4 text-center mt-4">Eliminar artículo</div>
                         @using (Html.BeginForm("Delete", "Articulo", FormMethod.Post, new { id = "needs-validation", novalidate = "" }))
@@ -276,6 +278,7 @@
                         }
                     </div>
 
+                    <!--AÑADIR PUJA-->
                     <div class="tab-pane fade" id="puj-create" role="tabpanel" aria-labelledby="puj-create-tab">
                         <div class="display-4 text-center mt-4">Añadir puja</div>
                         @using (Html.BeginForm("Create", "Puja", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -304,6 +307,7 @@
                         }
                     </div>
 
+                    <!--ELIMINAR PUJA-->
                     <div class="tab-pane fade" id="puj-delete" role="tabpanel" aria-labelledby="puj-delete-tab">
                         <div class="display-4 text-center mt-4">Cerrar puja</div>
                         @using (Html.BeginForm("Cierra", "Puja", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -324,8 +328,7 @@
                         }
                     </div>
 
-
-
+                    <!--USUARIOS-->
                     <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users">
                         <div class="display-4 text-center mt-4">Administrar usuarios</div>
                         <div class="row mx-2 mt-4 p-3 d-none d-xl-flex">

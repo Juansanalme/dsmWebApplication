@@ -32,7 +32,7 @@
             actionName = actionObj.ToString();
         }
     }
-
+    <div class="content-for-footer">
     <div class="container-fluid bg-absolute-black">
         <a class="text-white" href="#"><img class="social-mini mx-1" src="~/Images/World.png" />Idioma</a>
         <a href="#"><img class="social-mini ml-5 mx-1" src="~/Images/Facebook-rounded.png" /></a>
@@ -57,17 +57,9 @@
                 {
                     <div class="col-3 col-sm-2 p-0">
                         <div class="row h-100 m-0 d-flex">
-                            <a class="col-6 p-0 dropdown-toggle no-arrow align-self-center" href="@Url.Action("Perfil", "Registrado", new { id = Session["idUsuario"] })" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="d-inline-block ml-auto foto-perfil p-0" style="background: url(@Session["foto"]) no-repeat center center; background-size: auto 100%;"></div>
-                                
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <span class="font-weight-bold">@Session["login"]</span>
-                                <a class="dropdown-item" href="@Url.Action("Perfil", "Registrado", new {id = Session["idUsuario"] })">Perfil</a>
-
-                                <a class="dropdown-item" href="@Url.Action("Logout", "Registrado")">Logout</a>
-                            </div>
-                        
+                            <a class="col-6 p-0 dropdown-toggle no-arrow align-self-center" href="#" id="navbarDropdownMenuLink">
+                                <div class="d-inline-block ml-auto foto-perfil p-0" style="background: url(@Session["foto"]) no-repeat center center; background-size: auto 100%;"></div> 
+                            </a>    
                             <a class="col-6 p-0 cesta-mini font-weight-bold pl-1" href="@Url.Action("Index", "Carrito", new {id = Session["idUsuario"] })">
                                 @Session["nCarrito"]
                             </a>
@@ -103,8 +95,8 @@
         
     </nav>
 
-    <div class="container-fluid navbar-dark bg-black d-none py-2 d-lg-block sticky-top font-weight-bold border-orange-bottom menu">
-        <div class="row text-center">
+    <div class="container-fluid navbar-dark bg-black d-none d-lg-block sticky-top font-weight-bold border-orange-bottom menu">
+        <div class="row text-center pt-2">
             <div class="col-2 d-flex align-items-center justify-content-center">
                 @if (Session["admin"] != null && (bool)Session["admin"])
                 {
@@ -176,30 +168,30 @@
                 </div>
             </div>
             <div class="col-2 d-flex align-items-center">
-                <div class="row w-100 d-flex">
+                <div class="row w-100 d-flex h-100">
                     @if (Session["login"] == null)
                     {
-                        @Html.ActionLink("Log In", "Login", "Registrado", null, new { @class = "nav-link btn w-100 text-center p-2 col" })
-                        @Html.ActionLink("Registro", "Create", "Registrado", null, new { @class = "btn btn-outline-light w-100 p-2 mr-1 col" })
+                        <div class="col-6 px-0 d-flex">
+                        @Html.ActionLink("Log In", "Login", "Registrado", null, new { @class = "nav-link btn w-100 text-center p-2 mb-2 align-self-center" })
+                        </div>
+
+                        <div class="col-6 px-0 align-items-center d-flex">
+                        @Html.ActionLink("Registro", "Create", "Registrado", null, new { @class = "btn btn-outline-light w-100 p-2 mb-2 align-self-center" })
+                        </div>
                     }
                     else
                     {
                         @*CON @SESSION[LOGIN] COJO EL NOMBRE DE USUARIO QUE HE ALMACENADO AL CREAR LA SESION*@
                         
-                        <a class="col-6 dropdown-toggle no-arrow align-self-center text-orange px-0 position-relative h-100" href="@Url.Action("Perfil", "Registrado", new { id = Session["idUsuario"] })" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div class="row m-0 d-flex">
-                                <small class="p-0 align-self-center text-mini">
+                        <a class="col-6 dropdown-toggle no-arrow align-self-center text-orange px-0 position-relative h-100 d-flex" href="#" id="navbarDropdownMenuLink">
+                            <div class="row m-0 w-100 d-flex align-self-center">
+                                <small class="p-0 align-self-center text-mini ml-auto">
                                     @Session["login"]
                                 </small>
                                 <div class="d-inline-block ml-auto foto-perfil p-0" style="background: url(@Session["foto"]) no-repeat center center; background-size: auto 100%;"></div>  
                             </div>
                             
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="@Url.Action("Perfil", "Registrado", new {id = Session["idUsuario"] })">Perfil</a>
-                            
-                            <a class="dropdown-item" href="@Url.Action("Logout", "Registrado")">Logout</a>
-                        </div>
                         
                         <a class="col-6 cesta pr-2 pt-2" href="@Url.Action("Index", "Carrito", new {id = Session["idUsuario"] })">
                             @Session["nCarrito"]  <span>Cesta</span>
@@ -210,9 +202,18 @@
             </div>
         </div>
     </div>
+    <div class="content-body">
+        <div id="mySidenav" class="sidenav" style="width: 0">
+            <div class="d-lg-none text-white pl-3 pt-2 ">@Session["login"]</div>
+            <a href="@Url.Action("Perfil", "Registrado", new {id = Session["idUsuario"] })">Perfil</a>
+            <a href="@Url.Action("Perfil", "Favoritos", new {id = Session["idUsuario"] })">Favoritos</a>
+            <a href="@Url.Action("Pedido", "Details", new {id = Session["idUsuario"] })">Pedidos</a>
+            <a href="@Url.Action("Logout", "Registrado")">Logout</a>
+        </div>
 
-    @RenderBody()
-
+        @RenderBody()
+    </div>
+    
     <footer>
         <div class="container-fluid bg-footer py-3">
             <div class="row text-center">
@@ -244,7 +245,7 @@
             </div>
         </div>
     </footer>
-
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
@@ -288,6 +289,50 @@
         sr.reveal('.float-right', right);
 
         sr.reveal('.column figure', bottom);
+
+        self.resizeTo(500, 500);
+
+        var flag = false;
+        $('html').click(function (e) {
+            if (!$(e.target).is('#mySidenav') && $(e.target).parents("#navbarDropdownMenuLink").length != 1 && !$(e.target).is("#navbarDropdownMenuLink")) {
+                $("div#mySidenav").css({ "width": "0" });
+            }
+        });
+        $("a#navbarDropdownMenuLink").mouseup(function () {
+            var w = $(window).width();
+            if (w < 500) {
+                w = "30%";
+            }
+            else if (w > 1270) {
+                w = "17%";
+            }
+            else {
+                w = "21%";
+            }
+
+            if (flag) {
+                $("div#mySidenav").css({ "width": "0" });
+                flag = false;
+            }
+            else {
+                $("div#mySidenav").css({ "width": w });
+                flag = true;
+            }
+        });
+
+        $(window).resize(function () {
+            var w = $(window).width();
+            if (w < 500) {
+                w = "30%";
+            }
+            else if (w > 1270) {
+                w = "17%";
+            }
+            else {
+                w = "21%";
+            }
+            $("div#mySidenav").css({ "width": w });
+        });
     </script>
 </body>
 </html>
