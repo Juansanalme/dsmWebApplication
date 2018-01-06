@@ -97,13 +97,14 @@ namespace WebDSM.Controllers
             try
             {
                 CategoriaCEN cen = new CategoriaCEN();
+                CategoriaCP cp = new CategoriaCP();
                 int n = cen.get_ICategoriaCAD().ReadOIDDefault(cat.Categoria.Id).Articulo;
 
                 cen.Modify(cat.Categoria.Id, cat.Categoria.Nombre, n);
                 if (cat.Categoria.SuperId != 0)
                     cen.Anyadir_supercat(cat.Categoria.Id, cat.Categoria.SuperId);
-                else
-                    cen.Anyadir_supercat(cat.Categoria.Id, 0);
+                //else
+                  //  cen.Anyadir_supercat(cat.Categoria.Id, 0);
                 return RedirectToAction("Index");
             }
             catch (Exception e)
@@ -173,7 +174,7 @@ namespace WebDSM.Controllers
                 cat = new Categoria
                 {
                     Nombre = categoriaEN.Nombre,
-                    SuperId = -1,
+                    SuperId = 0,
                     Subs = subs
                 };
             }

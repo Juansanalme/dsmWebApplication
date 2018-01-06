@@ -31,6 +31,7 @@
     @RenderSection("scripts", required: false)
     <script>
         $(function () {
+            $("#cat-modify select#Categoria_Id option[value='0']").remove();
             $("#Categoria_Id").change(function () {
                 $.ajax({
                     type: "POST",
