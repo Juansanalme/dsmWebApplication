@@ -222,6 +222,8 @@
     <Content Include="Content\Avana.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fontawesome.css" />
+    <Content Include="Content\Rating.css" />
     <Content Include="Images\Black_background.png" />
     <Content Include="Images\Black_background_v2.png" />
     <Content Include="Images\Cesta.png" />
@@ -302,7 +304,6 @@
     <Content Include="Views\Registrado\Admin.cshtml" />
     <Content Include="Views\Registrado\Perfil.cshtml" />
     <Content Include="Views\Registrado\Edit.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

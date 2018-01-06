@@ -32,19 +32,79 @@
 
     </div>
 </div>
-@if (Session["login"] != null)
-{
+
     <p>
         @Html.ActionLink("Añadir a carrito", "../Articulo/AnyadirAlCarrito", new { id = Model.Articulo.Id })
         @*@Html.Action("AnyadirAlCarrito", new { id = Model.Articulo.Id })*@
     </p>
-    <p>
-        @Html.Partial("AnyadirValoracion")
-    </p>
-}
-else
-{
-    <p>
-        <div class="mt-4 elegant"> Has de logear para comprar </div>
-    </p>
-}
+
+    <div class="container-fluid form-horizontal">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                @if (Session["login"] != null)
+                {
+                    @Html.Partial("AnyadirValoracion")
+                }
+                else
+                {
+                    <div class="h-100 bg-black d-flex align-items-center justify-content-center elegant">Para dejar una valoración debes haber inciado sesión.</div>
+                }
+            </div>
+            <div class="col-12 col-md-8">
+                <h4 class="elegant mx-3">Valoraciones</h4>
+                <hr class="mx-3"/>
+                @foreach (var item in Model.Valoracion)
+                {
+                    var full_stars = item.Puntuacion/2;
+                    var puntuacion = item.Puntuacion / 2.0;
+                    <div class="row bg-black p-3 mb-3 mx-3">
+                        <div class="col-10">
+                            <div class="row">
+                                <b>@item.Registrado</b>
+                            </div>
+                            <div class="row">
+                                @for(var i = 0; i< full_stars; i++)
+                                {
+                                    <div style="font-size:12px; color:#f7cd37">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                }
+                        
+                                @if(item.Puntuacion%2 == 1)
+                                {
+                                    <div style="font-size:12px; color:#f7cd37">
+                                        <i class="fas fa-star-half"></i>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="row">
+                                @item.Texto
+                            </div>
+
+                           
+                        </div>
+                        <div class="col-2 d-flex align-items-center p-0">
+                             @if (Session["idUsuario"] != null && (string)Session["login"] == item.Registrado)
+                            {
+                                @*ES LA VALORACION DEL USUARIO*@
+
+                                 <a class="w-100" href="@Url.Action("Delete", "Valoracion", new { id = item.Id, id2 = Model.Articulo.Id })">
+                                 <div class="row w-100 m-0">
+                                    <div class="d-inline-block col-12 col-md-4 p-0 pr-2 d-flex justify-content-end" style="font-size:25px; color:#e10031;">
+                                         <i class="fas fa-trash align-self-center"></i>
+                                    </div>
+                                    <small class="d-lg-inline-block col-8 p-0 text-white elegant pt-1 d-none d-md-flex">
+                                        Borrar valoración
+                                    </small>
+                                 </div>
+                                 </a>
+                                 
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+

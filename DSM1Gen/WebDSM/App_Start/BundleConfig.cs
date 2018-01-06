@@ -27,8 +27,10 @@ namespace WebDSM
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
-                      "~/Content/Avana.css"));
+                      
+                      "~/Content/Avana.css",
+                      "~/Content/Rating.css",
+                      "~/Content/site.css"));
         }
     }
 }

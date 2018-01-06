@@ -1,5 +1,4 @@
 ﻿
-
 html, body {
     height: 100%;
     width: 100%;
@@ -19,12 +18,6 @@ html, body {
 */
 .dl-horizontal dt {
     white-space: normal;
-}
-
-/* Set width on the form input elements since they're 100% wide by default */
-select,
-textarea {
-    max-width: 280px;
 }
 
 .bg-absolute-black {
@@ -472,5 +465,9 @@ footer{
     .sidenav{
         padding-top: 0;
     }
+}
+
+a:focus{
+    outline: none !important;
 }
 

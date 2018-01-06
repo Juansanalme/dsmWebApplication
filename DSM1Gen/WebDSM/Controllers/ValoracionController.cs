@@ -35,35 +35,15 @@ namespace WebDSM.Controllers
 
         // POST: Valoracion/Create
         [HttpPost]
-        public ActionResult Create(Valoracion val)
+        public ActionResult Create(int rating, ArticuloYOpinion op)
         {
-            try
-            {
+            ValoracionCEN cen = new ValoracionCEN();
 
-                // TODO: Add insert logic here
-                ValoracionCEN valoracionEN = new ValoracionCEN();
-                RegistradoCEN registradoCEN = new RegistradoCEN();
+            int idUsuario = (int)Session["idUsuario"];
 
-                int idUsu = 0;
-                IList<RegistradoEN> regs = registradoCEN.ReadAll(0, -1);
-                foreach (RegistradoEN aux in regs)
-                {
-                    if (aux.N_usuario == User.Identity.Name)
-                    {
-                        idUsu = aux.Id;
+            cen.New_(rating, op.Texto, idUsuario, op.IdArt);
 
-                        break;
-                    }
-                }
-                
-                valoracionEN.New_(val.Puntuacion, val.Texto, idUsu, val.Articulo);
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Details", "Articulo", new { id = op.IdArt });
         }
 
         // GET: Valoracion/Edit/5
