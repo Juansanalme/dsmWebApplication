@@ -24,6 +24,12 @@
 					<property name="Stock" type="integer"> 
 						<column name="stock"  not-null="true"/>
 					</property>
+					<property name="Imagen" type="string"> 
+						<column name="imagen"  not-null="true"/>
+					</property>
+					<property name="Img_3d" type="string"> 
+						<column name="img_3d"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -75,6 +81,10 @@
     					</bag>
 			
 			
+			
+			
+					
+					
 					
 					
 					

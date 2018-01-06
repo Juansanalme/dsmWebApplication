@@ -89,7 +89,7 @@ public static void InitializeData ()
                 CarritoCEN carritoCEN = new CarritoCEN ();
                 CarritoCP carritoCP = new CarritoCP ();
                 PedidoCEN pedidoCEN = new PedidoCEN ();
-               
+
                 Console.WriteLine (" ===============================================");
                 Console.WriteLine (" =                                             =");
                 Console.WriteLine (" =      ########    ########     ########      =");
@@ -103,7 +103,7 @@ public static void InitializeData ()
 
 
                 //CREAMOS USUARIOS REGISTRADOS Y SU CARRITOS
-                int tester = registradoCP.Nuevo_usuarioYcarrito("Beta", "Tester", 20, new DateTime(1997, 8, 6), "28595475X", "Test", "Beater", false).Id;
+                int tester = registradoCP.Nuevo_usuarioYcarrito ("Beta", "Tester", 20, new DateTime (1997, 8, 6), "28595475X", "Test", "Beater", false).Id;
                 int registrado0 = registradoCP.Nuevo_usuarioYcarrito ("Pablo", "Manez", 20, new DateTime (1997, 8, 6), "6984984X", "Test", "Pablomanez", true).Id;
                 int registrado1 = registradoCP.Nuevo_usuarioYcarrito ("Kirito", "Kun", 21, new DateTime (1997, 5, 4), "25698568X", "asuna", "Kirito", false).Id;
                 int registrado2 = registradoCP.Nuevo_usuarioYcarrito ("Dan", "Senpai", 20, new DateTime (1997, 8, 21), "23906238S", "easy", "Dan", false).Id;
@@ -127,12 +127,12 @@ public static void InitializeData ()
 
                 //ARTICULOS
                 ArticuloCEN articuloCEN = new ArticuloCEN ();
-                int articulo1 = articuloCEN.New_ ("FrostMourne",            10.01,      cat1,   "Un arma muy especial",             5);
-                int articulo2 = articuloCEN.New_ ("Escopeta Frost L4D",     1,          cat2,   "Piun, piun",                       5);
-                int articulo3 = articuloCEN.New_ ("Contrato Virtuoso",      800,        cat3,   "Espada YohRa",                     5);
-                int articulo4 = articuloCEN.New_ ("Raygun",                 50,         cat2,   "Arma de rayos molona",             5);
-                int articulo5 = articuloCEN.New_ ("Excalibur",              90,         cat1,   "Moar armas molonas",               5);
-                int articulo6 = articuloCEN.New_ ("Daga del tiempo",        550,        cat1,   "Daga de Prince of Persia, puede controlar el tiempo", 5);
+                int articulo1 = articuloCEN.New_ ("FrostMourne", 10.01, cat1, "Un arma muy especial", 5);
+                int articulo2 = articuloCEN.New_ ("Escopeta Frost L4D", 1, cat2, "Piun, piun", 5);
+                int articulo3 = articuloCEN.New_ ("Contrato Virtuoso", 800, cat3, "Espada YohRa", 5);
+                int articulo4 = articuloCEN.New_ ("Raygun", 50, cat2, "Arma de rayos molona", 5);
+                int articulo5 = articuloCEN.New_ ("Excalibur", 90, cat1, "Moar armas molonas", 5);
+                int articulo6 = articuloCEN.New_ ("Daga del tiempo", 550, cat1, "Daga de Prince of Persia, puede controlar el tiempo", 5);
 
                 int art1CatId = articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulo1).Categoria.Id;
                 int art2CatId = articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulo2).Categoria.Id;
@@ -288,51 +288,51 @@ public static void InitializeData ()
                 PujaCP pujaCP = new PujaCP ();
                 System.Console.WriteLine ("Cierro puja 1");
                 /*
-                pujaCP.Terminar_puja (pujaid, puja.Fecha, puja.Puja_inicial, puja.Puja_max, puja.Id_usuario, true);
-                try
-                {
-                        System.Console.WriteLine ("Cierro puja 1 otra vez");
-                        pujaCP.Terminar_puja (pujaid, puja.Fecha, puja.Puja_inicial, puja.Puja_max, puja.Id_usuario, true);
-                }
-                catch (Exception e) { System.Console.WriteLine (e.Message + "\n"); }
-                try
-                {
-                        System.Console.WriteLine ("Cierro puja 2");
-                        pujaCP.Terminar_puja (pujaid2, puja.Fecha, puja.Puja_inicial, puja.Puja_max, puja.Id_usuario, true);
-                }
-                catch (Exception e) { System.Console.WriteLine (e.Message + "\n"); }
+                 * pujaCP.Terminar_puja (pujaid, puja.Fecha, puja.Puja_inicial, puja.Puja_max, puja.Id_usuario, true);
+                 * try
+                 * {
+                 *      System.Console.WriteLine ("Cierro puja 1 otra vez");
+                 *      pujaCP.Terminar_puja (pujaid, puja.Fecha, puja.Puja_inicial, puja.Puja_max, puja.Id_usuario, true);
+                 * }
+                 * catch (Exception e) { System.Console.WriteLine (e.Message + "\n"); }
+                 * try
+                 * {
+                 *      System.Console.WriteLine ("Cierro puja 2");
+                 *      pujaCP.Terminar_puja (pujaid2, puja.Fecha, puja.Puja_inicial, puja.Puja_max, puja.Id_usuario, true);
+                 * }
+                 * catch (Exception e) { System.Console.WriteLine (e.Message + "\n"); }
+                 *
+                 * try
+                 * {
+                 *      System.Console.WriteLine ("Pablo-sensei puja " + 100 + "$");
+                 *      ofertaPujaCP.Nueva_oferta (DateTime.Now, DateTime.Now, registrado1, pujaid, 100); //Nueva oferta de Pablo-sensei en una puja cerrada
+                 *      puja = pujaCEN.get_IPujaCAD ().ReadOIDDefault (pujaid);
+                 *      max = registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (puja.Id_usuario);
+                 *      System.Console.WriteLine ("Puja#" + puja.Id + " | MAX: " + max.N_usuario + " " + puja.Puja_max + "$\n");
+                 * }
+                 * catch (Exception e) { System.Console.WriteLine (e.Message + "\n"); }
+                 */
 
-                try
-                {
-                        System.Console.WriteLine ("Pablo-sensei puja " + 100 + "$");
-                        ofertaPujaCP.Nueva_oferta (DateTime.Now, DateTime.Now, registrado1, pujaid, 100); //Nueva oferta de Pablo-sensei en una puja cerrada
-                        puja = pujaCEN.get_IPujaCAD ().ReadOIDDefault (pujaid);
-                        max = registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (puja.Id_usuario);
-                        System.Console.WriteLine ("Puja#" + puja.Id + " | MAX: " + max.N_usuario + " " + puja.Puja_max + "$\n");
-                }
-                catch (Exception e) { System.Console.WriteLine (e.Message + "\n"); }
-                */
 
-                
                 //CREO UNA VALORACION Y MODIFICO SU TEXTO
                 ValoracionCEN valoracionCEN = new ValoracionCEN ();
                 System.Console.WriteLine ("CREO UNA VALORACION Y LE CAMBIO EL TEXTO");
                 int valoracionCEN_id1 = valoracionCEN.New_ (10, "La verdad es que es la hostia, pero quiero que Lujan me apruebe", registrado0, articulo1);
-                 
+
                 System.Console.WriteLine (valoracionCEN.get_IValoracionCAD ().ReadOIDDefault (valoracionCEN_id1).Texto);
                 int pMod = valoracionCEN.get_IValoracionCAD ().ReadOIDDefault (valoracionCEN_id1).Puntuacion;
                 valoracionCEN.Modify (valoracionCEN_id1, pMod, "He cambiado el texto y si, quiero que Lujan me apruebe");
                 System.Console.WriteLine (valoracionCEN.get_IValoracionCAD ().ReadOIDDefault (valoracionCEN_id1).Texto);
 
 
-                lineaPedidoCP.Anyado_lineaYprecio(2, articulo2, registrado0);
-                lineaPedidoCP.Anyado_lineaYprecio(2, articulo2, registrado1);
+                lineaPedidoCP.Anyado_lineaYprecio (2, articulo2, registrado0);
+                lineaPedidoCP.Anyado_lineaYprecio (2, articulo2, registrado1);
 
                 // p.e. CustomerCEN customer = new CustomerCEN();
                 // customer.New_ (p_user:"user", p_password:"1234");
 
                 /*PROTECTED REGION END*/
-            }
+        }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);

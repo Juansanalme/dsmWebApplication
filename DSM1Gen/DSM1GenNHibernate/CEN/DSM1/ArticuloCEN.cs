@@ -38,7 +38,7 @@ public IArticuloCAD get_IArticuloCAD ()
         return this._IArticuloCAD;
 }
 
-public int New_ (string p_nombre, double p_precio, int p_categoria, string p_descripcion, int p_stock)
+public int New_ (string p_nombre, double p_precio, int p_categoria, string p_descripcion, int p_stock, string p_imagen, string p_img_3d)
 {
         ArticuloEN articuloEN = null;
         int oid;
@@ -61,13 +61,17 @@ public int New_ (string p_nombre, double p_precio, int p_categoria, string p_des
 
         articuloEN.Stock = p_stock;
 
+        articuloEN.Imagen = p_imagen;
+
+        articuloEN.Img_3d = p_img_3d;
+
         //Call to ArticuloCAD
 
         oid = _IArticuloCAD.New_ (articuloEN);
         return oid;
 }
 
-public void Modify (int p_Articulo_OID, string p_nombre, double p_precio, string p_descripcion, int p_stock)
+public void Modify (int p_Articulo_OID, string p_nombre, double p_precio, string p_descripcion, int p_stock, string p_imagen, string p_img_3d)
 {
         ArticuloEN articuloEN = null;
 
@@ -78,6 +82,8 @@ public void Modify (int p_Articulo_OID, string p_nombre, double p_precio, string
         articuloEN.Precio = p_precio;
         articuloEN.Descripcion = p_descripcion;
         articuloEN.Stock = p_stock;
+        articuloEN.Imagen = p_imagen;
+        articuloEN.Img_3d = p_img_3d;
         //Call to ArticuloCAD
 
         _IArticuloCAD.Modify (articuloEN);
