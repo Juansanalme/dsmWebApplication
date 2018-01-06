@@ -127,12 +127,12 @@ public static void InitializeData ()
 
                 //ARTICULOS
                 ArticuloCEN articuloCEN = new ArticuloCEN ();
-                int articulo1 = articuloCEN.New_ ("FrostMourne", 10.01, cat1, "Un arma muy especial", 5);
-                int articulo2 = articuloCEN.New_ ("Escopeta Frost L4D", 1, cat2, "Piun, piun", 5);
-                int articulo3 = articuloCEN.New_ ("Contrato Virtuoso", 800, cat3, "Espada YohRa", 5);
-                int articulo4 = articuloCEN.New_ ("Raygun", 50, cat2, "Arma de rayos molona", 5);
-                int articulo5 = articuloCEN.New_ ("Excalibur", 90, cat1, "Moar armas molonas", 5);
-                int articulo6 = articuloCEN.New_ ("Daga del tiempo", 550, cat1, "Daga de Prince of Persia, puede controlar el tiempo", 5);
+                int articulo1 = articuloCEN.New_ ("FrostMourne", 10.01, cat1, "Un arma muy especial", 5, "FrostMourne.jpg", "damn");
+                int articulo2 = articuloCEN.New_ ("Escopeta Frost L4D", 1, cat2, "Piun, piun", 5, "FrostL4D.jpg", "damn");
+                int articulo3 = articuloCEN.New_ ("Contrato Virtuoso", 800, cat3, "Espada YohRa", 5, "Nier.jpg", "damn");
+                int articulo4 = articuloCEN.New_ ("Raygun", 50, cat2, "Arma de rayos molona", 5, "Raygun.jpg", "damn");
+                int articulo5 = articuloCEN.New_ ("Excalibur", 90, cat1, "Moar armas molonas", 5, "Excalibur.jpg", "damn");
+                int articulo6 = articuloCEN.New_ ("Daga del tiempo", 550, cat1, "Daga de Prince of Persia, puede controlar el tiempo", 5, "Time.jpg", "damn");
 
                 int art1CatId = articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulo1).Categoria.Id;
                 int art2CatId = articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulo2).Categoria.Id;

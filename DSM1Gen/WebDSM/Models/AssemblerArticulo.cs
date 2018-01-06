@@ -31,7 +31,9 @@ namespace WebDSM.Models
             art.Stock = en.Stock;
             art.NomCategoria = en.Categoria.Id;
             art.NombreCategoria = en.Categoria.Nombre;
-            
+            art.Imagen = en.Imagen;
+            art.Img_3d = en.Img_3d;
+
             return art;
             
         }
@@ -47,6 +49,8 @@ namespace WebDSM.Models
             art.Articulo.Stock = en.Stock;
             art.Articulo.NomCategoria = en.Categoria.Id;
             art.Articulo.NombreCategoria = en.Categoria.Nombre;
+            art.Articulo.Imagen = en.Imagen;
+            art.Articulo.Img_3d = en.Img_3d;
 
             Valoracion v;
             IList<ValoracionEN> var = en.Valoracion;

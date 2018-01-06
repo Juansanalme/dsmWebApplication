@@ -157,18 +157,18 @@
                             </div>
                             <div class="row">
 
-                            <div class="form-group col-6">
-                                <label for="Articulo_Precio">Precio<span class="text-blood">*</span></label>
-                                @Html.EditorFor(model => model.Articulo.Precio, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Articulo.Precio, "", new { @class = "text-danger" })
-                                <small id="nameHelp" class="form-text text-muted">Elige el precio para el nuevo artículo.</small>
-                            </div>
+                                <div class="form-group col-6">
+                                    <label for="Articulo_Precio">Precio<span class="text-blood">*</span></label>
+                                    @Html.EditorFor(model => model.Articulo.Precio, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Articulo.Precio, "", new { @class = "text-danger" })
+                                    <small id="nameHelp" class="form-text text-muted">Elige el precio para el nuevo artículo.</small>
+                                </div>
 
-                            <div class="form-group col-6">
-                                <label for="Articulo_NomCategoria">Categoria<span class="text-blood">*</span></label>
-                                @Html.DropDownListFor(model => model.Articulo.NomCategoria, new SelectList(listSCat, "Value", "Text"), null, new { @class = "form-control" })
-                                <small id="SuperHelp" class="form-text text-muted">Elige la categoría a la que pertenece.</small>
-                            </div>
+                                <div class="form-group col-6">
+                                    <label for="Articulo_NomCategoria">Categoria<span class="text-blood">*</span></label>
+                                    @Html.DropDownListFor(model => model.Articulo.NomCategoria, new SelectList(listSCat, "Value", "Text"), null, new { @class = "form-control" })
+                                    <small id="SuperHelp" class="form-text text-muted">Elige la categoría a la que pertenece.</small>
+                                </div>
 
                             </div>
                             <div class="form-group">
@@ -177,14 +177,19 @@
                                 @Html.ValidationMessageFor(model => model.Articulo.Descripcion, "", new { @class = "text-danger" })
                                 <small id="nameHelp" class="form-text text-muted">¿Cómo es el producto?</small>
                             </div>
-
-                            <div class="form-group">
-                                <label for="Articulo_Stock">Stock<span class="text-blood">*</span></label>
-                                @Html.EditorFor(model => model.Articulo.Stock, new { htmlAttributes = new { @type = "number", @min = "0", @step = "1", @value = "0", @class = "form-control", placeholder = "0, 1, 5, 10..." } })
-                                @Html.ValidationMessageFor(model => model.Articulo.Stock, "", new { @class = "text-danger" })
-                                <small id="nameHelp" class="form-text text-muted">Introduce el número de unidades disponibles.</small>
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label for="Articulo_Stock">Stock<span class="text-blood">*</span></label>
+                                    @Html.EditorFor(model => model.Articulo.Stock, new { htmlAttributes = new { @type = "number", @min = "0", @step = "1", @value = "0", @class = "form-control", placeholder = "0, 1, 5, 10..." } })
+                                    @Html.ValidationMessageFor(model => model.Articulo.Stock, "", new { @class = "text-danger" })
+                                    <small id="nameHelp" class="form-text text-muted">Introduce el número de unidades disponibles.</small>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="Articulo_Img_3d">ID - Modelo 3D</label>
+                                    @Html.EditorFor(model => model.Articulo.Img_3d, new { htmlAttributes = new { @class = "form-control", placeholder = "Ej: 35d80a2cc36b4df1adad7242df730d5c" } })
+                                    <small id="nameHelp" class="form-text text-muted">Introduce el id del modelo 3D, si existe.</small>
+                                </div>
                             </div>
-
                             <div class="form-group">
                                 <input type="file" name="file" value="Browse" />
                             </div>

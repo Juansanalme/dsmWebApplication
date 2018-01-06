@@ -50,24 +50,24 @@ namespace WebDSM.Controllers
 
                 if ((System.IO.File.Exists(imagen + ".jpg")))
                 {
-                    a.Item_Image = a.Id + ".jpg";
+                    a.Imagen = a.Id + ".jpg";
                 }
                 else if ((System.IO.File.Exists(imagen + ".jpeg")))
                 {
-                    a.Item_Image = a.Id + ".jpeg";
+                    a.Imagen = a.Id + ".jpeg";
                 }
                 else if ((System.IO.File.Exists(imagen + ".png")))
                 {
-                    a.Item_Image = a.Id + ".png";
+                    a.Imagen = a.Id + ".png";
                 }
                 else if ((System.IO.File.Exists(imagen + ".gif")))
                 {
-                    a.Item_Image = a.Id + ".gif";
+                    a.Imagen = a.Id + ".gif";
                 }
                 else
                 {
                     //SI NO TIENE FOTO DE PERFIL
-                    a.Item_Image = "";
+                    a.Imagen = "";
                 }
             }
 
@@ -168,9 +168,11 @@ namespace WebDSM.Controllers
 
                 art.Articulo.NombreCategoria = catCEN.get_ICategoriaCAD().ReadOIDDefault(art.Articulo.NomCategoria).Nombre;
 
-                int art2 = artCen.New_(art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.NomCategoria, art.Articulo.Descripcion, art.Articulo.Stock);
+                int art2 = artCen.New_(art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.NomCategoria, art.Articulo.Descripcion, art.Articulo.Stock, "", art.Articulo.Img_3d);
 
-                //SUBIDA DE LA IMAGEN DEL ARTICULO
+                //Modifico solo el atributo que guarda el nombre de la imagen
+                artCen.Modify(art2, art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.Descripcion, art.Articulo.Stock, "art2", art.Articulo.Img_3d);
+                
                 var path = "";
 
                 if (file != null)
@@ -213,7 +215,7 @@ namespace WebDSM.Controllers
 
                 ArticuloEN new_art = new ArticuloEN();
 
-                articuloCEN.Modify(art.Articulo.Id, art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.Descripcion, art.Articulo.Stock);
+                articuloCEN.Modify(art.Articulo.Id, art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.Descripcion, art.Articulo.Stock, art.Articulo.Imagen, art.Articulo.Img_3d);
 
                 return RedirectToAction("Details/"+art.Articulo.Id);
             }
