@@ -166,17 +166,28 @@ a:hover {
 .cesta {
     position: relative;
     min-height: 60px;
+    max-height:60px;
     color: #ea0754;
     background: url(../Images/Cesta.png) no-repeat;
     background-size: auto 80%;
     background-position: center bottom;
 }
+
+.cesta-mini {
+    position: relative;
+    height: 100%;
+    color: #ea0754;
+    background: url(../Images/Cesta.png) no-repeat;
+    background-size: auto 90%;
+    background-position: center bottom;
+    text-align: center;
+}
 .cesta span{
     position: absolute;
     color: #f4f4f4;
     bottom: 0;
-    padding-left: 8%;
-    font-size: 15px;
+    padding-left: 12%;
+    font-size: 13px;
 }
 
 .item-background {
@@ -330,7 +341,9 @@ a:hover {
     outline: none;
 }
 
-
+.height-35px {
+    min-height: 35px;
+}
 p, label, img, input, header, span, section, div, table, figure, a {
     -webkit-transition: width 0.3s ease-in-out;
     transition: width 0.3s ease-in-out;
@@ -344,10 +357,9 @@ p, label, img, input, header, span, section, div, table, figure, a {
     -moz-column-gap: 2px;
     column-gap: 2px;
     
-    -webkit-column-width: 600px;
-    -moz-column-width: 600px;
-    column-width: 600px;
-
+    -webkit-column-width: 550px;
+    -moz-column-width: 550px;
+    column-width: 550px;
     column-fill: balance;
 
     margin: 0;
@@ -375,3 +387,38 @@ p, label, img, input, header, span, section, div, table, figure, a {
     max-width: 100%;
     max-height: 200px;
 }
+
+.warp {
+    white-space: pre-wrap;
+}
+
+.mh-400px {
+    max-height: 400px;
+}
+
+.shadow {
+    text-shadow: 2px 0 0 #242424, -2px 0 0 #242424, 0 2px 0 #242424, 0 -2px 0 #242424, 1px 1px #242424, -1px -1px 0 #242424, 1px -1px 0 #242424, -1px 1px 0 #242424;
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    margin: 0 0 2px !important;
+    overflow: hidden !important;
+}
+
+.no-arrow::after {
+    display: none
+}
+
+.foto-perfil {
+    position: relative;
+    height: 50px !important;
+    width: 50px !important;
+    max-width:50px;
+    border-radius: 50%;
+    float:right;
+}
+
+.text-mini{
+    font-size: 12px;
+}
+

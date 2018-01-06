@@ -105,6 +105,7 @@
                         $("#art-modify select#Articulo_NomCategoria").val(response.NomCategoria);
                         $("#art-modify input#Articulo_Descripcion").val(response.Descripcion);
                         $("#art-modify input#Articulo_Stock").val(response.Stock);
+                        $('#art-modify figure figcaption').html('<h2>' + response.Nombre + ' <span> &nbsp;&nbsp;' + response.Precio + '</span></h2><p>' + response.Descripcion + '</p>');
                     }
                 });
             });
@@ -120,6 +121,7 @@
                     $("#art-modify input#Articulo_NomCategoria").val(response.NomCategoria);
                     $("#art-modify input#Articulo_Descripcion").val(response.Descripcion);
                     $("#art-modify input#Articulo_Stock").val(response.Stock);
+                    $('#art-modify figure figcaption').html('<h2>' + response.Nombre + ' <span> &nbsp;&nbsp;' + response.Precio + '</span></h2><p>' + response.Descripcion + '</p>');
                 }
             });
         });
@@ -127,6 +129,15 @@
         $('a.nav-link').on('click', function () {
             $('.collapse').collapse('hide');
         });
+
+        $('#art-create .form-control').keyup(function () {
+            $('#art-create figure figcaption').html('<h2>' + $('#art-create input#Articulo_Nombre').val() + ' <span> &nbsp;&nbsp;' + $('#art-create input#Articulo_Precio').val() + '</span></h2><p>' + $('#art-create textarea#Articulo_Descripcion').val()+'</p>');
+        });
+
+        $('#art-modify .form-control').keyup(function () {
+            $('#art-modify figure figcaption').html('<h2>' + $('#art-modify input#Articulo_Nombre').val() + ' <span> &nbsp;&nbsp;' + $('#art-modify input#Articulo_Precio').val() + '</span></h2><p>' + $('#art-modify textarea#Articulo_Descripcion').val() + '</p>');
+        });
+
 
     </script>
 </body>

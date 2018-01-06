@@ -39,30 +39,65 @@
         <a href="#"><img class="social-mini mx-1" src="~/Images/Twitter-rounded.png" /></a>
         <a href="#"><img class="social-mini mx-1" src="~/Images/Google-rounded.png" /></a>
     </div>
-    <nav class="container-fluid navbar navbar-dark bg-black navbar-expand-lg d-lg-none sticky-top border-orange-bottom">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="row w-50">
-            <div class="col">
+    <nav class="container-fluid navbar navbar-dark bg-black navbar-expand-lg d-lg-none sticky-top border-orange-bottom px-0">
+        <div class="row w-100 h-100 mx-0 d-flex">
+            <div class=" col-1 align-self-center">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class=" ml-auto col-6 col-sm-8 align-self-center">
                 @using (Html.BeginForm("Busqueda", "Articulo", FormMethod.Post, new { @class = "form-inline" }))
                 {
                     <input class="busqueda" type="search" placeholder="Busqueda" name="termino" />
                     <button class="icon pointer" type="submit"></button>
                 }
             </div>
+            @if (Session["login"] != null)
+                {
+                    <div class="col-3 col-sm-2 p-0">
+                        <div class="row h-100 m-0 d-flex">
+                            <a class="col-6 p-0 dropdown-toggle no-arrow align-self-center" href="@Url.Action("Perfil", "Registrado", new { id = Session["idUsuario"] })" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="d-inline-block ml-auto foto-perfil p-0" style="background: url(@Session["foto"]) no-repeat center center; background-size: auto 100%;"></div>
+                                
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <span class="font-weight-bold">@Session["login"]</span>
+                                <a class="dropdown-item" href="@Url.Action("Perfil", "Registrado", new {id = Session["idUsuario"] })">Perfil</a>
+
+                                <a class="dropdown-item" href="@Url.Action("Logout", "Registrado")">Logout</a>
+                            </div>
+                        
+                            <a class="col-6 p-0 cesta-mini font-weight-bold pl-1" href="@Url.Action("Index", "Carrito", new {id = Session["idUsuario"] })">
+                                @Session["nCarrito"]
+                            </a>
+                        </div>
+                    </div>
+                }
+
         </div>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="container navbar-nav text-center">
-                @Html.ActionLink("HOME", "Index", "Home", new { @class = "nav-item nav-link active" })
-                @Html.ActionLink("VIDEOJUEGOS", "Index", "Home", new { @class = "nav-item nav-link" })
-                @Html.ActionLink("PUJA", "Index", "Home", new { @class = "nav-item nav-link" })
-                @Html.ActionLink("CATEGORIA", "Index", "Home", new { @class = "nav-item nav-link" })
-               
-                <div>
-                    @Html.ActionLink("Log In", "Login", "Registrado", null, new { @class = "btn" })
-                    @Html.ActionLink("Registro", "Create", "Registrado", null, new { @class = "btn btn-outline-light" })
-                </div>
+            <div class="container navbar-nav text-center pr-0 ">
+                @if (Session["login"] == null)
+                {
+                    <div class="mt-4 row mr-0 mb-2">
+                        @Html.ActionLink("Log In", "Login", "Registrado", null, new { @class = "nav-link btn offset-3 col-3" })
+                        @Html.ActionLink("Registro", "Create", "Registrado", null, new { @class = "btn btn-outline-light col-3" })
+                    </div>
+                }
+                
+                
+                @Html.ActionLink("HOME", "Index", "Home", null, new { @class = "nav-item nav-link active" })
+                @Html.ActionLink("VIDEOJUEGOS", "Index", "Home", null, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("PUJA", "Index", "Puja", null, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("CATEGORIA", "Index", "Categoria", null, new { @class = "nav-item nav-link" })
+
+                @if (Session["admin"] != null && (bool)Session["admin"])
+                {
+                    <a class="mx-2 elegant btn btn-outline-danger" href="@Url.Action("Admin", "Registrado" )">
+                        <span class="warp">PANEL DE ADMINISTRADOR</span>
+                    </a>
+                }
             </div>
         </div>
         
@@ -74,12 +109,12 @@
                 @if (Session["admin"] != null && (bool)Session["admin"])
                 {
                     <a class="elegant btn btn-outline-danger" href="@Url.Action("Admin", "Registrado" )">
-                        PANEL DE ADMINISTRADOR
+                        <span class="warp">PANEL DE ADMINISTRADOR</span>
                     </a>
                 }
             </div>
             <div class="col-3">
-                &nbsp;
+                <div class="row height-35px">&nbsp;</div>
                 <div class="row">
                     <div class="col">
                         @if (controllerName == "Home")
@@ -141,23 +176,33 @@
                 </div>
             </div>
             <div class="col-2 d-flex align-items-center">
-                <div class="row w-100">
+                <div class="row w-100 d-flex">
                     @if (Session["login"] == null)
                     {
-                        <div class="col">
-                            @Html.ActionLink("Log In", "Login", "Registrado", null, new { @class = "nav-link btn w-100 text-center p-2" })
-                        </div>
-                        <div class="col">        
-                            @Html.ActionLink("Registro", "Create", "Registrado", null, new { @class = "btn btn-outline-light w-100 p-2 mr-1" })
-                        </div>
+                        @Html.ActionLink("Log In", "Login", "Registrado", null, new { @class = "nav-link btn w-100 text-center p-2 col" })
+                        @Html.ActionLink("Registro", "Create", "Registrado", null, new { @class = "btn btn-outline-light w-100 p-2 mr-1 col" })
                     }
                     else
                     {
                         @*CON @SESSION[LOGIN] COJO EL NOMBRE DE USUARIO QUE HE ALMACENADO AL CREAR LA SESION*@
-                        <a class="col-6" href="@Url.Action("Perfil", "Registrado", new { id = Session["idUsuario"] })">@Session["login"]</a>
-                        <a href="@Url.Action("Logout", "Registrado", "")">Logout</a>
+                        
+                        <a class="col-6 dropdown-toggle no-arrow align-self-center text-orange px-0 position-relative h-100" href="@Url.Action("Perfil", "Registrado", new { id = Session["idUsuario"] })" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="row m-0 d-flex">
+                                <small class="p-0 align-self-center text-mini">
+                                    @Session["login"]
+                                </small>
+                                <div class="d-inline-block ml-auto foto-perfil p-0" style="background: url(@Session["foto"]) no-repeat center center; background-size: auto 100%;"></div>  
+                            </div>
+                            
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="@Url.Action("Perfil", "Registrado", new {id = Session["idUsuario"] })">Perfil</a>
+                            
+                            <a class="dropdown-item" href="@Url.Action("Logout", "Registrado")">Logout</a>
+                        </div>
+                        
                         <a class="col-6 cesta pr-2 pt-2" href="@Url.Action("Index", "Carrito", new {id = Session["idUsuario"] })">
-                            0  <span>Cesta</span>
+                            @Session["nCarrito"]  <span>Cesta</span>
                         </a>
 
                     }

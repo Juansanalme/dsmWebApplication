@@ -57,6 +57,26 @@ namespace WebDSM.Controllers
                     System.Web.HttpContext.Current.Session["idUsuario"] = finalID; //LO NECESITARE MÁS ADELANTE PARA OPERACIONES CON EL CARRITO
                     System.Web.HttpContext.Current.Session["admin"] = admin;
 
+                    //Cojo el numero de articulos en el carrito
+                    SessionInitialize();
+                    CarritoCAD carritoCAD = new CarritoCAD(session);
+                    CarritoCEN carritoCEN = new CarritoCEN(carritoCAD);
+                    CarritoEN en = carritoCEN.get_ICarritoCAD().ReadOIDDefault(finalID);
+                    CarritoYLineas model = new AssemblerCarrito().ConvertENToViewModelUI(en);
+                    System.Web.HttpContext.Current.Session["nCarrito"] = model.LineaPedido.Count();
+                    SessionClose();
+                    //Cojo la foto de perfil
+                    System.Web.HttpContext.Current.Session["foto"] = "../../Images/Shut-up-and-take-my-money!.png";
+                    RegistradoCAD cad = new RegistradoCAD();
+                    RegistradoEN registradoEN = cad.ReadOIDDefault(finalID);
+                    Registrado img = new AssemblerRegistrado().ConvertENToModelUI(registradoEN);
+                    string idUsu = img.Id.ToString();
+                    string iconoUsu = Path.Combine(Server.MapPath("~/Content/Uploads/User_icons"), idUsu);
+                    if ((System.IO.File.Exists(iconoUsu + ".jpg"))) Session["foto"] = img.Id + ".jpg";
+                    else if ((System.IO.File.Exists(iconoUsu + ".jpeg"))) Session["foto"] = img.Id + ".jpeg";
+                    else if ((System.IO.File.Exists(iconoUsu + ".png"))) Session["foto"] = img.Id + ".png";
+                    else if ((System.IO.File.Exists(iconoUsu + ".gif"))) Session["foto"] = img.Id + ".gif";
+
                     return RedirectToAction("../Home");
                 }
                 else

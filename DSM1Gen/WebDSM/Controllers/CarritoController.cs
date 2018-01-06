@@ -158,6 +158,10 @@ namespace WebDSM.Controllers
 
             cp2.Calcular_precio(idUsuario);
 
+            int n = (int)Session["nCarrito"];
+            n--;
+            Session["nCarrito"] = n;
+
             return RedirectToAction("Index", new { id = idUsuario } );
         }
 

@@ -105,7 +105,10 @@ namespace WebDSM.Controllers
 
             aCEN.Quitar_stock(id, 1);
 
-                        
+            int n = (int)Session["nCarrito"];
+            n++;
+            Session["nCarrito"] = n;
+
             return RedirectToAction("../Carrito/Index", new { id = idUsuario});
         }
 
