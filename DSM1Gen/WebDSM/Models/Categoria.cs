@@ -22,6 +22,8 @@ namespace WebDSM.Models
 
             List<SelectListItem> miLista = new List<SelectListItem>();
 
+            miLista.Add(new SelectListItem { Value = "0", Text = "Sin supercategoría" });
+
             foreach (CategoriaEN cat in listaEN)
             {
                 SelectListItem item = new SelectListItem { Value = cat.Id.ToString(), Text = cat.Nombre };
