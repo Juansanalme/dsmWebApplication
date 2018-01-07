@@ -6,6 +6,7 @@
     List<SelectListItem> listSCat = superCat.Categoria.getAllNombres();
     List<SelectListItem> listSArt = superCat.Articulo.getAllNombres();
     List<SelectListItem> listSPuj = superCat.Puja.getAllNombres();
+    List<SelectListItem> listVid = superCat.Videojuego.GetAllVideojuegos();
 
     var message = @Session["PujaError"];
     if (message != null) System.Web.HttpContext.Current.Session.Remove("PujaError");
@@ -188,6 +189,12 @@
                                     <label for="Articulo_Img_3d">ID - Modelo 3D</label>
                                     @Html.EditorFor(model => model.Articulo.Img_3d, new { htmlAttributes = new { @class = "form-control", placeholder = "Ej: 35d80a2cc36b4df1adad7242df730d5c" } })
                                     <small id="nameHelp" class="form-text text-muted">Introduce el id del modelo 3D, si existe.</small>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Articulo.IdVideojuego, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.Articulo.IdVideojuego, new SelectList(listVid, "Value", "Text"), "Selecciona un videojuego para el artículo")
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">

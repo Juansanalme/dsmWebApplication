@@ -34,6 +34,8 @@ namespace WebDSM.Models
             art.Imagen = en.Imagen;
             art.Img_3d = en.Img_3d;
 
+            art.IdVideojuego = en.Videojuego.Id;
+
             return art;
             
         }
@@ -51,6 +53,8 @@ namespace WebDSM.Models
             art.Articulo.NombreCategoria = en.Categoria.Nombre;
             art.Articulo.Imagen = en.Imagen;
             art.Articulo.Img_3d = en.Img_3d;
+
+            art.Articulo.IdVideojuego = en.Videojuego.Id;
 
             Valoracion v;
             IList<ValoracionEN> var = en.Valoracion;

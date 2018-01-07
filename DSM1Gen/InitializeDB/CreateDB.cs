@@ -125,14 +125,23 @@ public static void InitializeData ()
                 categoriaCEN.Anyadir_supercat (cat1, cat3);
                 categoriaCEN.Anyadir_supercat (cat2, cat3);
 
+                //VIDEOJUEGOS
+                VideojuegoCEN videojuegoCEN = new VideojuegoCEN();
+                int videojuego1 = videojuegoCEN.New_("Left 4 Dead");
+                int videojuego2 = videojuegoCEN.New_("World of Warcraft");
+                int videojuego3 = videojuegoCEN.New_("NieR: Automata");
+                int videojuego4 = videojuegoCEN.New_("Call of Duty");
+                int videojuego5 = videojuegoCEN.New_("El Rey Arturo: La leyenda de la espada");
+                int videojuego6 = videojuegoCEN.New_("Prince of Persia");
+
                 //ARTICULOS
                 ArticuloCEN articuloCEN = new ArticuloCEN ();
-                int articulo1 = articuloCEN.New_ ("FrostMourne", 10.01, cat1, "Un arma muy especial", 5, "FrostMourne.jpg", "damn");
-                int articulo2 = articuloCEN.New_ ("Escopeta Frost L4D", 1, cat2, "Piun, piun", 5, "FrostL4D.jpg", "damn");
-                int articulo3 = articuloCEN.New_ ("Contrato Virtuoso", 800, cat3, "Espada YohRa", 5, "Nier.jpg", "damn");
-                int articulo4 = articuloCEN.New_ ("Raygun", 50, cat2, "Arma de rayos molona", 5, "Raygun.jpg", "damn");
-                int articulo5 = articuloCEN.New_ ("Excalibur", 90, cat1, "Moar armas molonas", 5, "Excalibur.jpg", "damn");
-                int articulo6 = articuloCEN.New_ ("Daga del tiempo", 550, cat1, "Daga de Prince of Persia, puede controlar el tiempo", 5, "Time.jpg", "damn");
+                int articulo1 = articuloCEN.New_ ("FrostMourne", 10.01, cat1, "Un arma muy especial", 5, "FrostMourne.jpg", "damn", videojuego1);
+                int articulo2 = articuloCEN.New_ ("Escopeta Frost L4D", 1, cat2, "Piun, piun", 5, "FrostL4D.jpg", "damn", videojuego2);
+                int articulo3 = articuloCEN.New_ ("Contrato Virtuoso", 800, cat3, "Espada YohRa", 5, "Nier.jpg", "damn", videojuego3);
+                int articulo4 = articuloCEN.New_ ("Raygun", 50, cat2, "Arma de rayos molona", 5, "Raygun.jpg", "damn", videojuego4);
+                int articulo5 = articuloCEN.New_ ("Excalibur", 90, cat1, "Moar armas molonas", 5, "Excalibur.jpg", "damn", videojuego5);
+                int articulo6 = articuloCEN.New_ ("Daga del tiempo", 550, cat1, "Daga de Prince of Persia, puede controlar el tiempo", 5, "Time.jpg", "damn", videojuego6);
 
                 int art1CatId = articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulo1).Categoria.Id;
                 int art2CatId = articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulo2).Categoria.Id;

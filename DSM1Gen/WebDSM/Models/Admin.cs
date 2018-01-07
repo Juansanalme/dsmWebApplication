@@ -13,11 +13,12 @@ namespace WebDSM.Models
             Categoria = new Categoria();
             Puja = new Puja();
             Registrado = new List<Registrado>();
+            Videojuego = new Videojuego();
         }
         public Articulo Articulo { get; set; }
         public Categoria Categoria { get; set; }
         public Puja Puja { get; set; }
         public IList<Registrado> Registrado { get; set; }
-
+        public Videojuego Videojuego { get; set; }
     }
 }
