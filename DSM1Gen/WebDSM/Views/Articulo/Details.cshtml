@@ -119,7 +119,7 @@
 
                     if (sessionID != 0 && !fav)
                     {
-                        <a class="row nav-link pb-4 d-flex align-items-center" id="fav" href="@Url.Action("FavAnyadir","Articulo", new { id = Model.Articulo.Id })"> <!----------------------------------- AQUI EL ENLACE PARA AÑADIR A FAVORITOS -->
+                        <a class="row nav-link pb-4 d-flex align-items-center" id="fav" href="@Url.Action("FavAnyadir","Articulo", new { artId = Model.Articulo.Id })"> <!----------------------------------- AQUI EL ENLACE PARA AÑADIR A FAVORITOS -->
                             <div class="col-2 col-md-4 d-flex align-items-center justify-content-end pr-0">
                                 <div class="heart secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
                                     <i class="fas fa-heart"></i>
@@ -130,7 +130,7 @@
                     }
                     else if(sessionID!=0)
                     {
-                        <a class="row nav-link pb-4 d-flex align-items-center" id="fav" href="@Url.Action("FavQuitar","Articulo", new { id = Model.Articulo.Id })">
+                        <a class="row nav-link pb-4 d-flex align-items-center" id="fav" href="@Url.Action("FavQuitar","Articulo", new { artId = Model.Articulo.Id })">
                             <div class="col-2 col-md-4 d-flex align-items-center justify-content-end pr-0">
                                 <div class="favved secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
                                     <i class="fas fa-heart"></i>
