@@ -22,6 +22,12 @@ namespace WebDSM.Models
         [ScaffoldColumn(false)]
         public int IdVideojuego { get; set; }
 
+        [ScaffoldColumn(false)]
+        public String Videojuego { get; set; }
+
+        [ScaffoldColumn(false)]
+        public List<int> UsuariosId { get; set; }
+
         [Display(Prompt = "Nombre del artículo", Description = "Nombre del artículo", Name = "Nombre" )]
         [Required(ErrorMessage = "Debe de indicar un nombre para el artículo")]
         [StringLength(maximumLength: 50, MinimumLength = 0, ErrorMessage = "El nombre tiene que tener entre 0 y 50 caracteres")]

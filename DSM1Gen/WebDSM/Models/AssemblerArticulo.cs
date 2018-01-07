@@ -33,8 +33,14 @@ namespace WebDSM.Models
             art.NombreCategoria = en.Categoria.Nombre;
             art.Imagen = en.Imagen;
             art.Img_3d = en.Img_3d;
-
+            art.Videojuego = en.Videojuego.Nombre;
             art.IdVideojuego = en.Videojuego.Id;
+
+            art.UsuariosId = new List<int>();
+            foreach (RegistradoEN regEN in en.Registrado)
+            {
+                art.UsuariosId.Add(regEN.Id);
+            }
 
             return art;
             
@@ -73,6 +79,12 @@ namespace WebDSM.Models
                 valor += item.Puntuacion;
             }
             art.Articulo.ValoracionMedia = valor / i;
+
+            art.Articulo.UsuariosId = new List<int>();
+            foreach (RegistradoEN regEN in en.Registrado)
+            {
+                art.Articulo.UsuariosId.Add(regEN.Id);
+            }
 
             return art;
 

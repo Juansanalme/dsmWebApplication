@@ -332,7 +332,7 @@ namespace WebDSM.Controllers
             return View("Index", art);
         }
 
-        public ActionResult Favoritos()
+        public ActionResult LoadFavoritos()
         {
             SessionInitialize();
 
@@ -352,6 +352,36 @@ namespace WebDSM.Controllers
 
             art = GetAllFotos(art);
             return View("Index", art);
+        }
+
+        public ActionResult FavAnyadir(int artId)
+        {
+            SessionInitialize();
+            
+            RegistradoCEN registradoCEN = new RegistradoCEN();
+
+            List<int> lista = new List<int>();
+            lista.Add(artId);
+
+            int miID = (int)Session["idUsuario"];
+            registradoCEN.Añadir_fav(miID, lista);
+
+            return RedirectToAction("../Articulo/Details", new { id = artId });
+        }
+
+        public ActionResult FavQuitar(int artId)
+        {
+            SessionInitialize();
+
+            RegistradoCEN registradoCEN = new RegistradoCEN();
+
+            List<int> lista = new List<int>();
+            lista.Add(artId);
+
+            int miID = (int)Session["idUsuario"];
+            registradoCEN.Eliminar_fav(miID, lista);
+
+            return RedirectToAction("../Articulo/Details", new { id = artId });
         }
 
         [HttpPost]
