@@ -38,7 +38,7 @@ public IArticuloCAD get_IArticuloCAD ()
         return this._IArticuloCAD;
 }
 
-public int New_ (string p_nombre, double p_precio, int p_categoria, string p_descripcion, int p_stock, string p_imagen, string p_img_3d)
+public int New_ (string p_nombre, double p_precio, int p_categoria, string p_descripcion, int p_stock, string p_imagen, string p_img_3d, int p_videojuego)
 {
         ArticuloEN articuloEN = null;
         int oid;
@@ -64,6 +64,14 @@ public int New_ (string p_nombre, double p_precio, int p_categoria, string p_des
         articuloEN.Imagen = p_imagen;
 
         articuloEN.Img_3d = p_img_3d;
+
+
+        if (p_videojuego != -1) {
+                // El argumento p_videojuego -> Property videojuego es oid = false
+                // Lista de oids id
+                articuloEN.Videojuego = new DSM1GenNHibernate.EN.DSM1.VideojuegoEN ();
+                articuloEN.Videojuego.Id = p_videojuego;
+        }
 
         //Call to ArticuloCAD
 
@@ -118,6 +126,10 @@ public System.Collections.Generic.IList<ArticuloEN> ReadAll (int first, int size
 
         list = _IArticuloCAD.ReadAll (first, size);
         return list;
+}
+public System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> Busqueda_por_videojuego (string p_videojuego)
+{
+        return _IArticuloCAD.Busqueda_por_videojuego (p_videojuego);
 }
 }
 }
