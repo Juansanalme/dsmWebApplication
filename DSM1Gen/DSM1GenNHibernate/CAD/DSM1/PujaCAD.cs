@@ -137,7 +137,7 @@ public int New_ (PujaEN puja)
                         puja.Articulo = (DSM1GenNHibernate.EN.DSM1.ArticuloEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.ArticuloEN), puja.Articulo.Id);
 
                         puja.Articulo.Puja
-                                = puja;
+                        .Add (puja);
                 }
 
                 session.Save (puja);

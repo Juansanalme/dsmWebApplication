@@ -50,7 +50,7 @@ private System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN
 /**
  *	Atributo puja
  */
-private DSM1GenNHibernate.EN.DSM1.PujaEN puja;
+private System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.PujaEN> puja;
 
 
 
@@ -135,7 +135,7 @@ public virtual System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaP
 
 
 
-public virtual DSM1GenNHibernate.EN.DSM1.PujaEN Puja {
+public virtual System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.PujaEN> Puja {
         get { return puja; } set { puja = value;  }
 }
 
@@ -183,12 +183,13 @@ public ArticuloEN()
 {
         valoracion = new System.Collections.Generic.List<DSM1GenNHibernate.EN.DSM1.ValoracionEN>();
         lineaPedido = new System.Collections.Generic.List<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN>();
+        puja = new System.Collections.Generic.List<DSM1GenNHibernate.EN.DSM1.PujaEN>();
         registrado = new System.Collections.Generic.List<DSM1GenNHibernate.EN.DSM1.RegistradoEN>();
 }
 
 
 
-public ArticuloEN(int id, string nombre, double precio, DSM1GenNHibernate.EN.DSM1.CategoriaEN categoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.PujaEN puja, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> registrado, string descripcion, int stock, string imagen, string img_3d, DSM1GenNHibernate.EN.DSM1.VideojuegoEN videojuego
+public ArticuloEN(int id, string nombre, double precio, DSM1GenNHibernate.EN.DSM1.CategoriaEN categoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.PujaEN> puja, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> registrado, string descripcion, int stock, string imagen, string img_3d, DSM1GenNHibernate.EN.DSM1.VideojuegoEN videojuego
                   )
 {
         this.init (Id, nombre, precio, categoria, valoracion, lineaPedido, puja, registrado, descripcion, stock, imagen, img_3d, videojuego);
@@ -201,7 +202,7 @@ public ArticuloEN(ArticuloEN articulo)
 }
 
 private void init (int id
-                   , string nombre, double precio, DSM1GenNHibernate.EN.DSM1.CategoriaEN categoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.PujaEN puja, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> registrado, string descripcion, int stock, string imagen, string img_3d, DSM1GenNHibernate.EN.DSM1.VideojuegoEN videojuego)
+                   , string nombre, double precio, DSM1GenNHibernate.EN.DSM1.CategoriaEN categoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.PujaEN> puja, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> registrado, string descripcion, int stock, string imagen, string img_3d, DSM1GenNHibernate.EN.DSM1.VideojuegoEN videojuego)
 {
         this.Id = id;
 

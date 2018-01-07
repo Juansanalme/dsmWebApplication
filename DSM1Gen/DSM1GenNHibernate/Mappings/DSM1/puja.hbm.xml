@@ -39,12 +39,10 @@
 											 					
 			
 		  			
-					
-							<many-to-one name="Articulo" class="DSM1GenNHibernate.EN.DSM1.ArticuloEN" >
+						<many-to-one name="Articulo" class="DSM1GenNHibernate.EN.DSM1.ArticuloEN" >	
 								<column name="FK_idArticulo_idArticulo"/> 
-        					</many-to-one>
-					 
-						
+						</many-to-one>
+											 					
 			
 			
 		  			

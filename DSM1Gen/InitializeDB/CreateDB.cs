@@ -126,13 +126,13 @@ public static void InitializeData ()
                 categoriaCEN.Anyadir_supercat (cat2, cat3);
 
                 //VIDEOJUEGOS
-                VideojuegoCEN videojuegoCEN = new VideojuegoCEN();
-                int videojuego1 = videojuegoCEN.New_("Left 4 Dead");
-                int videojuego2 = videojuegoCEN.New_("World of Warcraft");
-                int videojuego3 = videojuegoCEN.New_("NieR: Automata");
-                int videojuego4 = videojuegoCEN.New_("Call of Duty");
-                int videojuego5 = videojuegoCEN.New_("El Rey Arturo: La leyenda de la espada");
-                int videojuego6 = videojuegoCEN.New_("Prince of Persia");
+                VideojuegoCEN videojuegoCEN = new VideojuegoCEN ();
+                int videojuego1 = videojuegoCEN.New_ ("Left 4 Dead");
+                int videojuego2 = videojuegoCEN.New_ ("World of Warcraft");
+                int videojuego3 = videojuegoCEN.New_ ("NieR: Automata");
+                int videojuego4 = videojuegoCEN.New_ ("Call of Duty");
+                int videojuego5 = videojuegoCEN.New_ ("El Rey Arturo: La leyenda de la espada");
+                int videojuego6 = videojuegoCEN.New_ ("Prince of Persia");
 
                 //ARTICULOS
                 ArticuloCEN articuloCEN = new ArticuloCEN ();

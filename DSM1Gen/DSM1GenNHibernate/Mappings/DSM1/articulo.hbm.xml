@@ -64,10 +64,15 @@
 					
 			
 		  			
+						<bag name="Puja" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idArticulo_idArticulo"/>
+					      	</key>
+							<one-to-many class="DSM1GenNHibernate.EN.DSM1.PujaEN"/>
+					    </bag>
 					
-							   <one-to-one name="Puja" class="DSM1GenNHibernate.EN.DSM1.PujaEN" property-ref="Articulo" cascade="delete"/>							
-					 
-						
 			
 		  			
 						<bag name="Registrado" table="[articulo_registrado]"  >
