@@ -32,13 +32,6 @@
 					 
 						
 			
-		  			
-					
-							   <one-to-one name="Pedido" class="DSM1GenNHibernate.EN.DSM1.PedidoEN" property-ref="Carrito" />							
-					 
-						
-			
-					
 					
 					
 					

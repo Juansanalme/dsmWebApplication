@@ -51,7 +51,7 @@ public void Finalizar_compra (int p_Carrito_OID, float p_precio)
                 IList<LineaPedidoEN> listaLineas = carritoCEN.get_ICarritoCAD ().ReadOIDDefault (p_Carrito_OID).LineaPedido;
 
                 //NEW PEDIDO
-                int pedidoid = pedidoCEN.New_ ("", DateTime.Now, usuario, p_Carrito_OID);
+                int pedidoid = pedidoCEN.New_ ("", DateTime.Now, usuario);
 
                 //ANYADIR LINEAS
                 IList<int> lineasId = new List<int>();

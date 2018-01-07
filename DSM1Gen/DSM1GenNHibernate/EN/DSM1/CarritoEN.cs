@@ -27,13 +27,6 @@ private DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado;
 
 
 /**
- *	Atributo pedido
- */
-private DSM1GenNHibernate.EN.DSM1.PedidoEN pedido;
-
-
-
-/**
  *	Atributo precio
  */
 private float precio;
@@ -61,12 +54,6 @@ public virtual DSM1GenNHibernate.EN.DSM1.RegistradoEN Registrado {
 
 
 
-public virtual DSM1GenNHibernate.EN.DSM1.PedidoEN Pedido {
-        get { return pedido; } set { pedido = value;  }
-}
-
-
-
 public virtual float Precio {
         get { return precio; } set { precio = value;  }
 }
@@ -82,20 +69,20 @@ public CarritoEN()
 
 
 
-public CarritoEN(int id, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado, DSM1GenNHibernate.EN.DSM1.PedidoEN pedido, float precio
+public CarritoEN(int id, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado, float precio
                  )
 {
-        this.init (Id, lineaPedido, registrado, pedido, precio);
+        this.init (Id, lineaPedido, registrado, precio);
 }
 
 
 public CarritoEN(CarritoEN carrito)
 {
-        this.init (Id, carrito.LineaPedido, carrito.Registrado, carrito.Pedido, carrito.Precio);
+        this.init (Id, carrito.LineaPedido, carrito.Registrado, carrito.Precio);
 }
 
 private void init (int id
-                   , System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado, DSM1GenNHibernate.EN.DSM1.PedidoEN pedido, float precio)
+                   , System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado, float precio)
 {
         this.Id = id;
 
@@ -103,8 +90,6 @@ private void init (int id
         this.LineaPedido = lineaPedido;
 
         this.Registrado = registrado;
-
-        this.Pedido = pedido;
 
         this.Precio = precio;
 }

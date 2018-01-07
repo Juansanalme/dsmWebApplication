@@ -39,15 +39,6 @@
 								<column name="FK_idRegistrado_idRegistrado"/> 
 						</many-to-one>
 											 					
-			
-		  			
-					
-							<many-to-one name="Carrito" class="DSM1GenNHibernate.EN.DSM1.CarritoEN" >
-								<column name="FK_idCarrito_idCarrito"/> 
-        					</many-to-one>
-					 
-						
-					
 					
 					
 					
