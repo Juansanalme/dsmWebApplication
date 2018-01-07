@@ -332,6 +332,58 @@ namespace WebDSM.Controllers
             return View("Index", art);
         }
 
+        public ActionResult LoadFavoritos()
+        {
+            SessionInitialize();
+
+            RegistradoCAD registradoCAD = new RegistradoCAD(session);
+            RegistradoCEN registradoCEN = new RegistradoCEN(registradoCAD);
+
+            ArticuloCAD articuloCAD = new ArticuloCAD(session);
+            ArticuloCEN articuloCEN = new ArticuloCEN(articuloCAD);
+
+            int miID = (int)Session["idUsuario"];
+            RegistradoEN registradoEN = registradoCEN.get_IRegistradoCAD().ReadOIDDefault(miID);
+
+            IList<ArticuloEN> articulosEN = registradoEN.A_favorito;
+            IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulosEN);
+
+            SessionClose();
+
+            art = GetAllFotos(art);
+            return View("Index", art);
+        }
+
+        public ActionResult FavAnyadir(int artId)
+        {
+            SessionInitialize();
+            
+            RegistradoCEN registradoCEN = new RegistradoCEN();
+
+            List<int> lista = new List<int>();
+            lista.Add(artId);
+
+            int miID = (int)Session["idUsuario"];
+            registradoCEN.Añadir_fav(miID, lista);
+
+            return RedirectToAction("../Articulo/Details", new { id = artId });
+        }
+
+        public ActionResult FavQuitar(int artId)
+        {
+            SessionInitialize();
+
+            RegistradoCEN registradoCEN = new RegistradoCEN();
+
+            List<int> lista = new List<int>();
+            lista.Add(artId);
+
+            int miID = (int)Session["idUsuario"];
+            registradoCEN.Eliminar_fav(miID, lista);
+
+            return RedirectToAction("../Articulo/Details", new { id = artId });
+        }
+
         [HttpPost]
         public JsonResult AjaxMethod(int id)
         {

@@ -51,14 +51,12 @@ C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\D
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\DSM1GenNHibernate.pdb
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\Castle.DynamicProxy2.dll
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\LinFu.DynamicProxy.dll
-C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\Microsoft.QualityTools.Testing.Fakes.dll
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\NHibernate.ByteCode.Castle.dll
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\NHibernate.ByteCode.LinFu.dll
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\NHibernate.dll
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\Iesi.Collections.dll
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\Antlr3.Runtime.dll
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\log4net.dll
-C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\bin\Debug\es\Microsoft.QualityTools.Testing.Fakes.resources.dll
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\obj\Debug\DSM1GenNHibernate.csprojResolveAssemblyReference.cache
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\obj\Debug\DSM1GenNHibernate.csproj.CoreCompileInputs.cache
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\DSM1GenNHibernate\obj\Debug\DSM1GenNHibernate.dll

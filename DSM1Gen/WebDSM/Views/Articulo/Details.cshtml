@@ -7,7 +7,10 @@
     var IMG_3D = "https://sketchfab.com/models/" + @Model.Articulo.Img_3d + "/embed";
     var full = (int)Model.Articulo.ValoracionMedia / 2;
 
-    
+    int sessionID = 0;
+    if (Session["login"] != null)
+        sessionID = (int)Session["idusuario"];
+    bool fav = false;
 }
 
 <div class="container-fluid bg-black item-background py-4">
@@ -93,7 +96,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="row display-4 justify-content-center text-orange">@Html.DisplayFor(model => model.Articulo.Nombre)</div>
-                                <div class="row h3 elegant justify-content-center">CS:GO</div>
+                                <div class="row h3 elegant justify-content-center">@Model.Articulo.Videojuego</div>
                                 <div class="row justify-content-center">@Html.DisplayFor(model => model.Articulo.Descripcion)</div>
                             </div>
                         </div>
@@ -104,14 +107,48 @@
 
         <div class="col-12 col-lg-3 order-3 d-flex align-items-center pt-lg-5 mt-lg-5">
             <div class="w-100">
-                <a class="row nav-link pb-4 d-flex align-items-center" id="fav" href="#"> <!----------------------------------- AQUI EL ENLACE PARA AÑADIR A FAVORITOS -->
-                    <div class="col-2 col-md-4 d-flex align-items-center justify-content-end pr-0">
-                        <div class="heart secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                    </div>
-                    <div class="col-8 h5 m-0 elegant">Añadir a favoritos</div>
-                </a>
+                @{//TODO ESTO ES LA COMPROBACION DE FAVORITOS SI
+                    foreach (int itemID in @Model.Articulo.UsuariosId)
+                    {
+                        if (itemID == sessionID)
+                        {
+                            fav = true;
+                        }
+                    }
+
+                    if(sessionID == 0)
+                    {
+                            <div class="col-2 col-md-4 d-flex align-items-center justify-content-end pr-0">
+                                <div class="heart secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="col-8 h5 m-0 elegant">Logea para añadir a favoritos</div>
+                    }
+                    else if (!fav)
+                    {
+                        <a class="row nav-link pb-4 d-flex align-items-center" id="fav" href="@Url.Action("FavAnyadir","Articulo", new { id = Model.Articulo.Id })"> <!----------------------------------- AQUI EL ENLACE PARA AÑADIR A FAVORITOS -->
+                            <div class="col-2 col-md-4 d-flex align-items-center justify-content-end pr-0">
+                                <div class="heart secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="col-8 h5 m-0 elegant">Añadir a favoritos</div>
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="row nav-link pb-4 d-flex align-items-center" id="fav" href="@Url.Action("FavQuitar","Articulo", new { id = Model.Articulo.Id })">
+                            <div class="col-2 col-md-4 d-flex align-items-center justify-content-end pr-0">
+                                <div class="heart secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="col-8 h5 m-0 elegant">Quitar de favoritos</div>
+                        </a>
+                    }//AQUI TERMINA LA COMPROBACION DEL BOTON DE FAVORITOS SI
+                }
+
                 <div class="row pb-2 d-flex align-items-center">
                     <div class="col-2 col-md-4 d-flex align-items-center justify-content-end pr-0">
                         <div class="bg-orange secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
