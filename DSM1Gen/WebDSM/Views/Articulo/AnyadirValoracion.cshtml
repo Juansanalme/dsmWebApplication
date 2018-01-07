@@ -6,8 +6,6 @@
 @using (Html.BeginForm("Create", "Valoracion", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <h4 class="elegant">Valorar</h4>
-    <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     <div class="row">

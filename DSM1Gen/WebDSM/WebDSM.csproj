@@ -227,6 +227,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="Content\Rating.css" />
+    <Content Include="Content\Uploads\Item_images\327680.jpg" />
     <Content Include="Images\Black_background.png" />
     <Content Include="Images\Black_background_v2.png" />
     <Content Include="Images\Cesta.png" />
@@ -311,7 +312,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Uploads\Item_images\" />
     <Folder Include="Content\Uploads\User_icons\" />
     <Folder Include="Views\Valoracion\" />
   </ItemGroup>

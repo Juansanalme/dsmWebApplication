@@ -217,6 +217,18 @@ a:hover {
     }
 }
 
+@media (max-width: 992px){
+    .item-background {
+        height: auto;
+        min-height: 700px;
+        width: 100%;
+        background: url(../Images/Black_background_vertical.png) no-repeat;
+        background-position: center center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}
+
 .footer_logo{
     height: 100px;
     width:auto;
@@ -503,6 +515,29 @@ a:focus{
     height: 70px;
     width: 70px;
     border-radius: 50%;
+    -webkit-box-shadow: inset 0px 0px 1px 1px #e5b522;
+    -moz-box-shadow: inset 0px 0px 1px 1px #e5b522;
+    box-shadow: inset 0px 0px 1px 1px #e5b522;
+    transition: background 0.3s ease-out;
+}
+
+#al_carrito:hover .carrito, #al_carrito:focus .carrito {
+    background: #e5b522;
+}
+
+.heart {
+    -webkit-box-shadow: inset 0px 0px 1px 1px #e10031;
+    -moz-box-shadow: inset 0px 0px 1px 1px #e10031;
+    box-shadow: inset 0px 0px 1px 1px #e10031;
+}
+
+#fav:hover .heart, #fav:focus .heart {
+    background: #e10031;
+    transition: background 0.3s ease-out;
+}
+
+#favved {
+    background: #e10031;
 }
 
 .secondary-buttons{
