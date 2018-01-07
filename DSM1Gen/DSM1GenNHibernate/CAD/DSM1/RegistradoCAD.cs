@@ -139,25 +139,17 @@ public void ModifyDefault (RegistradoEN registrado)
 }
 
 
-public void Añadir_fav (int p_Registrado_OID, System.Collections.Generic.IList<int> p_a_favorito_OIDs)
+public void Añadir_fav (int p_Registrado_OID, int p_a_favorito_OIDs)
 {
         DSM1GenNHibernate.EN.DSM1.RegistradoEN registradoEN = null;
         try
         {
                 SessionInitializeTransaction ();
                 registradoEN = (RegistradoEN)session.Load (typeof(RegistradoEN), p_Registrado_OID);
-                DSM1GenNHibernate.EN.DSM1.ArticuloEN a_favoritoENAux = null;
-                if (registradoEN.A_favorito == null) {
-                        registradoEN.A_favorito = new System.Collections.Generic.List<DSM1GenNHibernate.EN.DSM1.ArticuloEN>();
-                }
+                registradoEN.A_favorito = (DSM1GenNHibernate.EN.DSM1.ArticuloEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.ArticuloEN), p_a_favorito_OIDs);
 
-                foreach (int item in p_a_favorito_OIDs) {
-                        a_favoritoENAux = new DSM1GenNHibernate.EN.DSM1.ArticuloEN ();
-                        a_favoritoENAux = (DSM1GenNHibernate.EN.DSM1.ArticuloEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.ArticuloEN), item);
-                        a_favoritoENAux.Registrado.Add (registradoEN);
+                registradoEN.A_favorito.Registrado.Add (registradoEN);
 
-                        registradoEN.A_favorito.Add (a_favoritoENAux);
-                }
 
 
                 session.Update (registradoEN);
@@ -178,7 +170,7 @@ public void Añadir_fav (int p_Registrado_OID, System.Collections.Generic.IList<
         }
 }
 
-public void Eliminar_fav (int p_Registrado_OID, System.Collections.Generic.IList<int> p_a_favorito_OIDs)
+public void Eliminar_fav (int p_Registrado_OID, int p_a_favorito_OIDs)
 {
         try
         {
@@ -186,18 +178,11 @@ public void Eliminar_fav (int p_Registrado_OID, System.Collections.Generic.IList
                 DSM1GenNHibernate.EN.DSM1.RegistradoEN registradoEN = null;
                 registradoEN = (RegistradoEN)session.Load (typeof(RegistradoEN), p_Registrado_OID);
 
-                DSM1GenNHibernate.EN.DSM1.ArticuloEN a_favoritoENAux = null;
-                if (registradoEN.A_favorito != null) {
-                        foreach (int item in p_a_favorito_OIDs) {
-                                a_favoritoENAux = (DSM1GenNHibernate.EN.DSM1.ArticuloEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.ArticuloEN), item);
-                                if (registradoEN.A_favorito.Contains (a_favoritoENAux) == true) {
-                                        registradoEN.A_favorito.Remove (a_favoritoENAux);
-                                        a_favoritoENAux.Registrado.Remove (registradoEN);
-                                }
-                                else
-                                        throw new ModelException ("The identifier " + item + " in p_a_favorito_OIDs you are trying to unrelationer, doesn't exist in RegistradoEN");
-                        }
+                if (registradoEN.A_favorito.Id == p_a_favorito_OIDs) {
+                        registradoEN.A_favorito = null;
                 }
+                else
+                        throw new ModelException ("The identifier " + p_a_favorito_OIDs + " in p_a_favorito_OIDs you are trying to unrelationer, doesn't exist in RegistradoEN");
 
                 session.Update (registradoEN);
                 SessionCommit ();

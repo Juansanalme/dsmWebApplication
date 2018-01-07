@@ -38,13 +38,13 @@ public IRegistradoCAD get_IRegistradoCAD ()
         return this._IRegistradoCAD;
 }
 
-public void Añadir_fav (int p_Registrado_OID, System.Collections.Generic.IList<int> p_a_favorito_OIDs)
+public void Añadir_fav (int p_Registrado_OID, int p_a_favorito_OIDs)
 {
         //Call to RegistradoCAD
 
         _IRegistradoCAD.Añadir_fav (p_Registrado_OID, p_a_favorito_OIDs);
 }
-public void Eliminar_fav (int p_Registrado_OID, System.Collections.Generic.IList<int> p_a_favorito_OIDs)
+public void Eliminar_fav (int p_Registrado_OID, int p_a_favorito_OIDs)
 {
         //Call to RegistradoCAD
 
