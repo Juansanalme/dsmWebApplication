@@ -89,6 +89,13 @@ private string img_3d;
 
 
 
+/**
+ *	Atributo videojuego
+ */
+private DSM1GenNHibernate.EN.DSM1.VideojuegoEN videojuego;
+
+
+
 
 
 
@@ -164,6 +171,12 @@ public virtual string Img_3d {
 
 
 
+public virtual DSM1GenNHibernate.EN.DSM1.VideojuegoEN Videojuego {
+        get { return videojuego; } set { videojuego = value;  }
+}
+
+
+
 
 
 public ArticuloEN()
@@ -175,20 +188,20 @@ public ArticuloEN()
 
 
 
-public ArticuloEN(int id, string nombre, double precio, DSM1GenNHibernate.EN.DSM1.CategoriaEN categoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.PujaEN puja, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> registrado, string descripcion, int stock, string imagen, string img_3d
+public ArticuloEN(int id, string nombre, double precio, DSM1GenNHibernate.EN.DSM1.CategoriaEN categoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.PujaEN puja, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> registrado, string descripcion, int stock, string imagen, string img_3d, DSM1GenNHibernate.EN.DSM1.VideojuegoEN videojuego
                   )
 {
-        this.init (Id, nombre, precio, categoria, valoracion, lineaPedido, puja, registrado, descripcion, stock, imagen, img_3d);
+        this.init (Id, nombre, precio, categoria, valoracion, lineaPedido, puja, registrado, descripcion, stock, imagen, img_3d, videojuego);
 }
 
 
 public ArticuloEN(ArticuloEN articulo)
 {
-        this.init (Id, articulo.Nombre, articulo.Precio, articulo.Categoria, articulo.Valoracion, articulo.LineaPedido, articulo.Puja, articulo.Registrado, articulo.Descripcion, articulo.Stock, articulo.Imagen, articulo.Img_3d);
+        this.init (Id, articulo.Nombre, articulo.Precio, articulo.Categoria, articulo.Valoracion, articulo.LineaPedido, articulo.Puja, articulo.Registrado, articulo.Descripcion, articulo.Stock, articulo.Imagen, articulo.Img_3d, articulo.Videojuego);
 }
 
 private void init (int id
-                   , string nombre, double precio, DSM1GenNHibernate.EN.DSM1.CategoriaEN categoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.PujaEN puja, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> registrado, string descripcion, int stock, string imagen, string img_3d)
+                   , string nombre, double precio, DSM1GenNHibernate.EN.DSM1.CategoriaEN categoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ValoracionEN> valoracion, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.PujaEN puja, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.RegistradoEN> registrado, string descripcion, int stock, string imagen, string img_3d, DSM1GenNHibernate.EN.DSM1.VideojuegoEN videojuego)
 {
         this.Id = id;
 
@@ -214,6 +227,8 @@ private void init (int id
         this.Imagen = imagen;
 
         this.Img_3d = img_3d;
+
+        this.Videojuego = videojuego;
 }
 
 public override bool Equals (object obj)

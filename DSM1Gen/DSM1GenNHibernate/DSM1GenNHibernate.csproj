@@ -162,6 +162,7 @@
 			
 			
 			
+			
 	<Compile Include="EN\DSM1\CategoriaEN.cs" />
 	<Compile Include="CEN\DSM1\CategoriaCEN.cs" />
 	<Compile Include="CAD\DSM1\ICategoriaCAD.cs" />
@@ -227,6 +228,15 @@
 			<Compile Include="CP\DSM1\OfertaPujaCP_Nueva_oferta.cs" />
 			
 			
+	<Compile Include="EN\DSM1\VideojuegoEN.cs" />
+	<Compile Include="CEN\DSM1\VideojuegoCEN.cs" />
+	<Compile Include="CAD\DSM1\IVideojuegoCAD.cs" />
+	<Compile Include="CAD\DSM1\VideojuegoCAD.cs" />
+	<Compile Include="CP\DSM1\VideojuegoCP.cs" />
+			
+			
+			
+			
 	
 	
 
@@ -251,6 +261,7 @@
 	<EmbeddedResource Include="Mappings\DSM1\lineapedido.hbm.xml" />
 	<EmbeddedResource Include="Mappings\DSM1\carrito.hbm.xml" />
 	<EmbeddedResource Include="Mappings\DSM1\ofertapuja.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSM1\videojuego.hbm.xml" />
 	
 	
 

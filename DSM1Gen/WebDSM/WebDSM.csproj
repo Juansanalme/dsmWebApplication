@@ -191,6 +191,7 @@
     <Compile Include="Controllers\PujaController.cs" />
     <Compile Include="Controllers\RegistradoController.cs" />
     <Compile Include="Controllers\ValoracionController.cs" />
+    <Compile Include="Controllers\VideojuegoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -206,6 +207,7 @@
     <Compile Include="Models\AssemblerPuja.cs" />
     <Compile Include="Models\AssemblerRegistrado.cs" />
     <Compile Include="Models\AssemblerValoracion.cs" />
+    <Compile Include="Models\AssemblerVideojuego.cs" />
     <Compile Include="Models\CarritoYLineas.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Carrito.cs" />
@@ -216,6 +218,7 @@
     <Compile Include="Models\Puja.cs" />
     <Compile Include="Models\Registrado.cs" />
     <Compile Include="Models\Valoracion.cs" />
+    <Compile Include="Models\Videojuego.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -304,6 +307,7 @@
     <Content Include="Views\Registrado\Admin.cshtml" />
     <Content Include="Views\Registrado\Perfil.cshtml" />
     <Content Include="Views\Registrado\Edit.cshtml" />
+    <Content Include="Views\Videojuego\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

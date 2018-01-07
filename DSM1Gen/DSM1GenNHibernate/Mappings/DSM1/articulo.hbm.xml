@@ -83,6 +83,13 @@
 			
 			
 			
+			
+		  			
+						<many-to-one name="Videojuego" class="DSM1GenNHibernate.EN.DSM1.VideojuegoEN" >	
+								<column name="FK_idVideojuego_idVideojuego"/> 
+						</many-to-one>
+											 					
+					
 					
 					
 					
@@ -101,5 +108,6 @@
 		  <query name="ArticuloENReadAllHQL">from ArticuloEN</query>
 		  <query name="ArticuloENbusqueda_por_categoriaHQL"><![CDATA[from ArticuloEN art where art.Categoria.Nombre like '%'+:p_categoria+'%']]></query>
 		  <query name="ArticuloENbusqueda_por_nombreHQL"><![CDATA[from ArticuloEN art where art.Nombre like '%'+:p_nombre+'%']]></query>
+		  <query name="ArticuloENbusqueda_por_videojuegoHQL"><![CDATA[from ArticuloEN art where art.Videojuego.Nombre like '%'+:p_videojuego+'%']]></query>
 		</hibernate-mapping>
 	

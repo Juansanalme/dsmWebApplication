@@ -170,8 +170,9 @@ namespace WebDSM.Controllers
 
                 art.Articulo.NombreCategoria = catCEN.get_ICategoriaCAD().ReadOIDDefault(art.Articulo.NomCategoria).Nombre;
 
-                int art2 = artCen.New_(art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.NomCategoria, art.Articulo.Descripcion, art.Articulo.Stock, file.FileName, art.Articulo.Img_3d);
-   
+
+                int art2 = artCen.New_(art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.NomCategoria, art.Articulo.Descripcion, art.Articulo.Stock, file.FileName, art.Articulo.Img_3d,art.Articulo.IdVideojuego);
+
                 //Modifico solo el atributo que guarda el nombre de la imagen
                 
                 var path = "";
