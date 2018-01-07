@@ -165,5 +165,17 @@ namespace WebDSM.Controllers
             return RedirectToAction("Index", new { id = idUsuario } );
         }
 
+        public ActionResult FinalizarCompra(int id)
+        {
+            CarritoCP cp = new CarritoCP();
+            CarritoCEN cen = new CarritoCEN();
+
+            float precio = cen.get_ICarritoCAD().ReadOIDDefault(id).Precio;
+
+            cp.Finalizar_compra(id, precio);
+
+            return RedirectToAction("../Pedido/Index/", new { id = (int)Session["idUsuario"] });
+        }
+
     }
 }
