@@ -13,9 +13,9 @@ void ModifyDefault (RegistradoEN registrado);
 
 
 
-void Añadir_fav (int p_Registrado_OID, int p_a_favorito_OIDs);
+void Añadir_fav (int p_Registrado_OID, System.Collections.Generic.IList<int> p_a_favorito_OIDs);
 
-void Eliminar_fav (int p_Registrado_OID, int p_a_favorito_OIDs);
+void Eliminar_fav (int p_Registrado_OID, System.Collections.Generic.IList<int> p_a_favorito_OIDs);
 
 
 int New_ (RegistradoEN registrado);
