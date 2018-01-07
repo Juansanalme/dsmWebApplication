@@ -15,6 +15,7 @@ namespace WebDSM.Models
             Videojuego vid = new Videojuego();
             vid.Id = en.Id;
             vid.Nombre = en.Nombre;
+            vid.Arts = en.Articulo.Count();
 
             return vid;
         }

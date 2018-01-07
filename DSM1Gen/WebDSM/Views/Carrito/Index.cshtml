@@ -74,7 +74,7 @@
             </div>
 
             <div class="col btn btn-dark mt-2 pointer">
-                COMPRAR
+                @Html.ActionLink("COMPRAR", "FinalizarCompra", new { id = Model.Carrito.Id})
             </div>
         </div>
     </div>

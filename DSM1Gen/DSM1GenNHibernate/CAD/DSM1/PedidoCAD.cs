@@ -98,7 +98,6 @@ public void ModifyDefault (PedidoEN pedido)
 
 
 
-
                 session.Update (pedidoEN);
                 SessionCommit ();
         }
@@ -129,13 +128,6 @@ public int New_ (PedidoEN pedido)
 
                         pedido.Registrado.Pedido
                         .Add (pedido);
-                }
-                if (pedido.Carrito != null) {
-                        // Argumento OID y no colección.
-                        pedido.Carrito = (DSM1GenNHibernate.EN.DSM1.CarritoEN)session.Load (typeof(DSM1GenNHibernate.EN.DSM1.CarritoEN), pedido.Carrito.Id);
-
-                        pedido.Carrito.Pedido
-                                = pedido;
                 }
 
                 session.Save (pedido);

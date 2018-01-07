@@ -13,7 +13,7 @@ namespace WebDSM.Models
             Pedido ped = new Pedido();
             ped.Id = en.Id;
             ped.Fecha = en.Fecha;
-            ped.Registrado = en.Registrado.Nombre;
+            ped.Registrado = en.Registrado.N_usuario;
             ped.Total = 0;
             
             foreach (LineaPedidoEN item in en.LineaPedido)
@@ -28,7 +28,7 @@ namespace WebDSM.Models
             PedidoYLineas pyl = new PedidoYLineas();
 
             pyl.Pedido.Id = en.Id;
-            pyl.Pedido.Registrado = en.Registrado.Nombre;
+            pyl.Pedido.Registrado = en.Registrado.N_usuario;
             pyl.Pedido.Fecha = en.Fecha;
             pyl.Pedido.Total = 0;
 

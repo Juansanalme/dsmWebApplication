@@ -38,7 +38,7 @@ public IPedidoCAD get_IPedidoCAD ()
         return this._IPedidoCAD;
 }
 
-public int New_ (string p_descripcion, Nullable<DateTime> p_fecha, int p_registrado, int p_carrito)
+public int New_ (string p_descripcion, Nullable<DateTime> p_fecha, int p_registrado)
 {
         PedidoEN pedidoEN = null;
         int oid;
@@ -55,14 +55,6 @@ public int New_ (string p_descripcion, Nullable<DateTime> p_fecha, int p_registr
                 // Lista de oids id
                 pedidoEN.Registrado = new DSM1GenNHibernate.EN.DSM1.RegistradoEN ();
                 pedidoEN.Registrado.Id = p_registrado;
-        }
-
-
-        if (p_carrito != -1) {
-                // El argumento p_carrito -> Property carrito es oid = false
-                // Lista de oids id
-                pedidoEN.Carrito = new DSM1GenNHibernate.EN.DSM1.CarritoEN ();
-                pedidoEN.Carrito.Id = p_carrito;
         }
 
         //Call to PedidoCAD

@@ -40,13 +40,6 @@ private DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado;
 
 
 
-/**
- *	Atributo carrito
- */
-private DSM1GenNHibernate.EN.DSM1.CarritoEN carrito;
-
-
-
 
 
 
@@ -80,12 +73,6 @@ public virtual DSM1GenNHibernate.EN.DSM1.RegistradoEN Registrado {
 
 
 
-public virtual DSM1GenNHibernate.EN.DSM1.CarritoEN Carrito {
-        get { return carrito; } set { carrito = value;  }
-}
-
-
-
 
 
 public PedidoEN()
@@ -95,20 +82,20 @@ public PedidoEN()
 
 
 
-public PedidoEN(int id, string descripcion, Nullable<DateTime> fecha, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado, DSM1GenNHibernate.EN.DSM1.CarritoEN carrito
+public PedidoEN(int id, string descripcion, Nullable<DateTime> fecha, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado
                 )
 {
-        this.init (Id, descripcion, fecha, lineaPedido, registrado, carrito);
+        this.init (Id, descripcion, fecha, lineaPedido, registrado);
 }
 
 
 public PedidoEN(PedidoEN pedido)
 {
-        this.init (Id, pedido.Descripcion, pedido.Fecha, pedido.LineaPedido, pedido.Registrado, pedido.Carrito);
+        this.init (Id, pedido.Descripcion, pedido.Fecha, pedido.LineaPedido, pedido.Registrado);
 }
 
 private void init (int id
-                   , string descripcion, Nullable<DateTime> fecha, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado, DSM1GenNHibernate.EN.DSM1.CarritoEN carrito)
+                   , string descripcion, Nullable<DateTime> fecha, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.LineaPedidoEN> lineaPedido, DSM1GenNHibernate.EN.DSM1.RegistradoEN registrado)
 {
         this.Id = id;
 
@@ -120,8 +107,6 @@ private void init (int id
         this.LineaPedido = lineaPedido;
 
         this.Registrado = registrado;
-
-        this.Carrito = carrito;
 }
 
 public override bool Equals (object obj)

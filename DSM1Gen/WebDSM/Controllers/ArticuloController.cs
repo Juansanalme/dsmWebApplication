@@ -316,6 +316,22 @@ namespace WebDSM.Controllers
             return View("Index", art);
         }
 
+        public ActionResult Videojuego(String termino)
+        {
+            SessionInitialize();
+
+            ArticuloCAD articuloCAD = new ArticuloCAD(session);
+            ArticuloCEN articuloCEN = new ArticuloCEN(articuloCAD);
+            IList<ArticuloEN> articulosEN = articuloCEN.Busqueda_por_videojuego(termino);
+
+            IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulosEN);
+
+            SessionClose();
+
+            art = GetAllFotos(art);
+            return View("Index", art);
+        }
+
         [HttpPost]
         public JsonResult AjaxMethod(int id)
         {
