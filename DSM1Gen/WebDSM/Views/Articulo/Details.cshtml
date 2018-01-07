@@ -116,16 +116,8 @@
                         }
                     }
 
-                    if(sessionID == 0)
-                    {
-                            <div class="col-2 col-md-4 d-flex align-items-center justify-content-end pr-0">
-                                <div class="heart secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                            </div>
-                            <div class="col-8 h5 m-0 elegant">Logea para añadir a favoritos</div>
-                    }
-                    else if (!fav)
+
+                    if (sessionID != 0 && !fav)
                     {
                         <a class="row nav-link pb-4 d-flex align-items-center" id="fav" href="@Url.Action("FavAnyadir","Articulo", new { id = Model.Articulo.Id })"> <!----------------------------------- AQUI EL ENLACE PARA AÑADIR A FAVORITOS -->
                             <div class="col-2 col-md-4 d-flex align-items-center justify-content-end pr-0">
@@ -136,17 +128,17 @@
                             <div class="col-8 h5 m-0 elegant">Añadir a favoritos</div>
                         </a>
                     }
-                    else
+                    else if(sessionID!=0)
                     {
                         <a class="row nav-link pb-4 d-flex align-items-center" id="fav" href="@Url.Action("FavQuitar","Articulo", new { id = Model.Articulo.Id })">
                             <div class="col-2 col-md-4 d-flex align-items-center justify-content-end pr-0">
-                                <div class="heart secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
+                                <div class="favved secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
                                     <i class="fas fa-heart"></i>
                                 </div>
                             </div>
                             <div class="col-8 h5 m-0 elegant">Quitar de favoritos</div>
                         </a>
-                    }//AQUI TERMINA LA COMPROBACION DEL BOTON DE FAVORITOS SI
+                    }
                 }
 
                 <div class="row pb-2 d-flex align-items-center">
