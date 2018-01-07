@@ -130,21 +130,25 @@ namespace WebDSM.Controllers
             return View(art);
         }
 
-       
-
         // GET: Articulo/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int id=0)
         {
-            SessionInitialize();
+            if (id != 0)
+            {
 
-            ArticuloCAD articuloCAD = new ArticuloCAD(session);
-            ArticuloCEN articuloCEN = new ArticuloCEN(articuloCAD);
+                SessionInitialize();
 
-            ArticuloEN articuloEN = articuloCAD.ReadOIDDefault(id);
-            ArticuloYOpinion art = new AssemblerArticulo().ConvertENToViewModelUI(articuloEN);
-            SessionClose();
+                ArticuloCAD articuloCAD = new ArticuloCAD(session);
+                ArticuloCEN articuloCEN = new ArticuloCEN(articuloCAD);
 
-            return View(art);
+                ArticuloEN articuloEN = articuloCAD.ReadOIDDefault(id);
+                ArticuloYOpinion art = new AssemblerArticulo().ConvertENToViewModelUI(articuloEN);
+                SessionClose();
+
+                return View(art);
+            }
+            else
+                return RedirectToAction("Index","Home",null);
         }
 
         // GET: Articulo/Create
@@ -167,11 +171,16 @@ namespace WebDSM.Controllers
 
                 if (art.Articulo.Img_3d == null)
                     art.Articulo.Img_3d = "";
+                
+                String path2 = "";
+
+                if(file!=null)
+                    path2 = file.FileName; 
 
                 art.Articulo.NombreCategoria = catCEN.get_ICategoriaCAD().ReadOIDDefault(art.Articulo.NomCategoria).Nombre;
 
 
-                int art2 = artCen.New_(art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.NomCategoria, art.Articulo.Descripcion, art.Articulo.Stock, file.FileName, art.Articulo.Img_3d,art.Articulo.IdVideojuego);
+                int art2 = artCen.New_(art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.NomCategoria, art.Articulo.Descripcion, art.Articulo.Stock, path2, art.Articulo.Img_3d,art.Articulo.IdVideojuego);
 
                 //Modifico solo el atributo que guarda el nombre de la imagen
                 

@@ -254,9 +254,6 @@ public static void InitializeData ()
                  *  }
                  */
 
-
-
-
                 //INICIAMOS LAS PUJAS
                 try
                 {
