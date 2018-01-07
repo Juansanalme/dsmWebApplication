@@ -332,6 +332,28 @@ namespace WebDSM.Controllers
             return View("Index", art);
         }
 
+        public ActionResult Favoritos()
+        {
+            SessionInitialize();
+
+            RegistradoCAD registradoCAD = new RegistradoCAD(session);
+            RegistradoCEN registradoCEN = new RegistradoCEN(registradoCAD);
+
+            ArticuloCAD articuloCAD = new ArticuloCAD(session);
+            ArticuloCEN articuloCEN = new ArticuloCEN(articuloCAD);
+
+            int miID = (int)Session["idUsuario"];
+            RegistradoEN registradoEN = registradoCEN.get_IRegistradoCAD().ReadOIDDefault(miID);
+
+            IList<ArticuloEN> articulosEN = registradoEN.A_favorito;
+            IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulosEN);
+
+            SessionClose();
+
+            art = GetAllFotos(art);
+            return View("Index", art);
+        }
+
         [HttpPost]
         public JsonResult AjaxMethod(int id)
         {
