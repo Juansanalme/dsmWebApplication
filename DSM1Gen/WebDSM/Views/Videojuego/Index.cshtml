@@ -5,28 +5,27 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Buscar por Videojuego</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
-        <th></th>
+        <th>Cantidad de artículos</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
+            <form action="../Articulo/Videojuego" method="post">
+                <input style="display: none;" name="termino" value="@item.Nombre">
+                <button type="submit">@item.Nombre</button>
+            </form>
         </td>
+
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @item.Arts
         </td>
     </tr>
 }

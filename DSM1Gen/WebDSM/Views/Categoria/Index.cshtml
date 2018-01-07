@@ -5,17 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Buscar por Categoría</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
-        <th></th>
+        <th>Cantidad de artículos</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -30,8 +27,12 @@
         </td>
 
         <td>
-            @Html.ActionLink("Detalles", "Details", new { id=item.Id })
+            @item.Arts
         </td>
+        @*
+        <td>
+            @Html.ActionLink("Detalles", "Details", new { id=item.Id })
+        </td>*@
     </tr>
 }
 

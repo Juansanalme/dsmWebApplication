@@ -13,15 +13,24 @@ using WebMatrix.WebData;
 
 namespace WebDSM.Controllers
 {
-    public class VideojuegoController : Controller
+    public class VideojuegoController : BasicController
     {
-
-        
 
         // GET: Videojuego
         public ActionResult Index()
         {
-            return View();
+
+            SessionInitialize();
+
+            VideojuegoCAD cad = new VideojuegoCAD(session);
+            VideojuegoCEN cen = new VideojuegoCEN(cad);
+
+            IList<VideojuegoEN> listEn = cen.ReadAll(0, -1);
+            IEnumerable<Videojuego> listModel = new AssemblerVideojuego().ConvertListENToModel(listEn).ToList();
+
+            SessionClose();
+
+            return View(listModel);
         }
 
         // GET: Videojuego/Details/5

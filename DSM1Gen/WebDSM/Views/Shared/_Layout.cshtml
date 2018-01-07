@@ -81,7 +81,7 @@
                 
                 
                 @Html.ActionLink("HOME", "Index", "Home", null, new { @class = "nav-item nav-link active" })
-                @Html.ActionLink("VIDEOJUEGOS", "Index", "Home", null, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("VIDEOJUEGOS", "Index", "Videojuego", null, new { @class = "nav-item nav-link" })
                 @Html.ActionLink("PUJA", "Index", "Puja", null, new { @class = "nav-item nav-link" })
                 @Html.ActionLink("CATEGORIA", "Index", "Categoria", null, new { @class = "nav-item nav-link" })
 
@@ -122,11 +122,11 @@
                     <div class="col ">
                         @if (controllerName == "Videojuegos")
                         {
-                            @Html.ActionLink("VIDEOJUEGOS", "Index", "Home", null, new { @class = "col nav-link active elegant" })
+                            @Html.ActionLink("VIDEOJUEGOS", "Index", "Videojuego", null, new { @class = "col nav-link active elegant" })
                         }
                         else
                         {
-                            @Html.ActionLink("VIDEOJUEGOS", "Index", "Home", null, new { @class = "col nav-link elegant" })
+                            @Html.ActionLink("VIDEOJUEGOS", "Index", "Videojuego", null, new { @class = "col nav-link elegant" })
                         }
 
                     </div>

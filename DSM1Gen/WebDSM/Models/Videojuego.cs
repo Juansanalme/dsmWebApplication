@@ -41,5 +41,8 @@ namespace WebDSM.Models
         [StringLength(maximumLength: 50, MinimumLength = 0, ErrorMessage = "El nombre tiene que tener entre 0 y 50 caracteres")]
         public string Nombre { get; set; }
 
+        [ScaffoldColumn(false)]
+        public int Arts { get; set; }
+
     }
 }
