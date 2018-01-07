@@ -324,7 +324,11 @@
             }
         });
 
-        
+        var original_width = 920;
+        var original_heigth = 550;
+
+        var new_height = (original_heigth / original_width) * $("#a3d").width();   
+        $("#a3d").css({ "height": new_height });
         $(window).resize(function () {
             if (flag) {
                 var w = $(window).width();
@@ -339,7 +343,17 @@
                 }
                 $("div#mySidenav").css({ "width": w });
             }
+
+            
+            original_width = 920;
+            original_heigth = 475;
+
+            var new_height = (original_heigth / original_width) * $("#a3d").width();
+
+            $("#a3d").css({ "height": new_height });
+
         }); 
+
 
     </script>
 </body>

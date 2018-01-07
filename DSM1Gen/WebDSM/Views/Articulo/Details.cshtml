@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var IMG_3D = "https://sketchfab.com/models/" + @Model.Articulo.Img_3d + "/embed";
-    var full = Model.Articulo.ValoracionMedia / 2;
+    var full = (int)Model.Articulo.ValoracionMedia / 2;
 
     int sessionID = 0;
     if (Session["login"] != null)
@@ -15,7 +15,7 @@
 
 <div class="container-fluid bg-black item-background py-4">
     <div class="row">
-        <div class="col-12 col-lg-3 order-2 order-lg-1 pt-5 pt-lg-0 mt-0 mt-sm-3 mt-lg-0">
+        <div class="controller col-12 col-lg-3 order-2 order-lg-1 pt-5 pt-lg-0 mt-0 mt-sm-3 mt-lg-0">
             <div class="row h-50 d-flex align-items-end">
                 <div class="col-12 col-sm-6 col-lg-12 d-flex align-items-center pr-0 ">
                     <div class="row w-100">
@@ -74,18 +74,25 @@
             </div>
         </div>
         <div class="col-12 col-lg-6 order-1 order-lg-2">
-           
-            @if (Model.Articulo.Img_3d != "")
-            {
-            <div class="sketchfab-embed-wrapper col">
-                <iframe class="col" src="@IMG_3D" frameborder="0" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
-            </div>
-            }
-            else
-            {
-                <div class="text-center justify-content-center">
+            <div class="text-center justify-content-center">
+                @if (Model.Articulo.Img_3d != "")
+                {        
+                    <div id="3D_Container" class="item_img d-inline-block">
+
+                        <iframe class="i3d" id="a3d" style="height:500px" src="@IMG_3D" frameborder="0" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>           
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row display-4 justify-content-center text-orange">@Html.DisplayFor(model => model.Articulo.Nombre)</div>
+                                <div class="row h3 elegant justify-content-center">CS:GO</div>
+                                <div class="row justify-content-center">@Html.DisplayFor(model => model.Articulo.Descripcion)</div>
+                            </div>
+                        </div>
+                    </div>    
+                }
+                else
+                {
                     <div class="item_img d-inline-block">
-                        <img src="@Url.Content("~/Content/Uploads/Item_images/"+Model.Articulo.Imagen)" alt="@Model.Articulo.Nombre" />
+                        <img class="content" src="@Url.Content("~/Content/Uploads/Item_images/"+Model.Articulo.Imagen)" alt="@Model.Articulo.Nombre" />
                         <div class="row">
                             <div class="col-12">
                                 <div class="row display-4 justify-content-center text-orange">@Html.DisplayFor(model => model.Articulo.Nombre)</div>
@@ -93,13 +100,12 @@
                                 <div class="row justify-content-center">@Html.DisplayFor(model => model.Articulo.Descripcion)</div>
                             </div>
                         </div>
-                    </div>
-                        
-                </div>
-            }
+                    </div>    
+                }
+            </div>
         </div>
 
-        <div class="col-12 col-lg-3 order-3 d-flex align-items-center pt-md-5 mt-md-5">
+        <div class="col-12 col-lg-3 order-3 d-flex align-items-center pt-lg-5 mt-lg-5">
             <div class="w-100">
                 @{//TODO ESTO ES LA COMPROBACION DE FAVORITOS SI
                     foreach (int itemID in @Model.Articulo.UsuariosId)
@@ -165,19 +171,17 @@
                             <i class="fas fa-thumbs-up"></i>
                         </div>
                     </div>
-                    <div class="col-8 h5 m-0 elegant">Valoración: 
+                    <div class="col-8 h5 m-0 elegant">Valoración media:
                     <div style="font-size:12px; color:#f7cd37">
                     @for(var i = 0; i< full; i++)
-                    {
-                        
-                            <i class="fas fa-star"></i>
-                        
+                    {  
+                        <i class="fas fa-star"></i>
                     }
                         
                     @if(Model.Articulo.ValoracionMedia%2 == 1)
                     {
                        
-                            <i class="fas fa-star-half"></i>
+                        <i class="fas fa-star-half"></i>
                         
                     }
                     </div>
