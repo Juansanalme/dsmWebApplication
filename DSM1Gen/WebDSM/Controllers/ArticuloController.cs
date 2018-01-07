@@ -165,13 +165,14 @@ namespace WebDSM.Controllers
                 ArticuloCEN artCen = new ArticuloCEN();
                 CategoriaCEN catCEN = new CategoriaCEN();
 
+                if (art.Articulo.Img_3d == null)
+                    art.Articulo.Img_3d = "";
 
                 art.Articulo.NombreCategoria = catCEN.get_ICategoriaCAD().ReadOIDDefault(art.Articulo.NomCategoria).Nombre;
 
-                int art2 = artCen.New_(art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.NomCategoria, art.Articulo.Descripcion, art.Articulo.Stock, "", art.Articulo.Img_3d);
-
+                int art2 = artCen.New_(art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.NomCategoria, art.Articulo.Descripcion, art.Articulo.Stock, file.FileName, art.Articulo.Img_3d);
+   
                 //Modifico solo el atributo que guarda el nombre de la imagen
-                artCen.Modify(art2, art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.Descripcion, art.Articulo.Stock, "art2", art.Articulo.Img_3d);
                 
                 var path = "";
 

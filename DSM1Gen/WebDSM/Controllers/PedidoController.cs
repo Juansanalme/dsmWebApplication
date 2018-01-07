@@ -33,7 +33,7 @@ namespace WebDSM.Controllers
                     pedidosList.Add(pedido);
                 }
             }
-
+            Session["nCarrito"] = 0;
             IEnumerable<Pedido> enumPed = new AssemblerPedido().ConvertListENToModel(pedidosList).ToList();
             SessionClose();
 

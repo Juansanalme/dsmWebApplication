@@ -30,6 +30,14 @@ html, body {
     color: #f4f4f4;
 }
 
+.bg-orange {
+    background: #e5b522
+}
+
+.bg-blood {
+    background: #e10031;
+}
+
 .border-orange-bottom {
     border-bottom: 2px #ff4700 solid;
 }
@@ -46,6 +54,7 @@ html, body {
     border-top: 2px #ff4700 solid;
     border-bottom: 2px #ff4700 solid;
 }
+
 
 hr {
     display: block;
@@ -434,16 +443,19 @@ footer{
 }
 
 .sidenav {
-    width: 0; 
+    width: 0;
     position: fixed;
-    z-index: 1; 
+    z-index: 1;
     top: 0;
     right: 0;
     background-color: #111;
     overflow-x: hidden; /* Disable horizontal scroll */
     margin-top: 91px; /* Place content 60px from the top */
-    padding-top:23px;
+    padding-top: 23px;
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    -webkit-box-shadow: inset 0px 0px 0px 1px #ff4700;
+    -moz-box-shadow: inset 0px 0px 0px 1px #ff4700;
+    box-shadow: inset 0px 0px 0px 1px #ff4700;
 }
 
 /* The navigation menu links */
@@ -471,3 +483,30 @@ a:focus{
     outline: none !important;
 }
 
+.item_img {
+    width: 100%;
+    height: 65%;
+}
+
+.item_img img{
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.coin{
+    height:100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.carrito {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
+
+.secondary-buttons{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}

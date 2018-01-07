@@ -55,18 +55,18 @@
                 }
             </div>
             @if (Session["login"] != null)
-                {
-                    <div class="col-3 col-sm-2 p-0">
-                        <div class="row h-100 m-0 d-flex">
-                            <div class="col-6 p-0 dropdown-toggle no-arrow align-self-center pointer" id="navbarDropdownMenuLink">
-                                <div class="d-inline-block ml-auto foto-perfil p-0" style="background: url(@Session["foto"]) no-repeat center center; background-size: auto 100%;"></div> 
-                            </div>    
-                            <a class="col-6 p-0 cesta-mini font-weight-bold pl-1" href="@Url.Action("Index", "Carrito", new {id = Session["idUsuario"] })">
-                                @Session["nCarrito"]
-                            </a>
-                        </div>
+            {
+                <div class="col-3 col-sm-2 p-0">
+                    <div class="row h-100 m-0 d-flex">
+                        <div class="col-6 p-0 dropdown-toggle no-arrow align-self-center pointer" id="navbarDropdownMenuLink">
+                            <div class="d-inline-block ml-auto foto-perfil p-0" style="background: url(@Session["foto"]) no-repeat center center; background-size: auto 100%;"></div> 
+                        </div>    
+                        <a class="col-6 p-0 cesta-mini font-weight-bold pl-1" href="@Url.Action("Index", "Carrito", new {id = Session["idUsuario"] })">
+                            @Session["nCarrito"]
+                        </a>
                     </div>
-                }
+                </div>
+            }
 
         </div>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -204,13 +204,16 @@
         </div>
     </div>
     <div class="content-body">
-        <div id="mySidenav" class="sidenav" style="width: 0">
-            <div class="d-lg-none text-white pl-3 pt-2 ">@Session["login"]</div>
-            <a href="@Url.Action("Perfil", "Registrado", new {id = Session["idUsuario"] })">Perfil</a>
-            <a href="@Url.Action("Favoritos", "Registrado", new {id = Session["idUsuario"] })">Favoritos</a>
-            <a href="@Url.Action("Index", "Pedido", new {id = Session["idUsuario"] })">Pedidos</a>
-            <a href="@Url.Action("Logout", "Registrado")">Logout</a>
-        </div>
+        @if (Session["login"] != null)
+        {
+            <div id="mySidenav" class="sidenav" style="width: 0">
+                <div class="d-lg-none text-white pl-3 pt-2 ">@Session["login"]</div>
+                <a href="@Url.Action("Perfil", "Registrado", new {id = Session["idUsuario"] })">Perfil</a>
+                <a href="@Url.Action("Favoritos", "Registrado", new {id = Session["idUsuario"] })">Favoritos</a>
+                <a href="@Url.Action("Index", "Pedido", new {id = Session["idUsuario"] })">Pedidos</a>
+                <a href="@Url.Action("Logout", "Registrado")">Logout</a>
+            </div>
+        }
 
         @RenderBody()
     </div>
@@ -290,8 +293,6 @@
         sr.reveal('.float-right', right);
 
         sr.reveal('.column figure', bottom);
-
-        self.resizeTo(500, 500);
 
         var flag = false;
         $('html').click(function (e) {
