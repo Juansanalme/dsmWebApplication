@@ -118,21 +118,21 @@ public static void InitializeData ()
                 Console.WriteLine ("  -pistola");
                 Console.WriteLine ("  -arma");
 
-                int cat1 = categoriaCEN.New_ ("espada", 0);
-                int cat2 = categoriaCEN.New_ ("pistola", 0);
-                int cat3 = categoriaCEN.New_ ("arma", 0);
+                int cat1 = categoriaCEN.New_ ("espada", 0, "");
+                int cat2 = categoriaCEN.New_ ("pistola", 0, "");
+                int cat3 = categoriaCEN.New_ ("arma", 0, "");
 
                 categoriaCEN.Anyadir_supercat (cat1, cat3);
                 categoriaCEN.Anyadir_supercat (cat2, cat3);
 
                 //VIDEOJUEGOS
                 VideojuegoCEN videojuegoCEN = new VideojuegoCEN ();
-                int videojuego1 = videojuegoCEN.New_ ("Left 4 Dead");
-                int videojuego2 = videojuegoCEN.New_ ("World of Warcraft");
-                int videojuego3 = videojuegoCEN.New_ ("NieR: Automata");
-                int videojuego4 = videojuegoCEN.New_ ("Call of Duty");
-                int videojuego5 = videojuegoCEN.New_ ("El Rey Arturo: La leyenda de la espada");
-                int videojuego6 = videojuegoCEN.New_ ("Prince of Persia");
+                int videojuego1 = videojuegoCEN.New_ ("Left 4 Dead", "");
+                int videojuego2 = videojuegoCEN.New_ ("World of Warcraft", "");
+                int videojuego3 = videojuegoCEN.New_ ("NieR: Automata", "");
+                int videojuego4 = videojuegoCEN.New_ ("Call of Duty", "");
+                int videojuego5 = videojuegoCEN.New_ ("El Rey Arturo: La leyenda de la espada", "");
+                int videojuego6 = videojuegoCEN.New_ ("Prince of Persia", "");
 
                 //ARTICULOS
                 ArticuloCEN articuloCEN = new ArticuloCEN ();
@@ -163,8 +163,8 @@ public static void InitializeData ()
                 PujaCEN pujaCEN = new PujaCEN ();
                 List<int> pujas = new List<int>();
 
-                int pujaid = pujaCEN.New_ (DateTime.Now, 10, articulo1, 10, -1, false);
-                int pujaid2 = pujaCEN.New_ (DateTime.Now, 100, articulo2, 100, -1, false);
+                int pujaid = pujaCEN.New_ (DateTime.Now, 10, articulo1, 10, -1, false, false);
+                int pujaid2 = pujaCEN.New_ (DateTime.Now, 100, articulo2, 100, -1, false, false);
                 pujas.Add (pujaid);
                 pujas.Add (pujaid2);
 

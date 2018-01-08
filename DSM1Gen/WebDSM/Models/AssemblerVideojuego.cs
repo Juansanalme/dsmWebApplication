@@ -16,6 +16,7 @@ namespace WebDSM.Models
             vid.Id = en.Id;
             vid.Nombre = en.Nombre;
             vid.Arts = en.Articulo.Count();
+            vid.Imagen = en.Imagen;
 
             return vid;
         }

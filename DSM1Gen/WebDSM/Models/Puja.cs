@@ -49,6 +49,9 @@ namespace WebDSM.Models
         [ScaffoldColumn(false)]
         public bool Cerrada { get; set; }
 
+        [ScaffoldColumn(false)]
+        public bool Pagada { get; set; }
+
         public List<SelectListItem> getAllNombres()
         {
             ISession session;

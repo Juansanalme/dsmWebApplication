@@ -25,6 +25,7 @@ namespace WebDSM.Models
             puja.ArtDescripcion = en.Articulo.Descripcion;
             puja.PujaMaxima = en.Puja_max;
             puja.Cerrada = en.Cerrada;
+            puja.Pagada = en.Pagada;
 
             return puja;
         }

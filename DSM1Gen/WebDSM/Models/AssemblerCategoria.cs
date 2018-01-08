@@ -15,7 +15,8 @@ namespace WebDSM.Models
             cat.Id = en.Id;
             cat.Nombre = en.Nombre;
             cat.Arts = en.Articulo_0.Count();
-            
+            cat.Imagen = en.Imagen;
+
             if (en.Supercategoria != null)
             {
                 cat.NomSuper = en.Supercategoria.Nombre;

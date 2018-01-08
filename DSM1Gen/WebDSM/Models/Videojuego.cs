@@ -42,6 +42,9 @@ namespace WebDSM.Models
         public string Nombre { get; set; }
 
         [ScaffoldColumn(false)]
+        public String Imagen { get; set; }
+
+        [ScaffoldColumn(false)]
         public int Arts { get; set; }
 
     }
