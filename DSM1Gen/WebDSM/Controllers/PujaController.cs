@@ -70,16 +70,19 @@ namespace WebDSM.Controllers
                         break;
                     }
                 }
+                pujaCEN.New_(DateTime.Now, Puja, Articulo, Puja, -1, false, false);
 
+                /*
                 if (!repetido)
                 {
-                    pujaCEN.New_(DateTime.Now, Puja, Articulo, Puja, -1, false, false);
+                    
                 }
                 else
                 {
                     System.Web.HttpContext.Current.Session["PujaError"] = "Repetida";
                     return RedirectToAction("../Registrado/Admin");
                 }
+                */
 
                 return RedirectToAction("Index");
             }
@@ -192,15 +195,14 @@ namespace WebDSM.Controllers
 
         public ActionResult PagarPuja(int pujaid)
         {
-            SessionInitialize();
             int usuid = (int)Session["idusuario"];
 
-            PujaCAD pujaCAD = new PujaCAD(session);
-            PujaCEN pujaCEN = new PujaCEN(pujaCAD);
+            PujaCAD pujaCAD = new PujaCAD();
+            PujaCEN pujaCEN = new PujaCEN();
             PujaEN pujaEN = pujaCEN.get_IPujaCAD().ReadOIDDefault(pujaid);
 
-            LineaPedidoCAD lineaCAD = new LineaPedidoCAD(session);
-            LineaPedidoCEN lineaCEN = new LineaPedidoCEN(lineaCAD);
+            LineaPedidoCAD lineaCAD = new LineaPedidoCAD();
+            LineaPedidoCEN lineaCEN = new LineaPedidoCEN();
             int lineaID = lineaCEN.New_(1 , pujaEN.Articulo.Id);
 
             List<int> lineasList = new List<int>
@@ -208,15 +210,16 @@ namespace WebDSM.Controllers
                 lineaID
             };
 
-            PedidoCAD pedidoCAD = new PedidoCAD(session);
-            PedidoCEN pedidoCEN = new PedidoCEN(pedidoCAD);
+            PedidoCAD pedidoCAD = new PedidoCAD();
+            PedidoCEN pedidoCEN = new PedidoCEN();
             int pedidoID = pedidoCEN.New_("Pedido de puja", DateTime.Now, usuid);
 
             pedidoCEN.Anyadir_linea(pedidoID, lineasList);
 
-            pujaEN.Pagada = true;
+            //pujaEN.Pagada = true;
 
-            SessionClose();
+            pujaCEN.Modify(pujaEN.Id, pujaEN.Fecha, pujaEN.Puja_inicial, pujaEN.Puja_max, pujaEN.Id_usuario, pujaEN.Cerrada, true);
+            
 
             return RedirectToAction("Details/" + pujaid);
         }
