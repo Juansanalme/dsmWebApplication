@@ -30,6 +30,9 @@ namespace WebDSM.Models
         //public Carrito carrito { get; set; }
 
         [ScaffoldColumn(false)]
+        public int Articulos { get; set; }
+
+        [ScaffoldColumn(false)]
         public double Total { get; set; }
     }
 }

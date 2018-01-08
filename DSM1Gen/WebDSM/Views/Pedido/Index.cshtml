@@ -29,17 +29,17 @@
 
 <table class="table">
     <tr>
-        <th>@Html.DisplayNameFor(model => model.Id)</th>
-        <th>@Html.DisplayNameFor(model => model.Fecha)</th>
-        <th>@Html.DisplayNameFor(model => model.Total)</th>
+        <th>Fecha del Pedido</th>
+        <th>Cantidad de Articulos</th>
+        <th>Precio final</th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-            <td>@Html.DisplayFor(modelItem => item.Id)</td>
             <td>@Html.DisplayFor(modelItem => item.Fecha)</td>
+            <td>@Html.DisplayFor(modelItem => item.Articulos)</td>
             <td>@Html.DisplayFor(modelItem => item.Total)</td>
             <td>
                 @Html.ActionLink("Detalles del pedido", "Details", new { id = item.Id })
@@ -48,13 +48,3 @@
     }
 
 </table>
-<p>
-    @if (UserId != 0)
-    {
-        @Html.ActionLink("Volver al Perfil", "../Registrado/Perfil", new { id = UserId })
-    }
-    else
-    {
-        <p>No logeado</p>
-    }
-</p>

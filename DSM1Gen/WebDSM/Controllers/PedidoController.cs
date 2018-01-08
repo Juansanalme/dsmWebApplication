@@ -114,34 +114,43 @@ namespace WebDSM.Controllers
 
         public ActionResult LoadPedidos()
         {
-        	try{
-	            int id = (int)Session["idusuario"];
+            if (Session["login"] != null)
+            {
+                int id = (int)Session["idusuario"];
 
-	            SessionInitialize();
+                SessionInitialize();
 
-	            PedidoCAD cad = new PedidoCAD(session);
-	            PedidoCEN cen = new PedidoCEN(cad);
+                PedidoCAD cad = new PedidoCAD(session);
+                PedidoCEN cen = new PedidoCEN(cad);
 
-	            IList<PedidoEN> listEN = cen.get_IPedidoCAD().ReadAll(0, -1);
+                IList<PedidoEN> listEN = cen.get_IPedidoCAD().ReadAll(0, -1);
 
-	            IList<PedidoEN> pedidosList = new List<PedidoEN>();
-	            foreach (PedidoEN pedido in listEN)
-	            {
-	                if (pedido.Registrado.Id == id)
-	                {
-	                    pedidosList.Add(pedido);
-	                }
-	            }
-	            //Session["nCarrito"] = 0;
-	            IEnumerable<Pedido> enumPed = new AssemblerPedido().ConvertListENToModel(pedidosList);
-	            SessionClose();
+                IList<PedidoEN> pedidosList = new List<PedidoEN>();
+                foreach (PedidoEN pedido in listEN)
+                {
+                    if (pedido.Registrado.Id == id)
+                    {
+                        pedidosList.Add(pedido);
+                    }
+                }
 
-	            return View("Index", enumPed);
-	        }
-	        catch (Exception e)
-	        {
-	        	return RedirectToAction("../Home");
-	        }
+                //Session["nCarrito"] = 0;
+                IEnumerable<Pedido> enumPed = new AssemblerPedido().ConvertListENToModel(pedidosList);
+                SessionClose();
+
+                if (pedidosList.Count() == 0)
+                {
+                    return View("Index", null);
+                }
+                else
+                {
+                    return View("Index", enumPed);
+                }
+            }
+            else
+            {
+                return RedirectToAction("../Home");
+            }
 	    }
     }
 }

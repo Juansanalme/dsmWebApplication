@@ -161,7 +161,7 @@ namespace WebDSM.Controllers
             }
             catch (Exception e)
             {
-                return View("../Home");
+                return RedirectToAction("../Home");
             }
         }
 

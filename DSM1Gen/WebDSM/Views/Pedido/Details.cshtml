@@ -34,13 +34,9 @@
         }
     </dl>
 </div>
-<p>
+<div>
     @if (UserId != 0)
     {
-        @Html.ActionLink("Lista de Pedidos", "../Pedido/Index", new { id = UserId })
+        <a href="@Url.Action("LoadPedidos","Pedido")">Lista de Pedidos</a>
     }
-    else
-    {
-    <p>No logeado</p>
-    }
-</p>
+</div>

@@ -15,6 +15,7 @@ namespace WebDSM.Models
             ped.Fecha = en.Fecha;
             ped.Registrado = en.Registrado.N_usuario;
             ped.Total = 0;
+            ped.Articulos = en.LineaPedido.Count();
             
             foreach (LineaPedidoEN item in en.LineaPedido)
             {
@@ -31,6 +32,7 @@ namespace WebDSM.Models
             pyl.Pedido.Registrado = en.Registrado.N_usuario;
             pyl.Pedido.Fecha = en.Fecha;
             pyl.Pedido.Total = 0;
+            pyl.Pedido.Articulos = en.LineaPedido.Count();
 
             LineaPedido l;
             IList<LineaPedidoEN> lineas = en.LineaPedido;
