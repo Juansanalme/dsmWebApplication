@@ -410,7 +410,8 @@ p, label, img, input, header, span, section, div, table, figure, a {
 
 .miniatura-carrito{
     max-width: 100%;
-    max-height: 200px;
+    max-height: 100px;
+    max-width: 200px;
 }
 
 .warp {

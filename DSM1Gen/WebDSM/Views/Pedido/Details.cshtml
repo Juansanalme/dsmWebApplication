@@ -22,21 +22,53 @@
 
 }
 
-<h2>Detalles del Pedido</h2>
 
-<div>
-    <h4>Datos</h4><b>Fecha: @Model.Pedido.Fecha - Total: @Model.Pedido.Total</b>
-    <hr />
-    <dl class="dl-horizontal">
-        @foreach (var item in Model.LineaPedido)
+
+
+
+
+<div class="container pt-4">
+    <div>
+        @if (UserId != 0)
         {
-            <p>@item.Articulo - Precio Unidad: @item.PrecioUnidad - Cantidad: @item.Cantidad</p>
+            <a class="text-black btn btn-outline-warning" href="@Url.Action("LoadPedidos","Pedido")"><i class="fas fa-chevron-left text-black"></i> Volver a lista de Pedidos</a>
         }
-    </dl>
-</div>
-<div>
-    @if (UserId != 0)
+    </div>
+
+    <h2>Detalles del Pedido</h2>
+
+    <div>
+        <b>Fecha: @Model.Pedido.Fecha - Total: @Model.Pedido.Total</b>
+        <hr />
+    </div>
+    <div class="row text-center h4 elegant">
+        <div class="col-5">Artículo</div>
+        <div class="col">Cantidad</div>
+        <div class="col">Precio unidad</div>
+    </div>
+    @foreach (var item in Model.LineaPedido)
     {
-        <a href="@Url.Action("LoadPedidos","Pedido")">Lista de Pedidos</a>
+        <div class="row text-center">
+            <div class="col-5 text-left pl-3 bg-black mr-1 p-3">
+                <div class="row">
+                    <div class="col">
+                        @if (!item.Imagen.IsEmpty())
+                        {
+                            <img src="@Url.Content("~/Content/Uploads/Item_images/" + item.Imagen)" class="miniatura-carrito" />
+                        }
+                        else
+                        {
+                            <img class="miniatura-carrito" src="~/Images/kirito-wallpaper-3.jpg" />
+                        }
+
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        @item.Articulo
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex align-items-center bg-black mr-1 justify-content-center">@item.Cantidad</div>
+            <div class="col d-flex align-items-center bg-black justify-content-center">@item.PrecioUnidad €</div>
+        </div>
     }
 </div>
