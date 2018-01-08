@@ -118,42 +118,51 @@ namespace WebDSM.Controllers
         }
 
         // GET: Registrado/Perfil/5
-        public ActionResult Perfil(int id)
+        public ActionResult Perfil()
         {
-            RegistradoCAD cad = new RegistradoCAD();
-            RegistradoEN en = cad.ReadOIDDefault(id);
+            try
+            {
+                int id = (int)Session["idUsuario"];
 
-            Registrado model = new AssemblerRegistrado().ConvertENToModelUI(en);
-            
-            //SACO EL ICONO DEL USUARIO
-            string idUsu = model.Id.ToString();
-            string iconoUsu = Path.Combine(Server.MapPath("~/Content/Uploads/User_icons"), idUsu);
+                RegistradoCAD cad = new RegistradoCAD();
+                RegistradoEN en = cad.ReadOIDDefault(id);
 
-            if ((System.IO.File.Exists(iconoUsu + ".jpg")))
-            {
-                model.User_Icon = model.Id + ".jpg";
-            }
-            else if ((System.IO.File.Exists(iconoUsu + ".jpeg")))
-            {
-                model.User_Icon = model.Id + ".jpeg";
-            }
-            else if ((System.IO.File.Exists(iconoUsu + ".png")))
-            {
-                model.User_Icon = model.Id + ".png";
-            }
-            else if ((System.IO.File.Exists(iconoUsu + ".gif")))
-            {
-                model.User_Icon = model.Id + ".gif";
-            }
-            else
-            {
-                //SI NO TIENE FOTO DE PERFIL
-                model.User_Icon = "";
-            }
+                Registrado model = new AssemblerRegistrado().ConvertENToModelUI(en);
 
-            SessionClose();
+                //SACO EL ICONO DEL USUARIO
+                string idUsu = model.Id.ToString();
+                string iconoUsu = Path.Combine(Server.MapPath("~/Content/Uploads/User_icons"), idUsu);
 
-            return View(model);
+                if ((System.IO.File.Exists(iconoUsu + ".jpg")))
+                {
+                    model.User_Icon = model.Id + ".jpg";
+                }
+                else if ((System.IO.File.Exists(iconoUsu + ".jpeg")))
+                {
+                    model.User_Icon = model.Id + ".jpeg";
+                }
+                else if ((System.IO.File.Exists(iconoUsu + ".png")))
+                {
+                    model.User_Icon = model.Id + ".png";
+                }
+                else if ((System.IO.File.Exists(iconoUsu + ".gif")))
+                {
+                    model.User_Icon = model.Id + ".gif";
+                }
+                else
+                {
+                    //SI NO TIENE FOTO DE PERFIL
+                    model.User_Icon = "";
+                }
+
+                SessionClose();
+
+                return View(model);
+            }
+            catch (Exception e)
+            {
+                return View("../Home");
+            }
         }
 
         // GET: Registrado/Create

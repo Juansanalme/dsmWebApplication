@@ -208,10 +208,10 @@
         {
             <div id="mySidenav" class="sidenav" style="width: 0">
                 <div class="d-lg-none text-white pl-3 pt-2 ">@Session["login"]</div>
-                <a href="@Url.Action("Perfil", "Registrado", new {id = Session["idUsuario"] })">Perfil</a>
+                <a href="@Url.Action("Perfil", "Registrado")">Perfil</a>
                 <a href="@Url.Action("LoadFavoritos", "Articulo")">Favoritos</a>
                 <a href="@Url.Action("LoadGanadas", "Puja")">Pujas Ganadas</a>
-                <a href="@Url.Action("Index", "Pedido", new {id = Session["idUsuario"] })">Pedidos</a>
+                <a href="@Url.Action("LoadPedidos", "Pedido")">Pedidos</a>
                 <a href="@Url.Action("Logout", "Registrado")">Logout</a>
             </div>
         }

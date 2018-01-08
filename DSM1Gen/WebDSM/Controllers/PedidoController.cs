@@ -16,28 +16,19 @@ namespace WebDSM.Controllers
     public class PedidoController : BasicController
     {
         // GET: Pedido
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
             SessionInitialize();
 
-            PedidoCAD cad = new PedidoCAD(session);
-            PedidoCEN cen = new PedidoCEN(cad);
+            PedidoCAD pedidoCAD = new PedidoCAD(session);
+            PedidoCEN pedidoCEN = new PedidoCEN(pedidoCAD);
 
-            IList<PedidoEN> listEN = cen.get_IPedidoCAD().ReadAll(0, -1);
+            IList<PedidoEN> pedidosEN = pedidoCEN.ReadAll(0, -1);
+            IEnumerable<Pedido> peds = new AssemblerPedido().ConvertListENToModel(pedidosEN).ToList();
 
-            IList<PedidoEN> pedidosList = new List<PedidoEN>();
-            foreach (PedidoEN pedido in listEN)
-            {
-                if (pedido.Registrado.Id == id)
-                {
-                    pedidosList.Add(pedido);
-                }
-            }
-            Session["nCarrito"] = 0;
-            IEnumerable<Pedido> enumPed = new AssemblerPedido().ConvertListENToModel(pedidosList).ToList();
             SessionClose();
 
-            return View(enumPed);
+            return View(peds);
         }
 
         // GET: Pedido/Details/5
@@ -121,6 +112,36 @@ namespace WebDSM.Controllers
             }
         }
 
-        
+        public ActionResult LoadPedidos()
+        {
+        	try{
+	            int id = (int)Session["idusuario"];
+
+	            SessionInitialize();
+
+	            PedidoCAD cad = new PedidoCAD(session);
+	            PedidoCEN cen = new PedidoCEN(cad);
+
+	            IList<PedidoEN> listEN = cen.get_IPedidoCAD().ReadAll(0, -1);
+
+	            IList<PedidoEN> pedidosList = new List<PedidoEN>();
+	            foreach (PedidoEN pedido in listEN)
+	            {
+	                if (pedido.Registrado.Id == id)
+	                {
+	                    pedidosList.Add(pedido);
+	                }
+	            }
+	            //Session["nCarrito"] = 0;
+	            IEnumerable<Pedido> enumPed = new AssemblerPedido().ConvertListENToModel(pedidosList);
+	            SessionClose();
+
+	            return View("Index", enumPed);
+	        }
+	        catch (Exception e)
+	        {
+	        	return RedirectToAction("../Home");
+	        }
+	    }
     }
 }
