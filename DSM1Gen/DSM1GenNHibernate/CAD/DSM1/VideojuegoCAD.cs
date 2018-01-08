@@ -94,6 +94,9 @@ public void ModifyDefault (VideojuegoEN videojuego)
 
                 videojuegoEN.Nombre = videojuego.Nombre;
 
+
+                videojuegoEN.Imagen = videojuego.Imagen;
+
                 session.Update (videojuegoEN);
                 SessionCommit ();
         }
@@ -147,6 +150,9 @@ public void Modify (VideojuegoEN videojuego)
                 VideojuegoEN videojuegoEN = (VideojuegoEN)session.Load (typeof(VideojuegoEN), videojuego.Id);
 
                 videojuegoEN.Nombre = videojuego.Nombre;
+
+
+                videojuegoEN.Imagen = videojuego.Imagen;
 
                 session.Update (videojuegoEN);
                 SessionCommit ();

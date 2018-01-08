@@ -99,6 +99,9 @@ public void ModifyDefault (CategoriaEN categoria)
 
 
 
+
+                categoriaEN.Imagen = categoria.Imagen;
+
                 session.Update (categoriaEN);
                 SessionCommit ();
         }
@@ -155,6 +158,9 @@ public void Modify (CategoriaEN categoria)
 
 
                 categoriaEN.Articulo = categoria.Articulo;
+
+
+                categoriaEN.Imagen = categoria.Imagen;
 
                 session.Update (categoriaEN);
                 SessionCommit ();

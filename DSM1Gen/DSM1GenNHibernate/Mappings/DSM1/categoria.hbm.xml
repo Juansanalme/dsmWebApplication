@@ -18,6 +18,9 @@
 					<property name="Articulo" type="integer"> 
 						<column name="articulo"  not-null="true"/>
 					</property>
+					<property name="Imagen" type="string"> 
+						<column name="imagen"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -49,6 +52,8 @@
 					      	</key>
 							<one-to-many class="DSM1GenNHibernate.EN.DSM1.ArticuloEN"/>
 					    </bag>
+					
+			
 					
 					
 					

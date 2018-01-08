@@ -38,7 +38,7 @@ public IPujaCAD get_IPujaCAD ()
         return this._IPujaCAD;
 }
 
-public int New_ (Nullable<DateTime> p_fecha, float p_puja_inicial, int p_articulo, float p_puja_max, int p_id_usuario, bool p_cerrada)
+public int New_ (Nullable<DateTime> p_fecha, float p_puja_inicial, int p_articulo, float p_puja_max, int p_id_usuario, bool p_cerrada, bool p_pagada)
 {
         PujaEN pujaEN = null;
         int oid;
@@ -63,13 +63,15 @@ public int New_ (Nullable<DateTime> p_fecha, float p_puja_inicial, int p_articul
 
         pujaEN.Cerrada = p_cerrada;
 
+        pujaEN.Pagada = p_pagada;
+
         //Call to PujaCAD
 
         oid = _IPujaCAD.New_ (pujaEN);
         return oid;
 }
 
-public void Modify (int p_Puja_OID, Nullable<DateTime> p_fecha, float p_puja_inicial, float p_puja_max, int p_id_usuario, bool p_cerrada)
+public void Modify (int p_Puja_OID, Nullable<DateTime> p_fecha, float p_puja_inicial, float p_puja_max, int p_id_usuario, bool p_cerrada, bool p_pagada)
 {
         PujaEN pujaEN = null;
 
@@ -81,6 +83,7 @@ public void Modify (int p_Puja_OID, Nullable<DateTime> p_fecha, float p_puja_ini
         pujaEN.Puja_max = p_puja_max;
         pujaEN.Id_usuario = p_id_usuario;
         pujaEN.Cerrada = p_cerrada;
+        pujaEN.Pagada = p_pagada;
         //Call to PujaCAD
 
         _IPujaCAD.Modify (pujaEN);
@@ -92,7 +95,7 @@ public void Destroy (int id
         _IPujaCAD.Destroy (id);
 }
 
-public void Actualizar (int p_Puja_OID, Nullable<DateTime> p_fecha, float p_puja_inicial, float p_puja_max, int p_id_usuario, bool p_cerrada)
+public void Actualizar (int p_Puja_OID, Nullable<DateTime> p_fecha, float p_puja_inicial, float p_puja_max, int p_id_usuario, bool p_cerrada, bool p_pagada)
 {
         PujaEN pujaEN = null;
 
@@ -104,6 +107,7 @@ public void Actualizar (int p_Puja_OID, Nullable<DateTime> p_fecha, float p_puja
         pujaEN.Puja_max = p_puja_max;
         pujaEN.Id_usuario = p_id_usuario;
         pujaEN.Cerrada = p_cerrada;
+        pujaEN.Pagada = p_pagada;
         //Call to PujaCAD
 
         _IPujaCAD.Actualizar (pujaEN);

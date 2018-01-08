@@ -146,6 +146,8 @@
 			<Compile Include="CP\DSM1\PujaCP_Terminar_puja.cs" />
 			
 			
+			<Compile Include="CEN\DSM1\PujaCEN_Pagar.cs" />
+			
 	<Compile Include="EN\DSM1\ArticuloEN.cs" />
 	<Compile Include="CEN\DSM1\ArticuloCEN.cs" />
 	<Compile Include="CAD\DSM1\IArticuloCAD.cs" />

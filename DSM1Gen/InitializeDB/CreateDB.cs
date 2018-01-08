@@ -153,11 +153,11 @@ public static void InitializeData ()
                 //ANYADO ARTICULOS A FAVORITO
 
                 List<int> favoritos1 = new List<int>();
-                favoritos1.Add(articulo1);
+                favoritos1.Add (articulo1);
                 List<int> favoritos2 = new List<int>();
-                favoritos2.Add(articulo2);
-                registradoCEN.Añadir_fav(registrado0, favoritos1);
-                registradoCEN.Añadir_fav(registrado0, favoritos2);
+                favoritos2.Add (articulo2);
+                registradoCEN.Añadir_fav (registrado0, favoritos1);
+                registradoCEN.Añadir_fav (registrado0, favoritos2);
 
                 //CREO DOS PUJAS
                 PujaCEN pujaCEN = new PujaCEN ();

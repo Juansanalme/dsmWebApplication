@@ -20,7 +20,7 @@ namespace DSM1GenNHibernate.CP.DSM1
 {
 public partial class PujaCP : BasicCP
 {
-public void Terminar_puja (int p_Puja_OID, Nullable<DateTime> p_fecha, float p_puja_inicial, float p_puja_max, int p_id_usuario, bool p_cerrada)
+public void Terminar_puja (int p_Puja_OID, Nullable<DateTime> p_fecha, float p_puja_inicial, float p_puja_max, int p_id_usuario, bool p_cerrada, bool p_pagada)
 {
         /*PROTECTED REGION ID(DSM1GenNHibernate.CP.DSM1_Puja_terminar_puja) ENABLED START*/
 

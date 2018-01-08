@@ -38,7 +38,7 @@ public ICategoriaCAD get_ICategoriaCAD ()
         return this._ICategoriaCAD;
 }
 
-public int New_ (string p_nombre, int p_articulo)
+public int New_ (string p_nombre, int p_articulo, string p_imagen)
 {
         CategoriaEN categoriaEN = null;
         int oid;
@@ -49,13 +49,15 @@ public int New_ (string p_nombre, int p_articulo)
 
         categoriaEN.Articulo = p_articulo;
 
+        categoriaEN.Imagen = p_imagen;
+
         //Call to CategoriaCAD
 
         oid = _ICategoriaCAD.New_ (categoriaEN);
         return oid;
 }
 
-public void Modify (int p_Categoria_OID, string p_nombre, int p_articulo)
+public void Modify (int p_Categoria_OID, string p_nombre, int p_articulo, string p_imagen)
 {
         CategoriaEN categoriaEN = null;
 
@@ -64,6 +66,7 @@ public void Modify (int p_Categoria_OID, string p_nombre, int p_articulo)
         categoriaEN.Id = p_Categoria_OID;
         categoriaEN.Nombre = p_nombre;
         categoriaEN.Articulo = p_articulo;
+        categoriaEN.Imagen = p_imagen;
         //Call to CategoriaCAD
 
         _ICategoriaCAD.Modify (categoriaEN);

@@ -47,6 +47,13 @@ private System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> a
 
 
 
+/**
+ *	Atributo imagen
+ */
+private string imagen;
+
+
+
 
 
 
@@ -86,6 +93,12 @@ public virtual System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.Articu
 
 
 
+public virtual string Imagen {
+        get { return imagen; } set { imagen = value;  }
+}
+
+
+
 
 
 public CategoriaEN()
@@ -96,20 +109,20 @@ public CategoriaEN()
 
 
 
-public CategoriaEN(int id, string nombre, int articulo, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.CategoriaEN> subcategoria, DSM1GenNHibernate.EN.DSM1.CategoriaEN supercategoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> articulo_0
+public CategoriaEN(int id, string nombre, int articulo, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.CategoriaEN> subcategoria, DSM1GenNHibernate.EN.DSM1.CategoriaEN supercategoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> articulo_0, string imagen
                    )
 {
-        this.init (Id, nombre, articulo, subcategoria, supercategoria, articulo_0);
+        this.init (Id, nombre, articulo, subcategoria, supercategoria, articulo_0, imagen);
 }
 
 
 public CategoriaEN(CategoriaEN categoria)
 {
-        this.init (Id, categoria.Nombre, categoria.Articulo, categoria.Subcategoria, categoria.Supercategoria, categoria.Articulo_0);
+        this.init (Id, categoria.Nombre, categoria.Articulo, categoria.Subcategoria, categoria.Supercategoria, categoria.Articulo_0, categoria.Imagen);
 }
 
 private void init (int id
-                   , string nombre, int articulo, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.CategoriaEN> subcategoria, DSM1GenNHibernate.EN.DSM1.CategoriaEN supercategoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> articulo_0)
+                   , string nombre, int articulo, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.CategoriaEN> subcategoria, DSM1GenNHibernate.EN.DSM1.CategoriaEN supercategoria, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> articulo_0, string imagen)
 {
         this.Id = id;
 
@@ -123,6 +136,8 @@ private void init (int id
         this.Supercategoria = supercategoria;
 
         this.Articulo_0 = articulo_0;
+
+        this.Imagen = imagen;
 }
 
 public override bool Equals (object obj)

@@ -38,7 +38,7 @@ public IVideojuegoCAD get_IVideojuegoCAD ()
         return this._IVideojuegoCAD;
 }
 
-public int New_ (string p_nombre)
+public int New_ (string p_nombre, string p_imagen)
 {
         VideojuegoEN videojuegoEN = null;
         int oid;
@@ -47,13 +47,15 @@ public int New_ (string p_nombre)
         videojuegoEN = new VideojuegoEN ();
         videojuegoEN.Nombre = p_nombre;
 
+        videojuegoEN.Imagen = p_imagen;
+
         //Call to VideojuegoCAD
 
         oid = _IVideojuegoCAD.New_ (videojuegoEN);
         return oid;
 }
 
-public void Modify (int p_Videojuego_OID, string p_nombre)
+public void Modify (int p_Videojuego_OID, string p_nombre, string p_imagen)
 {
         VideojuegoEN videojuegoEN = null;
 
@@ -61,6 +63,7 @@ public void Modify (int p_Videojuego_OID, string p_nombre)
         videojuegoEN = new VideojuegoEN ();
         videojuegoEN.Id = p_Videojuego_OID;
         videojuegoEN.Nombre = p_nombre;
+        videojuegoEN.Imagen = p_imagen;
         //Call to VideojuegoCAD
 
         _IVideojuegoCAD.Modify (videojuegoEN);

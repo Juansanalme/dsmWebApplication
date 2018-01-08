@@ -108,6 +108,9 @@ public void ModifyDefault (PujaEN puja)
 
                 pujaEN.Cerrada = puja.Cerrada;
 
+
+                pujaEN.Pagada = puja.Pagada;
+
                 session.Update (pujaEN);
                 SessionCommit ();
         }
@@ -181,6 +184,9 @@ public void Modify (PujaEN puja)
 
                 pujaEN.Cerrada = puja.Cerrada;
 
+
+                pujaEN.Pagada = puja.Pagada;
+
                 session.Update (pujaEN);
                 SessionCommit ();
         }
@@ -243,6 +249,9 @@ public void Actualizar (PujaEN puja)
 
 
                 pujaEN.Cerrada = puja.Cerrada;
+
+
+                pujaEN.Pagada = puja.Pagada;
 
                 session.Update (pujaEN);
                 SessionCommit ();
@@ -312,6 +321,9 @@ public void Terminar_puja (PujaEN puja)
 
 
                 pujaEN.Cerrada = puja.Cerrada;
+
+
+                pujaEN.Pagada = puja.Pagada;
 
                 session.Update (pujaEN);
                 SessionCommit ();

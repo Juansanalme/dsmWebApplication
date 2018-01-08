@@ -26,6 +26,13 @@ private string nombre;
 
 
 
+/**
+ *	Atributo imagen
+ */
+private string imagen;
+
+
+
 
 
 
@@ -47,6 +54,12 @@ public virtual string Nombre {
 
 
 
+public virtual string Imagen {
+        get { return imagen; } set { imagen = value;  }
+}
+
+
+
 
 
 public VideojuegoEN()
@@ -56,20 +69,20 @@ public VideojuegoEN()
 
 
 
-public VideojuegoEN(int id, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> articulo, string nombre
+public VideojuegoEN(int id, System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> articulo, string nombre, string imagen
                     )
 {
-        this.init (Id, articulo, nombre);
+        this.init (Id, articulo, nombre, imagen);
 }
 
 
 public VideojuegoEN(VideojuegoEN videojuego)
 {
-        this.init (Id, videojuego.Articulo, videojuego.Nombre);
+        this.init (Id, videojuego.Articulo, videojuego.Nombre, videojuego.Imagen);
 }
 
 private void init (int id
-                   , System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> articulo, string nombre)
+                   , System.Collections.Generic.IList<DSM1GenNHibernate.EN.DSM1.ArticuloEN> articulo, string nombre, string imagen)
 {
         this.Id = id;
 
@@ -77,6 +90,8 @@ private void init (int id
         this.Articulo = articulo;
 
         this.Nombre = nombre;
+
+        this.Imagen = imagen;
 }
 
 public override bool Equals (object obj)

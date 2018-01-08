@@ -27,6 +27,9 @@
 					<property name="Cerrada" type="boolean"> 
 						<column name="cerrada"  not-null="true"/>
 					</property>
+					<property name="Pagada" type="boolean"> 
+						<column name="pagada"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -57,6 +60,8 @@
 					
 			
 			
+			
+					
 					
 					
 					
