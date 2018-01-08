@@ -334,54 +334,75 @@ namespace WebDSM.Controllers
 
         public ActionResult LoadFavoritos()
         {
-            SessionInitialize();
+            try
+            {
+                SessionInitialize();
 
-            RegistradoCAD registradoCAD = new RegistradoCAD(session);
-            RegistradoCEN registradoCEN = new RegistradoCEN(registradoCAD);
+                RegistradoCAD registradoCAD = new RegistradoCAD(session);
+                RegistradoCEN registradoCEN = new RegistradoCEN(registradoCAD);
 
-            ArticuloCAD articuloCAD = new ArticuloCAD(session);
-            ArticuloCEN articuloCEN = new ArticuloCEN(articuloCAD);
+                ArticuloCAD articuloCAD = new ArticuloCAD(session);
+                ArticuloCEN articuloCEN = new ArticuloCEN(articuloCAD);
 
-            int miID = (int)Session["idUsuario"];
-            RegistradoEN registradoEN = registradoCEN.get_IRegistradoCAD().ReadOIDDefault(miID);
+                int miID = (int)Session["idUsuario"];
+                RegistradoEN registradoEN = registradoCEN.get_IRegistradoCAD().ReadOIDDefault(miID);
 
-            IList<ArticuloEN> articulosEN = registradoEN.A_favorito;
-            IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulosEN);
+                IList<ArticuloEN> articulosEN = registradoEN.A_favorito;
+                IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulosEN);
 
-            SessionClose();
+                SessionClose();
 
-            art = GetAllFotos(art);
-            return View("Index", art);
+                art = GetAllFotos(art);
+                return View("Index", art);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("../Home");
+            }
         }
 
         public ActionResult FavAnyadir(int artId)
         {
-            SessionInitialize();
-            
-            RegistradoCEN registradoCEN = new RegistradoCEN();
+            try
+            {
+                SessionInitialize();
 
-            List<int> lista = new List<int>();
-            lista.Add(artId);
+                RegistradoCEN registradoCEN = new RegistradoCEN();
 
-            int miID = (int)Session["idUsuario"];
-            registradoCEN.Añadir_fav(miID, lista);
+                List<int> lista = new List<int>();
+                lista.Add(artId);
 
-            return RedirectToAction("../Articulo/Details", new { id = artId });
+                int miID = (int)Session["idUsuario"];
+                registradoCEN.Añadir_fav(miID, lista);
+
+                return RedirectToAction("../Articulo/Details", new { id = artId });
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("../Home");
+            }
         }
 
         public ActionResult FavQuitar(int artId)
         {
-            SessionInitialize();
+            try
+            {
+                SessionInitialize();
 
-            RegistradoCEN registradoCEN = new RegistradoCEN();
+                RegistradoCEN registradoCEN = new RegistradoCEN();
 
-            List<int> lista = new List<int>();
-            lista.Add(artId);
+                List<int> lista = new List<int>();
+                lista.Add(artId);
 
-            int miID = (int)Session["idUsuario"];
-            registradoCEN.Eliminar_fav(miID, lista);
+                int miID = (int)Session["idUsuario"];
+                registradoCEN.Eliminar_fav(miID, lista);
 
-            return RedirectToAction("../Articulo/Details", new { id = artId });
+                return RedirectToAction("../Articulo/Details", new { id = artId });
+            }
+            catch (Exception e)
+            {
+            return RedirectToAction("../Home");
+            }
         }
 
         [HttpPost]

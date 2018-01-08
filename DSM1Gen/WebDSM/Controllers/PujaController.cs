@@ -189,5 +189,33 @@ namespace WebDSM.Controllers
                 return RedirectToAction("../Registrado/Admin");
             }
         }
+
+        public ActionResult LoadGanadas()
+        {
+            try
+            {
+                SessionInitialize();
+
+                RegistradoCAD registradoCAD = new RegistradoCAD(session);
+                RegistradoCEN registradoCEN = new RegistradoCEN(registradoCAD);
+
+                PujaCAD pujaCAD = new PujaCAD(session);
+                PujaCEN pujaCEN = new PujaCEN(pujaCAD);
+
+                int miID = (int)Session["idUsuario"];
+                RegistradoEN registradoEN = registradoCEN.get_IRegistradoCAD().ReadOIDDefault(miID);
+
+                IList<PujaEN> pujasEN = registradoEN.PujaGanadora;
+                IEnumerable<Puja> pujas = new AssemblerPuja().ConvertListENToModel(pujasEN);
+
+                SessionClose();
+
+                return View("Index", pujas);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("../Home");
+            }
+        }
     }
 }
