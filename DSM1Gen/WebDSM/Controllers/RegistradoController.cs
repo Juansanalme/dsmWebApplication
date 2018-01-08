@@ -308,5 +308,19 @@ namespace WebDSM.Controllers
             return View("Admin", art);
         }
 
+        [HttpPost]
+        public ActionResult NewPass(String antigua, String nueva, String repe)
+        {
+
+            return RedirectToAction("Perfil", "Registrado", new { id = Session["idUsuario"] });
+        }
+
+        [HttpPost]
+        public ActionResult NewPersonales(Models.Registrado reg)
+        {
+
+            return RedirectToAction("Perfil", "Registrado", new { id = Session["idUsuario"] });
+        }
+
     }
 }

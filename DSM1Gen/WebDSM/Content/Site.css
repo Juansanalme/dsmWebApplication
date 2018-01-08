@@ -31,7 +31,7 @@ html, body {
 }
 
 .bg-orange {
-    background: #e5b522
+    background: #e5b522;
 }
 
 .bg-blood {
@@ -255,6 +255,14 @@ a:hover {
 
 .height-100px {
     min-height: 100px;
+}
+
+.height-200px {
+    min-height: 200px;
+}
+
+.height-250px {
+    min-height: 250px;
 }
 
 .height-300px{
@@ -557,7 +565,7 @@ a:focus{
     transition: background 0.3s ease-out;
 }
 
-#favved {
+.favved {
     background: #e10031;
 }
 
@@ -565,4 +573,39 @@ a:focus{
     height: 40px;
     width: 40px;
     border-radius: 50%;
+}
+
+.profile-pic {
+    width: 180px;
+    height: 180px;
+    position:absolute;
+    margin-top: +93px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    border: 9px solid #f4f4f4;
+    border-radius: 50%;
+}
+
+.cabecera{
+    background-image: url(../Images/Cabecera.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.border-x {
+    border-left: 1px solid #f4f4f4;
+    border-right: 1px solid #f4f4f4;
+}
+
+.profile-button {
+    transition: background 0.3s ease-in-out;
+}
+
+.profile-button:hover {
+    background: #d6aa24;
+}
+
+.shadow {
+    text-shadow: 5px 5px 10px black;
 }
