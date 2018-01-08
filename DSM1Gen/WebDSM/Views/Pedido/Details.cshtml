@@ -23,12 +23,7 @@
 }
 
 <div class="container pt-4" id="pedidos">
-    <div>
-        @if (UserId != 0)
-        {
-            <a class="text-black btn btn-outline-warning" href="@Url.Action("LoadPedidos","Pedido")"><i class="fas fa-chevron-left text-black"></i> Volver a lista de Pedidos</a>
-        }
-    </div>
+
 
     <h2>Detalles del Pedido</h2>
 
@@ -66,4 +61,10 @@
             <div class="col d-flex align-items-center bg-black justify-content-center">@item.PrecioUnidad €</div>
         </div>
     }
+    <div class="mt-4">
+        @if (UserId != 0)
+        {
+            <a class="text-black btn btn-outline-warning" href="@Url.Action("LoadPedidos","Pedido")"><i class="fas fa-chevron-left text-black"></i> Volver a lista de Pedidos</a>
+        }
+    </div>
 </div>
