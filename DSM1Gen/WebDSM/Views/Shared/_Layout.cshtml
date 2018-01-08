@@ -120,7 +120,7 @@
                         }
                     </div>
                     <div class="col ">
-                        @if (controllerName == "Videojuegos")
+                        @if (controllerName == "Videojuego")
                         {
                             @Html.ActionLink("VIDEOJUEGOS", "Index", "Videojuego", null, new { @class = "col nav-link active elegant" })
                         }
@@ -282,10 +282,17 @@
             scale: 1
         }
 
-        var bottom = {
+        var figure = {
             reset: true,
             duration: 700,
             scale: 0.8
+        }
+
+        var bottom = {
+            duration: 700,
+            origin: "bottom",
+            distance: "300px",
+            scale: 1
         }
 
         window.sr = ScrollReveal();
@@ -295,7 +302,9 @@
 
         sr.reveal('.column figure', bottom);
 
-        sr.reveal('#pedidos .bg-black',  bottom , 75);
+        sr.reveal('#pedidos .bg-black', figure, 75);
+
+        sr.reveal('#videojuegos .row', bottom, 30);
 
         var flag = false;
         $('html').click(function (e) {
