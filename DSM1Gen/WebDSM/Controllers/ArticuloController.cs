@@ -282,7 +282,7 @@ namespace WebDSM.Controllers
             return View("Index", art);
         }
 
-        public ActionResult Categoria(String termino)
+        public ActionResult Categoria(String item)
         {
             SessionInitialize();
 
@@ -293,11 +293,11 @@ namespace WebDSM.Controllers
             CategoriaCEN categoriaCEN = new CategoriaCEN(categoriaCAD);
 
             List<ArticuloEN> articulosEN = new List<ArticuloEN>();
-            articulosEN.AddRange(articuloCEN.Busqueda_por_categoria(termino));
+            articulosEN.AddRange(articuloCEN.Busqueda_por_categoria(item));
 
             foreach (CategoriaEN cat in categoriaCAD.ReadAll(0, -1))
             {
-                if(cat.Nombre == termino)
+                if(cat.Nombre == item)
                 {
                     foreach (CategoriaEN subcat in cat.Subcategoria)
                     {
@@ -316,13 +316,13 @@ namespace WebDSM.Controllers
             return View("Index", art);
         }
 
-        public ActionResult Videojuego(String termino)
+        public ActionResult Videojuego(String item)
         {
             SessionInitialize();
 
             ArticuloCAD articuloCAD = new ArticuloCAD(session);
             ArticuloCEN articuloCEN = new ArticuloCEN(articuloCAD);
-            IList<ArticuloEN> articulosEN = articuloCEN.Busqueda_por_videojuego(termino);
+            IList<ArticuloEN> articulosEN = articuloCEN.Busqueda_por_videojuego(item);
 
             IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulosEN);
 

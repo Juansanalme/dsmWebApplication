@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Pujas</h2>
 
 <table class="table">
     <tr>
@@ -15,6 +15,12 @@
         <th>
             @Html.DisplayNameFor(model => model.PujaInicial)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PujaMaxima)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cerrada)
+        </th>
         <th></th>
     </tr>
 
@@ -23,9 +29,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.Articulo)
         </td>
-
         <td>
             @Html.DisplayFor(modelItem => item.PujaInicial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PujaMaxima)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cerrada)
         </td>
         <td>
             @Html.ActionLink("Ver la puja", "Details", new { id = item.Id })

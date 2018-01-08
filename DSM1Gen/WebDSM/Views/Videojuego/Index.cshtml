@@ -9,23 +9,22 @@
 
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
+        <th>@Html.DisplayNameFor(model => model.Nombre)</th>
         <th>Cantidad de artículos</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            <form action="../Articulo/Videojuego" method="post">
-                <input style="display: none;" name="termino" value="@item.Nombre">
-                <button type="submit">@item.Nombre</button>
-            </form>
+            <div>
+                <a href="@Url.Action("Videojuego","Articulo", new { item = item.Nombre} )">@item.Nombre</a>
+            </div>
         </td>
 
         <td>
-            @item.Arts
+            <div>
+                @item.Arts
+            </div>
         </td>
     </tr>
 }
