@@ -25,7 +25,7 @@ namespace WebDSM.Controllers
             PujaCEN pujaCEN = new PujaCEN(pujaCAD);
 
             IList<PujaEN> pujas = pujaCEN.ReadAll(0, -1);
-            IEnumerable<PujaYArticulo> puj = new AssemblerPuja().ConvertCustom(pujas).ToList();
+            IEnumerable<Puja> puj = new AssemblerPuja().ConvertListENToModel(pujas).ToList();
 
             SessionClose();
 
@@ -244,7 +244,7 @@ namespace WebDSM.Controllers
 
                 SessionClose();
 
-                return View("Index", pujas);
+                return View("../Registrado/Ganadas", pujas);
             }
             catch (Exception e)
             {

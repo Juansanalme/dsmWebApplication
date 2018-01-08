@@ -216,7 +216,6 @@
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\PedidoYLineas.cs" />
     <Compile Include="Models\Puja.cs" />
-    <Compile Include="Models\PujaYArticulo.cs" />
     <Compile Include="Models\Registrado.cs" />
     <Compile Include="Models\Valoracion.cs" />
     <Compile Include="Models\Videojuego.cs" />
@@ -311,6 +310,7 @@
     <Content Include="Views\Registrado\Perfil.cshtml" />
     <Content Include="Views\Registrado\Edit.cshtml" />
     <Content Include="Views\Videojuego\Index.cshtml" />
+    <Content Include="Views\Registrado\Ganadas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

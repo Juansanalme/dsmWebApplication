@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebDSM.Models.PujaYArticulo>
+﻿@model IEnumerable<WebDSM.Models.Puja>
 
 @{
     ViewBag.Title = "Index";
@@ -21,22 +21,22 @@
                     {
                         borderleft = "border-left";
                     }
-                    if (!item.Puja.Cerrada)
+                    if (!item.Cerrada)
                     {
                         <li class="profile-button">
-                            <a href="@Url.Action("Details", "Puja", new { id = item.Puja.Id })">
+                            <a href="@Url.Action("Details", "Puja", new { id = item.Id })">
                                 <div class="p-3 @borderleft text-white elegant text-center">
-                                    @if (!item.Articulo.Imagen.IsEmpty())
+                                    @if (!item.ImageArt.IsEmpty())
                                     {
-                                        <img src="@Url.Content("~/Content/Uploads/Item_images/"+item.Articulo.Imagen)" alt="Imagen del articulo" />
+                                        <img src="@Url.Content("~/Content/Uploads/Item_images/"+item.ImageArt)" alt="Imagen del articulo" />
                                     }
                                     else
                                     {
                                         <img src="~/Images/Shut-up-and-take-my-money!.png" alt="" />
                                     }
-                                    <h5 class="pt-2">@item.Puja.Articulo</h5>
-                                    <p>@item.Puja.ArtDescripcion</p>
-                                    <h5 class="pt-3 elegant">Puja actual: <span class="text-blood">@item.Puja.PujaMaxima€</span> </h5>
+                                    <h5 class="pt-2">@item.Articulo</h5>
+                                    <p>@item.ArtDescripcion</p>
+                                    <h5 class="pt-3 elegant">Puja actual: <span class="text-blood">@item.PujaMaxima€</span> </h5>
                                 </div>
                             </a>
                         </li>
@@ -69,28 +69,28 @@
                     {
                         borderleft = "border-left";
                     }
-                    if (item.Puja.Cerrada)
+                    if (item.Cerrada)
                     {
                         <li class="cerrada_button">
                             <a href="#">
                                 <div class="p-3 @borderleft text-white elegant text-center">
-                                    @if (!item.Articulo.Imagen.IsEmpty())
+                                    @if (!item.ImageArt.IsEmpty())
                                     {
-                                        <img src="@Url.Content("~/Content/Uploads/Item_images/"+item.Articulo.Imagen)" alt="Imagen del articulo" />
+                                        <img src="@Url.Content("~/Content/Uploads/Item_images/"+item.ImageArt)" alt="Imagen del articulo" />
                                     }
                                     else
                                     {
                                         <img src="~/Images/Shut-up-and-take-my-money!.png" alt="" />
                                     }
-                                    <h5 class="pt-2">@item.Puja.Articulo</h5>
-                                    <p>@item.Puja.ArtDescripcion</p>
-                                    @if(item.Puja.UsuarioGanador != "Sin pujas")
+                                    <h5 class="pt-2">@item.Articulo</h5>
+                                    <p>@item.ArtDescripcion</p>
+                                    @if(item.UsuarioGanador != "Sin pujas")
                                     {
-                                        <h5 class="pt-3 elegant">Ganador: <span class="text-blood">@item.Puja.UsuarioGanador</span> </h5>
+                                        <h5 class="pt-3 elegant">Ganador: <span class="text-blood">@item.UsuarioGanador</span> </h5>
                                     }
                                     else
                                     {
-                                        <h5 class="pt-3 elegant"><span class="text-blood">@item.Puja.UsuarioGanador</span></h5>
+                                        <h5 class="pt-3 elegant"><span class="text-blood">Sin pujas</span></h5>
                                     }
                                 </div>
                             </a>

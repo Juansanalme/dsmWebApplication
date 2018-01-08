@@ -30,7 +30,10 @@ namespace WebDSM.Models
 
         [ScaffoldColumn(false)]
         public String UsuarioGanador { get; set; }
-        
+
+        [ScaffoldColumn(false)]
+        public String ImageArt { get; set; }
+
         [ScaffoldColumn(false)]
         public String Articulo { get; set; }
 

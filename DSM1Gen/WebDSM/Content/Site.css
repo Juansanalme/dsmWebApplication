@@ -705,11 +705,16 @@ a:focus{
     transition: background 0.3s ease-in-out;
 }
 
+.cerrada_button .text-blood{
+    transition: color 0.3s ease-in-out;
+}
+
 .cerrada_button:hover {
     background: #af0026;
 }
 .cerrada_button:hover .text-blood{
     color:black;
+    transition: color 0.3s ease-in-out;
 }
 
 .id_puja {
@@ -719,4 +724,8 @@ a:focus{
 
 .sin_resultados_puja{
     height:280px;
+}
+
+#pedidos .bg-black{
+    visibility:hidden;
 }
