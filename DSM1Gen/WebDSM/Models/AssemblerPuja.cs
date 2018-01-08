@@ -28,6 +28,7 @@ namespace WebDSM.Models
 
             puja.Articulo = en.Articulo.Nombre;
             puja.ImageArt = en.Articulo.Imagen;
+            puja.Image3DArt = en.Articulo.Img_3d;
             puja.Videojuego = en.Articulo.Videojuego.Nombre;
             puja.ArtDescripcion = en.Articulo.Descripcion;
             puja.PujaMaxima = en.Puja_max;

@@ -353,7 +353,7 @@ namespace WebDSM.Controllers
                 SessionClose();
 
                 art = GetAllFotos(art);
-                return View("Favoritos", art);
+                return View("../Registrado/Favoritos", art);
             }
             catch (Exception e)
             {

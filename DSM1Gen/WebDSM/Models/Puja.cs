@@ -35,6 +35,9 @@ namespace WebDSM.Models
         public String ImageArt { get; set; }
 
         [ScaffoldColumn(false)]
+        public String Image3DArt { get; set; }
+
+        [ScaffoldColumn(false)]
         public String Articulo { get; set; }
 
         [ScaffoldColumn(false)]

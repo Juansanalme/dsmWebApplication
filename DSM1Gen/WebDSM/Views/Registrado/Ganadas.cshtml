@@ -21,7 +21,7 @@
                 {
                     borderleft = "border-left";
                 }
-                if (!item.Cerrada)
+                if (item.Cerrada)
                 {
                     <li class="profile-button">
                         <a href="@Url.Action("Details", "Puja", new { id = item.Id })">

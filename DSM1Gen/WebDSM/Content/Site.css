@@ -611,6 +611,10 @@ a:focus{
     text-shadow: 5px 5px 10px black;
 }
 
+.box-shadow{
+    box-shadow: 20px 20px 50px grey;  
+}
+
 .videojuego{
     height: 390px;
     width: 100%;
@@ -639,6 +643,7 @@ a:focus{
         font-size: 2rem;
     }
 }
+
 
 ::-webkit-scrollbar {
     width: 2px;
@@ -728,4 +733,17 @@ a:focus{
 
 #pedidos .bg-black{
     visibility:hidden;
+}
+
+.category-h{
+    height: 200px;
+}
+
+.bg-black-2{
+    background: #121212;
+}
+
+
+#puja{
+    height:45vw;
 }

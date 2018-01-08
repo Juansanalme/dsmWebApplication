@@ -92,7 +92,15 @@
                 else
                 {
                     <div class="item_img d-inline-block">
-                        <img class="content" src="@Url.Content("~/Content/Uploads/Item_images/" + Model.Articulo.Imagen)" alt="@Model.Articulo.Nombre" />
+
+                        @if (Model.Articulo.Imagen.IsEmpty())
+                        {
+                            <img class="content" src="~/Images/Shut-up-and-take-my-money!.png" alt="" />
+                        }
+                        else
+                        {
+                            <img class="content" src="@Url.Content("~/Content/Uploads/Item_images/"+Model.Articulo.Imagen)" alt="Imagen del articulo @Model.Articulo.Nombre" />
+                        }
                         <div class="row">
                             <div class="col-12">
                                 <div class="row display-4 justify-content-center text-orange">@Html.DisplayFor(model => model.Articulo.Nombre)</div>
@@ -120,7 +128,7 @@
                     if (sessionID != 0 && !fav)
                     {
                         <a class="row nav-link pb-4 d-flex align-items-center" id="fav" href="@Url.Action("FavAnyadir", "Articulo", new { artId = Model.Articulo.Id })"> <!----------------------------------- AQUI EL ENLACE PARA AÑADIR A FAVORITOS -->
-                            <div class="col-2 col-md-4 d-flex align-items-center justify-content-end pr-0">
+                            <div class="col-2 col-lg-4 d-flex align-items-center justify-content-end pr-0">
                                 <div class="heart secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
                                     <i class="fas fa-heart"></i>
                                 </div>
@@ -131,7 +139,7 @@
                     else if (sessionID != 0)
                     {
                         <a class="row nav-link pb-4 d-flex align-items-center" id="fav" href="@Url.Action("FavQuitar", "Articulo", new { artId = Model.Articulo.Id })">
-                            <div class="col-2 col-md-4 d-flex align-items-center justify-content-end pr-0">
+                            <div class="col-2 col-lg-4 d-flex align-items-center justify-content-end pr-0">
                                 <div class="favved secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
                                     <i class="fas fa-heart"></i>
                                 </div>
@@ -142,7 +150,7 @@
                 }
 
                 <div class="row pb-2 d-flex align-items-center">
-                    <div class="col-2 col-md-4 d-flex align-items-center justify-content-end pr-0">
+                    <div class="col-2 col-lg-4 d-flex align-items-center justify-content-end pr-0">
                         <div class="bg-orange secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
                             <i class="fas fa-tag" data-fa-transform="rotate-90"></i>
                         </div>
@@ -150,7 +158,7 @@
                     <div class="col-8 h5 m-0 elegant">Categoria: <span class="text-blood">@Model.Articulo.NombreCategoria</span></div>
                 </div>
                 <div class="row pb-2 d-flex align-items-center">
-                    <div class="col-2 col-md-4 d-flex align-items-center justify-content-end pr-0">
+                    <div class="col-2 col-lg-4 d-flex align-items-center justify-content-end pr-0">
                         <div class="bg-orange secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
                             <i class="fas fa-archive"></i>
                         </div>
@@ -158,7 +166,7 @@
                     <div class="col-8 h5 m-0 elegant">Stock: <span class="text-blood">@Model.Articulo.Stock</span></div>
                 </div>
                 <div class="row pb-2 d-flex align-items-center">
-                    <div class="col-2 col-md-4 d-flex align-items-center justify-content-end pr-0">
+                    <div class="col-2 col-lg-4 d-flex align-items-center justify-content-end pr-0">
                         <div class="bg-orange secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
                             <i class="fas fa-thumbs-up"></i>
                         </div>
