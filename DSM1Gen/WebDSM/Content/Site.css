@@ -610,3 +610,32 @@ a:focus{
 .shadow {
     text-shadow: 5px 5px 10px black;
 }
+
+.videojuego{
+    height: 390px;
+    width: 100%;
+}
+
+.videojuego-text{
+    font-size: 4.5rem;
+}
+
+
+@media (max-width:850px) {
+    .videojuego {
+        height: 320px;
+        width: 100%;
+    }
+    .videojuego-text {
+        font-size: 3rem;
+    }
+    .h3{
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width:550px) {
+    .videojuego-text {
+        font-size: 2rem;
+    }
+}
