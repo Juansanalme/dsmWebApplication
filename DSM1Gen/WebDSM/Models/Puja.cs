@@ -35,6 +35,9 @@ namespace WebDSM.Models
         public String ArtDescripcion { get; set; }
 
         [ScaffoldColumn(false)]
+        public String Videojuego { get; set; }
+
+        [ScaffoldColumn(false)]
         public float PujaMaxima { get; set; }
         
         //[ScaffoldColumn(false)]
