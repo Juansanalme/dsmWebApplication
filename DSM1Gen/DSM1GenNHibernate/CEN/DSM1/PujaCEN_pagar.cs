@@ -26,7 +26,7 @@ public void Pagar (int p_oid)
         PujaCEN pujaCEN = new PujaCEN();
         PujaEN pujaEN = pujaCEN.get_IPujaCAD().ReadOIDDefault(p_oid);
 
-            pujaEN.Pagada = true;
+        pujaEN.Pagada = true;
 
         /*PROTECTED REGION END*/
 }
