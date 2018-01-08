@@ -12,6 +12,7 @@ using DSM1GenNHibernate.Exceptions;
 using DSM1GenNHibernate.EN.DSM1;
 using DSM1GenNHibernate.CAD.DSM1;
 
+using System.IO;
 
 namespace DSM1GenNHibernate.CEN.DSM1
 {
@@ -76,6 +77,10 @@ public int New_ (string p_nombre, double p_precio, int p_categoria, string p_des
         //Call to ArticuloCAD
 
         oid = _IArticuloCAD.New_ (articuloEN);
+
+        String new_img = oid.ToString() + Path.GetExtension(p_imagen);
+        Modify(oid, p_nombre, p_precio, p_descripcion, p_stock, new_img, p_img_3d);
+
         return oid;
 }
 

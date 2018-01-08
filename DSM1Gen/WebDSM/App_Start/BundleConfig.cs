@@ -23,7 +23,8 @@ namespace WebDSM
                       "~/Scripts/popper.js",
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
-                      "~/Scripts/scrollreveal.js"));
+                      "~/Scripts/scrollreveal.js",
+                      "~/Scripts/jquery.mousewheel.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

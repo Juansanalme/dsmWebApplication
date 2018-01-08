@@ -25,7 +25,7 @@ namespace WebDSM.Controllers
             PujaCEN pujaCEN = new PujaCEN(pujaCAD);
 
             IList<PujaEN> pujas = pujaCEN.ReadAll(0, -1);
-            IEnumerable<Puja> puj = new AssemblerPuja().ConvertListENToModel(pujas).ToList();
+            IEnumerable<PujaYArticulo> puj = new AssemblerPuja().ConvertCustom(pujas).ToList();
 
             SessionClose();
 

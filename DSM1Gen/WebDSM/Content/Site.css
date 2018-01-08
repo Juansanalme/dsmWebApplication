@@ -639,3 +639,84 @@ a:focus{
         font-size: 2rem;
     }
 }
+
+::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+}
+
+::-webkit-scrollbar-button {
+    width: 2px;
+    height: 2px;
+}
+
+
+
+.selector ul li p {
+    font-size: 14px;
+    margin: 0;
+}
+
+.selector ul li.selected {
+    background-color: #baefb3;
+    box-shadow: inset 0 0 0 1px #30c51d;
+}
+
+.selector ul li {
+    display: inline-block;
+    max-width: 250px;
+    width: 250px;
+    white-space: normal;
+    margin-right:-5px;
+}
+
+.selector ul {
+    list-style: none;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.selector img{
+    max-width: 100%;
+    max-height: 130px;
+}
+
+.selector figure{
+    height: 100%;
+    width: 100%;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.selector {
+    background: #121212;
+    max-width: 100%;
+    overflow: scroll;
+    width: 100%;
+    display: block;
+    height: 60%;
+}
+
+.border-left{
+    border-left: 1px solid white;
+}
+
+.cerrada_button {
+    transition: background 0.3s ease-in-out;
+}
+
+.cerrada_button:hover {
+    background: #af0026;
+}
+.cerrada_button:hover .text-blood{
+    color:black;
+}
+
+.id_puja {
+    background: #d6aa24;;
+    color: black;
+}
+
+.sin_resultados_puja{
+    height:280px;
+}
