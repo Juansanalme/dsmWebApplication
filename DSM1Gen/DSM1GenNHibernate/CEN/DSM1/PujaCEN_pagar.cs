@@ -23,9 +23,10 @@ public void Pagar (int p_oid)
 {
         /*PROTECTED REGION ID(DSM1GenNHibernate.CEN.DSM1_Puja_pagar) ENABLED START*/
 
-        // Write here your custom code...
+        PujaCEN pujaCEN = new PujaCEN();
+        PujaEN pujaEN = pujaCEN.get_IPujaCAD().ReadOIDDefault(p_oid);
 
-        throw new NotImplementedException ("Method Pagar() not yet implemented.");
+            pujaEN.Pagada = true;
 
         /*PROTECTED REGION END*/
 }

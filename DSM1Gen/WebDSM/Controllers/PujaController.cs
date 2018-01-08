@@ -192,7 +192,6 @@ namespace WebDSM.Controllers
 
         public ActionResult PagarPuja(int pujaid)
         {
-            //CERRAR PUJA Y CREAR PEDIDO
             SessionInitialize();
             int usuid = (int)Session["idusuario"];
 
@@ -204,16 +203,21 @@ namespace WebDSM.Controllers
             LineaPedidoCEN lineaCEN = new LineaPedidoCEN(lineaCAD);
             int lineaID = lineaCEN.New_(1 , pujaEN.Articulo.Id);
 
-            List<int> lineasList = new List<int>();
-            lineasList.Add(lineaID);
+            List<int> lineasList = new List<int>
+            {
+                lineaID
+            };
 
-            PedidoCEN pedidoCEN = new PedidoCEN();
+            PedidoCAD pedidoCAD = new PedidoCAD(session);
+            PedidoCEN pedidoCEN = new PedidoCEN(pedidoCAD);
             int pedidoID = pedidoCEN.New_("Pedido de puja", DateTime.Now, usuid);
+
             pedidoCEN.Anyadir_linea(pedidoID, lineasList);
 
-            pujaCEN.Pagar(pujaid);
+            pujaEN.Pagada = true;
 
             SessionClose();
+
             return RedirectToAction("Details/" + pujaid);
         }
 
