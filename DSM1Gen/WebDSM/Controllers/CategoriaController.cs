@@ -71,7 +71,7 @@ namespace WebDSM.Controllers
                 // TODO: Add insert logic here
                 CategoriaCEN cen = new CategoriaCEN();
 
-                int catId = cen.New_(cat.Categoria.Nombre, 0); //SE LE PASA 0, POR LOS LOLES
+                int catId = cen.New_(cat.Categoria.Nombre, 0, ""); //SE LE PASA 0, POR LOS LOLES
 
                 if(cat.Categoria.SuperId != 0)
                     cen.Anyadir_supercat(catId,cat.Categoria.SuperId);
@@ -100,7 +100,7 @@ namespace WebDSM.Controllers
                 CategoriaCP cp = new CategoriaCP();
                 int n = cen.get_ICategoriaCAD().ReadOIDDefault(cat.Categoria.Id).Articulo;
 
-                cen.Modify(cat.Categoria.Id, cat.Categoria.Nombre, n);
+                cen.Modify(cat.Categoria.Id, cat.Categoria.Nombre, n, "");
                 if (cat.Categoria.SuperId != 0)
                     cen.Anyadir_supercat(cat.Categoria.Id, cat.Categoria.SuperId);
                 //else

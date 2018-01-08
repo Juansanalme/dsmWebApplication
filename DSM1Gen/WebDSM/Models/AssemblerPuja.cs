@@ -16,9 +16,15 @@ namespace WebDSM.Models
             puja.PujaInicial = en.Puja_inicial;
 
             if (en.UsuarioGanador == null)
+            {
                 puja.UsuarioGanador = "Sin pujas";
+                puja.IdGanador = 0;
+            }
             else
+            {
                 puja.UsuarioGanador = en.UsuarioGanador.Nombre;
+                puja.IdGanador = en.UsuarioGanador.Id;
+            }
 
             puja.Articulo = en.Articulo.Nombre;
             puja.Videojuego = en.Articulo.Videojuego.Nombre;

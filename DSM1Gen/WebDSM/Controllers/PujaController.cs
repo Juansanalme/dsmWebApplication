@@ -73,7 +73,7 @@ namespace WebDSM.Controllers
 
                 if (!repetido)
                 {
-                    pujaCEN.New_(DateTime.Now, Puja, Articulo, Puja, -1, false);
+                    pujaCEN.New_(DateTime.Now, Puja, Articulo, Puja, -1, false, false);
                 }
                 else
                 {
@@ -104,7 +104,7 @@ namespace WebDSM.Controllers
                 PujaCEN pujaCEN = new PujaCEN();
                 
 
-                pujaCEN.New_(DateTime.Now, puj.Puja.PujaInicial, puj.Puja.Id, puj.Puja.PujaInicial, -1, false);
+                pujaCEN.New_(DateTime.Now, puj.Puja.PujaInicial, puj.Puja.Id, puj.Puja.PujaInicial, -1, false, false);
                 return RedirectToAction("Index");
             }
             catch
@@ -179,7 +179,7 @@ namespace WebDSM.Controllers
 
                 PujaCP pujaCP = new PujaCP();
 
-                pujaCP.Terminar_puja(id, DateTime.Now, pujaEN.Puja_inicial, pujaEN.Puja_max, pujaEN.Id_usuario, true);
+                pujaCP.Terminar_puja(id, DateTime.Now, pujaEN.Puja_inicial, pujaEN.Puja_max, pujaEN.Id_usuario, true, false);
 
                 return RedirectToAction("Index");
             }
@@ -188,6 +188,33 @@ namespace WebDSM.Controllers
                 System.Web.HttpContext.Current.Session["PujaError"] = e.Message;
                 return RedirectToAction("../Registrado/Admin");
             }
+        }
+
+        public ActionResult PagarPuja(int pujaid)
+        {
+            //CERRAR PUJA Y CREAR PEDIDO
+            SessionInitialize();
+            int usuid = (int)Session["idusuario"];
+
+            PujaCAD pujaCAD = new PujaCAD(session);
+            PujaCEN pujaCEN = new PujaCEN(pujaCAD);
+            PujaEN pujaEN = pujaCEN.get_IPujaCAD().ReadOIDDefault(pujaid);
+
+            LineaPedidoCAD lineaCAD = new LineaPedidoCAD(session);
+            LineaPedidoCEN lineaCEN = new LineaPedidoCEN(lineaCAD);
+            int lineaID = lineaCEN.New_(1 , pujaEN.Articulo.Id);
+
+            List<int> lineasList = new List<int>();
+            lineasList.Add(lineaID);
+
+            PedidoCEN pedidoCEN = new PedidoCEN();
+            int pedidoID = pedidoCEN.New_("Pedido de puja", DateTime.Now, usuid);
+            pedidoCEN.Anyadir_linea(pedidoID, lineasList);
+
+            pujaCEN.Pagar(pujaid);
+
+            SessionClose();
+            return RedirectToAction("Details/" + pujaid);
         }
 
         public ActionResult LoadGanadas()

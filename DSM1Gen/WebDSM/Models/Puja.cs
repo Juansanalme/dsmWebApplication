@@ -26,6 +26,9 @@ namespace WebDSM.Models
         public float PujaInicial { get; set; }
 
         [ScaffoldColumn(false)]
+        public int IdGanador { get; set; }
+
+        [ScaffoldColumn(false)]
         public String UsuarioGanador { get; set; }
         
         [ScaffoldColumn(false)]
