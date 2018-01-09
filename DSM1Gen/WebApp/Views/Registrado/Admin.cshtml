@@ -76,7 +76,7 @@
                     <!--AÑADIR CATEGORIA-->
                     <div class="tab-pane fade" id="cat-create" role="tabpanel" aria-labelledby="cat-create-tab">
                         <div class="display-4 text-center mt-4">Añadir categoría</div>
-                        @using (Html.BeginForm("Create", "Categoria", FormMethod.Post))
+                        @using (Html.BeginForm("Create", "Categoria", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             <div class="form-group mt-3">
                                 <label for="Categoria_Nombre">Nombre<span class="text-blood">*</span></label>
@@ -99,7 +99,7 @@
                     <!--MODIFICAR CATEGORIA-->
                     <div class="tab-pane fade" id="cat-modify" role="tabpanel" aria-labelledby="cat-modify-tab">
                         <div class="display-4 text-center mt-4">Editar categoría</div>
-                        @using (Html.BeginForm("Edit", "Categoria", FormMethod.Post))
+                        @using (Html.BeginForm("Edit", "Categoria", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             <div class="form-group mt-3">
                                 <label for="Categoria_NomSuper">Categoría</label>
@@ -143,7 +143,7 @@
                     <!--AÑADIR VIDEOJUEGO-->
                     <div class="tab-pane fade" id="vid-create" role="tabpanel" aria-labelledby="vid-create-tab">
                         <div class="display-4 text-center mt-4">Añadir videojuego</div>
-                        @using (Html.BeginForm("Create", "Videojuego", FormMethod.Post))
+                        @using (Html.BeginForm("Create", "Videojuego", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             <div class="form-group mt-3">
                                 <label for="Videojuego_Nombre">Nombre<span class="text-blood">*</span></label>
@@ -160,7 +160,7 @@
                     <!--MODIFICAR VIDEOJUEGO-->
                     <div class="tab-pane fade" id="vid-modify" role="tabpanel" aria-labelledby="vid-modify-tab">
                         <div class="display-4 text-center mt-4">Editar videojuego</div>
-                        @using (Html.BeginForm("Edit", "Videojuego", FormMethod.Post))
+                        @using (Html.BeginForm("Edit", "Videojuego", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             <div class="form-group mt-3">
                                 <label for="Videojuego_Nombre">Videojuego</label>

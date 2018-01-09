@@ -20,7 +20,7 @@
             <div class="col-6 col-lg-2 p-2 pop-up">
                 <a href="@Url.Action("Categoria","Articulo", new { item = item.Nombre})">
                     <div class="bg-black-2 box-shadow height-300px d-flex row m-0" id="category-card"> 
-                            <div class="col-12 d-flex category-h align-items-center justify-content-center text-center text-white" style="background: url(../../Images/@image) no-repeat center; background-size: cover;">
+                            <div class="col-12 d-flex category-h align-items-center justify-content-center text-center text-white" style="background: url(@image) no-repeat center; background-size: cover;">
                             
                                 <div class="h3 elegant shadow">
                                     @item.Nombre      

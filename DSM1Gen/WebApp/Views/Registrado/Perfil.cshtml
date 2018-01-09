@@ -1,7 +1,7 @@
 ﻿@model WebDSM.Models.Registrado
 
 @{
-    
+
     if (Session["login"] == null)
     {
         Response.Redirect("~/Registrado/Login");
@@ -11,16 +11,15 @@
         Response.Redirect("~/Home");
     }
     var link_img = "";
-    if (Model.User_Icon != "")
-    {
-        link_img = Model.User_Icon;
-    }
-    else
+    if (Model.User_Icon.IsEmpty())
     {
         link_img = Url.Content("~/Images/Shut-up-and-take-my-money!.png");
     }
+    else
+    {
+        link_img = "../../Content/Uploads/User_icons/"+Model.User_Icon;
+    }
 }
-
 
 <div class="container mt-2" id="perfil">
     <div class="row height-200px bg-black cabecera d-flex align-items-end text-center justify-content-center">

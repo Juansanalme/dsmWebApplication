@@ -92,7 +92,7 @@ namespace WebDSM.Controllers
                         if ((Path.GetExtension(file.FileName).ToLower() == ".jpg") || (Path.GetExtension(file.FileName).ToLower() == ".png") ||
                                 (Path.GetExtension(file.FileName).ToLower() == ".gif") || (Path.GetExtension(file.FileName).ToLower() == ".jpeg"))
                         {
-                            var path = Path.Combine(Server.MapPath("~/Content/Uploads/Item_images"), catId + Path.GetExtension(file.FileName).ToLower());
+                            var path = Path.Combine(Server.MapPath("~/Content/Uploads/Category"), path2);
                             file.SaveAs(path);
                         }
 
