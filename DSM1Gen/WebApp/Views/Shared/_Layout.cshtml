@@ -61,7 +61,7 @@
                         <div class="col-6 p-0 dropdown-toggle no-arrow align-self-center pointer" id="navbarDropdownMenuLink">
                             <div class="d-inline-block ml-auto foto-perfil p-0" style="background: url(@Session["foto"]) no-repeat center center; background-size: auto 100%;"></div> 
                         </div>    
-                        <a class="col-6 p-0 cesta-mini font-weight-bold pl-1" href="@Url.Action("Index", "Carrito", new {id = Session["idUsuario"] })">
+                        <a class="col-6 p-0 cesta-mini font-weight-bold pl-1" href="@Url.Action("Index", "Carrito")">
                             @Session["nCarrito"]
                         </a>
                     </div>
@@ -194,7 +194,7 @@
                             
                         </div>
                         
-                        <a class="col-6 cesta pr-2 pt-2" href="@Url.Action("Index", "Carrito", new {id = Session["idUsuario"] })">
+                        <a class="col-6 cesta pr-2 pt-2" href="@Url.Action("Index", "Carrito")">
                             @Session["nCarrito"]  <span>Cesta</span>
                         </a>
 
