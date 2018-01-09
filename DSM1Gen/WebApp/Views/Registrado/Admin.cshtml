@@ -89,6 +89,9 @@
                                 @Html.DropDownListFor(model => model.Categoria.SuperId, new SelectList(listSCat, "Value", "Text"), null, new { @class = "form-control" })
                                 <small id="SuperHelp" class="form-text text-muted">Puedes elegir si esta categoría se encuentra dentro de otra.</small>
                             </div>
+                            <div class="form-group">
+                                <input type="file" name="file" value="Browse" />
+                            </div>
                             <button type="submit" class="btn btn-outline-dark pointer">Añadir</button>
                         }
                     </div>
@@ -114,6 +117,9 @@
                                 @Html.DropDownListFor(model => model.Categoria.SuperId, new SelectList(listSCat, "Value", "Text"), null, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Categoria.SuperId, "", new { @class = "text-danger" })
                                 <small id="SuperHelp" class="form-text text-muted">Puedes elegir si esta categoría se encuentra dentro de otra.</small>
+                            </div>
+                            <div class="form-group">
+                                <input type="file" name="file" value="Browse" />
                             </div>
                             <button type="submit" class="btn btn-outline-dark pointer">Actualizar</button>
                         }
@@ -144,6 +150,9 @@
                                 @Html.EditorFor(model => model.Videojuego.Nombre, new { htmlAttributes = new { @class = "form-control", placeholder = "Introduce el nombre del videojuego" } })
                                 <small id="nameHelp" class="form-text text-muted">Elige un nombre para el videojuego.</small>
                             </div>
+                            <div class="form-group">
+                                <input type="file" name="file" value="Browse" />
+                            </div>
                             <button type="submit" class="btn btn-outline-dark pointer">Añadir</button>
                         }
                     </div>
@@ -163,6 +172,9 @@
                                 @Html.EditorFor(model => model.Videojuego.Nombre, new { htmlAttributes = new { @class = "form-control", placeholder = "Introduce el nombre del videojuego" } })
                                 @Html.ValidationMessageFor(model => model.Videojuego.Nombre, "", new { @class = "text-danger" })
                                 <small id="nameHelp" class="form-text text-muted">Elige un nuevo nombre para el videojuego.</small>
+                            </div>
+                            <div class="form-group">
+                                <input type="file" name="file" value="Browse" />
                             </div>
                             <button type="submit" class="btn btn-outline-dark pointer">Actualizar</button>
                         }
