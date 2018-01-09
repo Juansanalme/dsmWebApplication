@@ -78,6 +78,7 @@ namespace WebDSM.Controllers
                     else if ((System.IO.File.Exists(iconoUsu + ".gif"))) Session["foto"] = img.Id + ".gif";
 
                     return RedirectToAction("../Home");
+                    
                 }
                 else
                 {

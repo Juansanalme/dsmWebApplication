@@ -174,10 +174,19 @@ namespace WebDSM.Controllers
 
                 float precio = cen.get_ICarritoCAD().ReadOIDDefault(id).Precio;
 
-                cp.Finalizar_compra(id, precio);
+                if(precio != 0)
+                {
+                    cp.Finalizar_compra(id, precio);
 
-                Session["nCarrito"] = 0;
-                return RedirectToAction("LoadPedidos", "Pedido", (int)Session["idUsuario"]);
+                    Session["nCarrito"] = 0;
+                    return RedirectToAction("LoadPedidos", "Pedido", (int)Session["idUsuario"]);
+
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Carrito", new { id = id });
+                }
+
             }
             catch
             {
