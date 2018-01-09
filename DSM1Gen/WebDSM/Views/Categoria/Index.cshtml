@@ -8,17 +8,16 @@
    
 }
 
-<h2 class="elegant pl-3">Categorías</h2>
 
-<div class="container-fluid">
+<div class="container-fluid pt-4 px-4">
     <div class="row">
         @foreach (var item in Model)
         {
             if (!item.Imagen.IsEmpty())
             {
-                image = "../../Content/Uploads/Item_images/"+item.Imagen;
+                image = "../../Content/Uploads/Category/"+item.Imagen;
             }
-            <div class="col-6 col-lg-2 p-2">
+            <div class="col-6 col-lg-2 p-2 pop-up">
                 <a href="@Url.Action("Categoria","Articulo", new { item = item.Nombre})">
                     <div class="bg-black-2 box-shadow height-300px d-flex row m-0" id="category-card"> 
                             <div class="col-12 d-flex category-h align-items-center justify-content-center text-center text-white" style="background: url(../../Images/@image) no-repeat center; background-size: cover;">

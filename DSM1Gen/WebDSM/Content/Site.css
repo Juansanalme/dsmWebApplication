@@ -423,12 +423,13 @@ p, label, img, input, header, span, section, div, table, figure, a {
 }
 
 .shadow {
-    text-shadow: 2px 0 0 #242424, -2px 0 0 #242424, 0 2px 0 #242424, 0 -2px 0 #242424, 1px 1px #242424, -1px -1px 0 #242424, 1px -1px 0 #242424, -1px 1px 0 #242424;
+    text-shadow: 3px 5px 0 #121212, -3px 0 0 #242424, 0 3px 0 #121212, 0 -3px 0 #121212, 2px 2px #121212, -2px -2px 0 #121212, 2px -2px 0 #121212, -2px 2px 0 #121212;
     display: block !important;
     position: relative !important;
     width: 100% !important;
     margin: 0 0 2px !important;
     overflow: hidden !important;
+    overflow: visible !important;
 }
 
 .no-arrow::after {
@@ -613,6 +614,13 @@ a:focus{
 
 .box-shadow{
     box-shadow: 20px 20px 50px grey;  
+}
+
+.pop-up {
+    transition: all .2s ease-in-out;
+}
+.pop-up:hover {
+    transform: scale(1.1);
 }
 
 .videojuego{

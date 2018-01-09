@@ -118,31 +118,58 @@ public static void InitializeData ()
                 Console.WriteLine ("  -pistola");
                 Console.WriteLine ("  -arma");
 
-                int cat1 = categoriaCEN.New_ ("espada", 0, "");
-                int cat2 = categoriaCEN.New_ ("pistola", 0, "");
-                int cat3 = categoriaCEN.New_ ("arma", 0, "");
 
-                categoriaCEN.Anyadir_supercat (cat1, cat3);
-                categoriaCEN.Anyadir_supercat (cat2, cat3);
+                int[] categorias = new int[10];
+                categorias[0] = categoriaCEN.New_("Espada", 0, "espada.jpg");
+                categorias[1] = categoriaCEN.New_("Pistola", 0, "pistola.jpg");
+                categorias[2] = categoriaCEN.New_("Escopeta", 0, "escopeta.jpg");
+                categorias[3] = categoriaCEN.New_("Rifle", 0, "rifle.jpg");
+                categorias[4] = categoriaCEN.New_("Zonas", 0, "zonas.jpg");
+                categorias[5] = categoriaCEN.New_("Gemas", 0, "gemas.jpg");
+                categorias[6] = categoriaCEN.New_("Miscelánea", 0, "miscelanea.jpg");
+                categorias[7] = categoriaCEN.New_("Cuchillo", 0, "cuchillo.jpg");
+                categorias[9] = categoriaCEN.New_("Arma", 0, "arma.jpg");
+
+                categoriaCEN.Anyadir_supercat(categorias[0], categorias[9]);
+                categoriaCEN.Anyadir_supercat(categorias[1], categorias[9]);
+                categoriaCEN.Anyadir_supercat(categorias[2], categorias[9]);
+                categoriaCEN.Anyadir_supercat(categorias[3], categorias[9]);
+                categoriaCEN.Anyadir_supercat(categorias[4], categorias[6]);
+                categoriaCEN.Anyadir_supercat(categorias[5], categorias[6]);
 
                 //VIDEOJUEGOS
                 VideojuegoCEN videojuegoCEN = new VideojuegoCEN ();
-                int videojuego1 = videojuegoCEN.New_ ("Left 4 Dead", "");
-                int videojuego2 = videojuegoCEN.New_ ("World of Warcraft", "");
-                int videojuego3 = videojuegoCEN.New_ ("NieR: Automata", "");
-                int videojuego4 = videojuegoCEN.New_ ("Call of Duty", "");
-                int videojuego5 = videojuegoCEN.New_ ("El Rey Arturo: La leyenda de la espada", "");
-                int videojuego6 = videojuegoCEN.New_ ("Prince of Persia", "");
+                int []videojuegos = new int[20];
+                videojuegos[0]  = videojuegoCEN.New_("Left 4 Dead 2", "l4d2.jpg");
+                videojuegos[1]  = videojuegoCEN.New_("Blade & Soul", "byb.jpg");
+                videojuegos[2]  = videojuegoCEN.New_("World of Warcraft", "wow.jpg");
+                videojuegos[3]  = videojuegoCEN.New_("NieR: Automata", "nier.jpg");
+                videojuegos[4]  = videojuegoCEN.New_("Call of Duty", "cod.jpg");
+                videojuegos[5]  = videojuegoCEN.New_("El Rey Arturo: La leyenda de la espada", "arturo.jpg");
+                videojuegos[6]  = videojuegoCEN.New_("The legend of Zelda", "zelda.jpg");
+                videojuegos[8]  = videojuegoCEN.New_("Minecraft", "maincra.jpg");
+                videojuegos[9]  = videojuegoCEN.New_("Diablo III", "d3.jpg");
+                videojuegos[10] = videojuegoCEN.New_("Counter Strike: Global Offensive", "csgo.jpg");
+                videojuegos[11] = videojuegoCEN.New_("Dota", "dot.jpg");
+                videojuegos[12] = videojuegoCEN.New_("Entropia Universe", "entropia.jpg");
+                videojuegos[13] = videojuegoCEN.New_("Outlast", "outlast.jpg");
+                videojuegos[14] = videojuegoCEN.New_("EVE Online", "eve.jpg");
+                videojuegos[15] = videojuegoCEN.New_("Portal II", "portal2.jpg");
+                videojuegos[16] = videojuegoCEN.New_("Deus Ex: Mankid Divided", "deus.jpg");
+                videojuegos[17] = videojuegoCEN.New_("Half Life 3", "hl3.jpg");
+                videojuegos[18] = videojuegoCEN.New_("Evolve Stage 2", "evolve.jpg");
+                videojuegos[19] = videojuegoCEN.New_("Dead Space", "deadspace.jpg");
+
 
                 //ARTICULOS
                 ArticuloCEN articuloCEN = new ArticuloCEN ();
 
-                int articulo1 = articuloCEN.New_ ("FrostMourne", 10.01, cat1, "Un arma muy especial", 5, "FrostMourne.jpg", "", videojuego1);
-                int articulo2 = articuloCEN.New_ ("Escopeta Frost L4D", 1, cat2, "Piun, piun", 5, "FrostL4D.jpg", "", videojuego2);
-                int articulo3 = articuloCEN.New_ ("Contrato Virtuoso", 800, cat3, "Espada YohRa", 5, "Nier.jpg", "", videojuego3);
-                int articulo4 = articuloCEN.New_ ("Raygun", 50, cat2, "Arma de rayos molona", 5, "Raygun.jpg", "", videojuego4);
-                int articulo5 = articuloCEN.New_ ("Excalibur", 90, cat1, "Moar armas molonas", 5, "Excalibur.jpg", "", videojuego5);
-                int articulo6 = articuloCEN.New_ ("Daga del tiempo", 550, cat1, "Daga de Prince of Persia, puede controlar el tiempo", 5, "Time.jpg", "", videojuego6);
+                int articulo1 = articuloCEN.New_ ("FrostMourne", 10.01, categorias[0], "Un arma muy especial", 5, "FrostMourne.jpg", "", videojuegos[0]);
+                int articulo2 = articuloCEN.New_ ("Escopeta Frost L4D", 1, categorias[2], "Piun, piun", 5, "FrostL4D.jpg", "", videojuegos[2]);
+                int articulo3 = articuloCEN.New_ ("Contrato Virtuoso", 800, categorias[0], "Espada YohRa", 5, "Nier.jpg", "", videojuegos[3]);
+                int articulo4 = articuloCEN.New_ ("Raygun", 50, categorias[4], "Arma de rayos molona", 5, "Raygun.jpg", "", videojuegos[4]);
+                int articulo5 = articuloCEN.New_ ("Excalibur", 90, categorias[5], "Moar armas molonas", 5, "Excalibur.jpg", "", videojuegos[5]);
+                int articulo6 = articuloCEN.New_ ("Daga del tiempo", 550, categorias[1], "Daga de Prince of Persia, puede controlar el tiempo", 5, "Time.jpg", "", videojuegos[6]);
 
 
                 int art1CatId = articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulo1).Categoria.Id;
