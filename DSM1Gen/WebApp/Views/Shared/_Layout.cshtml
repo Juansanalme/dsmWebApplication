@@ -59,7 +59,7 @@
                 <div class="col-3 col-sm-2 p-0">
                     <div class="row h-100 m-0 d-flex">
                         <div class="col-6 p-0 dropdown-toggle no-arrow align-self-center pointer" id="navbarDropdownMenuLink">
-                            <div class="d-inline-block ml-auto foto-perfil p-0" style="background: url(@Session["foto"]) no-repeat center center; background-size: auto 100%;"></div> 
+                            <div class="d-inline-block ml-auto foto-perfil p-0" style="background: url(../../Content/Uploads/User_icons/@Session["foto"]) no-repeat center center; background-size: auto 100%;"></div> 
                         </div>    
                         <a class="col-6 p-0 cesta-mini font-weight-bold pl-1" href="@Url.Action("Index", "Carrito")">
                             @Session["nCarrito"]
@@ -189,7 +189,7 @@
                                 <small class="p-0 align-self-center text-mini ml-auto">
                                     @Session["login"]
                                 </small>
-                                <div class="d-inline-block ml-auto foto-perfil p-0" style="background: url(@Session["foto"]) no-repeat center center; background-size: auto 100%;"></div>  
+                                <div class="d-inline-block ml-auto foto-perfil p-0" style="background: url(../../Content/Uploads/User_icons/@Session["foto"]) no-repeat center center; background-size: auto 100%;"></div>  
                             </div>
                             
                         </div>
