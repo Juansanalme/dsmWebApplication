@@ -42,12 +42,16 @@
             </div>
             
             <div class="navbar-collapse row w-100 collapse" id="navbarSupportedContent">     
-                <div class="nav h-100 w-100 align-self-baseline text-center text-lg-left" >
+                <div class="nav h-100 w-100 align-self-baseline text-center text-lg-left">
                     <h4 class="col-12 px-0 elegant text-white">Categoría</h4>
                     <a class="col-12 nav-link pl-lg-3" id="cat-create-tab" data-toggle="pill" href="#cat-create">Añadir</a>
                     <a class="col-12 nav-link pl-lg-3" id="cat-modify-tab" data-toggle="pill" href="#cat-modify">Editar</a>
                     <a class="col-12 nav-link pl-lg-3" id="cat-delete-tab" data-toggle="pill" href="#cat-delete">Eliminar</a>
 
+                    <h4 class="col-12 px-0 elegant text-white">Videojuego</h4>
+                    <a class="col-12 nav-link pl-lg-3" id="vid-create-tab" data-toggle="pill" href="#vid-create">Añadir</a>
+                    <a class="col-12 nav-link pl-lg-3" id="vid-modify-tab" data-toggle="pill" href="#vid-modify">Editar</a>
+                    <a class="col-12 nav-link pl-lg-3" id="vid-delete-tab" data-toggle="pill" href="#vid-delete">Eliminar</a>
 
                     <h4 class="col-12 px-0 elegant text-white mt-3">Artículo</h4>
                     <a class="col-12 nav-link pl-lg-3" id="art-create-tab" data-toggle="pill" href="#art-create">Añadir</a>
@@ -125,6 +129,55 @@
                                 <label for="Categoria_NomSuper">Categoría</label>
                                 @Html.DropDownListFor(model => model.Categoria.Id, new SelectList(listSCat, "Value", "Text"), null, new { @class = "form-control" })
                                 <small id="SuperHelp" class="form-text text-muted">Elige la categoría que quieres eliminar.</small>
+                            </div>
+                            <button type="submit" class="btn btn-outline-dark pointer">Eliminar</button>
+                        }
+                    </div>
+
+                    <!--AÑADIR VIDEOJUEGO-->
+                    <div class="tab-pane fade" id="vid-create" role="tabpanel" aria-labelledby="vid-create-tab">
+                        <div class="display-4 text-center mt-4">Añadir videojuego</div>
+                        @using (Html.BeginForm("Create", "Videojuego", FormMethod.Post))
+                        {
+                            <div class="form-group mt-3">
+                                <label for="Videojuego_Nombre">Nombre<span class="text-blood">*</span></label>
+                                @Html.EditorFor(model => model.Videojuego.Nombre, new { htmlAttributes = new { @class = "form-control", placeholder = "Introduce el nombre del videojuego" } })
+                                <small id="nameHelp" class="form-text text-muted">Elige un nombre para el videojuego.</small>
+                            </div>
+                            <button type="submit" class="btn btn-outline-dark pointer">Añadir</button>
+                        }
+                    </div>
+
+                    <!--MODIFICAR VIDEOJUEGO-->
+                    <div class="tab-pane fade" id="vid-modify" role="tabpanel" aria-labelledby="vid-modify-tab">
+                        <div class="display-4 text-center mt-4">Editar videojuego</div>
+                        @using (Html.BeginForm("Edit", "Videojuego", FormMethod.Post))
+                        {
+                            <div class="form-group mt-3">
+                                <label for="Videojuego_Nombre">Videojuego</label>
+                                @Html.DropDownListFor(model => model.Videojuego.Id, new SelectList(listVid, "Value", "Text"), null, new { @class = "form-control" })
+                                <small id="SuperHelp" class="form-text text-muted">Elige el videojuego que quieres modificar.</small>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="Videojuego_Nombre">Nombre<span class="text-blood">*</span></label>
+                                @Html.EditorFor(model => model.Videojuego.Nombre, new { htmlAttributes = new { @class = "form-control", placeholder = "Introduce el nombre del videojuego" } })
+                                @Html.ValidationMessageFor(model => model.Videojuego.Nombre, "", new { @class = "text-danger" })
+                                <small id="nameHelp" class="form-text text-muted">Elige un nuevo nombre para el videojuego.</small>
+                            </div>
+                            <button type="submit" class="btn btn-outline-dark pointer">Actualizar</button>
+                        }
+                    </div>
+
+                    <!--ELIMINAR VIDEOJUEGO-->
+                    <div class="tab-pane fade" id="vid-delete" role="tabpanel" aria-labelledby="vid-delete-tab">
+                        <div class="display-4 text-center mt-4">Eliminar videojuego</div>
+                        @using (Html.BeginForm("Delete", "Videojuego", FormMethod.Post, new { id = "needs-validation", novalidate = "" }))
+                        {
+
+                            <div class="form-group mt-3">
+                                <label for="Videojuego_Nombre">Videojuego</label>
+                                @Html.DropDownListFor(model => model.Videojuego.Id, new SelectList(listVid, "Value", "Text"), null, new { @class = "form-control" })
+                                <small id="SuperHelp" class="form-text text-muted">Elige el videojuego que quieres eliminar.</small>
                             </div>
                             <button type="submit" class="btn btn-outline-dark pointer">Eliminar</button>
                         }

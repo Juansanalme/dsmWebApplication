@@ -47,13 +47,16 @@ namespace WebDSM.Controllers
 
         // POST: Videojuego/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Models.Admin vid)
         {
             try
             {
                 // TODO: Add insert logic here
+                VideojuegoCEN cen = new VideojuegoCEN();
 
-                return RedirectToAction("Index");
+                int vidId = cen.New_(vid.Videojuego.Nombre, "");
+
+                return RedirectToAction("../Registrado/Admin");
             }
             catch
             {
@@ -69,17 +72,19 @@ namespace WebDSM.Controllers
 
         // POST: Videojuego/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Models.Admin vid)
         {
             try
             {
-                // TODO: Add update logic here
+                VideojuegoCEN cen = new VideojuegoCEN();
 
-                return RedirectToAction("Index");
+                cen.Modify(vid.Videojuego.Id, vid.Videojuego.Nombre, "");
+                return RedirectToAction("../Registrado/Admin");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                System.Web.HttpContext.Current.Session["PujaError"] = e.Message;
+                return RedirectToAction("../Registrado/Admin");
             }
         }
 
@@ -91,13 +96,16 @@ namespace WebDSM.Controllers
 
         // POST: Videojuego/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Models.Admin vid)
         {
             try
             {
-                // TODO: Add delete logic here
+                // TODO: Add insert logic here
+                VideojuegoCEN cen = new VideojuegoCEN();
 
-                return RedirectToAction("Index");
+                cen.Destroy(vid.Videojuego.Id);
+
+                return RedirectToAction("../Registrado/Admin");
             }
             catch
             {
