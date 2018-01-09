@@ -174,8 +174,8 @@ namespace WebDSM.Controllers
 
             cp.Finalizar_compra(id, precio);
 
-            return RedirectToAction("../Pedido/Index/", new { id = (int)Session["idUsuario"] });
+            Session["nCarrito"] = 0;
+            return RedirectToAction("LoadPedidos", "Pedido", (int)Session["idUsuario"]);
         }
-
     }
 }

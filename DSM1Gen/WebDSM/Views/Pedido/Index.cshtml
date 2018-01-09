@@ -12,11 +12,11 @@
     {
         Response.Redirect("~/Registrado/Login");
     }
-    else if (aux != "/Pedido/Index/" + (int)Session["idUsuario"] && (bool)Session["admin"] == false)
-    {
+    //else if (aux != "/Pedido/Index/" + (int)Session["idUsuario"] && (bool)Session["admin"] == false)
+    //{
 
-        Response.Redirect("~/Home");
-    }
+    //    Response.Redirect("~/Home");
+    //}
     else
     {
         UserId = (int)Session["idUsuario"];
