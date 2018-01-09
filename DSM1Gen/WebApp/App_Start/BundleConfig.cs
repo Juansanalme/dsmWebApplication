@@ -20,11 +20,17 @@ namespace WebApp
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/popper.js",
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/scrollreveal.js",
+                      "~/Scripts/jquery.mousewheel.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+
+                      "~/Content/Avana.css",
+                      "~/Content/Rating.css",
                       "~/Content/site.css"));
         }
     }

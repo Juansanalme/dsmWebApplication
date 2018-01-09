@@ -43,7 +43,6 @@ C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\bin\System.Web.Razor.x
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\bin\System.Web.WebPages.xml
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\bin\System.Web.WebPages.Razor.xml
-C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\bin\Antlr3.Runtime.pdb
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\bin\Newtonsoft.Json.xml
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\bin\EntityFramework.xml
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\bin\EntityFramework.SqlServer.xml
@@ -89,8 +88,5 @@ C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\obj\Debug\WebApp.dll
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\obj\Debug\WebApp.pdb
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\bin\hibernate.cfg.xml
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\bin\DSM1GenNHibernate.dll
-C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\bin\Castle.DynamicProxy2.dll
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\bin\DSM1GenNHibernate.pdb
 C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\bin\DSM1GenNHibernate.dll.config
-C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\bin\WebMatrix.Data.xml
-C:\Users\Juan\Documents\GitHub\solucionDSM\DSM1Gen\WebApp\bin\WebMatrix.WebData.xml
