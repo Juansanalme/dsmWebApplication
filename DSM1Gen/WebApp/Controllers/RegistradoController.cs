@@ -17,6 +17,12 @@ namespace WebDSM.Controllers
 {
     public class RegistradoController : BasicController
     {
+        public ActionResult LoginFB(int userID=0)
+        {
+
+            return View();
+        }
+
         // GET: Registrado/Login
         public ActionResult Login()
         {

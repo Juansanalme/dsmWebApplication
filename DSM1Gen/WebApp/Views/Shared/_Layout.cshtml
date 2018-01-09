@@ -351,7 +351,7 @@
         var original_width = 920;
         var original_heigth = 550;
 
-        var new_height = (original_heigth / original_width) * $("#a3d").width();   
+        var new_height = (original_heigth / original_width) * $("#a3d").width();
         $("#a3d").css({ "height": new_height });
         $(window).resize(function () {
             if (flag) {
@@ -368,7 +368,7 @@
                 $("div#mySidenav").css({ "width": w });
             }
 
-            
+
             original_width = 920;
             original_heigth = 475;
 
@@ -376,7 +376,7 @@
 
             $("#a3d").css({ "height": new_height });
 
-        }); 
+        });
 
         $(document).ready(function () {
             $('.selector').mousewheel(function (e, delta) {
@@ -386,6 +386,24 @@
 
         });
 
+        /*
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '178529192744652',
+                cookie: true,
+                xfbml: true,
+                version: 'v2.11'
+            });
+            FB.AppEvents.logPageView();};
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        */
     </script>
 </body>
 </html>
