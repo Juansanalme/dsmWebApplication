@@ -10,6 +10,7 @@ using DSM1GenNHibernate.CAD.DSM1;
 using DSM1GenNHibernate.CP.DSM1;
 using WebDSM.Models;
 using WebMatrix.WebData;
+using System.IO;
 
 namespace WebDSM.Controllers
 {
@@ -47,16 +48,38 @@ namespace WebDSM.Controllers
 
         // POST: Videojuego/Create
         [HttpPost]
-        public ActionResult Create(Models.Admin vid)
+        public ActionResult Create(HttpPostedFileBase file, Models.Admin vid)
         {
             try
             {
                 // TODO: Add insert logic here
                 VideojuegoCEN cen = new VideojuegoCEN();
 
-                int vidId = cen.New_(vid.Videojuego.Nombre, "");
+                String path2 = "";
+                if (file != null)
+                {
+                    path2 = file.FileName;
+                }
 
-                return RedirectToAction("../Registrado/Admin");
+                int vidId = cen.New_(vid.Videojuego.Nombre, path2);
+
+                if (file != null)
+                {
+                    path2 = file.FileName;
+                    if (file.ContentLength > 0)
+                    {
+                        //PARA UTILIZAR PATH SE NECESITA using System.IO
+                        if ((Path.GetExtension(file.FileName).ToLower() == ".jpg") || (Path.GetExtension(file.FileName).ToLower() == ".png") ||
+                                (Path.GetExtension(file.FileName).ToLower() == ".gif") || (Path.GetExtension(file.FileName).ToLower() == ".jpeg"))
+                        {
+                            var path = Path.Combine(Server.MapPath("~/Content/Uploads/Item_images"), vidId + Path.GetExtension(file.FileName).ToLower());
+                            file.SaveAs(path);
+                        }
+
+                    }
+                }
+
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -72,14 +95,36 @@ namespace WebDSM.Controllers
 
         // POST: Videojuego/Edit/5
         [HttpPost]
-        public ActionResult Edit(Models.Admin vid)
+        public ActionResult Edit(HttpPostedFileBase file, Models.Admin vid)
         {
             try
             {
                 VideojuegoCEN cen = new VideojuegoCEN();
-
+                
                 cen.Modify(vid.Videojuego.Id, vid.Videojuego.Nombre, "");
-                return RedirectToAction("../Registrado/Admin");
+
+                String path2 = "";
+                if (file != null)
+                {
+                    path2 = file.FileName;
+                }
+                if (file != null)
+                {
+                    path2 = file.FileName;
+                    if (file.ContentLength > 0)
+                    {
+                        //PARA UTILIZAR PATH SE NECESITA using System.IO
+                        if ((Path.GetExtension(file.FileName).ToLower() == ".jpg") || (Path.GetExtension(file.FileName).ToLower() == ".png") ||
+                                (Path.GetExtension(file.FileName).ToLower() == ".gif") || (Path.GetExtension(file.FileName).ToLower() == ".jpeg"))
+                        {
+                            var path = Path.Combine(Server.MapPath("~/Content/Uploads/Item_images"), vid.Videojuego.Id + Path.GetExtension(file.FileName).ToLower());
+                            file.SaveAs(path);
+                        }
+
+                    }
+                }
+
+                return RedirectToAction("Index");
             }
             catch (Exception e)
             {

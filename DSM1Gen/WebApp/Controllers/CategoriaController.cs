@@ -10,6 +10,7 @@ using DSM1GenNHibernate.CAD.DSM1;
 using DSM1GenNHibernate.CP.DSM1;
 using WebDSM.Models;
 using WebMatrix.WebData;
+using System.IO;
 
 namespace WebDSM.Controllers
 {
@@ -64,17 +65,39 @@ namespace WebDSM.Controllers
 
         // POST: Categoria/Create
         [HttpPost]
-        public ActionResult Create(Models.Admin cat)
+        public ActionResult Create(HttpPostedFileBase file, Models.Admin cat)
         {
             try
             {
                 // TODO: Add insert logic here
                 CategoriaCEN cen = new CategoriaCEN();
 
-                int catId = cen.New_(cat.Categoria.Nombre, 0, ""); //SE LE PASA 0, POR LOS LOLES
+                String path2 = "";
+                if (file != null)
+                {
+                    path2 = file.FileName;
+                }
 
-                if(cat.Categoria.SuperId != 0)
-                    cen.Anyadir_supercat(catId,cat.Categoria.SuperId);
+                int catId = cen.New_(cat.Categoria.Nombre, 0, path2); //SE LE PASA 0, POR LOS LOLES
+
+                if (cat.Categoria.SuperId != 0)
+                    cen.Anyadir_supercat(catId, cat.Categoria.SuperId);
+
+                if (file != null)
+                {
+                    path2 = file.FileName;
+                    if (file.ContentLength > 0)
+                    {
+                        //PARA UTILIZAR PATH SE NECESITA using System.IO
+                        if ((Path.GetExtension(file.FileName).ToLower() == ".jpg") || (Path.GetExtension(file.FileName).ToLower() == ".png") ||
+                                (Path.GetExtension(file.FileName).ToLower() == ".gif") || (Path.GetExtension(file.FileName).ToLower() == ".jpeg"))
+                        {
+                            var path = Path.Combine(Server.MapPath("~/Content/Uploads/Item_images"), catId + Path.GetExtension(file.FileName).ToLower());
+                            file.SaveAs(path);
+                        }
+
+                    }
+                }
 
                 return RedirectToAction("Index");
             }
@@ -92,7 +115,7 @@ namespace WebDSM.Controllers
 
         // POST: Categoria/Edit/5
         [HttpPost]
-        public ActionResult Edit(Models.Admin cat)
+        public ActionResult Edit(HttpPostedFileBase file, Models.Admin cat)
         {
             try
             {
@@ -100,7 +123,28 @@ namespace WebDSM.Controllers
                 CategoriaCP cp = new CategoriaCP();
                 int n = cen.get_ICategoriaCAD().ReadOIDDefault(cat.Categoria.Id).Articulo;
 
-                cen.Modify(cat.Categoria.Id, cat.Categoria.Nombre, n, "");
+                String path2 = "";
+                if (file != null)
+                {
+                    path2 = file.FileName;
+                }
+                if (file != null)
+                {
+                    path2 = file.FileName;
+                    if (file.ContentLength > 0)
+                    {
+                        //PARA UTILIZAR PATH SE NECESITA using System.IO
+                        if ((Path.GetExtension(file.FileName).ToLower() == ".jpg") || (Path.GetExtension(file.FileName).ToLower() == ".png") ||
+                                (Path.GetExtension(file.FileName).ToLower() == ".gif") || (Path.GetExtension(file.FileName).ToLower() == ".jpeg"))
+                        {
+                            var path = Path.Combine(Server.MapPath("~/Content/Uploads/Item_images"), n + Path.GetExtension(file.FileName).ToLower());
+                            file.SaveAs(path);
+                        }
+
+                    }
+                }
+
+                cen.Modify(cat.Categoria.Id, cat.Categoria.Nombre, n, path2);
                 if (cat.Categoria.SuperId != 0)
                     cen.Anyadir_supercat(cat.Categoria.Id, cat.Categoria.SuperId);
                 //else

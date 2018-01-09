@@ -19,59 +19,68 @@ namespace WebDSM.Controllers
 
 
         // GET: Carrito
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
-            SessionInitialize();
-
-            CarritoCAD cad = new CarritoCAD(session);
-            CarritoCEN cen = new CarritoCEN(cad);
-
-            LineaPedidoCAD lpCAD = new LineaPedidoCAD(session);
-            LineaPedidoCEN lpCEN = new LineaPedidoCEN(lpCAD);
-
-            CarritoEN en = cen.get_ICarritoCAD().ReadOIDDefault(id);
-            CarritoYLineas model = new AssemblerCarrito().ConvertENToViewModelUI(en);
-            //Carrito model = new AssemblerCarrito().ConvertENToModelUI(en);
-
-            CarritoCP cp = new CarritoCP();
-            cp.Calcular_precio(id);
-
-            //SACAR LAS FOTOS DE CADA ARTICULO
-            foreach(LineaPedido lp in model.LineaPedido)
+            try
             {
-                LineaPedidoEN lpEN = lpCEN.get_ILineaPedidoCAD().ReadOIDDefault(lp.Id);
+                int miId = (int)Session["idUsuario"];
 
-                int artId = lpEN.Articulo.Id;
+                SessionInitialize();
 
-                string imagen = System.IO.Path.Combine(Server.MapPath("~/Content/Uploads/Item_images"), artId.ToString());
+                CarritoCAD cad = new CarritoCAD(session);
+                CarritoCEN cen = new CarritoCEN(cad);
 
-                if((System.IO.File.Exists(imagen + ".jpg")))
+                LineaPedidoCAD lpCAD = new LineaPedidoCAD(session);
+                LineaPedidoCEN lpCEN = new LineaPedidoCEN(lpCAD);
+
+                CarritoEN en = cen.get_ICarritoCAD().ReadOIDDefault(miId);
+                CarritoYLineas model = new AssemblerCarrito().ConvertENToViewModelUI(en);
+                //Carrito model = new AssemblerCarrito().ConvertENToModelUI(en);
+
+                CarritoCP cp = new CarritoCP();
+                cp.Calcular_precio(miId);
+
+                //SACAR LAS FOTOS DE CADA ARTICULO
+                foreach (LineaPedido lp in model.LineaPedido)
                 {
-                    lp.Imagen = artId + ".jpg";
-                }
-                else if ((System.IO.File.Exists(imagen + ".jpeg")))
-                {
-                    lp.Imagen = artId + ".jpeg";
-                }
-                else if ((System.IO.File.Exists(imagen + ".png")))
-                {
-                    lp.Imagen = artId + ".png";
-                }
-                else if ((System.IO.File.Exists(imagen + ".gif")))
-                {
-                    lp.Imagen = artId + ".gif";
-                }
-                else
-                {
-                    //SI NO TIENE FOTO DE PERFIL
-                    lp.Imagen = "";
+                    LineaPedidoEN lpEN = lpCEN.get_ILineaPedidoCAD().ReadOIDDefault(lp.Id);
+
+                    int artId = lpEN.Articulo.Id;
+
+                    string imagen = System.IO.Path.Combine(Server.MapPath("~/Content/Uploads/Item_images"), artId.ToString());
+
+                    if ((System.IO.File.Exists(imagen + ".jpg")))
+                    {
+                        lp.Imagen = artId + ".jpg";
+                    }
+                    else if ((System.IO.File.Exists(imagen + ".jpeg")))
+                    {
+                        lp.Imagen = artId + ".jpeg";
+                    }
+                    else if ((System.IO.File.Exists(imagen + ".png")))
+                    {
+                        lp.Imagen = artId + ".png";
+                    }
+                    else if ((System.IO.File.Exists(imagen + ".gif")))
+                    {
+                        lp.Imagen = artId + ".gif";
+                    }
+                    else
+                    {
+                        //SI NO TIENE FOTO DE PERFIL
+                        lp.Imagen = "";
+                    }
+
                 }
 
+                SessionClose();
+
+                return View(model);
             }
-
-            SessionClose();
-
-            return View(model);
+            catch
+            {
+                return RedirectToAction("../Home");
+            }
         }
 
         // GET: Carrito/Details/5
