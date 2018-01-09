@@ -123,7 +123,7 @@ namespace WebDSM.Controllers
             IList<ArticuloEN> articulos = articuloCEN.ReadAll(0, -1);
             IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulos).ToList();
 
-            art = GetAllFotos(art);
+           // art = GetAllFotos(art);
 
             SessionClose();
 
@@ -277,7 +277,7 @@ namespace WebDSM.Controllers
 
             SessionClose();
 
-            art = GetAllFotos(art);
+            //art = GetAllFotos(art);
 
             return View("Index", art);
         }
@@ -311,7 +311,7 @@ namespace WebDSM.Controllers
 
             SessionClose();
 
-            art = GetAllFotos(art);
+            //art = GetAllFotos(art);
 
             return View("Index", art);
         }
@@ -328,7 +328,7 @@ namespace WebDSM.Controllers
 
             SessionClose();
 
-            art = GetAllFotos(art);
+            //art = GetAllFotos(art);
             return View("Index", art);
         }
 
@@ -352,7 +352,7 @@ namespace WebDSM.Controllers
 
                 SessionClose();
 
-                art = GetAllFotos(art);
+                //art = GetAllFotos(art);
                 return View("../Registrado/Favoritos", art);
             }
             catch (Exception e)

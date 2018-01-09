@@ -10,13 +10,13 @@
     {
         <figure class="effect-oscar">
 
-            @if (item.Imagen != "")
+            @if (item.Imagen.IsEmpty())
             {
-                <img src="@Url.Content("~/Content/Uploads/Item_images/"+item.Imagen)" alt="Imagen del articulo @item.Nombre" />
+                <img src="~/Images/Shut-up-and-take-my-money!.png" alt="" />
             }
             else
             {
-                <img src="~/Images/Shut-up-and-take-my-money!.png" alt="" />
+                <img src="@Url.Content("~/Content/Uploads/Item_images/"+item.Imagen)" alt="Imagen del articulo @item.Nombre" />
             }
 
 

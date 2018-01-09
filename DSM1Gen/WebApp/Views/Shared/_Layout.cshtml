@@ -281,6 +281,15 @@
             duration: 900,
             scale: 1
         }
+        var cat = {
+            reset: true,
+            viewOffset: { top: 0 },
+            origin: "top",
+            distance: "300px",
+            duration: 900,
+            scale: 1,
+            easing: 'ease-out'
+        }
 
         var figure = {
             reset: true,
@@ -306,7 +315,7 @@
 
         sr.reveal('#videojuegos .row', bottom, 30);
 
-        sr.reveal('#category-card', fry, 400);
+        sr.reveal('#category-card', cat, 150);
 
         sr.reveal('#pujas a > div', right, 150);
 
