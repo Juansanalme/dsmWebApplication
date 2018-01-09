@@ -320,15 +320,66 @@ namespace WebDSM.Controllers
         [HttpPost]
         public ActionResult NewPass(String antigua, String nueva, String repe)
         {
+            try
+            {
+                int regId = (int)Session["idUsuario"];
 
-            return RedirectToAction("Perfil", "Registrado", new { id = Session["idUsuario"] });
+                RegistradoCAD registradoCAD = new RegistradoCAD();
+                RegistradoCEN registradoCEN = new RegistradoCEN();
+                RegistradoEN registradoEN = registradoCEN.get_IRegistradoCAD().ReadOIDDefault(regId);
+
+                String encrip = Util.GetEncondeMD5(antigua);
+
+                if (nueva == repe)
+                {
+                    if (registradoEN.Contrasenya == encrip)
+                    {
+                        registradoEN.Contrasenya = nueva;
+                    }
+                    else
+                    {
+                        //ANTIGUA INCORRECTA
+                    }
+                }
+                else
+                {
+                    //LAS NUEVAS DEBEN COINCIDIR
+                }
+
+                registradoCAD.Modify(registradoEN);
+
+                return RedirectToAction("../Registrado/Perfil", new { id = regId });
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         [HttpPost]
         public ActionResult NewPersonales(Models.Registrado reg)
         {
+            try
+            {
+                int regId = (int)Session["idUsuario"];
 
-            return RedirectToAction("Perfil", "Registrado", new { id = Session["idUsuario"] });
+                RegistradoCAD registradoCAD = new RegistradoCAD();
+                RegistradoCEN registradoCEN = new RegistradoCEN();
+                RegistradoEN registradoEN = registradoCEN.get_IRegistradoCAD().ReadOIDDefault(regId);
+
+                if (reg.Nombre != null) registradoEN.Nombre = reg.Nombre;
+                if (reg.Apellidos != null) registradoEN.Apellidos = reg.Apellidos;
+                if (reg.Edad != 0) registradoEN.Edad = reg.Edad;
+                if (reg.Dni != null) registradoEN.Dni = reg.Dni;
+
+                registradoCAD.Modify(registradoEN);
+
+                return RedirectToAction("../Registrado/Perfil", new { id = regId });
+            }
+            catch
+            {
+                return View();
+            }
         }
 
     }
