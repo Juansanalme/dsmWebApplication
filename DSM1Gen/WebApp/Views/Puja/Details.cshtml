@@ -145,11 +145,11 @@
                 }
                 form.classList.add('was-validated');
 
-                if (sessionID == 0) {
+                if ("@Session["idUsuario"]" == "") {
                     error.innerHTML = "Para poder pujar debes estar registrado: <br /><a class='mt-2 btn btn-outline-light' href='../../Registrado/Login'>Conéctate</a>";
                 }
                 else
-                    error.innerHTML = "Introduce un entero";
+                    error.innerHTML = "Introduce un importe";
 
 
             }, false);
