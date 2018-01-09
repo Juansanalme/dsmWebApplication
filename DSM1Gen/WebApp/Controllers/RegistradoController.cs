@@ -334,7 +334,7 @@ namespace WebDSM.Controllers
                 {
                     if (registradoEN.Contrasenya == encrip)
                     {
-                        registradoEN.Contrasenya = nueva;
+                        registradoEN.Contrasenya = encrip;
                     }
                     else
                     {
