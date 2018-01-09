@@ -1,0 +1,148 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .fondo {
+            background: #808080;
+        }
+
+        .border {
+            border: black 3px solid;
+        }
+
+        .rojo {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(function () {
+            $("#cat-create select#Categoria_SuperId option[value='0']").remove();
+            $("#cat-delete select#Categoria_Id option[value='0']").remove();
+            $("#art-create select#Articulo_NomCategoria option[value='0']").remove();
+            $("#cat-modify select#Categoria_Id option[value='0']").remove();
+            $("#Categoria_Id").change(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Categoria/AjaxMethod",
+                    data: '{id: "' + $("#Categoria_Id").val() + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        $("#cat-modify select#Categoria_SuperId").attr("disabled", false);
+                        $("#cat-modify select#Categoria_SuperId + small#SuperHelp").text('Puedes elegir si esta categoría se encuentra dentro de otra.');
+                        $("#cat-modify select#Categoria_SuperId option").show();
+                        if (response.Subs.length != 0) {
+                            for (var i=0; i < response.Subs.length; i++) {
+                                $("#cat-modify select#Categoria_SuperId option[value=" + response.Subs[i].Id + "]").hide();
+                            }
+                        }
+                        $("#cat-modify select#Categoria_SuperId option[value=" + $("#Categoria_Id").val() + "]").hide();
+                        $("#cat-modify input#Categoria_Nombre").val(response.Nombre);
+                        $("#cat-modify select#Categoria_SuperId").val(response.SuperId);
+                        var length = $('#cat-modify select#Categoria_SuperId option').filter(function () {
+                            return $(this).css('display') != 'none';
+                        }).length;
+
+                        if (length == 1) {
+                            $("#cat-modify select#Categoria_SuperId").attr("disabled", true);
+                            $("#cat-modify select#Categoria_SuperId + small#SuperHelp").text('No existen categorias disponibles que no sean subcategorias.');
+                        }
+                        
+                    }
+                });
+            });
+            $.ajax({
+                type: "POST",
+                url: "/Categoria/AjaxMethod",
+                data: '{id: "' + $("#Categoria_Id").val() + '" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    $("#cat-modify select#Categoria_SuperId").attr("disabled", false);
+                    $("#cat-modify select#Categoria_SuperId + small#SuperHelp").text('Puedes elegir si esta categoría se encuentra dentro de otra.');
+                    if (response.Subs.length != 0) {
+                        for (var i=0; i < response.Subs.length; i++) {
+                            $("#cat-modify select#Categoria_SuperId option[value=" + response.Subs[i].Id + "]").hide();
+                        }
+                    } 
+                    $("#cat-modify select#Categoria_SuperId option[value=" + $("#Categoria_Id").val()+"]").hide();
+                    $("#cat-modify input#Categoria_Nombre").val(response.Nombre);
+                    $("#cat-modify select#Categoria_SuperId").val(response.SuperId);
+
+                    var length = $('#cat-modify select#Categoria_SuperId option').filter(function () {
+                        return $(this).css('display') != 'none';
+                    }).length;
+
+                    if (length == 1) {
+                        $("#cat-modify select#Categoria_SuperId").attr("disabled", true);
+                        $("#cat-modify select#Categoria_SuperId + small#SuperHelp").text('No existen categorias disponibles que no sean subcategorias.');
+                    }
+                    
+                }
+            });
+
+            $("#Articulo_Id").change(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Articulo/AjaxMethod",
+                    data: '{id: "' + $("#Articulo_Id").val() + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        $("#art-modify input#Articulo_Nombre").val(response.Nombre);
+                        $("#art-modify input#Articulo_Precio").val(response.Precio);
+                        $("#art-modify select#Articulo_NomCategoria").val(response.NomCategoria);
+                        $("#art-modify input#Articulo_Descripcion").val(response.Descripcion);
+                        $("#art-modify input#Articulo_Stock").val(response.Stock);
+                        $('#art-modify figure figcaption').html('<h2>' + response.Nombre + ' <span> &nbsp;&nbsp;' + response.Precio + '</span></h2><p>' + response.Descripcion + '</p>');
+                    }
+                });
+            });
+            $.ajax({
+                type: "POST",
+                url: "/Articulo/AjaxMethod",
+                data: '{id: "' + $("#Articulo_Id").val() + '" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    $("#art-modify input#Articulo_Nombre").val(response.Nombre);
+                    $("#art-modify input#Articulo_Precio").val(response.Precio);
+                    $("#art-modify input#Articulo_NomCategoria").val(response.NomCategoria);
+                    $("#art-modify input#Articulo_Descripcion").val(response.Descripcion);
+                    $("#art-modify input#Articulo_Stock").val(response.Stock);
+                    $('#art-modify figure figcaption').html('<h2>' + response.Nombre + ' <span> &nbsp;&nbsp;' + response.Precio + '</span></h2><p>' + response.Descripcion + '</p>');
+                }
+            });
+        });
+
+        $('a.nav-link').on('click', function () {
+            $('.collapse').collapse('hide');
+        });
+
+        $('#art-create .form-control').keyup(function () {
+            $('#art-create figure figcaption').html('<h2>' + $('#art-create input#Articulo_Nombre').val() + ' <span> &nbsp;&nbsp;' + $('#art-create input#Articulo_Precio').val() + '</span></h2><p>' + $('#art-create textarea#Articulo_Descripcion').val()+'</p>');
+        });
+
+        $('#art-modify .form-control').keyup(function () {
+            $('#art-modify figure figcaption').html('<h2>' + $('#art-modify input#Articulo_Nombre').val() + ' <span> &nbsp;&nbsp;' + $('#art-modify input#Articulo_Precio').val() + '</span></h2><p>' + $('#art-modify textarea#Articulo_Descripcion').val() + '</p>');
+        });
+
+
+    </script>
+</body>
+</html>

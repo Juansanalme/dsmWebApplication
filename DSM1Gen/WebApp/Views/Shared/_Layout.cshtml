@@ -1,0 +1,382 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+    <style>
+        .fondo{background:purple;}
+        .border{border: black 3px solid;}
+        .rojo{background: red;}
+    </style>
+</head>
+<body>
+
+    @{
+        var controllerName = string.Empty;
+        object controllerObj;
+        var actionName = string.Empty;
+        object actionObj;
+
+        if (ViewContext.RouteData.Values.TryGetValue("controller", out controllerObj))
+        {
+            controllerName = controllerObj.ToString();
+        }
+
+        if (ViewContext.RouteData.Values.TryGetValue("action", out actionObj))
+        {
+            actionName = actionObj.ToString();
+        }
+    }
+    <div class="content-for-footer">
+    <div class="container-fluid bg-absolute-black">
+        <a class="text-white" href="#"><img class="social-mini mx-1" src="~/Images/World.png" />Idioma</a>
+        <a href="#"><img class="social-mini ml-5 mx-1" src="~/Images/Facebook-rounded.png" /></a>
+        <a href="#"><img class="social-mini mx-1" src="~/Images/Twitter-rounded.png" /></a>
+        <a href="#"><img class="social-mini mx-1" src="~/Images/Google-rounded.png" /></a>
+    </div>
+    <nav class="container-fluid navbar navbar-dark bg-black navbar-expand-lg d-lg-none sticky-top border-orange-bottom px-0">
+        <div class="row w-100 h-100 mx-0 d-flex">
+            <div class=" col-1 align-self-center">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class=" ml-auto col-6 col-sm-8 align-self-center">
+                @using (Html.BeginForm("Busqueda", "Articulo", FormMethod.Post, new { @class = "form-inline" }))
+                {
+                    <input class="busqueda" type="search" placeholder="Busqueda" name="termino" />
+                    <button class="icon pointer" type="submit"></button>
+                }
+            </div>
+            @if (Session["login"] != null)
+            {
+                <div class="col-3 col-sm-2 p-0">
+                    <div class="row h-100 m-0 d-flex">
+                        <div class="col-6 p-0 dropdown-toggle no-arrow align-self-center pointer" id="navbarDropdownMenuLink">
+                            <div class="d-inline-block ml-auto foto-perfil p-0" style="background: url(@Session["foto"]) no-repeat center center; background-size: auto 100%;"></div> 
+                        </div>    
+                        <a class="col-6 p-0 cesta-mini font-weight-bold pl-1" href="@Url.Action("Index", "Carrito", new {id = Session["idUsuario"] })">
+                            @Session["nCarrito"]
+                        </a>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="container navbar-nav text-center pr-0 ">
+                @if (Session["login"] == null)
+                {
+                    <div class="mt-4 row mr-0 mb-2">
+                        @Html.ActionLink("Log In", "Login", "Registrado", null, new { @class = "nav-link btn offset-3 col-3" })
+                        @Html.ActionLink("Registro", "Create", "Registrado", null, new { @class = "btn btn-outline-light col-3" })
+                    </div>
+                }
+                
+                
+                @Html.ActionLink("HOME", "Index", "Home", null, new { @class = "nav-item nav-link active" })
+                @Html.ActionLink("VIDEOJUEGOS", "Index", "Videojuego", null, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("PUJA", "Index", "Puja", null, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("CATEGORIA", "Index", "Categoria", null, new { @class = "nav-item nav-link" })
+
+                @if (Session["admin"] != null && (bool)Session["admin"])
+                {
+                    <a class="mx-2 elegant btn btn-outline-danger" href="@Url.Action("Admin", "Registrado" )">
+                        <span class="warp">PANEL DE ADMINISTRADOR</span>
+                    </a>
+                }
+            </div>
+        </div>
+        
+    </nav>
+
+    <div class="container-fluid navbar-dark bg-black d-none d-lg-block sticky-top font-weight-bold border-orange-bottom menu">
+        <div class="row text-center pt-2">
+            <div class="col-2 d-flex align-items-center justify-content-center">
+                @if (Session["admin"] != null && (bool)Session["admin"])
+                {
+                    <a class="elegant btn btn-outline-danger" href="@Url.Action("Admin", "Registrado" )">
+                        <span class="warp">PANEL DE ADMINISTRADOR</span>
+                    </a>
+                }
+            </div>
+            <div class="col-3">
+                <div class="row height-35px">&nbsp;</div>
+                <div class="row">
+                    <div class="col">
+                        @if (controllerName == "Home")
+                        {
+                            @Html.ActionLink("HOME", "Index", "Home", null, new { @class = "col nav-link active elegant" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("HOME", "Index", "Home", null, new { @class = "col nav-link elegant" })
+                        }
+                    </div>
+                    <div class="col ">
+                        @if (controllerName == "Videojuego")
+                        {
+                            @Html.ActionLink("VIDEOJUEGOS", "Index", "Videojuego", null, new { @class = "col nav-link active elegant" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("VIDEOJUEGOS", "Index", "Videojuego", null, new { @class = "col nav-link elegant" })
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                @Html.ActionLink(" ", "Index", "Home", null, new { @class = "col nav-link logo" })
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <div class="col">
+                        @using (Html.BeginForm("Busqueda", "Articulo", FormMethod.Post, new { @class = "form-inline" }))
+                        {
+                            <input class="busqueda" type="search" placeholder="Busqueda" name="termino" />
+                            <button class="icon pointer" type="submit"></button>
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @if (controllerName == "Puja")
+                        {
+                            @Html.ActionLink("PUJA", "Index", "Puja", null, new { @class = "col nav-link active elegant" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("PUJA", "Index", "Puja", null, new { @class = "col nav-link elegant" })
+                        }
+                    </div>
+                    <div class="col">
+                        @if (controllerName == "Categoria")
+                        {
+                            @Html.ActionLink("CATEGORIA", "Index", "Categoria", null, new { @class = "col nav-link active elegant" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("CATEGORIA", "Index", "Categoria", null, new { @class = "col nav-link elegant" })
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 d-flex align-items-center">
+                <div class="row w-100 d-flex h-100">
+                    @if (Session["login"] == null)
+                    {
+                        <div class="col-6 px-0 d-flex">
+                        @Html.ActionLink("Log In", "Login", "Registrado", null, new { @class = "nav-link btn w-100 text-center p-2 mb-2 align-self-center" })
+                        </div>
+
+                        <div class="col-6 px-0 align-items-center d-flex">
+                        @Html.ActionLink("Registro", "Create", "Registrado", null, new { @class = "btn btn-outline-light w-100 p-2 mb-2 align-self-center" })
+                        </div>
+                    }
+                    else
+                    {
+                        @*CON @SESSION[LOGIN] COJO EL NOMBRE DE USUARIO QUE HE ALMACENADO AL CREAR LA SESION*@
+                        
+                        <div class="col-6 dropdown-toggle no-arrow align-self-center text-orange px-0 position-relative h-100 d-flex pointer" id="navbarDropdownMenuLink">
+                            <div class="row m-0 w-100 d-flex align-self-center">
+                                <small class="p-0 align-self-center text-mini ml-auto">
+                                    @Session["login"]
+                                </small>
+                                <div class="d-inline-block ml-auto foto-perfil p-0" style="background: url(@Session["foto"]) no-repeat center center; background-size: auto 100%;"></div>  
+                            </div>
+                            
+                        </div>
+                        
+                        <a class="col-6 cesta pr-2 pt-2" href="@Url.Action("Index", "Carrito", new {id = Session["idUsuario"] })">
+                            @Session["nCarrito"]  <span>Cesta</span>
+                        </a>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-body">
+        @if (Session["login"] != null)
+        {
+            <div id="mySidenav" class="sidenav" style="width: 0">
+                <div class="d-lg-none text-white pl-3 pt-2 ">@Session["login"]</div>
+                <a href="@Url.Action("Perfil", "Registrado")">Perfil</a>
+                <a href="@Url.Action("LoadFavoritos", "Articulo")">Favoritos</a>
+                <a href="@Url.Action("LoadGanadas", "Puja")">Pujas Ganadas</a>
+                <a href="@Url.Action("LoadPedidos", "Pedido")">Pedidos</a>
+                <a href="@Url.Action("Logout", "Registrado")">Logout</a>
+            </div>
+        }
+
+        @RenderBody()
+    </div>
+    
+    <footer>
+        <div class="container-fluid bg-footer py-3">
+            <div class="row text-center">
+                <div class="col-12 offset-md-4 col-md-4">
+                    <img class="footer_logo" src="~/Images/NA-ME.png" alt="NA-ME" />
+                </div>
+                <div class="col-12 col-md-4 my-3 text-md-right">
+                    <a href="#"><img class="social mx-2" src="~/Images/Facebook-rounded.png" /></a>
+                    <a href="#"><img class="social mx-2" src="~/Images/Twitter-rounded.png" /></a>
+                    <a href="#"><img class="social mx-2" src="~/Images/Google-rounded.png" /></a>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="text-secondary text-center">
+                    <p class="small px-2">
+                        ©2017 NA-ME, INC. ALL RIGHTS RESERVED.<br />
+                        Todos los derechos reservados. Todas las marcas registradas son propiedad de sus respectivos dueños.
+                    </p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col text-right">
+                    <a href="#" class="text-orange">PRIVACIDAD</a>
+                </div>
+                <div class="text-white">|</div>
+                <div class="col text-orange text-left">
+                    <a href="#" class="text-orange">TÉRMINOS</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script>
+        var left = {
+            reset: true,
+            viewOffset: { top: 10 },
+            origin: "left",
+            distance: "150px",
+            duration: 900,
+            scale: 1
+        }
+        var right = {
+            reset: true,
+            viewOffset: { top: 00 },
+            origin: "right",
+            distance: "150px",
+            duration: 900,
+            scale: 1
+        }
+
+        var fry = {
+            reset: true,
+            viewOffset: { top: 0 },
+            origin: "left",
+            distance: "300px",
+            duration: 900,
+            scale: 1
+        }
+
+        var figure = {
+            reset: true,
+            duration: 700,
+            scale: 0.8
+        }
+
+        var bottom = {
+            duration: 700,
+            origin: "bottom",
+            distance: "300px",
+            scale: 1
+        }
+
+        window.sr = ScrollReveal();
+        sr.reveal('.isfry', fry);
+        sr.reveal('.float-left', left);
+        sr.reveal('.float-right', right);
+
+        sr.reveal('.column figure', bottom);
+
+        sr.reveal('#pedidos .bg-black', figure, 75);
+
+        sr.reveal('#videojuegos .row', bottom, 30);
+
+        sr.reveal('#category-card', fry, 400);
+
+        sr.reveal('#pujas a > div', right, 150);
+
+        var flag = false;
+        $('html').click(function (e) {
+            if (!$(e.target).is('#mySidenav') && $(e.target).parents("#navbarDropdownMenuLink").length != 1 && !$(e.target).is("#navbarDropdownMenuLink")) {
+                $("div#mySidenav").css({ "width": "0" });
+                flag = false;
+            }
+        });
+        $("div#navbarDropdownMenuLink").mouseup(function () {
+            var w = $(window).width();
+            if (w < 500) {
+                w = "30%";
+            }
+            else if (w > 1270) {
+                w = "17%";
+            }
+            else {
+                w = "21%";
+            }
+
+            if (flag) {
+                $("div#mySidenav").css({ "width": "0" });
+                flag = false;
+            }
+            else {
+                $("div#mySidenav").css({ "width": w });
+                flag = true;
+            }
+        });
+
+        var original_width = 920;
+        var original_heigth = 550;
+
+        var new_height = (original_heigth / original_width) * $("#a3d").width();   
+        $("#a3d").css({ "height": new_height });
+        $(window).resize(function () {
+            if (flag) {
+                var w = $(window).width();
+                if (w < 500) {
+                    w = "30%";
+                }
+                else if (w > 1270) {
+                    w = "17%";
+                }
+                else {
+                    w = "21%";
+                }
+                $("div#mySidenav").css({ "width": w });
+            }
+
+            
+            original_width = 920;
+            original_heigth = 475;
+
+            var new_height = (original_heigth / original_width) * $("#a3d").width();
+
+            $("#a3d").css({ "height": new_height });
+
+        }); 
+
+        $(document).ready(function () {
+            $('.selector').mousewheel(function (e, delta) {
+                this.scrollLeft -= (delta * 40);
+                e.preventDefault();
+            });
+
+        });
+
+    </script>
+</body>
+</html>
