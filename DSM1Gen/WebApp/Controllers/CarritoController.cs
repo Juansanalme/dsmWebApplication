@@ -167,15 +167,23 @@ namespace WebDSM.Controllers
 
         public ActionResult FinalizarCompra(int id)
         {
-            CarritoCP cp = new CarritoCP();
-            CarritoCEN cen = new CarritoCEN();
+            try
+            {
+                CarritoCP cp = new CarritoCP();
+                CarritoCEN cen = new CarritoCEN();
 
-            float precio = cen.get_ICarritoCAD().ReadOIDDefault(id).Precio;
+                float precio = cen.get_ICarritoCAD().ReadOIDDefault(id).Precio;
 
-            cp.Finalizar_compra(id, precio);
+                cp.Finalizar_compra(id, precio);
 
-            Session["nCarrito"] = 0;
-            return RedirectToAction("LoadPedidos", "Pedido", (int)Session["idUsuario"]);
+                Session["nCarrito"] = 0;
+                return RedirectToAction("LoadPedidos", "Pedido", (int)Session["idUsuario"]);
+            }
+            catch
+            {
+                //ALGUNOS DE LOS ARTICULOS NO TIENEN STOCK
+                return View();
+            }
         }
     }
 }

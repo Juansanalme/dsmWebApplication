@@ -65,7 +65,7 @@
                     <div class="form-group row mt-4">
                         <div class="col-10 col-md-5">
                             <input type="hidden" name="id" value="@Html.DisplayFor(model => model.Id)" />
-                            <input class="form-control" type="number" step="0.01" name="puja" placeholder="Importe" required/>
+                            <input class="form-control" type="number" name="puja" placeholder="Importe" required/>
                             <div class="invalid-feedback" id="error">
                                 @message
                             </div>
@@ -134,7 +134,7 @@
             var form = document.getElementById('needs-validation');
             var error = document.getElementById('error');
             var m = "@message";
-            if (m != "Introduce un importe") {
+            if (m != "Introduce un entero") {
                 form.classList.add('was-validated');
             }
             form.addEventListener('submit', function (event) {
@@ -148,7 +148,7 @@
                     error.innerHTML = "Para poder pujar debes estar registrado: <br /><a class='mt-2 btn btn-outline-light' href='../../Registrado/Login'>Conéctate</a>";
                 }
                 else
-                    error.innerHTML = "Introduce un importe";
+                    error.innerHTML = "Introduce un entero";
 
 
             }, false);
