@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var message = @Session["PujaError"];
     if (message != null) System.Web.HttpContext.Current.Session.Remove("PujaError");
-    else message = "Introduce un importe";
+    else message = "Introduce un entero";
 
     int sessionID = 0;
     if (Session["login"] != null)
@@ -49,6 +49,7 @@
                 <div>
                     @Html.DisplayFor(model => model.ArtDescripcion)
                 </div>
+                <div class="h3 elegant">Cierra: @Model.Fecha</div>
                 <div class="h3 text-capitalize mt-4 elegant">
                     PUJA MAXIMA:
                     <span class="text-blood">
@@ -97,21 +98,21 @@
                         else
                         {
                             <div>
-                                Gracias por tu dinero
+                                ¡Ganaste! Gracias por pujar
                             </div>
                         }
                     }
                     else
                     {
                         <div>
-                            Puja Cerrada. No has ganado
+                            Puja Cerrada. No has ganado.
                         </div>
                     }
                 }
                 else
                 {
                         <div>
-                            Puja Cerrada
+                            Puja Cerrada.
                         </div>
                 }
             }
@@ -144,7 +145,7 @@
                 }
                 form.classList.add('was-validated');
 
-                if ("@Session["idUsuario"]" == "") {
+                if (sessionID == 0) {
                     error.innerHTML = "Para poder pujar debes estar registrado: <br /><a class='mt-2 btn btn-outline-light' href='../../Registrado/Login'>Conéctate</a>";
                 }
                 else
