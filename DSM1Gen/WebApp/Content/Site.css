@@ -300,7 +300,6 @@ a:hover {
 .carousel{
     max-height:300px;
     background: #121212;
-
 }
 
 .image-wrapper {
@@ -392,21 +391,10 @@ p, label, img, input, header, span, section, div, table, figure, a {
     transition: none;
     padding: 50px 2px 50px;
     position: relative;
+
+    grid-auto-flow: row dense;
 }
 
-.column figure{
-    text-shadow: 2px 0 0 #242424, -2px 0 0 #242424, 0 2px 0 #242424, 0 -2px 0 #242424, 1px 1px #242424, -1px -1px 0 #242424, 1px -1px 0 #242424, -1px 1px 0 #242424;
-    display: block !important;
-    position: relative !important;
-	width: 100% !important;
-	margin: 0 0 2px !important;
-	overflow: hidden !important;
-}
-
-.column figure img{
-    max-height: 100% !important;
-    margin: 0 auto;
-}
 
 .miniatura-carrito{
     max-width: 100%;
@@ -427,7 +415,6 @@ p, label, img, input, header, span, section, div, table, figure, a {
     display: block !important;
     position: relative !important;
     width: 100% !important;
-    margin: 0 0 2px !important;
     overflow: hidden !important;
     overflow: visible !important;
 }
@@ -650,6 +637,10 @@ a:focus{
     .videojuego-text {
         font-size: 2rem;
     }
+    .grid-sizer, .grid-item {
+        width: 50%;
+    }
+
 }
 
 
@@ -754,4 +745,47 @@ a:focus{
 
 #puja{
     height:45vw;
+}
+
+.grid:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.grid-sizer, .grid-item {
+    width: 25%;
+}
+
+.grid-item{
+    float:left;
+}
+
+.grid-item img{
+    max-width: 100%;
+}
+
+.grid figure {
+    margin: 0;
+    display: block;
+    background: #242424;
+    transition: background 0.5s ease-in-out;
+}
+
+.grid figure:hover{
+    background: #e5b522;
+}
+
+@media (max-width:1100px) {
+
+    .grid-sizer, .grid-item {
+        width: 50%;
+    }
+}
+
+@media (max-width:550px) {
+
+    .grid-sizer, .grid-item {
+        width: 100%;
+    }
 }

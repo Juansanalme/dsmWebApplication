@@ -254,6 +254,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 
     <script>
         var left = {
@@ -309,7 +310,7 @@
         sr.reveal('.float-left', left);
         sr.reveal('.float-right', right);
 
-        sr.reveal('.column figure', bottom);
+        sr.reveal('.grid figure', bottom);
 
         sr.reveal('#pedidos .bg-black', figure, 75);
 
@@ -380,11 +381,21 @@
 
         $(document).ready(function () {
             $('.selector').mousewheel(function (e, delta) {
-                this.scrollLeft -= (delta * 40);
+                this.scrollLeft -= (delta * 60);
                 e.preventDefault();
             });
 
         });
+
+        var $grid = $('.grid').masonry({
+            itemSelector: '.grid-item',
+            percentPosition: true,
+            columnWidth: '.grid-sizer'
+        });
+        // layout Masonry after each image loads
+        $grid.imagesLoaded().progress(function () {
+            $grid.masonry();
+        });  
 
         /*
         window.fbAsyncInit = function() {

@@ -99,7 +99,8 @@ figure.effect-oscar img {
 }
 
 figure.effect-oscar figcaption {
-    padding: 12%;
+    padding: 15%;
+    padding-top: 20%;
     background-color: rgba(58,52,42,0);
     -webkit-transition: background-color 0.35s;
     transition: background-color 0.35s;

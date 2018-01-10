@@ -24,7 +24,8 @@ namespace WebApp
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/scrollreveal.js",
-                      "~/Scripts/jquery.mousewheel.js"));
+                      "~/Scripts/jquery.mousewheel.js",
+                      "~/Scripts/masonry.pkgd.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
