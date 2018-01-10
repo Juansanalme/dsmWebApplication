@@ -101,9 +101,7 @@ namespace WebDSM.Controllers
             {
                 VideojuegoCEN cen = new VideojuegoCEN();
                 
-                cen.Modify(vid.Videojuego.Id, vid.Videojuego.Nombre, "");
-
-                String path2 = "";
+                String path2 = vid.Videojuego.Imagen;
                 if (file != null)
                 {
                     path2 = file.FileName;
@@ -117,12 +115,14 @@ namespace WebDSM.Controllers
                         if ((Path.GetExtension(file.FileName).ToLower() == ".jpg") || (Path.GetExtension(file.FileName).ToLower() == ".png") ||
                                 (Path.GetExtension(file.FileName).ToLower() == ".gif") || (Path.GetExtension(file.FileName).ToLower() == ".jpeg"))
                         {
-                            var path = Path.Combine(Server.MapPath("~/Content/Uploads/Item_images"), vid.Videojuego.Id + Path.GetExtension(file.FileName).ToLower());
+                            var path = Path.Combine(Server.MapPath("~/Content/Uploads/Videogames"), path2);
                             file.SaveAs(path);
                         }
 
                     }
                 }
+                
+                cen.Modify(vid.Videojuego.Id, vid.Videojuego.Nombre, path2);
 
                 return RedirectToAction("Index");
             }

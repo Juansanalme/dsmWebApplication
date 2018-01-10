@@ -123,7 +123,7 @@ namespace WebDSM.Controllers
                 CategoriaCP cp = new CategoriaCP();
                 int n = cen.get_ICategoriaCAD().ReadOIDDefault(cat.Categoria.Id).Articulo;
 
-                String path2 = "";
+                String path2 = cen.get_ICategoriaCAD().ReadOIDDefault(cat.Categoria.Id).Imagen;
                 if (file != null)
                 {
                     path2 = file.FileName;
@@ -137,7 +137,7 @@ namespace WebDSM.Controllers
                         if ((Path.GetExtension(file.FileName).ToLower() == ".jpg") || (Path.GetExtension(file.FileName).ToLower() == ".png") ||
                                 (Path.GetExtension(file.FileName).ToLower() == ".gif") || (Path.GetExtension(file.FileName).ToLower() == ".jpeg"))
                         {
-                            var path = Path.Combine(Server.MapPath("~/Content/Uploads/Item_images"), n + Path.GetExtension(file.FileName).ToLower());
+                            var path = Path.Combine(Server.MapPath("~/Content/Uploads/Category"), path2);
                             file.SaveAs(path);
                         }
 
