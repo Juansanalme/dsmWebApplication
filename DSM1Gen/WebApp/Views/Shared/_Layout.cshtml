@@ -310,7 +310,7 @@
         sr.reveal('.float-left', left);
         sr.reveal('.float-right', right);
 
-        sr.reveal('.grid figure', bottom);
+        sr.reveal('#grid_script .grid figure', bottom);
 
         sr.reveal('#pedidos .bg-black', figure, 75);
 
@@ -387,12 +387,12 @@
 
         });
 
-        var $grid = $('.grid').masonry({
+        var $grid = $('#grid_script .grid').masonry({
             itemSelector: '.grid-item',
             percentPosition: true,
             columnWidth: '.grid-sizer'
         });
-        // layout Masonry after each image loads
+
         $grid.imagesLoaded().progress(function () {
             $grid.masonry();
         });  
