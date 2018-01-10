@@ -17,10 +17,79 @@ namespace WebDSM.Controllers
 {
     public class RegistradoController : BasicController
     {
-        public ActionResult LoginFB(int userID=0)
-        {
 
-            return View();
+        [HttpPost]
+        public JsonResult LoginFB(string id)
+        {
+            RegistradoCEN cen = new RegistradoCEN();
+
+            IList<RegistradoEN> lista = cen.ReadAll(0, -1);
+
+            bool registrado = false;
+
+            foreach(RegistradoEN en in lista)
+            {
+                if(en.Dni == id)
+                {
+                    //SI EL USUARIO YA HA SIDO REGISTRADO
+                    registrado = true;
+                }
+            }
+
+            return Json(registrado);
+            
+        }
+
+        [HttpPost]
+        public JsonResult LoginFB2(string id)
+        {
+            //UNA COPIA DEL LOGIN NORMAL
+
+            RegistradoCEN cen = new RegistradoCEN();
+
+            IList<RegistradoEN> lista = cen.ReadAll(0, -1);
+            int idUsu = 0;
+            string nUsuario = "";
+            bool admin = false;
+
+            foreach (RegistradoEN ren in lista)
+            {
+                if (ren.Dni == id)
+                {
+                    idUsu = ren.Id;
+                    nUsuario = ren.N_usuario;
+                    admin = ren.Admin;
+                }
+            }
+
+            System.Web.HttpContext.Current.Session["login"] = nUsuario;
+            System.Web.HttpContext.Current.Session["idUsuario"] = idUsu; //LO NECESITARE MÁS ADELANTE PARA OPERACIONES CON EL CARRITO
+            System.Web.HttpContext.Current.Session["admin"] = admin;
+            System.Web.HttpContext.Current.Session["foto"] = "../../Images/Shut-up-and-take-my-money!.png";
+
+            //Cojo el numero de articulos en el carrito
+            SessionInitialize();
+            CarritoCAD carritoCAD = new CarritoCAD(session);
+            CarritoCEN carritoCEN = new CarritoCEN(carritoCAD);
+
+            CarritoEN en = carritoCEN.get_ICarritoCAD().ReadOIDDefault(idUsu);
+            CarritoYLineas model = new AssemblerCarrito().ConvertENToViewModelUI(en);
+
+            System.Web.HttpContext.Current.Session["nCarrito"] = model.LineaPedido.Count();
+            SessionClose();
+
+            //Cojo la foto de perfil
+            RegistradoCAD cad = new RegistradoCAD();
+            RegistradoEN registradoEN = cad.ReadOIDDefault(idUsu);
+            Registrado img = new AssemblerRegistrado().ConvertENToModelUI(registradoEN);
+            string idUsu2 = img.Id.ToString();
+            string iconoUsu = Path.Combine(Server.MapPath("~/Content/Uploads/User_icons"), idUsu2);
+            if ((System.IO.File.Exists(iconoUsu + ".jpg"))) Session["foto"] = "../../Content/Uploads/User_icons/" + img.Id + ".jpg";
+            else if ((System.IO.File.Exists(iconoUsu + ".jpeg"))) Session["foto"] = "../../Content/Uploads/User_icons/" + img.Id + ".jpeg";
+            else if ((System.IO.File.Exists(iconoUsu + ".png"))) Session["foto"] = "../../Content/Uploads/User_icons/" + img.Id + ".png";
+            else if ((System.IO.File.Exists(iconoUsu + ".gif"))) Session["foto"] = "../../Content/Uploads/User_icons/" + img.Id + ".gif";
+
+            return Json(idUsu);
         }
 
         // GET: Registrado/Login
@@ -175,6 +244,15 @@ namespace WebDSM.Controllers
         // GET: Registrado/Create
         public ActionResult Create()
         {
+            //AUNQUE PARECE QUE PETA, NO ES VERDAD
+            string algo = HttpContext.Request.Url.AbsoluteUri;
+
+            Array aux = new Uri(algo).Segments;
+
+            object id = aux.GetValue(3);
+
+            Session["FB"] = id.ToString();
+
             return View();
         }
 
@@ -186,15 +264,29 @@ namespace WebDSM.Controllers
         {
             try
             {
-                
+
                 // TODO: Add insert logic here
                 RegistradoCP cp = new RegistradoCP();
+                RegistradoCEN cen = new RegistradoCEN();
 
                 RegistradoEN usuSingUp = cp.Nuevo_usuarioYcarrito(reg.Nombre, reg.Apellidos, reg.Edad, reg.FNacimiento, reg.Dni, reg.Contrasenya, reg.NUsuario, false);
 
                 //ENCRIPTACION DE LA CONTRASENYA
                 string encContra = Util.GetEncondeMD5(reg.Contrasenya);
-                
+
+
+                string fbId = "";
+                if (Session["FB"] != null)
+                {
+                    fbId = (string)Session["FB"];
+
+                    //EN EL CASO QUE SE HAYA CONECTADO MEDIANTE FACEBOOK LE CAMBIO SU ID POR EL ID DE FACEBOOK
+                    cen.Modify(usuSingUp.Id, reg.Nombre, reg.Apellidos, reg.Edad, reg.FNacimiento, fbId, reg.Contrasenya, reg.NUsuario, false);
+
+                    //ELIMINO LA SESION
+                    Session.Remove("FB");
+                }
+
 
                 //WebSecurity.CreateUserAndAccount(reg.NUsuario, encContra);    //REGISTRO EN LA BDD LITE DE SQL SERVER
                 //WebSecurity.Login(reg.NUsuario, encContra);                   //LOGIN
@@ -219,7 +311,7 @@ namespace WebDSM.Controllers
                 }
 
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Login");
             }
             catch
             {

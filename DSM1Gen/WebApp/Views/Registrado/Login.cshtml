@@ -33,10 +33,11 @@
 
                 <!--BOTON DE INICIO DE SESION EN FB-->
                 <div class="col-4 col-md-2 ">
-                    <fb:login-button scope="public_profile,email" onclick="loginFB"
+                    <fb:login-button scope="public_profile,email" onclick="globalMas()"
                                      onlogin="checkLoginState();">
                     </fb:login-button>
                 </div>
+
                 <p id="demo"></p>
 
                 <div class="col-4 col-md-2">
@@ -84,6 +85,12 @@
 </div>
 
 <script>
+    var globalCount = 0;
+
+    function globalMas() {
+        globalCount++;
+        document.getElementById("demo").innerHTML = globalCount;
+    }
 
     window.fbAsyncInit = function () {
         FB.init({
@@ -103,6 +110,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
+
     FB.getLoginStatus(function (response) {
         statusChangeCallBack(response);
     });
@@ -112,29 +120,54 @@
         FB.getLoginStatus(function (response) {
             if (response.status == "connected") {
                 //document.getElementById("demo").innerHTML = "Te has logeado a Facebook: " + response.authResponse.userID;
-                var aux = response.authResponse.userID;
+                var aux = response.authResponse.userID
 
-                @*
-                //DEBO DE MANDARLO AL CONTROLLER
-                @{
-                    Response.Redirect("~/Registrado/LoginFB");
-                }
-                *@
+                //document.getElementById("demo").innerHTML = aux;
 
+                //ENVIO AL CONTROLLER EL ID UNICO DEL USUARIO QUE PROPORCIONA response
                 jQuery.ajax({
                     type: "POST",
                     url: "@Url.Action("LoginFB","Registrado")",
                     dataType: "json",
                     contentType: "application/json; charset=utf-8",
-                    data: aux,
-                    success: function (data) {
-                        alert(data);
+                    data: JSON.stringify({ id: aux }),
+                    success: function (result) {
+
+                        //SI RESULT ES TRUE, ESTA REGISTRADO EN LA BDD
+                        if (!result) {
+                            //document.getElementById("demo").innerHTML = result;
+
+                            window.location.href = "/Registrado/Create/" + aux;
+
+                        }
+                        else {
+                            //document.getElementById("demo").innerHTML = "hola";
+
+                            jQuery.ajax({
+                                type: "POST",
+                                url: "@Url.Action("LoginFB2","Registrado")",
+                                dataType: "json",
+                                contentType: "application/json; charset=utf-8",
+                                data: JSON.stringify({ id: aux }),
+                                success: function (result) {
+
+                                    //document.getElementById("demo").innerHTML = "PIPO MUERE";
+
+                                    window.location.href = "../Home";
+
+                                }
+                            });
+
+
+
+                        }
+
+
                     },
                     failure: function (errMsg) {
                         alert(errMsg);
                     }
                 });
-
 
 
             }
