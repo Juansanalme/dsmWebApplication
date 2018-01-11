@@ -248,10 +248,12 @@ namespace WebDSM.Controllers
             string algo = HttpContext.Request.Url.AbsoluteUri;
 
             Array aux = new Uri(algo).Segments;
+            if(aux.Length > 3)
+            {
+                object id = aux.GetValue(3);
+                Session["FB"] = id.ToString();
+            }
 
-            object id = aux.GetValue(3);
-
-            Session["FB"] = id.ToString();
 
             return View();
         }
