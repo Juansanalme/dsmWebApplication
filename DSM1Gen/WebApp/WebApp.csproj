@@ -424,6 +424,7 @@
     <Content Include="Views\Registrado\Perfil.cshtml" />
     <Content Include="Views\Videojuego\Index.cshtml" />
     <Content Include="Views\Shared\SimpleLayout.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

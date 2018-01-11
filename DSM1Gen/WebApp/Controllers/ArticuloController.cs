@@ -142,6 +142,10 @@ namespace WebDSM.Controllers
                 ArticuloCEN articuloCEN = new ArticuloCEN(articuloCAD);
 
                 ArticuloEN articuloEN = articuloCAD.ReadOIDDefault(id);
+                if(articuloEN == null)
+                {
+                    return View("../Shared/NotFound");
+                }
                 ArticuloYOpinion art = new AssemblerArticulo().ConvertENToViewModelUI(articuloEN);
                 SessionClose();
 
@@ -276,6 +280,8 @@ namespace WebDSM.Controllers
             IEnumerable<Articulo> art = new AssemblerArticulo().ConvertListENToModel(articulos).ToList();
 
             SessionClose();
+
+            System.Web.HttpContext.Current.Session["termino"] = termino;
 
             //art = GetAllFotos(art);
 

@@ -138,8 +138,8 @@ namespace WebDSM.Controllers
                     CarritoCAD carritoCAD = new CarritoCAD(session);
                     CarritoCEN carritoCEN = new CarritoCEN(carritoCAD);
                     CarritoEN en = carritoCEN.get_ICarritoCAD().ReadOIDDefault(finalID);
-                    CarritoYLineas model = new AssemblerCarrito().ConvertENToViewModelUI(en);
-                    System.Web.HttpContext.Current.Session["nCarrito"] = model.LineaPedido.Count();
+                    
+                    System.Web.HttpContext.Current.Session["nCarrito"] = en.LineaPedido.Count();
                     SessionClose();
                     //Cojo la foto de perfil
                     RegistradoCAD cad = new RegistradoCAD();
@@ -157,6 +157,7 @@ namespace WebDSM.Controllers
                 }
                 else
                 {
+                    System.Web.HttpContext.Current.Session["errorAcces"] = true;
                     return View(reg);
                 }
 
@@ -311,7 +312,16 @@ namespace WebDSM.Controllers
 
                     }
                 }
-
+                System.Web.HttpContext.Current.Session["login"] = usuSingUp.N_usuario;
+                System.Web.HttpContext.Current.Session["idUsuario"] = usuSingUp.Id; //LO NECESITARE MÁS ADELANTE PARA OPERACIONES CON EL CARRITO
+                System.Web.HttpContext.Current.Session["admin"] = usuSingUp.Admin;
+                System.Web.HttpContext.Current.Session["nCarrito"] = 0;
+                System.Web.HttpContext.Current.Session["foto"] = "../../Images/Shut-up-and-take-my-money!.png";
+                string iconoUsu = Path.Combine(Server.MapPath("~/Content/Uploads/User_icons"), usuSingUp.Id.ToString());
+                if ((System.IO.File.Exists(iconoUsu + ".jpg"))) Session["foto"] = "../../Content/Uploads/User_icons/" + usuSingUp.Id + ".jpg";
+                else if ((System.IO.File.Exists(iconoUsu + ".jpeg"))) Session["foto"] = "../../Content/Uploads/User_icons/" + usuSingUp.Id + ".jpeg";
+                else if ((System.IO.File.Exists(iconoUsu + ".png"))) Session["foto"] = "../../Content/Uploads/User_icons/" + usuSingUp.Id + ".png";
+                else if ((System.IO.File.Exists(iconoUsu + ".gif"))) Session["foto"] = "../../Content/Uploads/User_icons/" + usuSingUp.Id + ".gif";
 
                 return RedirectToAction("Login");
             }

@@ -3,36 +3,66 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var cont = 0;
+    var termino = "";
+    if (Session["termino"] != null && Session["termino"].ToString() != "")
+    {
+        termino = Session["termino"].ToString();
+        System.Web.HttpContext.Current.Session.Remove("termino");
+    }
 }
 
-<div  id="grid_script">
-
-<div class="grid">
-    <div class="grid-sizer"></div>
-    @foreach (var item in Model)
+<div id="grid_script">
+    @if (!termino.IsEmpty())
     {
-    <div class="grid-item p-1">
-        <figure class="effect-oscar bg-black">
-
-            @if (item.Imagen.IsEmpty())
-            {
-                <img src="~/Images/Shut-up-and-take-my-money!.png" alt="" />
-            }
-            else
-            {
-                <img src="@Url.Content("~/Content/Uploads/Item_images/"+item.Imagen)" alt="Imagen del articulo @item.Nombre" />
-            }
-
-
-            <figcaption>
-                <h2 class="shadow">@Html.DisplayFor(modelItem => item.Nombre) <span> @Html.DisplayFor(modelItem => item.Precio)</span></h2>
-                <p class="shadow">@Html.DisplayFor(modelItem => item.Descripcion)</p>
-                @Html.ActionLink(item.Nombre, "Details", new { id = item.Id })
-            </figcaption>
-        </figure>
-    </div>
+        <div class="row bg-black border-orange-bottom p-2">
+            <div class="col">
+                Búsqueda: <span class="text-blood">@termino </span>
+            </div>
+        </div>
     }
+    <div class="grid">
+        <div class="grid-sizer"></div>
+        @foreach (var item in Model)
+        {
+            <div class="grid-item p-1">
+                <figure class="effect-oscar bg-black">
+
+                    @if (item.Imagen.IsEmpty())
+                    {
+                        <img src="~/Images/Shut-up-and-take-my-money!.png" alt="" />
+                    }
+                    else
+                    {
+                        <img src="@Url.Content("~/Content/Uploads/Item_images/"+item.Imagen)" alt="Imagen del articulo @item.Nombre" />
+                    }
 
 
+                    <figcaption>
+                        <h2 class="shadow">@Html.DisplayFor(modelItem => item.Nombre) <span> @Html.DisplayFor(modelItem => item.Precio)</span></h2>
+                        <p class="shadow">@Html.DisplayFor(modelItem => item.Descripcion)</p>
+                        @Html.ActionLink(item.Nombre, "Details", new { id = item.Id })
+                    </figcaption>
+                </figure>
+            </div>
+            cont++;
+        }
+    </div>
 </div>
-</div>
+
+@if (cont == 0)
+{
+    <div class="container pt-4">
+        <div class="row justify-content-center text-center">
+            <div class="col">
+                <div class="col h3">Sin resultados para: <span class="text-blood">@termino</span></div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-7">
+                <img style="width:100%;" src="~/Images/Alexelcapo.gif" alt="404 Not Found" />
+            </div>
+        </div>
+    </div>
+}

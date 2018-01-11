@@ -408,9 +408,9 @@
                     <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users">
                         <div class="display-4 text-center mt-4">Administrar usuarios</div>
                         <div class="row mx-2 mt-4 p-3 d-none d-xl-flex">
-                            <div class="col-1">Nombre de usuario</div>
+                            <div class="col-3">Nombre de usuario</div>
                             @*<div class="col-3 text-left text-xl-center">Contraseña</div>*@
-                            <div class="col-1">Nombre</div>
+                            <div class="col-2">Nombre</div>
                             <div class="col-1">Apellidos</div>
                             <div class="col-1">Fecha de nacimiento</div>
                             <div class="col-1 text-center">Edad</div>
@@ -420,9 +420,9 @@
                             if(item.Id != (int) Session["idUsuario"]) {
                             <div class="row mx-2 mt-2 p-2 bg-black">
 
-                                <div class="col-12 mb-3 mb-xl-0 col-xl-1 "><small class="clearfix d-xl-none">Nombre de usuario: </small> @Html.DisplayFor(modelItem => item.NUsuario)</div>
+                                <div class="col-12 mb-3 mb-xl-0 col-xl-3 "><small class="clearfix d-xl-none">Nombre de usuario: </small> @Html.DisplayFor(modelItem => item.NUsuario)</div>
                                 @*<div class="col-12 mb-3 mb-xl-0 col-xl-3 text-left text-xl-center"><small class="clearfix d-xl-none">Contraseña: </small> <small> @Html.DisplayFor(modelItem => item.Contrasenya) </small> </div>*@
-                                <div class="col-12 col-md-6 mb-3 mb-xl-0 col-xl-1"><small class="clearfix d-xl-none">Nombre: </small> @Html.DisplayFor(modelItem => item.Nombre)</div>
+                                <div class="col-12 col-md-6 mb-3 mb-xl-0 col-xl-2"><small class="clearfix d-xl-none">Nombre: </small> @Html.DisplayFor(modelItem => item.Nombre)</div>
                                 <div class="col-12 col-md-6 mb-3 mb-xl-0 col-xl-1"><small class="clearfix d-xl-none">Apellidos: </small> @Html.DisplayFor(modelItem => item.Apellidos)</div>
                                 <div class="col-6 col-xl-1"><small class="clearfix d-xl-none">Fecha de nacimiento: </small> @Html.DisplayFor(modelItem => item.FNacimiento)</div>
                                 <div class="col-6 mb-3 mb-xl-0 col-xl-1 text-left text-xl-center"><small class="clearfix d-xl-none">Edad: </small> @Html.DisplayFor(modelItem => item.Edad)</div>
@@ -431,13 +431,13 @@
 
                                 @if (item.Admin)
                                 {
-                                    <div class="col-12 mb-2 mb-xl-0 col-xl-1 px-1">@Html.ActionLink("Admin --", "Beater", "Registrado", new { id = item.Id, ad = false }, new { @class = "btn btn-outline-danger w-100" })</div>
+                                    <div class="col-12 mb-2 mb-xl-0 col-xl-2 px-1">@Html.ActionLink("Admin --", "Beater", "Registrado", new { id = item.Id, ad = false }, new { @class = "btn btn-outline-danger w-100" })</div>
                                 }
                                 else
                                 {
-                                    <div class="col-12 mb-2 mb-xl-0 col-xl-1 px-1">@Html.ActionLink("Admin ++", "Beater", "Registrado", new { id = item.Id, ad = true }, new { @class = "btn btn-outline-light w-100" })</div>
+                                    <div class="col-12 mb-2 mb-xl-0 col-xl-2 px-1">@Html.ActionLink("Admin ++", "Beater", "Registrado", new { id = item.Id, ad = true }, new { @class = "btn btn-outline-light w-100" })</div>
                                 }
-                                <div class="col-12 mb-2 mb-xl-0 col-xl-1 px-1">@Html.ActionLink("Destruir", "Delete", "Registrado", new { id = item.Id }, new { id = item.Id, @class = "btn btn-outline-light w-100" })</div>
+                                <div class="col-12 mb-2 mb-xl-0 col-xl-2 px-1">@Html.ActionLink("Destruir", "Delete", "Registrado", new { id = item.Id }, new { id = item.Id, @class = "btn btn-outline-light w-100" })</div>
                             </div>
                             }
                         }

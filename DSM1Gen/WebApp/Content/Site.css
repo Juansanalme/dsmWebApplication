@@ -793,3 +793,8 @@ a:focus{
 #home_fig figure{
     margin-bottom:30px;
 }
+
+.feedback-error {
+    font-size: 13px;
+    color: #e10031;
+}

@@ -11,7 +11,13 @@
         aux = false;
         Response.Redirect("~/Registrado/Perfil/"+(int)Session["idUsuario"]);
     }
-    
+
+    var errorAcces = "";
+    if (Session["errorAcces"] != null)
+    {
+        errorAcces = "El nombre de usuario o la contraseña son incorrectos.";
+        System.Web.HttpContext.Current.Session.Remove("errorAcces");
+    }
 
 }
 
@@ -21,65 +27,72 @@
             @Html.ActionLink(" ", "../Home/Index", "Home", new { @class = "col nav-link logo_dark" })
         </div>
     </div>
-    <div class="row h-100 mx-sm-5 bg-black p-4 justify-content-center separator">
-        <div class="col-12 font-weight-bold mb-5">
-            <div class="row">
-                <div class="col">Acceder con</div>
-            </div>
-            <div class="row justify-content-center pt-3">
-                <div class="col-4 col-md-2 ">
-                    @Html.ActionLink(" ", "#", "Home", new { @class = "col nav-link facebook m-auto" })
-                </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-9">
 
-                <!--BOTON DE INICIO DE SESION EN FB-->
-                <div class="col-4 col-md-2 ">
-                    <fb:login-button scope="public_profile,email" onclick="globalMas()"
-                                     onlogin="checkLoginState();">
-                    </fb:login-button>
-                </div>
+            <div class="row h-100 mx-sm-5 bg-black p-4 justify-content-center separator">
+                <div class="col-12 font-weight-bold mb-5">
+                    <div class="row">
+                        <div class="col">Acceder con</div>
+                    </div>
+                    <div class="row justify-content-center pt-3">
+                        <div class="col-4 col-md-2 ">
+                            <a href="#" class="col nav-link facebook m-auto" onclick="login_FB();"></a>
+                        </div>
 
-                <p id="demo"></p>
+                        <!--BOTON DE INICIO DE SESION EN FB
+                        <div class="col-4 col-md-2 ">
+                            <fb:login-button scope="public_profile,email" onclick="globalMas()"
+                                             onlogin="checkLoginState();">
+                            </fb:login-button>
+                        </div>-->
 
-                <div class="col-4 col-md-2">
-                    @Html.ActionLink(" ", "#", "Home", new { @class = "col nav-link twitter m-auto" })
+                        <p id="demo"></p>
+
+                        <div class="col-4 col-md-2">
+                            @Html.ActionLink(" ", "#", "Home", new { @class = "col nav-link twitter m-auto" })
+                        </div>
+                        <div class="col-4 col-md-2">
+                            @Html.ActionLink(" ", "#", "Home", new { @class = "col nav-link google m-auto" })
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-2 offset-5 text-center">o</div>
+                    </div>
                 </div>
-                <div class="col-4 col-md-2">
-                    @Html.ActionLink(" ", "#", "Home", new { @class = "col nav-link google m-auto" })
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col-2 offset-5 text-center">o</div>
-            </div>
-        </div>
-        @using (Html.BeginForm("Login", "Registrado", FormMethod.Post, new { @class = "col-sm-10 col-md-9 col-lg-7 justify-content-center" }))
-        {
+                @using (Html.BeginForm("Login", "Registrado", FormMethod.Post, new { @class = "col-sm-10 col-md-9 col-lg-7 justify-content-center" }))
+            {
             @*SI NO PONGO ESTO PETA*@
             if (aux)
             {
-                @Html.AntiForgeryToken()
+                        @Html.AntiForgeryToken()
             }
 
-        <div class="form-group row">
-            @Html.LabelFor(model => model.NUsuario, " ", new { @class = "col-2  col-sm-1 col-form-label user" })
-            <div class="col-10">
-                @Html.EditorFor(model => model.NUsuario, new { htmlAttributes = new { @class = "form-control", placeholder = "Usuario" } })
+            <div class="form-group row">
+                @Html.LabelFor(model => model.NUsuario, " ", new { @class = "col-2  col-sm-1 col-form-label user" })
+                <div class="col-10">
+                    @Html.EditorFor(model => model.NUsuario, new { htmlAttributes = new { @class = "form-control", placeholder = "Usuario" } })
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            @Html.LabelFor(model => model.Contrasenya, " ", new { @class = "col-2  col-sm-1 col-form-label pass" })
-            <div class="col-10 col-sm-10">
-                @Html.EditorFor(model => model.Contrasenya, new { htmlAttributes = new { @class = "form-control", placeholder = "Contraseña" } })
+            <div class="form-group row mb-1">
+                @Html.LabelFor(model => model.Contrasenya, " ", new { @class = "col-2  col-sm-1 col-form-label pass" })
+                <div class="col-10 col-sm-10">
+                    @Html.EditorFor(model => model.Contrasenya, new { htmlAttributes = new { @class = "form-control", placeholder = "Contraseña" } })
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <p>¿No tienes una cuenta en NA-ME? @Html.ActionLink("Registrarse", "Create", "Registrado", new { @class = "text-orange" })</p>
-        </div>
-        <div class="form-group mt-3">
-            <div class="col-md-offset-2 col-md-10">
-                <input class="col-12 ml-md-4 ml-lg-5 btn btn-outline-light pointer" type="submit" value="Login" />
+            <div class="feedback-error mb-2 pl-4 ml-2 elegant" id="error">@errorAcces</div>
+            
+            <div class="row">
+                <p>¿No tienes una cuenta en NA-ME? @Html.ActionLink("Registrarse", "Create", "Registrado", new { @class = "text-orange" })</p>
             </div>
-        </div>
-    }
+            <div class="form-group mt-3 d-flex justify-content-center">
+                <div class="col-md-10">
+                    <input class="col-12 btn btn-outline-warning pointer" type="submit" value="Login" />
+                </div>
+            </div>
+}
+            </div>
+    </div>
     </div>
 
 </div>
@@ -111,20 +124,13 @@
     }(document, 'script', 'facebook-jssdk'));
 
 
-    FB.getLoginStatus(function (response) {
-        statusChangeCallBack(response);
-    });
+    function login_FB() {
+        FB.login(function (response) {
 
+            if (response.status === 'connected') {
 
-    function checkLoginState() {
-        FB.getLoginStatus(function (response) {
-            if (response.status == "connected") {
-                //document.getElementById("demo").innerHTML = "Te has logeado a Facebook: " + response.authResponse.userID;
                 var aux = response.authResponse.userID
 
-                //document.getElementById("demo").innerHTML = aux;
-
-                //ENVIO AL CONTROLLER EL ID UNICO DEL USUARIO QUE PROPORCIONA response
                 jQuery.ajax({
                     type: "POST",
                     url: "@Url.Action("LoginFB","Registrado")",
@@ -132,17 +138,10 @@
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify({ id: aux }),
                     success: function (result) {
-
-                        //SI RESULT ES TRUE, ESTA REGISTRADO EN LA BDD
                         if (!result) {
-                            //document.getElementById("demo").innerHTML = result;
-
                             window.location.href = "/Registrado/Create/" + aux;
-
                         }
                         else {
-                            //document.getElementById("demo").innerHTML = "hola";
-
                             jQuery.ajax({
                                 type: "POST",
                                 url: "@Url.Action("LoginFB2","Registrado")",
@@ -150,33 +149,18 @@
                                 contentType: "application/json; charset=utf-8",
                                 data: JSON.stringify({ id: aux }),
                                 success: function (result) {
-
-                                    //document.getElementById("demo").innerHTML = "PIPO MUERE";
-
                                     window.location.href = "../Home";
-
                                 }
                             });
 
-
-
                         }
-
-
-                    },
-                    failure: function (errMsg) {
-                        alert(errMsg);
                     }
                 });
-
-
             }
-
-
         });
-
-
     }
+
+
 
 </script>
 
