@@ -40,6 +40,13 @@ private DSM1GenNHibernate.EN.DSM1.PedidoEN pedido;
 
 
 
+/**
+ *	Atributo precioPuja
+ */
+private int precioPuja;
+
+
+
 
 
 
@@ -73,6 +80,12 @@ public virtual DSM1GenNHibernate.EN.DSM1.PedidoEN Pedido {
 
 
 
+public virtual int PrecioPuja {
+        get { return precioPuja; } set { precioPuja = value;  }
+}
+
+
+
 
 
 public LineaPedidoEN()
@@ -81,20 +94,20 @@ public LineaPedidoEN()
 
 
 
-public LineaPedidoEN(int id, int cantidad, DSM1GenNHibernate.EN.DSM1.ArticuloEN articulo, DSM1GenNHibernate.EN.DSM1.CarritoEN carrito, DSM1GenNHibernate.EN.DSM1.PedidoEN pedido
+public LineaPedidoEN(int id, int cantidad, DSM1GenNHibernate.EN.DSM1.ArticuloEN articulo, DSM1GenNHibernate.EN.DSM1.CarritoEN carrito, DSM1GenNHibernate.EN.DSM1.PedidoEN pedido, int precioPuja
                      )
 {
-        this.init (Id, cantidad, articulo, carrito, pedido);
+        this.init (Id, cantidad, articulo, carrito, pedido, precioPuja);
 }
 
 
 public LineaPedidoEN(LineaPedidoEN lineaPedido)
 {
-        this.init (Id, lineaPedido.Cantidad, lineaPedido.Articulo, lineaPedido.Carrito, lineaPedido.Pedido);
+        this.init (Id, lineaPedido.Cantidad, lineaPedido.Articulo, lineaPedido.Carrito, lineaPedido.Pedido, lineaPedido.PrecioPuja);
 }
 
 private void init (int id
-                   , int cantidad, DSM1GenNHibernate.EN.DSM1.ArticuloEN articulo, DSM1GenNHibernate.EN.DSM1.CarritoEN carrito, DSM1GenNHibernate.EN.DSM1.PedidoEN pedido)
+                   , int cantidad, DSM1GenNHibernate.EN.DSM1.ArticuloEN articulo, DSM1GenNHibernate.EN.DSM1.CarritoEN carrito, DSM1GenNHibernate.EN.DSM1.PedidoEN pedido, int precioPuja)
 {
         this.Id = id;
 
@@ -106,6 +119,8 @@ private void init (int id
         this.Carrito = carrito;
 
         this.Pedido = pedido;
+
+        this.PrecioPuja = precioPuja;
 }
 
 public override bool Equals (object obj)

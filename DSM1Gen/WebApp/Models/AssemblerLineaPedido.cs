@@ -17,6 +17,12 @@ namespace WebDSM.Models
             linped.PrecioUnidad = en.Articulo.Precio;
             linped.Total = en.Articulo.Precio * en.Cantidad;
             linped.Cantidad = en.Cantidad;
+            
+            if(en.PrecioPuja != 0)
+            {
+                linped.PrecioUnidad = en.PrecioPuja;
+                linped.Total = en.PrecioPuja;
+            }
 
             return linped;
         }

@@ -23,8 +23,8 @@ public void Pagar (int p_oid)
 {
         /*PROTECTED REGION ID(DSM1GenNHibernate.CEN.DSM1_Puja_pagar) ENABLED START*/
 
-        PujaCEN pujaCEN = new PujaCEN();
-        PujaEN pujaEN = pujaCEN.get_IPujaCAD().ReadOIDDefault(p_oid);
+        PujaCEN pujaCEN = new PujaCEN ();
+        PujaEN pujaEN = pujaCEN.get_IPujaCAD ().ReadOIDDefault (p_oid);
 
         pujaEN.Pagada = true;
 

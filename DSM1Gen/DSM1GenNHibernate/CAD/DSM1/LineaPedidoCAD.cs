@@ -96,6 +96,9 @@ public void ModifyDefault (LineaPedidoEN lineaPedido)
 
 
 
+
+                lineaPedidoEN.PrecioPuja = lineaPedido.PrecioPuja;
+
                 session.Update (lineaPedidoEN);
                 SessionCommit ();
         }

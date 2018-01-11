@@ -19,8 +19,18 @@ namespace WebDSM.Models
             
             foreach (LineaPedidoEN item in en.LineaPedido)
             {
-                ped.Total += item.Articulo.Precio * item.Cantidad;
+                
+                if (item.PrecioPuja != 0)
+                {
+                    ped.Total = item.PrecioPuja;
+                }
+                else
+                {
+                    ped.Total += item.Articulo.Precio * item.Cantidad;
+                }
+
             }
+
             return ped;
         }
 
@@ -45,8 +55,14 @@ namespace WebDSM.Models
                 l.Total = item.Articulo.Precio * item.Cantidad;
                 l.Cantidad = item.Cantidad;
 
-                pyl.Pedido.Total += l.Cantidad * l.PrecioUnidad;
+                if (item.PrecioPuja != 0)
+                {
+                    l.PrecioUnidad = item.PrecioPuja;
+                    l.Total = item.PrecioPuja;
+                }
 
+                pyl.Pedido.Total += l.Cantidad * l.PrecioUnidad;
+                
                 pyl.LineaPedido.Add(l);
             }
 

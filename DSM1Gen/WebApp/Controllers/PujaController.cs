@@ -205,6 +205,11 @@ namespace WebDSM.Controllers
             LineaPedidoCEN lineaCEN = new LineaPedidoCEN();
             int lineaID = lineaCEN.New_(1 , pujaEN.Articulo.Id);
 
+            LineaPedidoEN lineaEN = lineaCEN.get_ILineaPedidoCAD().ReadOIDDefault(lineaID);
+            lineaEN.PrecioPuja = (int)pujaEN.Puja_max;
+
+            lineaCEN.get_ILineaPedidoCAD().ModifyDefault(lineaEN);
+
             List<int> lineasList = new List<int>
             {
                 lineaID

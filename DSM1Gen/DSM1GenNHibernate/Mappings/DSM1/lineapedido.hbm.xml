@@ -15,6 +15,9 @@
 					<property name="Cantidad" type="integer"> 
 						<column name="cantidad"  not-null="true"/>
 					</property>
+					<property name="PrecioPuja" type="integer"> 
+						<column name="precioPuja" />
+					</property>
 			
 			
 			
@@ -36,6 +39,8 @@
 								<column name="FK_idPedido_idPedido"/> 
 						</many-to-one>
 											 					
+			
+					
 					
 					
 					
