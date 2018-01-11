@@ -249,9 +249,9 @@ namespace WebDSM.Controllers
 
             Array aux = new Uri(algo).Segments;
 
-            object id = aux.GetValue(3);
+            //object id = aux.GetValue(3);
 
-            Session["FB"] = id.ToString();
+           // Session["FB"] = id.ToString();
 
             return View();
         }
