@@ -179,12 +179,18 @@ namespace WebDSM.Controllers
                 String path2 = "";
 
                 if(file!=null)
-                    path2 = file.FileName; 
+                    path2 = file.FileName;
 
                 art.Articulo.NombreCategoria = catCEN.get_ICategoriaCAD().ReadOIDDefault(art.Articulo.NomCategoria).Nombre;
 
 
                 int art2 = artCen.New_(art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.NomCategoria, art.Articulo.Descripcion, art.Articulo.Stock, path2, art.Articulo.Img_3d,art.Articulo.IdVideojuego);
+
+                if (path2 != "")
+                {
+                    String new_img = art2.ToString() + Path.GetExtension(path2);
+                    artCen.Modify(art2, art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.Descripcion, art.Articulo.Stock, new_img, art.Articulo.Img_3d);
+                }
 
                 //Modifico solo el atributo que guarda el nombre de la imagen
                 

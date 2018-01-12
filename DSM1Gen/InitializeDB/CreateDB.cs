@@ -163,26 +163,33 @@ public static void InitializeData ()
 
                 //ARTICULOS
                 ArticuloCEN articuloCEN = new ArticuloCEN ();
+                int[] articulos = new int[40];
+                articulos[0] = articuloCEN.New_("FrostMourne", 10.01, categorias [0], "Un arma muy especial", 5, "frostmourne.jpg", "", videojuegos [5]);
+                articulos[1] = articuloCEN.New_("Escopeta Frost L4D", 1, categorias [2], "Piun, piun", 5, "frostshotgun.jpg", "", videojuegos [2]);
+                articulos[2] = articuloCEN.New_("Contrato Virtuoso", 800, categorias [0], "Espada YohRa", 5, "nier.jpg", "94c9f72ffe6746fd8470177e07f96a35", videojuegos [3]);
+                articulos[3] = articuloCEN.New_("Raygun", 50, categorias [4], "Arma de rayos molona", 5, "raygun.jpg", "", videojuegos [4]);
+                articulos[4] = articuloCEN.New_("Excalibur", 90, categorias [5], "Espada del buen Rey Arturo", 5, "excalibur.jpg", "3b4ffcc403c2404d84a1a07cfc25e3c4", videojuegos [5]);
+                articulos[5] = articuloCEN.New_("Daga del tiempo", 550, categorias [1], "Daga de Prince of Persia, puede controlar el tiempo", 5, "time.jpg", "", videojuegos [6]);
+                articulos[6] = articuloCEN.New_("Braum Papá Noel", 10, categorias[1], "Skin navideña del señor Braum", 5, "braum.jpg", "", videojuegos[6]);
+                articulos[7] = articuloCEN.New_("Shotgun", 320, categorias[2], "Escopeta Fallout, con animaciones incluidas", 5, "shotgun.jpg", "766c4bcf7f4047538ec032ba132c6750", videojuegos[6]);
+                articulos[8] = articuloCEN.New_("Reinhardt", 550, categorias[1], "Martillo moón", 5, "hammer.jpg", "c68e42799e404507833685845e82d489", videojuegos[6]);
+                articulos[9] = articuloCEN.New_("AWP Fenix", 550, categorias[1], "Daga de Prince of Persia, puede controlar el tiempo", 5, "phoenix.jpg", "", videojuegos[6]);
+                articulos[10] = articuloCEN.New_("Elucidator", 390, categorias[1], "Espada del buen Kirito", 80, "elucidator.jpg", "aac6b699d9be46d99586d4e761310139", videojuegos[6]);
+                articulos[11] = articuloCEN.New_("Ice Famas", 550, categorias[4], "Skin de hielo para esta molona arma", 5, "icefamas.jpg", "8b11a1145baf4665858c6abdaade764f", videojuegos[6]);
+                articulos[12] = articuloCEN.New_("Anillo único", 999, categorias[1], "El anillo único", 5, "anillo.jpg", "314bdc71309d4c09949f9ab30ba92ac1", videojuegos[6]);
+                articulos[13] = articuloCEN.New_("Skin Black Pearl", 52, categorias[1], "Cuchillo molón CS:GO", 5, "csgo.png", "", videojuegos[6]);
+                articulos[14] = articuloCEN.New_("Raygun Mark II", 37, categorias[3], "Doble de potencia que su hermano pequeño", 5, "mark2.jpg", "", videojuegos[6]);
+                articulos[15] = articuloCEN.New_("Kayn cazador de almas", 10, categorias[2], "Skin Kayn cazador de almas League of Legends", 5, "kayn.jpg", "", videojuegos[6]);
+                articulos[16] = articuloCEN.New_("AK-47 Phoenix", 550, categorias[1], "Skin Phoenix para AK47", 5, "phoenixak.jpg", "1b35a7d44c0c4cdd885b4e2638d10b3b", videojuegos[6]);
+                
 
-                int articulo1 = articuloCEN.New_ ("FrostMourne", 10.01, categorias [0], "Un arma muy especial", 5, "FrostMourne.jpg", "", videojuegos [0]);
-                int articulo2 = articuloCEN.New_ ("Escopeta Frost L4D", 1, categorias [2], "Piun, piun", 5, "FrostL4D.jpg", "", videojuegos [2]);
-                int articulo3 = articuloCEN.New_ ("Contrato Virtuoso", 800, categorias [0], "Espada YohRa", 5, "Nier.jpg", "", videojuegos [3]);
-                int articulo4 = articuloCEN.New_ ("Raygun", 50, categorias [4], "Arma de rayos molona", 5, "Raygun.jpg", "", videojuegos [4]);
-                int articulo5 = articuloCEN.New_ ("Excalibur", 90, categorias [5], "Moar armas molonas", 5, "Excalibur.jpg", "", videojuegos [5]);
-                int articulo6 = articuloCEN.New_ ("Daga del tiempo", 550, categorias [1], "Daga de Prince of Persia, puede controlar el tiempo", 5, "Time.jpg", "", videojuegos [6]);
-
-
-                int art1CatId = articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulo1).Categoria.Id;
-                int art2CatId = articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulo2).Categoria.Id;
-                int art3CatId = articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulo2).Categoria.Id;
-                int art4CatId = articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulo2).Categoria.Id;
 
                 //ANYADO ARTICULOS A FAVORITO
 
                 List<int> favoritos1 = new List<int>();
-                favoritos1.Add (articulo1);
+                favoritos1.Add (articulos[0]);
                 List<int> favoritos2 = new List<int>();
-                favoritos2.Add (articulo2);
+                favoritos2.Add (articulos[2]);
                 registradoCEN.Añadir_fav (registrado0, favoritos1);
                 registradoCEN.Añadir_fav (registrado0, favoritos2);
 
@@ -190,8 +197,14 @@ public static void InitializeData ()
                 PujaCEN pujaCEN = new PujaCEN ();
                 List<int> pujas = new List<int>();
 
-                int pujaid = pujaCEN.New_ (DateTime.Now, 10, articulo1, 10, -1, false, false);
-                int pujaid2 = pujaCEN.New_ (DateTime.Now, 100, articulo2, 100, -1, false, false);
+                int pujaid = pujaCEN.New_ (DateTime.Now, 10, articulos[0], 10, -1, false, false);
+                int pujaid2 = pujaCEN.New_ (DateTime.Now, 20, articulos[6], 20, -1, false, false);
+                int pujaid3 = pujaCEN.New_(DateTime.Now, 15, articulos[2], 15, -1, false, false);
+                int pujaid4 = pujaCEN.New_(DateTime.Now, 25, articulos[10], 25, -1, false, false);
+                int pujaid5 = pujaCEN.New_(DateTime.Now, 30, articulos[15], 30, -1, false, false);
+                int pujaid6 = pujaCEN.New_(DateTime.Now, 40, articulos[13], 40, -1, false, false);
+                int pujaid7 = pujaCEN.New_(DateTime.Now, 32, articulos[2], 32, -1, false, false);
+
                 pujas.Add (pujaid);
                 pujas.Add (pujaid2);
 
@@ -214,8 +227,8 @@ public static void InitializeData ()
                  * lineaPedidoCP.Anyado_lineaYprecio(20, articulo1, registrado0);
                  * System.Console.WriteLine("El precio del carrito es: "+carritoCEN.get_ICarritoCAD().ReadOIDDefault(registrado0).Precio + "\n");
                  */
-                System.Console.WriteLine ("Anyado 2 " + articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulo2).Nombre + " al carrito de " + registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (registrado0).N_usuario);
-                lineaPedidoCP.Anyado_lineaYprecio (2, articulo2, registrado0);
+                System.Console.WriteLine ("Anyado 2 " + articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulos[2]).Nombre + " al carrito de " + registradoCEN.get_IRegistradoCAD ().ReadOIDDefault (registrado0).N_usuario);
+                lineaPedidoCP.Anyado_lineaYprecio (2, articulos[2], registrado0);
                 System.Console.WriteLine ("El precio del carrito es: " + carritoCEN.get_ICarritoCAD ().ReadOIDDefault (registrado0).Precio + "\n");
 
 
@@ -244,7 +257,7 @@ public static void InitializeData ()
                 carritoCP.Finalizar_compra (registrado0, carritoCEN.get_ICarritoCAD ().ReadOIDDefault (registrado0).Precio);
                 System.Console.WriteLine ("El precio del carrito es: " + carritoCEN.get_ICarritoCAD ().ReadOIDDefault (registrado0).Precio + "\n");
 
-                Console.WriteLine ("Ahora " + articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulo1).Nombre + " tiene " + articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulo1).Stock + " unidades en stock \n");
+                Console.WriteLine ("Ahora " + articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulos[1]).Nombre + " tiene " + articuloCEN.get_IArticuloCAD ().ReadOIDDefault (articulos[1]).Stock + " unidades en stock \n");
 
                 //CONSIGO TODOS LOS PEDIDOS DE UN USUARIO
                 pedidoCEN = new PedidoCEN ();
@@ -361,7 +374,7 @@ public static void InitializeData ()
                 //CREO UNA VALORACION Y MODIFICO SU TEXTO
                 ValoracionCEN valoracionCEN = new ValoracionCEN ();
                 System.Console.WriteLine ("CREO UNA VALORACION Y LE CAMBIO EL TEXTO");
-                int valoracionCEN_id1 = valoracionCEN.New_ (10, "La verdad es que es la hostia, pero quiero que Lujan me apruebe", registrado0, articulo1);
+                int valoracionCEN_id1 = valoracionCEN.New_ (10, "La verdad es que es la hostia, pero quiero que Lujan me apruebe", registrado0, articulos[1]);
 
                 System.Console.WriteLine (valoracionCEN.get_IValoracionCAD ().ReadOIDDefault (valoracionCEN_id1).Texto);
                 int pMod = valoracionCEN.get_IValoracionCAD ().ReadOIDDefault (valoracionCEN_id1).Puntuacion;
@@ -369,8 +382,8 @@ public static void InitializeData ()
                 System.Console.WriteLine (valoracionCEN.get_IValoracionCAD ().ReadOIDDefault (valoracionCEN_id1).Texto);
 
 
-                lineaPedidoCP.Anyado_lineaYprecio (2, articulo2, registrado0);
-                lineaPedidoCP.Anyado_lineaYprecio (2, articulo2, registrado1);
+                lineaPedidoCP.Anyado_lineaYprecio (2, articulos[2], registrado0);
+                lineaPedidoCP.Anyado_lineaYprecio (2, articulos[2], registrado1);
 
                 // p.e. CustomerCEN customer = new CustomerCEN();
                 // customer.New_ (p_user:"user", p_password:"1234");
