@@ -34,6 +34,7 @@
         $(function () {
             $("#cat-delete select#Categoria_Id option[value='0']").remove();
             $("#art-create select#Articulo_NomCategoria option[value='0']").remove();
+            $("#art-modify select#Articulo_NomCategoria option[value='0']").remove();
             $("#cat-modify select#Categoria_Id option[value='0']").remove();
             $("#Categoria_Id").change(function () {
                 $.ajax({
@@ -107,9 +108,10 @@
                         $("#art-modify input#Articulo_Nombre").val(response.Nombre);
                         $("#art-modify input#Articulo_Precio").val(response.Precio);
                         $("#art-modify select#Articulo_NomCategoria").val(response.NomCategoria);
-                        $("#art-modify input#Articulo_Descripcion").val(response.Descripcion);
+                        $("#art-modify textarea#Articulo_Descripcion").val(response.Descripcion);
                         $("#art-modify input#Articulo_Stock").val(response.Stock);
-                        $('#art-modify figure figcaption').html('<h2>' + response.Nombre + ' <span> &nbsp;&nbsp;' + response.Precio + '</span></h2><p>' + response.Descripcion + '</p>');
+                        $("#art-modify input#Articulo_Img_3d").val(response.Img_3d); 
+                        $('#art-modify figure figcaption').html('<h2>' + response.Nombre + ' <span> &nbsp;&nbsp;' + response.Precio + '€</span></h2><p>' + response.Descripcion + '</p>');
                     }
                 });
             });
@@ -125,7 +127,7 @@
                     $("#art-modify input#Articulo_NomCategoria").val(response.NomCategoria);
                     $("#art-modify input#Articulo_Descripcion").val(response.Descripcion);
                     $("#art-modify input#Articulo_Stock").val(response.Stock);
-                    $('#art-modify figure figcaption').html('<h2>' + response.Nombre + ' <span> &nbsp;&nbsp;' + response.Precio + '</span></h2><p>' + response.Descripcion + '</p>');
+                    $('#art-modify figure figcaption').html('<h2>' + response.Nombre + ' <span> &nbsp;&nbsp;' + response.Precio + '€</span></h2><p>' + response.Descripcion + '</p>');
                 }
             });
         });

@@ -11,9 +11,6 @@
     var message = @Session["PujaError"];
     if (message != null) System.Web.HttpContext.Current.Session.Remove("PujaError");
 
-    
-    
-
 
 }
 
@@ -71,7 +68,6 @@
         <div class="col-12 col-lg-9">
             <div class="row">
                 <div class="col tab-content" id="v-pills-tabContent">
-                    @message
 
                     <!--AÑADIR CATEGORIA-->
                     <div class="tab-pane fade" id="cat-create" role="tabpanel" aria-labelledby="cat-create-tab">
@@ -258,7 +254,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Articulo.IdVideojuego, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.DropDownListFor(model => model.Articulo.IdVideojuego, new SelectList(listVid, "Value", "Text"), "Selecciona un videojuego para el artículo")
+                                        @Html.DropDownListFor(model => model.Articulo.IdVideojuego, new SelectList(listVid, "Value", "Text"), "Selecciona un videojuego para el artículo", new {@class="form-control" })
                                     </div>
                                 </div>
                             </div>
@@ -291,25 +287,38 @@
                                 <h3 class="elegant text-center">Preview</h3>
                             </div>
                         </div>
-                        @using (Html.BeginForm("Edit", "Articulo", FormMethod.Post, new { id = "needs-validation", novalidate = "" }))
+                        @using (Html.BeginForm("Edit", "Articulo", FormMethod.Post, new { enctype = "multipart/form-data", id = "needs-validation", novalidate = "" }))
                         {
-                            <div class="form-group mt-3">
+                            <div class="form-group mt-3 row">
+                                <div class="col-6">
+
                                 <label for="Categoria_NomSuper">Artículo</label>
                                 @Html.DropDownListFor(model => model.Articulo.Id, new SelectList(listSArt, "Value", "Text"), null, new { @class = "form-control" })
                                 <small id="SuperHelp" class="form-text text-muted">Elige el artículo que quieres editar.</small>
+                                </div>
+                                
                             </div>
                             <div class="form-group mt-3">
-                                <label for="Articulo_Nombre">Nombre</label>
-                                @Html.EditorFor(model => model.Articulo.Nombre, new { htmlAttributes = new { @class = "form-control", placeholder = "Introduce el nombre del artículo", value = "Ueee" } })
-                                @Html.ValidationMessageFor(model => model.Articulo.Nombre, "", new { @class = "text-danger" })
-                                <small id="nameHelp" class="form-text text-muted">Elige un nuevo nombre para el artículo.</small>
+                                
                             </div>
 
-                            <div class="form-group">
-                                <label for="Articulo_Precio">Precio</label>
-                                @Html.EditorFor(model => model.Articulo.Precio, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0", @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Articulo.Precio, "", new { @class = "text-danger" })
-                                <small id="nameHelp" class="form-text text-muted">Elige un nuevo precio para el artículo.</small>
+                            <div class="form-group row">
+                                <div class="col-6">
+
+                                    <label for="Articulo_Nombre">Nombre</label>
+                                    @Html.EditorFor(model => model.Articulo.Nombre, new { htmlAttributes = new { @class = "form-control", placeholder = "Introduce el nombre del artículo", value = "Ueee" } })
+                                    @Html.ValidationMessageFor(model => model.Articulo.Nombre, "", new { @class = "text-danger" })
+                                    <small id="nameHelp" class="form-text text-muted">Elige un nuevo nombre para el artículo.</small>
+                                </div>
+                                <div class="col-6">
+
+                                    <label for="Articulo_Precio">Precio</label>
+                                    @Html.EditorFor(model => model.Articulo.Precio, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Articulo.Precio, "", new { @class = "text-danger" })
+                                    <small id="nameHelp" class="form-text text-muted">Elige un nuevo precio para el artículo.</small>
+
+                                </div>
+
                             </div>
 
 
@@ -320,13 +329,27 @@
                                 <small id="nameHelp" class="form-text text-muted">¿Cómo es el producto?</small>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group row">
+                                <div class="col-6">
+
                                 <label for="Articulo_Stock">Stock</label>
                                 @Html.EditorFor(model => model.Articulo.Stock, new { htmlAttributes = new { @type = "number", @min = "0", @step = "1", @value = "0", @class = "form-control", placeholder = "0, 1, 5, 10..." } })
                                 @Html.ValidationMessageFor(model => model.Articulo.Stock, "", new { @class = "text-danger" })
                                 <small id="nameHelp" class="form-text text-muted">Cambia el número de unidades disponibles.</small>
-                            </div>
+                                </div>
 
+                                <div class="col-6">
+                                    <label for="Articulo_Img_3d">ID - Modelo 3D</label>
+                                    @Html.EditorFor(model => model.Articulo.Img_3d, new { htmlAttributes = new { @class = "form-control", placeholder = "Ej: 35d80a2cc36b4df1adad7242df730d5c" } })
+                                    <small id="nameHelp" class="form-text text-muted">Introduce el id del modelo 3D, si existe.</small>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-6">
+                                    <input type="file" name="file" value="Browse" />
+                                </div>
+
+                            </div>
                             <div class="row mt-2 p-3">
                                 <div class="col">
                                     <button type="submit" class="btn btn-outline-dark pointer w-100 mx-auto">Editar</button>

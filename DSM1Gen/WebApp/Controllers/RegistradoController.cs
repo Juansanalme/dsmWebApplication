@@ -355,11 +355,12 @@ namespace WebDSM.Controllers
                 if (reg.Edad != 0) registradoEN.Edad = reg.Edad;
                 if (reg.Dni != null) registradoEN.Dni = reg.Dni;
                 if (reg.FNacimiento != null) registradoEN.Fecha_nac = reg.FNacimiento;
+                if (reg.NUsuario != null) registradoEN.N_usuario = reg.NUsuario;
 
                 if (reg.Contrasenya != null) registradoEN.Contrasenya = reg.Contrasenya;
 
                 registradoCAD.Modify(registradoEN);
-
+                System.Web.HttpContext.Current.Session["userSuccess"] = "Datos actualizados";
                 return RedirectToAction("../Registrado/Perfil", new { id = regId });
             }
             catch
@@ -445,16 +446,19 @@ namespace WebDSM.Controllers
                 {
                     if (registradoEN.Contrasenya == encrip)
                     {
-                        registradoEN.Contrasenya = nueva;
+                        System.Web.HttpContext.Current.Session["passSuccess"] = "Datos actualizados";
+                        registradoEN.Contrasenya = Util.GetEncondeMD5(nueva);
                     }
                     else
                     {
-                        //ANTIGUA INCORRECTA
+                        System.Web.HttpContext.Current.Session["passError2"] = "Antigua contraseña incorrecta";
+                        return RedirectToAction("../Registrado/Perfil", new { id = regId });
                     }
                 }
                 else
                 {
-                    //LAS NUEVAS DEBEN COINCIDIR
+                    System.Web.HttpContext.Current.Session["passError1"] = "Las contraseñas no coinciden";
+                    return RedirectToAction("../Registrado/Perfil", new { id = regId });
                 }
 
                 registradoCAD.Modify(registradoEN);
@@ -484,6 +488,7 @@ namespace WebDSM.Controllers
                 registradoEN.Dni = reg.Dni;
 
                 registradoCAD.Modify(registradoEN);
+                System.Web.HttpContext.Current.Session["personalSuccess"] = "Datos actualizados";
 
                 return RedirectToAction("../Registrado/Perfil", new { id = regId });
             }

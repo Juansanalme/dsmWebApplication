@@ -47,13 +47,12 @@
                             </fb:login-button>
                         </div>-->
 
-                        <p id="demo"></p>
-
                         <div class="col-4 col-md-2">
-                            @Html.ActionLink(" ", "#", "Home", new { @class = "col nav-link twitter m-auto" })
+                            <a href="#" class="col nav-link twitter m-auto"></a>
                         </div>
                         <div class="col-4 col-md-2">
-                            @Html.ActionLink(" ", "#", "Home", new { @class = "col nav-link google m-auto" })
+                            <a href="#" class="col nav-link google m-auto"></a>
+
                         </div>
                     </div>
                     <div class="row mt-5">
@@ -130,7 +129,7 @@
             if (response.status === 'connected') {
 
                 var aux = response.authResponse.userID
-
+                alert(response.name);
                 jQuery.ajax({
                     type: "POST",
                     url: "@Url.Action("LoginFB","Registrado")",

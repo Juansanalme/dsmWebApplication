@@ -19,6 +19,41 @@
     {
         link_img = "../../Content/Uploads/User_icons/"+Model.User_Icon;
     }
+
+    var passSuccess = "";
+    if (Session["passSuccess"] != null)
+    {
+        passSuccess = " - " + Session["passSuccess"].ToString();
+        System.Web.HttpContext.Current.Session.Remove("passSuccess");
+    }
+
+    var passError1 = "";
+    if (Session["passError1"] != null)
+    {
+        passError1 = Session["passError1"].ToString();
+        System.Web.HttpContext.Current.Session.Remove("passError1");
+    }
+
+    var passError2 = "";
+    if (Session["passError2"] != null)
+    {
+        passError2 = Session["passError2"].ToString();
+        System.Web.HttpContext.Current.Session.Remove("passError2");
+    }
+
+    var userSuccess = "";
+    if (Session["userSuccess"] != null)
+    {
+        userSuccess = " - " + Session["userSuccess"].ToString();
+        System.Web.HttpContext.Current.Session.Remove("userSuccess");
+    }
+
+    var personalSuccess = "";
+    if (Session["personalSuccess"] != null)
+    {
+        personalSuccess = " - " + Session["personalSuccess"].ToString();
+        System.Web.HttpContext.Current.Session.Remove("personalSuccess");
+    }
 }
 
 <div class="container mt-2" id="perfil">
@@ -63,7 +98,7 @@
 
     <div class="row mt-4 bg-orange p-1">
         <div class="col">
-            <h4 class="elegant mb-1"><i class="fas fa-user"></i> Mi cuenta</h4>
+            <h4 class="elegant mb-1"><i class="fas fa-user"></i> Mi cuenta <span class="text-success font-weight-bold h5">@userSuccess</span></h4>
         </div>
     </div>
     <div class="row mt-1 bg-black">
@@ -95,7 +130,7 @@
     </div>
     <div class="row mt-4 bg-orange p-1">
         <div class="col">
-            <h4 class="elegant mb-1"><i class="fas fa-key"></i> Contraseña</h4>
+            <h4 class="elegant mb-1"><i class="fas fa-key"></i> Contraseña <span class="text-success font-weight-bold h5">@passSuccess</span></h4>
         </div>
     </div>
     <div class="row mt-1 bg-black">
@@ -110,6 +145,7 @@
                     <div class="form-group col-12 col-md-4">
                         <label class="elegant" for="antigua">Antigua contraseña</label>
                         <input class="form-control" id="antigua" name="antigua" type="password" required/>
+                        <div class="feedback-error">@passError2</div>
                         <div class="invalid-feedback"> No puede estar vacío.</div>
                     </div>
                     <div class="form-group col-12 col-md-4">
@@ -120,7 +156,8 @@
                     </div>
                     <div class="form-group col-12 col-md-4">
                         <label class="elegant" for="repe">Repetir contraseña</label>
-                        <input class="form-control" id="repe" name="repe" type="password" required/>
+                        <input class="form-control" id="repe" name="repe" type="password" required />
+                        <div class="feedback-error">@passError1</div>
                         <div class="invalid-feedback"> No puede estar vacío.</div>
                         @*@Html.ValidationMessageFor(model => model.Contrasenya, "", new { @class = "text-danger" })*@
                     </div>
@@ -133,7 +170,7 @@
     </div>
     <div class="row mt-4 bg-orange p-1">
         <div class="col">
-            <h4 class="elegant mb-1"><i class="fas fa-street-view"></i> Datos personales</h4>
+            <h4 class="elegant mb-1"><i class="fas fa-street-view"></i> Datos personales <span class="text-success font-weight-bold h5">@personalSuccess</span></h4>
         </div>
     </div>
     <div class="row mt-1 bg-black">

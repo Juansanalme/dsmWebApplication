@@ -262,6 +262,7 @@
     <Compile Include="Models\CarritoYLineas.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Index.cs" />
     <Compile Include="Models\LineaPedido.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OfertaPuja.cs" />

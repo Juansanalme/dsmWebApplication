@@ -222,15 +222,45 @@ namespace WebDSM.Controllers
 
         // POST: Articulo/Edit/5
         [HttpPost]
-        public ActionResult Edit(Models.Admin art)
+        public ActionResult Edit(HttpPostedFileBase file, Models.Admin art)
         {
             try
             {
                 ArticuloCEN articuloCEN = new ArticuloCEN();
+                CategoriaCEN catCEN = new CategoriaCEN();
+                ArticuloEN articuloEN = articuloCEN.get_IArticuloCAD().ReadOIDDefault(art.Articulo.Id);
 
-                ArticuloEN new_art = new ArticuloEN();
+                if (art.Articulo.Img_3d == null)
+                    art.Articulo.Img_3d = articuloEN.Img_3d;
+
+                if (file != null)
+                {
+                    art.Articulo.Imagen = art.Articulo.Id + Path.GetExtension(file.FileName);
+                }
+                else
+                {
+                    art.Articulo.Imagen = articuloEN.Imagen;
+                }
 
                 articuloCEN.Modify(art.Articulo.Id, art.Articulo.Nombre, art.Articulo.Precio, art.Articulo.Descripcion, art.Articulo.Stock, art.Articulo.Imagen, art.Articulo.Img_3d);
+
+
+                var path = "";
+                if (file != null)
+                {
+                    if (file.ContentLength > 0)
+                    {
+                        //PARA UTILIZAR PATH SE NECESITA using System.IO
+                        if ((Path.GetExtension(file.FileName).ToLower() == ".jpg") || (Path.GetExtension(file.FileName).ToLower() == ".png") ||
+                                (Path.GetExtension(file.FileName).ToLower() == ".gif") || (Path.GetExtension(file.FileName).ToLower() == ".jpeg"))
+                        {
+                            path = Path.Combine(Server.MapPath("~/Content/Uploads/Item_images"), art.Articulo.Id + Path.GetExtension(file.FileName).ToLower());
+                            file.SaveAs(path);
+
+                        }
+
+                    }
+                }
 
                 return RedirectToAction("Details/"+art.Articulo.Id);
             }
@@ -405,7 +435,7 @@ namespace WebDSM.Controllers
 
                 return RedirectToAction("../Articulo/Details", new { id = artId });
             }
-            catch (Exception e)
+            catch
             {
             return RedirectToAction("../Home");
             }
@@ -422,7 +452,8 @@ namespace WebDSM.Controllers
                 Precio = articuloEN.Precio,
                 NomCategoria = articuloEN.Categoria.Id,
                 Descripcion = articuloEN.Descripcion,
-                Stock = articuloEN.Stock
+                Stock = articuloEN.Stock,
+                Img_3d = articuloEN.Img_3d
             };
             return Json(art);
         }

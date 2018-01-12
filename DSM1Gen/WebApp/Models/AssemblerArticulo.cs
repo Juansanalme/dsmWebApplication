@@ -91,6 +91,53 @@ namespace WebDSM.Models
 
         }
 
+        private static Random rng = new Random();
+        public Index Convert(IList<ArticuloEN> list_art, IList<VideojuegoEN> list_vid)
+        {
+            Index index = new Index();
+
+            IEnumerable<ArticuloEN> four = list_art.Reverse().Take(4).Reverse();
+            Articulo a = null;
+            foreach(ArticuloEN art in four)
+            {
+                a = new Articulo();
+                a.Nombre = art.Nombre;
+                a.Precio = art.Precio;
+                a.Descripcion = art.Descripcion;
+                a.Id = art.Id;
+                a.Imagen = art.Imagen;
+                index.Articulos.Add(a);
+            }
+
+            int n = list_vid.Count();
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                VideojuegoEN value = list_vid[k];
+                list_vid[k] = list_vid[n];
+                list_vid[n] = value;
+            }
+           
+            int c = 0;
+            Videojuego v = null;
+            foreach(VideojuegoEN vid in list_vid)
+            {
+                v = new Videojuego();
+                v.Id = vid.Id;
+                v.Nombre = vid.Nombre;
+                v.Imagen = vid.Imagen;
+                index.Videojuegos.Add(v);
+                if (c == 2)
+                {
+                    break;
+                }
+                c++;
+            }
+
+            return index;
+        }
+
         public IList<Articulo> ConvertListENToModel(IList<ArticuloEN> ens)
         {
             IList<Articulo> regs = new List<Articulo>();
