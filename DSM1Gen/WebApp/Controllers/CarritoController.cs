@@ -79,7 +79,7 @@ namespace WebDSM.Controllers
             }
             catch
             {
-                return RedirectToAction("../Home");
+                return RedirectToAction("../Registrado/Login");
             }
         }
 

@@ -149,7 +149,7 @@ namespace WebDSM.Controllers
             }
             else
             {
-                return RedirectToAction("../Home");
+                return RedirectToAction("../Registrado/Login");
             }
 	    }
     }

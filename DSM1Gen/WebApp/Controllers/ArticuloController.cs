@@ -393,7 +393,7 @@ namespace WebDSM.Controllers
             }
             catch (Exception e)
             {
-                return RedirectToAction("../Home");
+                return RedirectToAction("../Registrado/Login");
             }
         }
 
