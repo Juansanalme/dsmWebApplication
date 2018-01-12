@@ -37,6 +37,7 @@ namespace WebDSM.Models
                 l.PrecioUnidad = item.Articulo.Precio;
                 l.Total = item.Articulo.Precio * item.Cantidad;
                 l.Cantidad = item.Cantidad;
+                l.Imagen = item.Articulo.Imagen;
 
                 cyl.LineaPedido.Add(l);
             }

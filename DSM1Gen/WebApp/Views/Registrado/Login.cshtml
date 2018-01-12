@@ -129,7 +129,7 @@
             if (response.status === 'connected') {
 
                 var aux = response.authResponse.userID
-                alert(response.name);
+        
                 jQuery.ajax({
                     type: "POST",
                     url: "@Url.Action("LoginFB","Registrado")",

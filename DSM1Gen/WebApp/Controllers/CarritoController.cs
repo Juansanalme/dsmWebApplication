@@ -41,37 +41,7 @@ namespace WebDSM.Controllers
                 cp.Calcular_precio(miId);
 
                 //SACAR LAS FOTOS DE CADA ARTICULO
-                foreach (LineaPedido lp in model.LineaPedido)
-                {
-                    LineaPedidoEN lpEN = lpCEN.get_ILineaPedidoCAD().ReadOIDDefault(lp.Id);
-
-                    int artId = lpEN.Articulo.Id;
-
-                    string imagen = System.IO.Path.Combine(Server.MapPath("~/Content/Uploads/Item_images"), artId.ToString());
-
-                    if ((System.IO.File.Exists(imagen + ".jpg")))
-                    {
-                        lp.Imagen = artId + ".jpg";
-                    }
-                    else if ((System.IO.File.Exists(imagen + ".jpeg")))
-                    {
-                        lp.Imagen = artId + ".jpeg";
-                    }
-                    else if ((System.IO.File.Exists(imagen + ".png")))
-                    {
-                        lp.Imagen = artId + ".png";
-                    }
-                    else if ((System.IO.File.Exists(imagen + ".gif")))
-                    {
-                        lp.Imagen = artId + ".gif";
-                    }
-                    else
-                    {
-                        //SI NO TIENE FOTO DE PERFIL
-                        lp.Imagen = "";
-                    }
-
-                }
+                
 
                 SessionClose();
 
