@@ -1,0 +1,139 @@
+﻿@model WebDSM.Models.Index
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div id="carouselExampleIndicators" class="carousel slide mx-auto " data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item carousel-size active">
+            <div class="image-wrapper" style="background: url(../../Content/Uploads/Videogames/@Model.Videojuegos[0].Imagen) no-repeat center; background-size: cover;"></div>
+            <div class="caption ">
+                <h5 class="text-orange h2 elegant shadow">@Model.Videojuegos[0].Nombre</h5>
+                <p class="elegant d-none d-md-block shadow">
+                    <i class="text-orange fab fa-ethereum"></i>&nbsp; Nuevos artículos!
+                </p>
+                <a href="@Url.Action("Index", "Videojuego", new {id= Model.Videojuegos[0].Id })">
+                    <div class="btn btn-outline-warning py-2 px-5">
+                        VER
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="carousel-item carousel-size">
+            <div class="d-block image-wrapper" style="background: url(../../Content/Uploads/Videogames/@Model.Videojuegos[1].Imagen) no-repeat center; background-size: cover;"></div>
+            <div class="caption ">
+                <h5 class="text-orange h2 elegant shadow">@Model.Videojuegos[1].Nombre</h5>
+                <p class="elegant d-none d-md-block shadow">
+                    Nuevos juegos cada día!
+                   
+                </p>
+                <a href="@Url.Action("Index", "Videojuego", new {id= Model.Videojuegos[1].Id })">
+                    <div class="btn btn-outline-warning py-2 px-5">
+                        VER
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="carousel-item carousel-size">
+            <div class="d-block image-wrapper" style="background: url(../../Content/Uploads/Videogames/@Model.Videojuegos[2].Imagen) no-repeat center; background-size: cover;"></div>
+            <div class="caption ">
+                <h5 class="text-orange h2 elegant">@Model.Videojuegos[2].Nombre</h5>
+                <a href="@Url.Action("Index", "Videojuego", new {id= Model.Videojuegos[2].Id })">
+                    <div class="btn btn-outline-warning py-2 px-5">
+                        VER
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+
+</div>
+
+<div class="container-fluid fry">
+    <div class="row">
+        <img class="isfry" src="~/Images/Shut-up-and-take-my-money!.png" alt="Shut up and take my money!" />
+        <div class="col-12 col-md-6 offset-md-6">
+            <div class="h2 elegant pt-1 pt-md-5 mt-5">Has visto las últimas pujas abiertas?</div>
+            <div class="h5 elegant pt-1 ">Todo tipo de productos se ofertan cada día, desde espadas de tu MMORPG favorito hasta rifles de los shooters más populares.</div>
+            <a href="@Url.Action("../Puja")">
+                <div class="btn btn-outline-dark py-2 my-4">
+                    ECHA UN VISTAZO
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" id="home_fig">
+    <div class="row bg-absolute-black justify-content-center display-4 py-3">
+        NOVEDADES!
+    </div>
+    <div class="row pt-sm-5">
+        <section class="col-xs-12 offset-lg-1 col-lg-5 grid">
+
+            <figure class="effect-oscar float-right">
+                <div>
+                <img src="~/Content/Uploads/Item_images/@Model.Articulos[0].Imagen" alt="" />
+                    </div>
+                <figcaption>
+                    <h2>@Model.Articulos[0].Nombre <span>@Model.Articulos[0].Precio</span></h2>
+                    <p>@Model.Articulos[0].Descripcion</p>
+                    <a href="@Url.Action("Details", "Articulo", new {id=Model.Articulos[0].Id })">View more</a>
+                </figcaption>
+            </figure>
+
+            <figure class="effect-oscar float-right">
+                <div>
+
+                <img src="~/Content/Uploads/Item_images/@Model.Articulos[1].Imagen" alt="" />
+                </div>
+                <figcaption>
+                    <h2>@Model.Articulos[1].Nombre <span>@Model.Articulos[1].Precio</span></h2>
+                    <p>@Model.Articulos[1].Descripcion</p>
+                    <a href="@Url.Action("Details", "Articulo", new {id=Model.Articulos[1].Id })">View more</a>
+                </figcaption>
+            </figure>
+
+        </section>
+        <section class="col-xs-12 col-lg-5 grid">
+            <figure class="effect-oscar float-left">
+                <div>
+                <img src="~/Content/Uploads/Item_images/@Model.Articulos[2].Imagen" alt="" />
+                    </div>
+                <figcaption>
+                    <h2>@Model.Articulos[2].Nombre <span>@Model.Articulos[2].Precio</span></h2>
+                    <p>@Model.Articulos[2].Descripcion</p>
+                    <a href="@Url.Action("Details", "Articulo", new {id=Model.Articulos[2].Id })">View more</a>
+                </figcaption>
+            </figure>
+
+            <figure class="effect-oscar float-left">
+                <div>
+                    <img src="~/Content/Uploads/Item_images/@Model.Articulos[3].Imagen" alt="" />
+                </div>
+                <figcaption>
+                    <h2>@Model.Articulos[3].Nombre <span>@Model.Articulos[3].Precio</span></h2>
+                    <p>@Model.Articulos[3].Descripcion</p>
+                    <a href="@Url.Action("Details", "Articulo", new {id=Model.Articulos[3].Id })">View more</a>
+                </figcaption>
+            </figure>
+
+        </section>
+    </div>
+</div>
+

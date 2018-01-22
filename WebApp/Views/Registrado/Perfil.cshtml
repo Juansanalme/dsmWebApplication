@@ -1,0 +1,254 @@
+﻿@model WebDSM.Models.Registrado
+
+@{
+
+    if (Session["login"] == null)
+    {
+        Response.Redirect("~/Registrado/Login");
+    }
+    else if (Model.Id != (int)Session["idUsuario"] && (bool)Session["admin"] == false)
+    {
+        Response.Redirect("~/Home");
+    }
+    var link_img = "";
+    if (Model.User_Icon.IsEmpty())
+    {
+        link_img = Url.Content("~/Images/Shut-up-and-take-my-money!.png");
+    }
+    else
+    {
+        link_img = "../../Content/Uploads/User_icons/"+Model.User_Icon;
+    }
+
+    var passSuccess = "";
+    if (Session["passSuccess"] != null)
+    {
+        passSuccess = " - " + Session["passSuccess"].ToString();
+        System.Web.HttpContext.Current.Session.Remove("passSuccess");
+    }
+
+    var passError1 = "";
+    if (Session["passError1"] != null)
+    {
+        passError1 = Session["passError1"].ToString();
+        System.Web.HttpContext.Current.Session.Remove("passError1");
+    }
+
+    var passError2 = "";
+    if (Session["passError2"] != null)
+    {
+        passError2 = Session["passError2"].ToString();
+        System.Web.HttpContext.Current.Session.Remove("passError2");
+    }
+
+    var userSuccess = "";
+    if (Session["userSuccess"] != null)
+    {
+        userSuccess = " - " + Session["userSuccess"].ToString();
+        System.Web.HttpContext.Current.Session.Remove("userSuccess");
+    }
+
+    var personalSuccess = "";
+    if (Session["personalSuccess"] != null)
+    {
+        personalSuccess = " - " + Session["personalSuccess"].ToString();
+        System.Web.HttpContext.Current.Session.Remove("personalSuccess");
+    }
+}
+
+<div class="container mt-2" id="perfil">
+    <div class="row height-200px bg-black cabecera d-flex align-items-end text-center justify-content-center">
+        <div class="position-absolute align-self-center pb-5 h2 elegant shadow">@Model.NUsuario</div>
+        <div class="d-inline-block profile-pic bg-black" style="background-image: url(@link_img)"></div>
+    </div>
+    <div class="row height-250px bg-black pt-5 pb-2 px-2 mt-2">
+        <a class="col profile-button mt-5 d-flex align-items-center justify-content-center" href="@Url.Action("LoadFavoritos", "Articulo")">
+            <div>
+                <div class=" text-center" style="font-size:55px; color:white">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class=" text-center h4 elegant text-white">
+                    Favoritos
+                </div>
+            </div>
+
+        </a>
+        <a class="col profile-button mt-5 d-flex align-items-center justify-content-center border-x" href="@Url.Action("LoadGanadas", "Puja")">
+            <div>
+                <div class=" text-center" style="font-size:55px; color:white">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class=" text-center h4 elegant text-white">
+                    Pujas ganadas
+                </div>
+            </div>
+
+        </a>
+        <a class="col profile-button mt-5 d-flex align-items-center justify-content-center" href="@Url.Action("LoadPedidos", "Pedido")">
+            <div>
+                <div class=" text-center" style="font-size:55px; color:white">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class=" text-center h4 elegant text-white">
+                    Pedidos
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="row mt-4 bg-orange p-1">
+        <div class="col">
+            <h4 class="elegant mb-1"><i class="fas fa-user"></i> Mi cuenta <span class="text-success font-weight-bold h5">@userSuccess</span></h4>
+        </div>
+    </div>
+    <div class="row mt-1 bg-black">
+        <div class="col p-3">
+            @using (Html.BeginForm("Edit", "Registrado", FormMethod.Post, new { id = "needs-validation-1", novalidate = "" }))
+            {
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="row px-1">
+                    <div class="form-group col-12 col-md-5">
+                        @Html.LabelFor(model => model.NUsuario, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.NUsuario, new { htmlAttributes = new { @class = "form-control", required = "" } })
+                        <div class="invalid-feedback"> No puede estar vacío.</div>
+                    </div>
+                    <div class="form-group col-12 col-md-7">
+                        @Html.LabelFor(model => model.FNacimiento, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.FNacimiento, new { htmlAttributes = new { @class = "form-control", required = "" } })
+                        <div class="invalid-feedback"> No puede estar vacío.</div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-end pr-3">
+                    <button type="submit" class="col-4 col-md-2 btn btn-outline-warning pointer">Guardar</button>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row mt-4 bg-orange p-1">
+        <div class="col">
+            <h4 class="elegant mb-1"><i class="fas fa-key"></i> Contraseña <span class="text-success font-weight-bold h5">@passSuccess</span></h4>
+        </div>
+    </div>
+    <div class="row mt-1 bg-black">
+        <div class="col p-3">
+            @using (Html.BeginForm("NewPass", "Registrado", FormMethod.Post, new { id = "needs-validation-2", novalidate = "" }))
+            {
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="row">
+                    <div class="form-group col-12 col-md-4">
+                        <label class="elegant" for="antigua">Antigua contraseña</label>
+                        <input class="form-control" id="antigua" name="antigua" type="password" required/>
+                        <div class="feedback-error">@passError2</div>
+                        <div class="invalid-feedback"> No puede estar vacío.</div>
+                    </div>
+                    <div class="form-group col-12 col-md-4">
+                        <label class="elegant" for="nueva">Nueva contraseña</label>
+                        <input class="form-control" id="nueva" name="nueva" type="password" required/>
+                        <div class="invalid-feedback"> No puede estar vacío.</div>
+                        @*@Html.ValidationMessageFor(model => model.Contrasenya, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="form-group col-12 col-md-4">
+                        <label class="elegant" for="repe">Repetir contraseña</label>
+                        <input class="form-control" id="repe" name="repe" type="password" required />
+                        <div class="feedback-error">@passError1</div>
+                        <div class="invalid-feedback"> No puede estar vacío.</div>
+                        @*@Html.ValidationMessageFor(model => model.Contrasenya, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+                <div class="row justify-content-end pr-3">
+                    <button type="submit" class="col-4 col-md-2 btn btn-outline-warning pointer">Guardar</button>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row mt-4 bg-orange p-1">
+        <div class="col">
+            <h4 class="elegant mb-1"><i class="fas fa-street-view"></i> Datos personales <span class="text-success font-weight-bold h5">@personalSuccess</span></h4>
+        </div>
+    </div>
+    <div class="row mt-1 bg-black">
+        <div class="col p-3">
+            @using (Html.BeginForm("NewPersonales", "Registrado", FormMethod.Post, new { id = "needs-validation-3", novalidate = "" }))
+            {
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="row px-1 d-flex">
+                    <div class="form-group col-12 col-md-5">
+                        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", required = "" } })
+                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                        <div class="invalid-feedback"> No puede estar vacío.</div>
+                    </div>
+                    <div class="form-group col-12 col-md-7">
+                        @Html.LabelFor(model => model.Apellidos, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Apellidos, new { htmlAttributes = new { @class = "form-control", required = "" } })
+                        @Html.ValidationMessageFor(model => model.Apellidos, "", new { @class = "text-danger" })
+                        <div class="invalid-feedback"> No puede estar vacío.</div>
+                    </div>
+                </div>
+
+                <div class="row px-1">
+                    <div class="form-group col-5 col-md-2">
+                        @Html.LabelFor(model => model.Edad, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Edad, new { htmlAttributes = new { @class = "form-control", required = "" } })
+                        @Html.ValidationMessageFor(model => model.Edad, "", new { @class = "text-danger" })
+                        <div class="invalid-feedback"> Debe ser un numero.</div>
+                    </div>
+                    <div class="form-group col-7 col-md-3">
+                        @Html.LabelFor(model => model.Dni, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Dni, new { htmlAttributes = new { @class = "form-control", required = "" } })
+                        @Html.ValidationMessageFor(model => model.Dni, "", new { @class = "text-danger" })
+                        <div class="invalid-feedback"> No puede estar vacío.</div>
+                    </div>
+                    
+                    <button type="submit" style="max-height: 38px;" class="col-4 ml-auto col-md-2 btn btn-outline-warning pointer align-self-center mr-3">Guardar</button>
+                    
+                </div>
+
+
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        'use strict';
+
+        window.addEventListener('load', function () {
+            var form1 = document.getElementById('needs-validation-1');
+            var form2 = document.getElementById('needs-validation-2');
+            var form3 = document.getElementById('needs-validation-3');
+            form1.addEventListener('submit', function (event) {
+                if (form1.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form1.classList.add('was-validated');
+            }, false);
+            form2.addEventListener('submit', function (event) {
+                if (form2.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form2.classList.add('was-validated');
+            }, false);
+            form3.addEventListener('submit', function (event) {
+                if (form3.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form3.classList.add('was-validated');
+            }, false);
+        }, false);
+    })();
+</script>

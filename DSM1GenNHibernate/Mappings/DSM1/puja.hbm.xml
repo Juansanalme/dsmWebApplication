@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="DSM1GenNHibernate"
+		                   namespace="DSM1GenNHibernate.EN.DSM1">
+		    
+		    
+			
+				<class name="PujaEN" table="Puja"> 
+				  	
+						<id name="Id" column="idPuja" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Fecha" type="date"> 
+						<column name="fecha"  not-null="true"/>
+					</property>
+					<property name="Puja_inicial" type="float"> 
+						<column name="puja_inicial"  not-null="true"/>
+					</property>
+					<property name="Puja_max" type="float"> 
+						<column name="puja_max"  not-null="true"/>
+					</property>
+					<property name="Id_usuario" type="integer"> 
+						<column name="id_usuario"  not-null="true"/>
+					</property>
+					<property name="Cerrada" type="boolean"> 
+						<column name="cerrada"  not-null="true"/>
+					</property>
+					<property name="Pagada" type="boolean"> 
+						<column name="pagada"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="UsuarioGanador" class="DSM1GenNHibernate.EN.DSM1.RegistradoEN" >	
+								<column name="FK_idRegistrado_idRegistrado_0"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Articulo" class="DSM1GenNHibernate.EN.DSM1.ArticuloEN" >	
+								<column name="FK_idArticulo_idArticulo"/> 
+						</many-to-one>
+											 					
+			
+			
+		  			
+						<bag name="OfertaPuja" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idPuja_idPuja"/>
+					      	</key>
+							<one-to-many class="DSM1GenNHibernate.EN.DSM1.OfertaPujaEN"/>
+					    </bag>
+					
+			
+			
+			
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="PujaENReadAllHQL">from PujaEN</query>
+		</hibernate-mapping>
+	

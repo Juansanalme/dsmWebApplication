@@ -1,0 +1,168 @@
+﻿@model WebDSM.Models.Registrado
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/SimpleLayout.cshtml";
+
+    bool aux = true;
+
+    if(Session["login"] != null)
+    {
+        aux = false;
+        Response.Redirect("~/Registrado/Perfil/"+(int)Session["idUsuario"]);
+    }
+
+    var errorAcces = "";
+    if (Session["errorAcces"] != null)
+    {
+        errorAcces = "El nombre de usuario o la contraseña son incorrectos.";
+        System.Web.HttpContext.Current.Session.Remove("errorAcces");
+    }
+
+}
+
+<div class="container pt-5">
+    <div class="row header_login mb-3">
+        <div class="col">
+            @Html.ActionLink(" ", "../Home/Index", "Home", new { @class = "col nav-link logo_dark" })
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-9">
+
+            <div class="row h-100 mx-sm-5 bg-black p-4 justify-content-center separator">
+                <div class="col-12 font-weight-bold mb-5">
+                    <div class="row">
+                        <div class="col">Acceder con</div>
+                    </div>
+                    <div class="row justify-content-center pt-3">
+                        <div class="col-4 col-md-2 ">
+                            <a href="#" class="col nav-link facebook m-auto" onclick="login_FB();"></a>
+                        </div>
+
+                        <!--BOTON DE INICIO DE SESION EN FB
+                        <div class="col-4 col-md-2 ">
+                            <fb:login-button scope="public_profile,email" onclick="globalMas()"
+                                             onlogin="checkLoginState();">
+                            </fb:login-button>
+                        </div>-->
+
+                        <div class="col-4 col-md-2">
+                            <a href="#" class="col nav-link twitter m-auto"></a>
+                        </div>
+                        <div class="col-4 col-md-2">
+                            <a href="#" class="col nav-link google m-auto"></a>
+
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-2 offset-5 text-center">o</div>
+                    </div>
+                </div>
+                @using (Html.BeginForm("Login", "Registrado", FormMethod.Post, new { @class = "col-sm-10 col-md-9 col-lg-7 justify-content-center" }))
+            {
+            @*SI NO PONGO ESTO PETA*@
+            if (aux)
+            {
+                        @Html.AntiForgeryToken()
+            }
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.NUsuario, " ", new { @class = "col-2  col-sm-1 col-form-label user" })
+                <div class="col-10">
+                    @Html.EditorFor(model => model.NUsuario, new { htmlAttributes = new { @class = "form-control", placeholder = "Usuario" } })
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                @Html.LabelFor(model => model.Contrasenya, " ", new { @class = "col-2  col-sm-1 col-form-label pass" })
+                <div class="col-10 col-sm-10">
+                    @Html.EditorFor(model => model.Contrasenya, new { htmlAttributes = new { @class = "form-control", placeholder = "Contraseña" } })
+                </div>
+            </div>
+            <div class="feedback-error mb-2 pl-4 ml-2 elegant" id="error">@errorAcces</div>
+            
+            <div class="row">
+                <p>¿No tienes una cuenta en NA-ME? @Html.ActionLink("Registrarse", "Create", "Registrado", new { @class = "text-orange" })</p>
+            </div>
+            <div class="form-group mt-3 d-flex justify-content-center">
+                <div class="col-md-10">
+                    <input class="col-12 btn btn-outline-warning pointer" type="submit" value="Login" />
+                </div>
+            </div>
+}
+            </div>
+    </div>
+    </div>
+
+</div>
+
+<script>
+    var globalCount = 0;
+
+    function globalMas() {
+        globalCount++;
+        document.getElementById("demo").innerHTML = globalCount;
+    }
+
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '178529192744652',
+            cookie: true,
+            xfbml: true,
+            version: 'v2.11'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+
+    function login_FB() {
+        FB.login(function (response) {
+
+            if (response.status === 'connected') {
+
+                var aux = response.authResponse.userID
+        
+                jQuery.ajax({
+                    type: "POST",
+                    url: "@Url.Action("LoginFB","Registrado")",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ id: aux }),
+                    success: function (result) {
+                        if (!result) {
+                            window.location.href = "/Registrado/Create/" + aux;
+                        }
+                        else {
+                            jQuery.ajax({
+                                type: "POST",
+                                url: "@Url.Action("LoginFB2","Registrado")",
+                                dataType: "json",
+                                contentType: "application/json; charset=utf-8",
+                                data: JSON.stringify({ id: aux }),
+                                success: function (result) {
+                                    window.location.href = "../Home";
+                                }
+                            });
+
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,274 @@
+﻿@model WebDSM.Models.ArticuloYOpinion
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var IMG_3D = "https://sketchfab.com/models/" + @Model.Articulo.Img_3d + "/embed";
+    var full = (int)Model.Articulo.ValoracionMedia / 2;
+
+    int sessionID = 0;
+    if (Session["login"] != null)
+        sessionID = (int)Session["idusuario"];
+    bool fav = false;
+}
+
+<div class="container-fluid bg-black item-background py-4">
+    <div class="row">
+        <div class="controller col-12 col-lg-3 order-2 order-lg-1 pt-5 pt-lg-0 mt-0 mt-sm-3 mt-lg-0">
+            <div class="row h-50 d-flex align-items-end">
+                <div class="col-12 col-sm-6 col-lg-12 d-flex align-items-center pr-0 ">
+                    <div class="row w-100">
+                        <div class="col-12 col-xl-4 d-flex align-items-center pb-2 pb-xl-0">
+                            <div class="mx-auto ml-xl-auto">
+                                <div class="bg-orange coin d-flex align-items-center justify-content-center" style="font-size:50px; color:white">
+                                    <i class="far fa-gem"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-8 text-capitalize d-flex align-items-center justify-content-center justify-content-xl-start pr-0 pl-xl-4">
+                            <span class="h5 elegant">PRECIO:&nbsp;</span>
+                            <span class="h4 elegant text-blood">
+                                @Html.DisplayFor(model => model.Articulo.Precio)
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+                @if (Session["idUsuario"] != null)
+                {
+
+                <a class="col-12 col-sm-6 col-lg-12 col-xl-8 d-flex align-items-center p-3 nav-link ml-auto" id="al_carrito" href="@Url.Action("AnyadirAlCarrito", "Articulo", new { id = Model.Articulo.Id })">
+                    <div class="row w-100">
+                        <div class="col-12 col-xl-5 d-flex align-items-center pb-2 pb-xl-0">
+                            <div class="mx-auto ml-xl-auto">
+                                <div class="carrito d-flex align-items-center justify-content-center ml-auto" style="font-size:30px; color:white">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-7 h5 text-capitalize d-flex align-items-center elegant justify-content-center justify-content-xl-start pr-0">
+                            Añadir al carrito
+                        </div>
+                    </div>
+                </a>
+                }
+                else
+                {
+                <div class="col-12 col-sm-6 col-lg-12 col-xl-8 d-flex align-items-center nav-link ml-auto justify-content-center">
+                    <div class="row p-3">
+
+                        <div class="col-12">
+                            Debes estar logeado para poder comprar:
+
+                        </div>
+                        <div class="col-12">
+
+                        <a class="col-12 btn btn-outline-light mt-3 mb-2" href="@Url.Action("Login", "Registrado", null)">
+                            Conéctate
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 order-1 order-lg-2">
+            <div class="text-center justify-content-center">
+                @if (Model.Articulo.Img_3d != "")
+                {
+                    <div id="3D_Container" class="item_img d-inline-block">
+
+                        <iframe class="i3d" id="a3d" style="height:500px" src="@IMG_3D" frameborder="0" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>           
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row display-4 justify-content-center text-orange">@Html.DisplayFor(model => model.Articulo.Nombre)</div>
+                                <div class="row h3 elegant justify-content-center">CS:GO</div>
+                                <div class="row justify-content-center">@Html.DisplayFor(model => model.Articulo.Descripcion)</div>
+                            </div>
+                        </div>
+                    </div>    
+                }
+                else
+                {
+                    <div class="item_img d-inline-block">
+
+                        @if (Model.Articulo.Imagen.IsEmpty())
+                        {
+                            <img class="content" src="~/Images/Shut-up-and-take-my-money!.png" alt="" />
+                        }
+                        else
+                        {
+                            <img class="content" src="@Url.Content("~/Content/Uploads/Item_images/"+Model.Articulo.Imagen)" alt="Imagen del articulo @Model.Articulo.Nombre" />
+                        }
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row display-4 justify-content-center text-orange">@Html.DisplayFor(model => model.Articulo.Nombre)</div>
+                                <div class="row h3 elegant justify-content-center">@Model.Articulo.Videojuego</div>
+                                <div class="row justify-content-center">@Html.DisplayFor(model => model.Articulo.Descripcion)</div>
+                            </div>
+                        </div>
+                    </div>    
+                }
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-3 order-3 d-flex align-items-center pt-lg-5 mt-lg-5">
+            <div class="w-100">
+                @{//TODO ESTO ES LA COMPROBACION DE FAVORITOS SI
+                    foreach (int itemID in @Model.Articulo.UsuariosId)
+                    {
+                        if (itemID == sessionID)
+                        {
+                            fav = true;
+                        }
+                    }
+
+
+                    if (sessionID != 0 && !fav)
+                    {
+                        <a class="row nav-link pb-4 d-flex align-items-center" id="fav" href="@Url.Action("FavAnyadir", "Articulo", new { artId = Model.Articulo.Id })"> <!----------------------------------- AQUI EL ENLACE PARA AÑADIR A FAVORITOS -->
+                            <div class="col-2 col-lg-4 d-flex align-items-center justify-content-end pr-0">
+                                <div class="heart secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="col-8 h5 m-0 elegant">Añadir a favoritos</div>
+                        </a>
+                    }
+                    else if (sessionID != 0)
+                    {
+                        <a class="row nav-link pb-4 d-flex align-items-center" id="fav" href="@Url.Action("FavQuitar", "Articulo", new { artId = Model.Articulo.Id })">
+                            <div class="col-2 col-lg-4 d-flex align-items-center justify-content-end pr-0">
+                                <div class="favved secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="col-8 h5 m-0 elegant">Quitar de favoritos</div>
+                        </a>
+                    }
+                }
+
+                <div class="row pb-2 d-flex align-items-center">
+                    <div class="col-2 col-lg-4 d-flex align-items-center justify-content-end pr-0">
+                        <div class="bg-orange secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
+                            <i class="fas fa-tag" data-fa-transform="rotate-90"></i>
+                        </div>
+                    </div>
+                    <div class="col-8 h5 m-0 elegant">Categoria: <span class="text-blood">@Model.Articulo.NombreCategoria</span></div>
+                </div>
+                <div class="row pb-2 d-flex align-items-center">
+                    <div class="col-2 col-lg-4 d-flex align-items-center justify-content-end pr-0">
+                        <div class="bg-orange secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
+                            <i class="fas fa-archive"></i>
+                        </div>
+                    </div>
+                    <div class="col-8 h5 m-0 elegant">Stock: <span class="text-blood">@Model.Articulo.Stock</span></div>
+                </div>
+                <div class="row pb-2 d-flex align-items-center">
+                    <div class="col-2 col-lg-4 d-flex align-items-center justify-content-end pr-0">
+                        <div class="bg-orange secondary-buttons d-flex align-items-center justify-content-center" style="font-size:15px; color:white">
+                            <i class="fas fa-thumbs-up"></i>
+                        </div>
+                    </div>
+                    <div class="col-8 h5 m-0 elegant">Valoración media:
+                    <div style="font-size:12px; color:#f7cd37">
+                    @{ var cont = 0;
+                        for (var i = 0; i < full; i++)
+                        {
+                            cont++;
+                            <i class="fas fa-star"></i>
+                        }
+                        if (Model.Articulo.ValoracionMedia % 2 == 1)
+                        {
+                            cont++;
+                            <i class="fas fa-star-half"></i>
+                        }
+                        if(cont == 0)
+                        {
+                            <span>No hay valoraciones</span>
+                        }
+                    }
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+    <div class="container-fluid form-horizontal pt-4">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <h4 class="elegant">Valorar</h4>
+                <hr />
+                @if (Session["login"] != null)
+                {
+                    @Html.Partial("AnyadirValoracion")
+                }
+                else
+                {
+                    <div class="h-100 bg-black d-flex align-items-center justify-content-center elegant">Para dejar una valoración debes haber inciado sesión.</div>
+                }
+            </div>
+            <div class="col-12 col-md-8">
+                <h4 class="elegant mx-3">Valoraciones</h4>
+                <hr class="mx-3"/>
+                @foreach (var item in Model.Valoracion)
+                {
+                    var full_stars = item.Puntuacion/2;
+                    var puntuacion = item.Puntuacion / 2.0;
+                    <div class="row bg-black p-3 mb-3 mx-3">
+                        <div class="col-10">
+                            <div class="row">
+                                <b>@item.Registrado</b>
+                            </div>
+                            <div class="row">
+                                @for(var i = 0; i< full_stars; i++)
+                                {
+                                    <div style="font-size:12px; color:#f7cd37">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                }
+                        
+                                @if(item.Puntuacion%2 == 1)
+                                {
+                                    <div style="font-size:12px; color:#f7cd37">
+                                        <i class="fas fa-star-half"></i>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="row">
+                                @item.Texto
+                            </div>
+
+                           
+                        </div>
+                        <div class="col-2 d-flex align-items-center p-0">
+                             @if (Session["idUsuario"] != null && (string)Session["login"] == item.Registrado)
+                            {
+                                @*ES LA VALORACION DEL USUARIO*@
+
+                                 <a class="w-100" href="@Url.Action("Delete", "Valoracion", new { id = item.Id, id2 = Model.Articulo.Id })">
+                                 <div class="row w-100 m-0">
+                                    <div class="d-inline-block col-12 col-md-4 p-0 pr-2 d-flex justify-content-end" style="font-size:25px; color:#e10031;">
+                                         <i class="fas fa-trash align-self-center"></i>
+                                    </div>
+                                    <small class="d-lg-inline-block col-8 p-0 text-white elegant pt-1 d-none d-md-flex">
+                                        Borrar valoración
+                                    </small>
+                                 </div>
+                                 </a>
+                                 
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+

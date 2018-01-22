@@ -1,0 +1,65 @@
+﻿@model WebDSM.Models.ArticuloYOpinion
+
+
+
+
+@using (Html.BeginForm("Create", "Valoracion", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row">
+        <div class="col-12 col-md-4 d-flex align-items-center">
+            Puntuación
+        </div>
+        <div class="col-12 col-md-8 d-flex align-items-center">
+            <fieldset class="rating pt-2">
+                <input type="radio" id="star5" name="rating" value="10" />
+                <label class="full" for="star5" title="LINK STARTO!"></label>
+
+                <input type="radio" id="star4half" name="rating" value="9" />
+                <label class="half" for="star4half" title="Increíble"></label>
+
+                <input type="radio" id="star4" name="rating" value="8" />
+                <label class="full" for="star4" title="Muy bueno"></label>
+
+                <input type="radio" id="star3half" name="rating" value="7" />
+                <label class="half" for="star3half" title="Bien"></label>
+
+                <input type="radio" id="star3" name="rating" value="6" />
+                <label class="full" for="star3" title="Normal"></label>
+
+                <input type="radio" id="star2half" name="rating" value="5" />
+                <label class="half" for="star2half" title="Meh"></label>
+
+                <input type="radio" id="star2" name="rating" value="4" />
+                <label class="full" for="star2" title="Algo malo"></label>
+
+                <input type="radio" id="star1half" name="rating" value="3" />
+                <label class="half" for="star1half" title="Malo"></label>
+
+                <input type="radio" id="star1" name="rating" value="2" />
+                <label class="full" for="star1" title="Muy malo"></label>
+
+                <input type="radio" id="starhalf" name="rating" value="1" />
+                <label class="half" for="starhalf" title="Horrible"></label>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="row">
+
+        @Html.LabelFor(model => model.Texto, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            @Html.TextAreaFor(model => model.Texto, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model.IdArt, htmlAttributes: new { Value = Model.Articulo.Id })
+    <div class="row">
+        <div class="w-100 mx-3 mt-4">
+            <input type="submit" value="Valorar" class="btn btn-outline-dark pointer w-100" />
+        </div>
+    </div>
+}
