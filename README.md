@@ -9,4 +9,4 @@ Usage Instructions:
 2. Compile the whole solution
 3. Launch the "InitializeDB" project, say "y" to all. (you may need SQL Server Express)
 4. Launch the "WebApp" project.
-5. You can login with User "Pablomanez" and Password "Beater" (web is only in spanish though)
+5. You can login with User "Pablomanez" and Password "Test" (web is only in spanish though)
